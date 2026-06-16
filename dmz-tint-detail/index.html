@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DMZ Tint &amp; Detail | Window Tinting &amp; Auto Detailing in Oak Ridge, TN</title>
+<meta name="description" content="DMZ Tint & Detail — professional window tinting, tint removal, and auto detailing in Oak Ridge, TN. 5.0 stars, 52 reviews. Book your appointment online.">
+<style>
+  :root{
+    --black:#0a0a0c;
+    --dark:#14141a;
+    --dark2:#1c1c24;
+    --gold:#d4af37;
+    --gold-light:#f3d676;
+    --gray:#9a9aa6;
+    --white:#f7f7f8;
+    --line:#2a2a34;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Segoe UI', Arial, sans-serif;
+    background:var(--black);
+    color:var(--white);
+    line-height:1.6;
+  }
+  a{color:inherit;text-decoration:none;}
+  .container{max-width:1160px;margin:0 auto;padding:0 28px;}
+
+  /* Header */
+  header{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    background:rgba(10,10,12,0.92);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(212,175,55,0.18);
+  }
+  nav{display:flex;align-items:center;justify-content:space-between;padding:16px 28px;max-width:1160px;margin:0 auto;}
+  .logo{font-size:1.25rem;font-weight:800;letter-spacing:1px;color:#fff;}
+  .logo span{color:var(--gold-light);}
+  .nav-links{display:flex;gap:30px;list-style:none;}
+  .nav-links a{font-size:0.9rem;color:var(--gray);transition:.2s;letter-spacing:0.3px;}
+  .nav-links a:hover{color:var(--gold-light);}
+  .nav-cta{
+    background:var(--gold);color:#0a0a0c;padding:11px 22px;border-radius:6px;
+    font-size:0.85rem;font-weight:700;transition:.2s;
+  }
+  .nav-cta:hover{background:var(--gold-light);}
+
+  /* Hero */
+  .hero{
+    min-height:100vh;position:relative;display:flex;align-items:center;
+    padding-top:90px;overflow:hidden;color:#fff;
+  }
+  .hero-bg{
+    position:absolute;inset:0;z-index:0;
+    background-image:url('https://images.unsplash.com/photo-1605618313187-bfb14d572b53?q=80&w=1920&auto=format&fit=crop');
+    background-size:cover;background-position:center 50%;
+  }
+  .hero-bg::after{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(100deg, rgba(10,10,12,0.95) 32%, rgba(10,10,12,0.65) 65%, rgba(10,10,12,0.3) 100%);
+  }
+  .hero-content{position:relative;z-index:1;max-width:620px;}
+  .badge{
+    display:inline-flex;align-items:center;gap:10px;
+    background:rgba(212,175,55,0.12);border:1px solid rgba(212,175,55,0.4);
+    padding:8px 16px;border-radius:30px;font-size:0.82rem;color:var(--gold-light);
+    margin-bottom:24px;font-weight:600;
+  }
+  .hero h1{font-size:clamp(2.4rem,5.5vw,3.8rem);font-weight:800;line-height:1.1;margin-bottom:20px;}
+  .hero h1 .hl{color:var(--gold-light);}
+  .hero p{color:#cfd2db;font-size:1.1rem;max-width:500px;margin-bottom:34px;}
+  .btn-row{display:flex;gap:16px;flex-wrap:wrap;}
+  .btn{padding:15px 30px;border-radius:6px;font-weight:700;font-size:0.92rem;display:inline-block;transition:.2s;border:none;cursor:pointer;font-family:inherit;}
+  .btn-primary{background:var(--gold);color:#0a0a0c;}
+  .btn-primary:hover{background:var(--gold-light);transform:translateY(-2px);}
+  .btn-outline{border:1px solid rgba(255,255,255,0.4);color:#fff;background:transparent;}
+  .btn-outline:hover{border-color:var(--gold-light);color:var(--gold-light);transform:translateY(-2px);}
+  .stat-row{display:flex;gap:46px;margin-top:54px;flex-wrap:wrap;}
+  .stat .num{font-size:2rem;font-weight:800;color:var(--gold-light);}
+  .stat .label{font-size:0.8rem;color:#9a9aa6;letter-spacing:0.5px;text-transform:uppercase;}
+
+  /* Section generic */
+  section{padding:100px 0;}
+  .section-tag{color:var(--gold-light);font-size:0.8rem;letter-spacing:3px;text-transform:uppercase;font-weight:700;margin-bottom:14px;}
+  .section-title{font-size:2.2rem;font-weight:800;margin-bottom:16px;letter-spacing:-0.5px;}
+  .section-sub{color:var(--gray);max-width:600px;margin-bottom:54px;}
+  .dark2{background:var(--dark2);}
+
+  /* Services */
+  .services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:26px;}
+  .card{
+    background:var(--dark);border:1px solid var(--line);border-radius:12px;padding:32px;
+    transition:.2s;
+  }
+  .card:hover{border-color:var(--gold);transform:translateY(-4px);box-shadow:0 12px 30px rgba(212,175,55,0.1);}
+  .card-icon{font-size:1.8rem;margin-bottom:16px;}
+  .card h3{font-size:1.15rem;margin-bottom:10px;}
+  .card p{color:var(--gray);font-size:0.92rem;}
+
+  /* Why us */
+  .why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:30px;}
+  .why-item{padding:26px;border-left:3px solid var(--gold);}
+  .why-item h4{margin-bottom:8px;font-size:1.05rem;}
+  .why-item p{color:#b9bcc6;font-size:0.9rem;}
+
+  /* About */
+  .about{display:grid;grid-template-columns:1fr 1.1fr;gap:60px;align-items:center;}
+  .about-photo{
+    aspect-ratio:4/5;border-radius:12px;
+    background-image:url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=1200&auto=format&fit=crop');
+    background-size:cover;background-position:center;
+    border:1px solid var(--line);
+  }
+  .about h2{font-size:2rem;margin-bottom:18px;}
+  .about p{color:var(--gray);margin-bottom:16px;}
+  .info-row{display:flex;gap:14px;margin-top:24px;align-items:flex-start;}
+  .icon-dot{width:38px;height:38px;border-radius:10px;background:rgba(212,175,55,0.12);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--gold-light);}
+  .info-row strong{display:block;font-size:0.95rem;}
+  .info-row span{color:var(--gray);font-size:0.88rem;}
+
+  /* Reviews */
+  .reviews-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;}
+  .review-card{background:var(--dark);border:1px solid var(--line);border-radius:12px;padding:28px;}
+  .review-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+  .review-name{font-weight:700;}
+  .review-meta{color:var(--gray);font-size:0.82rem;}
+  .stars{color:var(--gold-light);display:block;margin-bottom:12px;}
+  .review-card p{color:#cfd2db;font-size:0.93rem;}
+  .owner-resp{margin-top:16px;padding:14px;background:rgba(212,175,55,0.07);border-left:3px solid var(--gold);border-radius:6px;font-size:0.85rem;color:var(--gray);}
+  .owner-resp strong{color:var(--gold-light);}
+
+  /* Booking */
+  .booking-section{position:relative;overflow:hidden;}
+  .booking-bg{
+    position:absolute;inset:0;z-index:0;
+    background-image:url('https://images.unsplash.com/photo-1607860108855-64acf2078ed9?q=80&w=1800&auto=format&fit=crop');
+    background-size:cover;background-position:center;
+    opacity:0.18;
+  }
+  .booking-wrap{position:relative;z-index:1;display:grid;grid-template-columns:0.9fr 1.1fr;gap:60px;align-items:flex-start;}
+  .booking-info h2{font-size:2rem;margin-bottom:18px;}
+  .booking-info p{color:#b9bcc6;margin-bottom:16px;}
+  form{display:grid;gap:20px;}
+  fieldset{border:1px solid var(--line);padding:26px;border-radius:8px;background:rgba(20,20,26,0.7);}
+  legend{font-size:0.78rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold-light);font-weight:700;padding:0 8px;}
+  .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .field{display:flex;flex-direction:column;gap:6px;}
+  .field.full{grid-column:1 / -1;}
+  label{font-size:0.82rem;color:var(--gray);}
+  input, select, textarea{
+    border:1px solid var(--line);background:var(--dark2);color:#fff;
+    padding:12px 14px;font-size:0.95rem;font-family:inherit;border-radius:6px;
+  }
+  input::placeholder, textarea::placeholder{color:#5f6068;}
+  input:focus, select:focus, textarea:focus{outline:none;border-color:var(--gold);}
+  textarea{resize:vertical;min-height:90px;}
+  .form-note{font-size:0.78rem;color:#7d7e88;}
+  .submit-row{display:flex;align-items:center;gap:18px;}
+  #form-status{font-size:0.85rem;color:var(--gold-light);}
+
+  /* CTA */
+  .cta-section{text-align:center;background:linear-gradient(135deg,#0a0a0c,#1c1c24);}
+  .cta-section h2{font-size:2.4rem;font-weight:800;margin-bottom:16px;}
+  .cta-section p{color:var(--gray);margin-bottom:34px;}
+
+  footer{padding:60px 0 30px;background:var(--dark);color:var(--gray);}
+  .footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:30px;margin-bottom:30px;}
+  .footer-col h4{color:var(--gold-light);margin-bottom:14px;font-size:0.92rem;letter-spacing:1px;}
+  .footer-col p,.footer-col a{font-size:0.88rem;display:block;margin-bottom:8px;}
+  .footer-bottom{text-align:center;font-size:0.8rem;padding-top:24px;border-top:1px solid var(--line);}
+
+  @media (max-width:900px){
+    .about, .booking-wrap{grid-template-columns:1fr;}
+    .form-grid{grid-template-columns:1fr;}
+    .nav-links{display:none;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <a href="#top" class="logo">DMZ <span>TINT &amp; DETAIL</span></a>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+      <li><a href="#booking">Book Now</a></li>
+    </ul>
+    <a href="#booking" class="nav-cta">Book Now</a>
+  </nav>
+</header>
+
+<section class="hero" id="top">
+  <div class="hero-bg"></div>
+  <div class="container">
+    <div class="hero-content">
+      <div class="badge">★★★★★ 5.0 rating · 52 reviews</div>
+      <h1>Precision tint. <span class="hl">Showroom shine.</span></h1>
+      <p>DMZ Tint &amp; Detail delivers professional window tinting, tint removal, and full auto detailing in Oak Ridge, TN. Top-rated, fast turnaround, and built to last.</p>
+      <div class="btn-row">
+        <a href="#booking" class="btn btn-primary">Book an Appointment</a>
+        <a href="tel:+18653432616" class="btn btn-outline">Call (865) 343-2616</a>
+      </div>
+      <div class="stat-row">
+        <div class="stat"><div class="num">5.0★</div><div class="label">Avg Rating</div></div>
+        <div class="stat"><div class="num">52</div><div class="label">Reviews</div></div>
+        <div class="stat"><div class="num">100%</div><div class="label">Satisfaction</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="container">
+    <div class="section-tag">Services</div>
+    <h2 class="section-title">What We Offer</h2>
+    <p class="section-sub">From precision window tinting to a full showroom-quality detail — all done with attention to detail.</p>
+    <div class="services-grid">
+      <div class="card"><div class="card-icon">🪟</div><h3>Window Tinting</h3><p>Precision ceramic and film tint installs for a sleek look and UV/heat protection.</p></div>
+      <div class="card"><div class="card-icon">🧽</div><h3>Tint Removal</h3><p>Clean removal of old, peeling, or bubbling tint with zero adhesive residue.</p></div>
+      <div class="card"><div class="card-icon">✨</div><h3>Stain &amp; Interior Detailing</h3><p>Deep clean and stain removal for carpets, seats, and interior surfaces.</p></div>
+      <div class="card"><div class="card-icon">🚗</div><h3>Exterior Wash &amp; Wax</h3><p>Hand wash, decontamination, and wax for a spotless, protected exterior.</p></div>
+      <div class="card"><div class="card-icon">🛡️</div><h3>Ceramic Coating</h3><p>Long-lasting paint protection that keeps your vehicle looking brand new.</p></div>
+      <div class="card"><div class="card-icon">📍</div><h3>Shop Service</h3><p>Visit us at 272 Warehouse Rd, Oak Ridge — easy in, easy out.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="dark2">
+  <div class="container">
+    <div class="section-tag">Why DMZ</div>
+    <h2 class="section-title">Why customers keep coming back</h2>
+    <div class="why-grid">
+      <div class="why-item"><h4>Awesome attention to detail</h4><p>"Awesome service and attention to detail. Highly recommended." — Thomas Wilson</p></div>
+      <div class="why-item"><h4>Excellent, professional work</h4><p>"Excellent work, very professional, and at a reasonable price. Highly recommend DMZ!" — Easwaran Krishnan</p></div>
+      <div class="why-item"><h4>Fast tint removal</h4><p>"They did an amazing job and did it super fast." — Cody</p></div>
+      <div class="why-item"><h4>5.0 stars, 52 reviews</h4><p>Consistently rated the top window tinting &amp; detailing shop in Oak Ridge.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="container about">
+    <div class="about-photo"></div>
+    <div>
+      <div class="section-tag">About</div>
+      <h2>Oak Ridge's top-rated tint &amp; detail shop</h2>
+      <p>DMZ Tint &amp; Detail has built a reputation for careful, professional work at fair prices — from precision window tinting to full vehicle detailing.</p>
+      <p>Customers consistently highlight the team's attention to detail, fast turnaround, and willingness to make things right every time.</p>
+      <div class="info-row"><div class="icon-dot">📍</div><div><strong>Location</strong><span>272 Warehouse Rd, Oak Ridge, TN 37830</span></div></div>
+      <div class="info-row"><div class="icon-dot">🕘</div><div><strong>Hours</strong><span>Open today · Closes 6 PM</span></div></div>
+      <div class="info-row"><div class="icon-dot">📞</div><div><strong>Phone</strong><span><a href="tel:+18653432616">(865) 343-2616</a></span></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="reviews">
+  <div class="container">
+    <div class="section-tag">Reviews</div>
+    <h2 class="section-title">What People Are Saying</h2>
+    <p class="section-sub">5.0 stars across 52 Google reviews.</p>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="review-top"><span class="review-name">Thomas Wilson</span><span class="review-meta">a week ago</span></div>
+        <span class="stars">★★★★★</span>
+        <p>"Awesome service and attention to detail. Highly recommended. All were professional and communicated great."</p>
+      </div>
+      <div class="review-card">
+        <div class="review-top"><span class="review-name">Easwaran Krishnan</span><span class="review-meta">3 months ago · Local Guide</span></div>
+        <span class="stars">★★★★★</span>
+        <p>"I did tinting on my Toyota Camry from them. Excellent work, very professional, and at a reasonable price. Highly recommend DMZ!"</p>
+        <div class="owner-resp"><strong>Owner reply:</strong> Thank you for your business it was our pleasure</div>
+      </div>
+      <div class="review-card">
+        <div class="review-top"><span class="review-name">Cody</span><span class="review-meta">6 months ago</span></div>
+        <span class="stars">★★★★★</span>
+        <p>"I went here to get the terrible crudy tint that was peeling off and bubbling that was on there from the previous owner removed. They did an amazing job and did it super fast."</p>
+        <div class="owner-resp"><strong>Owner reply:</strong> Thank you for the kind review! We really appreciate your business and it was our pleasure to take care of you and your vehicle!</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="booking-section dark2" id="booking">
+  <div class="booking-bg"></div>
+  <div class="container booking-wrap">
+    <div class="booking-info">
+      <div class="section-tag">Book Now</div>
+      <h2>Request an appointment</h2>
+      <p>Tell us about your vehicle and what you need. Your request is sent directly to the shop, and we'll text or call to confirm your time.</p>
+      <div class="info-row"><div class="icon-dot">📍</div><div><strong>Location</strong><span>272 Warehouse Rd, Oak Ridge, TN 37830</span></div></div>
+      <div class="info-row"><div class="icon-dot">🕘</div><div><strong>Hours</strong><span>Open today · Closes 6 PM</span></div></div>
+      <div class="info-row"><div class="icon-dot">📞</div><div><strong>Phone</strong><span><a href="tel:+18653432616">(865) 343-2616</a></span></div></div>
+    </div>
+
+    <form id="booking-form" action="https://formsubmit.co/REPLACE_WITH_OWNER_NOTIFICATION_EMAIL" method="POST">
+      <input type="hidden" name="_subject" value="New DMZ Tint & Detail Booking Request">
+      <input type="hidden" name="_template" value="table">
+      <input type="text" name="_honey" style="display:none">
+
+      <fieldset>
+        <legend>Your Information</legend>
+        <div class="form-grid">
+          <div class="field"><label for="name">Full Name</label><input type="text" id="name" name="Full Name" required></div>
+          <div class="field"><label for="phone">Phone Number</label><input type="tel" id="phone" name="Phone Number" required></div>
+          <div class="field full"><label for="email">Email Address</label><input type="email" id="email" name="Email Address" required></div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Vehicle Information</legend>
+        <div class="form-grid">
+          <div class="field"><label for="year">Year</label><input type="text" id="year" name="Vehicle Year" placeholder="2021" required></div>
+          <div class="field"><label for="make">Make</label><input type="text" id="make" name="Vehicle Make" placeholder="Toyota" required></div>
+          <div class="field"><label for="model">Model</label><input type="text" id="model" name="Vehicle Model" placeholder="Camry" required></div>
+          <div class="field"><label for="color">Color</label><input type="text" id="color" name="Vehicle Color" placeholder="Black"></div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Service Details</legend>
+        <div class="form-grid">
+          <div class="field full">
+            <label for="service">Service Requested</label>
+            <select id="service" name="Service Requested" required>
+              <option value="">Select a service</option>
+              <option>Window Tinting</option>
+              <option>Tint Removal</option>
+              <option>Stain & Interior Detailing</option>
+              <option>Exterior Wash & Wax</option>
+              <option>Ceramic Coating</option>
+              <option>Full Package</option>
+              <option>Not Sure / Other</option>
+            </select>
+          </div>
+          <div class="field"><label for="date">Preferred Date</label><input type="date" id="date" name="Preferred Date"></div>
+          <div class="field"><label for="time">Preferred Time</label><input type="time" id="time" name="Preferred Time"></div>
+          <div class="field full"><label for="notes">Additional Notes</label><textarea id="notes" name="Additional Notes" placeholder="Anything we should know — tint shade, stains, parking instructions, etc."></textarea></div>
+        </div>
+      </fieldset>
+
+      <div class="submit-row">
+        <button type="submit" class="btn btn-primary">Submit Request</button>
+        <span id="form-status"></span>
+      </div>
+      <p class="form-note">Submitting sends your request directly to DMZ Tint &amp; Detail. We'll follow up to confirm your appointment.</p>
+    </form>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="container">
+    <h2>Ready for a spotless ride?</h2>
+    <p>Book online or call us directly to schedule your tint or detail.</p>
+    <div class="btn-row" style="justify-content:center;">
+      <a href="#booking" class="btn btn-primary">Book an Appointment</a>
+      <a href="tel:+18653432616" class="btn btn-outline">Call (865) 343-2616</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col"><h4>DMZ TINT &amp; DETAIL</h4><p>Window Tinting &amp; Auto Detailing</p><p>Oak Ridge, TN</p></div>
+      <div class="footer-col"><h4>CONTACT</h4><a href="tel:+18653432616">(865) 343-2616</a><p>272 Warehouse Rd, Oak Ridge, TN 37830</p></div>
+      <div class="footer-col"><h4>HOURS</h4><p>Open today · Closes 6 PM</p><p>Call for full weekly schedule</p></div>
+    </div>
+    <div class="footer-bottom">&copy; 2026 DMZ Tint &amp; Detail. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('booking-form').addEventListener('submit', function(){
+    document.getElementById('form-status').textContent = 'Sending...';
+  });
+</script>
+
+</body>
+</html>
