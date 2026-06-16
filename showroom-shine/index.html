@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Showroom Shine Auto Detailing & Ceramic Coatings | Knoxville, TN</title>
+<meta name="description" content="Showroom Shine Auto Detailing & Ceramic Coatings in Knoxville, TN. Professional auto detailing, interior cleaning, and ceramic coating services. 4.8 stars, 21 reviews. Call (989) 350-3297.">
+<style>
+  :root{
+    --black:#0b0b0d;
+    --dark:#16161a;
+    --gold:#d4af37;
+    --gold-light:#f3d676;
+    --gray:#9a9aa2;
+    --white:#f7f7f8;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Segoe UI', Arial, sans-serif;
+    background:var(--black);
+    color:var(--white);
+    line-height:1.6;
+  }
+  a{color:inherit;text-decoration:none;}
+  .container{max-width:1100px;margin:0 auto;padding:0 24px;}
+
+  /* Header */
+  header{
+    position:fixed;top:0;left:0;right:0;
+    background:rgba(11,11,13,0.92);
+    backdrop-filter:blur(6px);
+    z-index:100;
+    border-bottom:1px solid rgba(212,175,55,0.2);
+  }
+  nav{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:16px 24px;max-width:1100px;margin:0 auto;
+  }
+  .logo{
+    font-size:1.3rem;font-weight:700;letter-spacing:1px;
+    color:var(--gold-light);
+  }
+  .logo span{color:var(--white);font-weight:400;font-size:0.9rem;display:block;letter-spacing:2px;}
+  .nav-links{display:flex;gap:28px;list-style:none;}
+  .nav-links a{font-size:0.95rem;color:var(--gray);transition:color .2s;}
+  .nav-links a:hover{color:var(--gold-light);}
+  .nav-cta{
+    background:var(--gold);color:var(--black);padding:10px 20px;
+    border-radius:4px;font-weight:600;font-size:0.9rem;
+    transition:background .2s;
+  }
+  .nav-cta:hover{background:var(--gold-light);}
+  .menu-toggle{display:none;background:none;border:none;color:var(--white);font-size:1.6rem;cursor:pointer;}
+
+  /* Hero */
+  .hero{
+    min-height:92vh;display:flex;align-items:center;
+    background:
+      linear-gradient(180deg, rgba(11,11,13,0.55) 0%, rgba(11,11,13,0.85) 100%),
+      radial-gradient(circle at 70% 30%, rgba(212,175,55,0.15), transparent 60%),
+      repeating-linear-gradient(135deg, #15151a 0px, #15151a 2px, #1c1c22 2px, #1c1c22 60px);
+    padding-top:90px;
+  }
+  .hero-content{max-width:650px;}
+  .badge{
+    display:inline-flex;align-items:center;gap:8px;
+    background:rgba(212,175,55,0.12);border:1px solid rgba(212,175,55,0.4);
+    padding:6px 14px;border-radius:30px;font-size:0.85rem;color:var(--gold-light);
+    margin-bottom:20px;
+  }
+  .stars{color:var(--gold);letter-spacing:2px;}
+  .hero h1{
+    font-size:3.2rem;font-weight:800;line-height:1.15;margin-bottom:18px;
+    color:var(--white);
+  }
+  .hero h1 em{color:var(--gold-light);font-style:normal;}
+  .hero p{font-size:1.15rem;color:var(--gray);margin-bottom:32px;max-width:520px;}
+  .btn-row{display:flex;gap:16px;flex-wrap:wrap;}
+  .btn{
+    padding:14px 28px;border-radius:4px;font-weight:600;font-size:1rem;
+    display:inline-block;transition:transform .15s, background .2s;
+  }
+  .btn-primary{background:var(--gold);color:var(--black);}
+  .btn-primary:hover{background:var(--gold-light);transform:translateY(-2px);}
+  .btn-outline{border:1px solid var(--gray);color:var(--white);}
+  .btn-outline:hover{border-color:var(--gold-light);color:var(--gold-light);transform:translateY(-2px);}
+
+  /* Section generic */
+  section{padding:90px 0;}
+  .section-tag{
+    color:var(--gold-light);font-size:0.85rem;letter-spacing:3px;
+    text-transform:uppercase;margin-bottom:10px;font-weight:600;
+  }
+  .section-title{font-size:2.2rem;font-weight:800;margin-bottom:16px;}
+  .section-sub{color:var(--gray);max-width:600px;margin-bottom:50px;}
+
+  /* Services */
+  .services-grid{
+    display:grid;grid-template-columns:repeat(auto-fit, minmax(260px,1fr));
+    gap:28px;
+  }
+  .service-card{
+    background:var(--dark);border:1px solid rgba(255,255,255,0.06);
+    border-radius:10px;padding:32px;transition:border-color .2s, transform .2s;
+  }
+  .service-card:hover{border-color:rgba(212,175,55,0.5);transform:translateY(-4px);}
+  .service-icon{font-size:2rem;margin-bottom:18px;}
+  .service-card h3{font-size:1.25rem;margin-bottom:10px;color:var(--white);}
+  .service-card p{color:var(--gray);font-size:0.95rem;}
+
+  /* About */
+  .about{
+    display:grid;grid-template-columns:1.1fr 1fr;gap:60px;align-items:center;
+  }
+  .about-visual{
+    background:linear-gradient(135deg, var(--dark), #1f1f26);
+    border:1px solid rgba(212,175,55,0.3);
+    border-radius:14px;padding:50px;text-align:center;
+  }
+  .about-visual .big-rating{font-size:4rem;font-weight:800;color:var(--gold-light);}
+  .about-visual .stars{font-size:1.4rem;margin:10px 0;}
+  .about-visual .review-count{color:var(--gray);}
+  .about h2{font-size:2rem;margin-bottom:18px;}
+  .about p{color:var(--gray);margin-bottom:16px;}
+  .info-line{display:flex;gap:12px;margin-top:24px;align-items:flex-start;}
+  .info-line strong{color:var(--white);display:block;font-size:0.95rem;}
+  .info-line span{color:var(--gray);font-size:0.92rem;}
+  .icon-dot{
+    width:36px;height:36px;border-radius:50%;background:rgba(212,175,55,0.12);
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--gold-light);
+  }
+
+  /* Reviews */
+  .reviews-grid{
+    display:grid;grid-template-columns:repeat(auto-fit, minmax(300px,1fr));
+    gap:24px;
+  }
+  .review-card{
+    background:var(--dark);border:1px solid rgba(255,255,255,0.06);
+    border-radius:10px;padding:28px;
+  }
+  .review-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+  .review-name{font-weight:700;color:var(--white);}
+  .review-meta{color:var(--gray);font-size:0.85rem;}
+  .review-card .stars{font-size:0.95rem;margin-bottom:12px;display:block;}
+  .review-card p{color:#cfcfd4;font-size:0.95rem;}
+  .owner-resp{
+    margin-top:16px;padding:14px;background:rgba(212,175,55,0.06);
+    border-left:3px solid var(--gold);border-radius:4px;font-size:0.88rem;color:var(--gray);
+  }
+  .owner-resp strong{color:var(--gold-light);}
+
+  /* CTA */
+  .cta-section{
+    background:linear-gradient(135deg, #1a1a1f, #0b0b0d);
+    border-top:1px solid rgba(212,175,55,0.2);
+    border-bottom:1px solid rgba(212,175,55,0.2);
+    text-align:center;
+  }
+  .cta-section h2{font-size:2.4rem;margin-bottom:14px;}
+  .cta-section p{color:var(--gray);margin-bottom:32px;}
+
+  /* Footer */
+  footer{padding:50px 0 30px;border-top:1px solid rgba(255,255,255,0.06);}
+  .footer-grid{
+    display:grid;grid-template-columns:repeat(auto-fit, minmax(200px,1fr));
+    gap:30px;margin-bottom:30px;
+  }
+  .footer-col h4{color:var(--gold-light);margin-bottom:14px;font-size:1rem;}
+  .footer-col p, .footer-col a{color:var(--gray);font-size:0.9rem;display:block;margin-bottom:8px;}
+  .footer-bottom{text-align:center;color:var(--gray);font-size:0.85rem;padding-top:20px;border-top:1px solid rgba(255,255,255,0.06);}
+
+  @media (max-width: 860px){
+    .about{grid-template-columns:1fr;}
+    .nav-links{display:none;}
+    .menu-toggle{display:block;}
+    .hero h1{font-size:2.2rem;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <a href="#top" class="logo">SHOWROOM SHINE<span>Auto Detailing & Ceramic Coatings</span></a>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="tel:+19893503297" class="nav-cta">(989) 350-3297</a>
+  </nav>
+</header>
+
+<section class="hero" id="top">
+  <div class="container">
+    <div class="hero-content">
+      <div class="badge"><span class="stars">★★★★★</span> 4.8 rating · 21 reviews</div>
+      <h1>Make your vehicle look <em>showroom ready</em>.</h1>
+      <p>Professional auto detailing and ceramic coating in Knoxville, TN. Rob and the Showroom Shine team bring expert attention to detail to every interior, exterior, and coating service.</p>
+      <div class="btn-row">
+        <a href="tel:+19893503297" class="btn btn-primary">Call (989) 350-3297</a>
+        <a href="#services" class="btn btn-outline">View Services</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="container">
+    <div class="section-tag">What We Offer</div>
+    <h2 class="section-title">Detailing & Coating Services</h2>
+    <p class="section-sub">From a full interior refresh to long-term ceramic protection, Showroom Shine offers a variety of services at a great price.</p>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">✨</div>
+        <h3>Ceramic Coating</h3>
+        <p>Long-lasting protection that keeps your paint glossy and shielded from the elements — trusted on trucks, SUVs, and daily drivers alike.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🚘</div>
+        <h3>Full Interior Detail</h3>
+        <p>Deep cleaning of seats, carpets, dash, and trim to remove dirt, odors, and stains and restore that brand-new feel.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🪞</div>
+        <h3>Exterior Detail & Wash</h3>
+        <p>Hand wash, decontamination, and paint correction to bring back a deep, mirror-like shine.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🛡️</div>
+        <h3>Paint Protection</h3>
+        <p>Add a protective layer that guards against UV damage, road grime, and minor scratches.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🧽</div>
+        <h3>Showroom Restoration</h3>
+        <p>Older vehicle with high mileage? We bring it back to looking brand new — even with almost 100,000 miles.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">📅</div>
+        <h3>Maintenance Plans</h3>
+        <p>Recurring detailing packages to keep your vehicle looking its best year-round.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="container about">
+    <div>
+      <div class="section-tag">About Us</div>
+      <h2>Knoxville's trusted name in auto detailing</h2>
+      <p>Showroom Shine Auto Detailing & Ceramic Coatings is owned and operated by Rob, known for his exceptional attention to detail and top-tier customer service. Whether it's a full interior refresh or a six-week-old ceramic coat job on a brand-new truck, Rob treats every vehicle like it's his own.</p>
+      <p>Customers consistently highlight his knowledge, friendliness, and the genuine care he puts into every detail.</p>
+      <div class="info-line">
+        <div class="icon-dot">📍</div>
+        <div><strong>Location</strong><span>4027 Doris Cir, Knoxville, TN 37918</span></div>
+      </div>
+      <div class="info-line">
+        <div class="icon-dot">🕘</div>
+        <div><strong>Hours</strong><span>Opens 9 AM Saturday (call for full weekly hours)</span></div>
+      </div>
+      <div class="info-line">
+        <div class="icon-dot">📞</div>
+        <div><strong>Phone</strong><span><a href="tel:+19893503297">(989) 350-3297</a></span></div>
+      </div>
+    </div>
+    <div class="about-visual">
+      <div class="big-rating">4.8</div>
+      <div class="stars">★★★★★</div>
+      <div class="review-count">Based on 21 Google reviews</div>
+    </div>
+  </div>
+</section>
+
+<section id="reviews">
+  <div class="container">
+    <div class="section-tag">Customer Love</div>
+    <h2 class="section-title">What People Are Saying</h2>
+    <p class="section-sub">Real reviews from real customers across Knoxville.</p>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="review-top">
+          <span class="review-name">Rebecca Parker</span>
+          <span class="review-meta">11 months ago</span>
+        </div>
+        <span class="stars">★★★★★</span>
+        <p>"This is my 2017 Infiniti Q60. It has almost 100,000 miles on it. I am so pleased with how Rob made it look brand new and showroom ready. Highly recommend!"</p>
+        <div class="owner-resp"><strong>Response from the owner:</strong> Thank you so much Becky. I enjoyed making your Q60 look showroom ready.</div>
+      </div>
+      <div class="review-card">
+        <div class="review-top">
+          <span class="review-name">Steve Grimsley</span>
+          <span class="review-meta">2 years ago</span>
+        </div>
+        <span class="stars">★★★★★</span>
+        <p>"Just had my 2024 Tundra ceramic coated 6 weeks ago. Rob did a fantastic job and he is super knowledgeable about detail work. I highly recommend bringing your vehicle to Showroom to be ceramic coated."</p>
+        <div class="owner-resp"><strong>Response from the owner:</strong> Thank you Steve!</div>
+      </div>
+      <div class="review-card">
+        <div class="review-top">
+          <span class="review-name">Meghan M</span>
+          <span class="review-meta">2 years ago · Local Guide</span>
+        </div>
+        <span class="stars">★★★★★</span>
+        <p>"I'm so glad I chose Rob to do my full interior today!! He was so kind & very thorough!! Close attention to detail! He offers a variety of services at a great price."</p>
+        <div class="owner-resp"><strong>Response from the owner:</strong> Thank you Meghan! Thank you for choosing Showroom Shine Auto Detailing! It was a pleasure to take care of your vehicle!</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section" id="contact">
+  <div class="container">
+    <h2>Ready for that showroom shine?</h2>
+    <p>Call Rob today to book your detail or ceramic coating appointment.</p>
+    <div class="btn-row" style="justify-content:center;">
+      <a href="tel:+19893503297" class="btn btn-primary">Call (989) 350-3297</a>
+      <a href="https://www.google.com/maps/search/?api=1&query=4027+Doris+Cir+Knoxville+TN+37918" target="_blank" rel="noopener" class="btn btn-outline">Get Directions</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Showroom Shine</h4>
+        <p>Auto Detailing & Ceramic Coatings</p>
+        <p>Knoxville, TN</p>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="tel:+19893503297">(989) 350-3297</a>
+        <p>4027 Doris Cir, Knoxville, TN 37918</p>
+      </div>
+      <div class="footer-col">
+        <h4>Hours</h4>
+        <p>Saturday: Opens 9 AM</p>
+        <p>Call for full weekly schedule</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2026 Showroom Shine Auto Detailing & Ceramic Coatings. All rights reserved.
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
