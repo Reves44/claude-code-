@@ -221,7 +221,7 @@
   </div>
   <div class="container">
     <div class="hero-content">
-      <div class="badge">★★★★½ 4.5 rating · 11 reviews</div>
+      <div class="badge" id="live-badge">★★★★½ 4.5 rating · 11 reviews</div>
       <h1>Restoration. Detailing. <span class="hl">Done right.</span></h1>
       <p>Colter Automotive Restoration delivers expert car detailing, body work, auto repair, and classic car sales in Clinton, TN. Chris and the crew treat every vehicle like their own.</p>
       <div class="btn-row">
@@ -229,8 +229,8 @@
         <a href="tel:+18652921924" class="btn btn-outline">Call (865) 292-1924</a>
       </div>
       <div class="stat-row">
-        <div class="stat"><div class="num">4.5★</div><div class="label">Avg Rating</div></div>
-        <div class="stat"><div class="num">11</div><div class="label">Reviews</div></div>
+        <div class="stat"><div class="num" id="live-rating">4.5★</div><div class="label">Avg Rating</div></div>
+        <div class="stat"><div class="num" id="live-count">11</div><div class="label">Reviews</div></div>
         <div class="stat"><div class="num">4+</div><div class="label">Services</div></div>
       </div>
     </div>
@@ -313,7 +313,7 @@
   <div class="container">
     <div class="section-tag">Reviews</div>
     <h2 class="section-title">What People Are Saying</h2>
-    <p class="section-sub">4.5 stars across 11 Google reviews.</p>
+    <p class="section-sub" id="live-sub">4.5 stars across 11 Google reviews.</p>
     <div class="reviews-grid">
       <div class="review-card">
         <div class="review-top"><span class="review-name">Cindy Darden</span><span class="review-meta">6 years ago</span></div>
@@ -478,6 +478,64 @@
       row.classList.remove('today');
     }
   });
+</script>
+
+<script>
+  /*
+   * ── LIVE GOOGLE RATING ─────────────────────────────────────────────
+   * To activate, replace the two values below:
+   *
+   * 1. YOUR_GOOGLE_API_KEY
+   *    Get one free at: https://console.cloud.google.com/
+   *    Enable "Places API (New)" for the key.
+   *    Restrict the key to your website domain for security.
+   *
+   * 2. YOUR_PLACE_ID
+   *    Find it at: https://developers.google.com/maps/documentation/places/web-service/place-id
+   *    Or search: https://maps.googleapis.com/maps/api/place/findplacefromtext/json
+   *              ?input=Colter+Automotive+Restoration+Clinton+TN
+   *              &inputtype=textquery&fields=place_id&key=YOUR_KEY
+   * ──────────────────────────────────────────────────────────────────
+   */
+  const GOOGLE_API_KEY = 'YOUR_GOOGLE_API_KEY';
+  const PLACE_ID       = 'YOUR_PLACE_ID';
+
+  function starsFor(rating) {
+    const full  = Math.floor(rating);
+    const half  = rating - full >= 0.5 ? 1 : 0;
+    const empty = 5 - full - half;
+    return '★'.repeat(full) + (half ? '½' : '') + '☆'.repeat(empty);
+  }
+
+  async function loadLiveRating() {
+    if (GOOGLE_API_KEY === 'YOUR_GOOGLE_API_KEY' || PLACE_ID === 'YOUR_PLACE_ID') return;
+
+    try {
+      const url = `https://places.googleapis.com/v1/places/${PLACE_ID}` +
+                  `?fields=rating,userRatingsTotal&key=${GOOGLE_API_KEY}`;
+      const res  = await fetch(url);
+      if (!res.ok) return;
+      const data = await res.json();
+
+      const rating = data.rating;
+      const count  = data.userRatingsTotal;
+      if (!rating || !count) return;
+
+      const ratingStr = rating.toFixed(1);
+      const stars     = starsFor(rating);
+
+      document.getElementById('live-badge').textContent =
+        `${stars} ${ratingStr} rating · ${count} reviews`;
+      document.getElementById('live-rating').textContent = `${ratingStr}★`;
+      document.getElementById('live-count').textContent  = count;
+      document.getElementById('live-sub').textContent    =
+        `${ratingStr} stars across ${count} Google reviews.`;
+    } catch (e) {
+      // Silently fall back to hardcoded values if the API call fails
+    }
+  }
+
+  loadLiveRating();
 </script>
 
 </body>
