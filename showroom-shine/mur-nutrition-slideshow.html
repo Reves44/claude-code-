@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MUR Nutrition — App Walkthrough</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    background:#0c0f14;color:#fff;font-family:'Helvetica Neue', Arial, sans-serif;
+    height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    overflow:hidden;
+  }
+  .title{
+    position:absolute;top:30px;left:0;right:0;text-align:center;
+    font-size:1.3rem;font-weight:700;letter-spacing:2px;color:#5be0a8;
+  }
+  .slideshow{
+    position:relative;width:340px;height:700px;
+    border-radius:36px;overflow:hidden;
+    box-shadow:0 30px 80px rgba(0,0,0,0.6);
+  }
+  .slide{
+    position:absolute;inset:0;
+    opacity:0;transition:opacity 1s ease-in-out;
+  }
+  .slide.active{opacity:1;}
+  .slide img{width:100%;height:100%;object-fit:cover;}
+  .caption{
+    position:absolute;bottom:0;left:0;right:0;
+    background:linear-gradient(180deg, transparent, rgba(0,0,0,0.85));
+    padding:50px 24px 24px;text-align:center;
+  }
+  .caption h2{font-size:1.3rem;font-weight:700;margin-bottom:6px;}
+  .caption p{font-size:0.85rem;color:#cbd5e3;}
+  .dots{
+    position:absolute;bottom:-40px;left:0;right:0;
+    display:flex;justify-content:center;gap:8px;
+  }
+  .dot{width:8px;height:8px;border-radius:50%;background:#2a3140;transition:background .3s;}
+  .dot.active{background:#5be0a8;}
+  .progress-bar{
+    position:absolute;top:0;left:0;height:3px;background:#5be0a8;
+    width:0%;z-index:10;
+  }
+</style>
+</head>
+<body>
+
+<div class="title">MUR NUTRITION — APP WALKTHROUGH</div>
+
+<div class="slideshow" id="slideshow">
+  <div class="progress-bar" id="progress"></div>
+
+  <div class="slide active">
+    <img src="https://d2ol7oe51mr4n9.cloudfront.net/user_3FCEN7gS8xe7dbLQccadSITBqxJ/52103268-784c-4a11-97e3-1c784235a38d.png" alt="Food Scanner">
+    <div class="caption"><h2>Food Scanner</h2><p>Snap a photo or scan a barcode for instant nutrition</p></div>
+  </div>
+
+  <div class="slide">
+    <img src="https://d2ol7oe51mr4n9.cloudfront.net/user_3FCEN7gS8xe7dbLQccadSITBqxJ/e4843e69-f27f-4048-8bd3-589e67e45b26.png" alt="Progress">
+    <div class="caption"><h2>Progress Tracking</h2><p>Monitor your fitness transformation over time</p></div>
+  </div>
+
+  <div class="slide">
+    <img src="https://d2ol7oe51mr4n9.cloudfront.net/user_3FCEN7gS8xe7dbLQccadSITBqxJ/88efeb9f-414d-4c9f-b173-98a819644d09.png" alt="Macro Nutrients">
+    <div class="caption"><h2>Macro Nutrients</h2><p>Visualize protein, carbs, fats & fiber over the last 7 days</p></div>
+  </div>
+
+  <div class="slide">
+    <img src="https://d2ol7oe51mr4n9.cloudfront.net/user_3FCEN7gS8xe7dbLQccadSITBqxJ/c5229765-4fb5-489b-a50f-072c82ee9c48.png" alt="Daily Macro Goals">
+    <div class="caption"><h2>Daily Macro Goals</h2><p>Set your nutritional targets with AI-powered insights</p></div>
+  </div>
+
+  <div class="slide">
+    <img src="https://d2ol7oe51mr4n9.cloudfront.net/user_3FCEN7gS8xe7dbLQccadSITBqxJ/45ce30be-39b5-43db-97e6-cf298381f13a.png" alt="Fitness">
+    <div class="caption"><h2>Fitness Tracking</h2><p>Log workouts and follow guided exercise form</p></div>
+  </div>
+
+  <div class="dots">
+    <span class="dot active"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+  </div>
+</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const dots = document.querySelectorAll('.dot');
+  const progress = document.getElementById('progress');
+  let current = 0;
+  const interval = 3500;
+
+  function showSlide(i){
+    slides.forEach(s => s.classList.remove('active'));
+    dots.forEach(d => d.classList.remove('active'));
+    slides[i].classList.add('active');
+    dots[i].classList.add('active');
+  }
+
+  function nextSlide(){
+    current = (current + 1) % slides.length;
+    showSlide(current);
+    animateProgress();
+  }
+
+  function animateProgress(){
+    progress.style.transition = 'none';
+    progress.style.width = '0%';
+    requestAnimationFrame(() => {
+      progress.style.transition = `width ${interval}ms linear`;
+      progress.style.width = '100%';
+    });
+  }
+
+  animateProgress();
+  setInterval(nextSlide, interval);
+</script>
+
+</body>
+</html>
