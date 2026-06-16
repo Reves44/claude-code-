@@ -119,6 +119,28 @@
   .info-row strong{display:block;font-size:0.95rem;}
   .info-row span{color:var(--gray);font-size:0.88rem;}
 
+  /* Hours */
+  .hours-table{
+    max-width:480px;border:1px solid var(--line);border-radius:12px;overflow:hidden;
+    background:var(--dark);
+  }
+  .hours-row{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:16px 24px;border-bottom:1px solid var(--line);font-size:0.95rem;
+  }
+  .hours-row:last-child{border-bottom:none;}
+  .hours-row.today{background:rgba(212,175,55,0.08);}
+  .hours-day{font-weight:700;color:#fff;}
+  .hours-time{color:var(--gray);}
+  .hours-time.closed{color:#e07a7a;}
+  .hours-status{
+    display:inline-flex;align-items:center;gap:8px;
+    background:rgba(212,175,55,0.12);border:1px solid rgba(212,175,55,0.4);
+    padding:8px 16px;border-radius:30px;font-size:0.85rem;color:var(--gold-light);
+    margin-bottom:28px;font-weight:600;
+  }
+  .hours-status::before{content:"●";color:#6fd17a;}
+
   /* Reviews */
   .reviews-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;}
   .review-card{background:var(--dark);border:1px solid var(--line);border-radius:12px;padding:28px;}
@@ -185,6 +207,7 @@
     <ul class="nav-links">
       <li><a href="#services">Services</a></li>
       <li><a href="#about">About</a></li>
+      <li><a href="#hours">Hours</a></li>
       <li><a href="#reviews">Reviews</a></li>
       <li><a href="#booking">Book Now</a></li>
     </ul>
@@ -250,8 +273,25 @@
       <p>DMZ Tint &amp; Detail has built a reputation for careful, professional work at fair prices — from precision window tinting to full vehicle detailing.</p>
       <p>Customers consistently highlight the team's attention to detail, fast turnaround, and willingness to make things right every time.</p>
       <div class="info-row"><div class="icon-dot">📍</div><div><strong>Location</strong><span>272 Warehouse Rd, Oak Ridge, TN 37830</span></div></div>
-      <div class="info-row"><div class="icon-dot">🕘</div><div><strong>Hours</strong><span>Open today · Closes 6 PM</span></div></div>
+      <div class="info-row"><div class="icon-dot">🕘</div><div><strong>Hours</strong><span>Mon-Fri 10-6, Sat 10-5, Sun Closed — <a href="#hours">full hours</a></span></div></div>
       <div class="info-row"><div class="icon-dot">📞</div><div><strong>Phone</strong><span><a href="tel:+18653432616">(865) 343-2616</a></span></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="hours" class="dark2">
+  <div class="container">
+    <div class="section-tag">Hours</div>
+    <h2 class="section-title">When You Can Find Us</h2>
+    <div class="hours-status">Open now</div>
+    <div class="hours-table">
+      <div class="hours-row today"><span class="hours-day">Monday</span><span class="hours-time">10:00 AM - 6:00 PM</span></div>
+      <div class="hours-row"><span class="hours-day">Tuesday</span><span class="hours-time">10:00 AM - 6:00 PM</span></div>
+      <div class="hours-row"><span class="hours-day">Wednesday</span><span class="hours-time">10:00 AM - 6:00 PM</span></div>
+      <div class="hours-row"><span class="hours-day">Thursday</span><span class="hours-time">10:00 AM - 6:00 PM</span></div>
+      <div class="hours-row"><span class="hours-day">Friday</span><span class="hours-time">10:00 AM - 6:00 PM</span></div>
+      <div class="hours-row"><span class="hours-day">Saturday</span><span class="hours-time">10:00 AM - 5:00 PM</span></div>
+      <div class="hours-row"><span class="hours-day">Sunday</span><span class="hours-time closed">CLOSED</span></div>
     </div>
   </div>
 </section>
@@ -291,7 +331,7 @@
       <h2>Request an appointment</h2>
       <p>Tell us about your vehicle and what you need. Your request is sent directly to the shop, and we'll text or call to confirm your time.</p>
       <div class="info-row"><div class="icon-dot">📍</div><div><strong>Location</strong><span>272 Warehouse Rd, Oak Ridge, TN 37830</span></div></div>
-      <div class="info-row"><div class="icon-dot">🕘</div><div><strong>Hours</strong><span>Open today · Closes 6 PM</span></div></div>
+      <div class="info-row"><div class="icon-dot">🕘</div><div><strong>Hours</strong><span>Mon-Fri 10-6, Sat 10-5, Sun Closed — <a href="#hours">full hours</a></span></div></div>
       <div class="info-row"><div class="icon-dot">📞</div><div><strong>Phone</strong><span><a href="tel:+18653432616">(865) 343-2616</a></span></div></div>
     </div>
 
@@ -366,7 +406,7 @@
     <div class="footer-grid">
       <div class="footer-col"><h4>DMZ TINT &amp; DETAIL</h4><p>Window Tinting &amp; Auto Detailing</p><p>Oak Ridge, TN</p></div>
       <div class="footer-col"><h4>CONTACT</h4><a href="tel:+18653432616">(865) 343-2616</a><p>272 Warehouse Rd, Oak Ridge, TN 37830</p></div>
-      <div class="footer-col"><h4>HOURS</h4><p>Open today · Closes 6 PM</p><p>Call for full weekly schedule</p></div>
+      <div class="footer-col"><h4>HOURS</h4><p><a href="#hours">See full hours</a></p><p>Call for full weekly schedule</p></div>
     </div>
     <div class="footer-bottom">&copy; 2026 DMZ Tint &amp; Detail. All rights reserved.</div>
   </div>
