@@ -346,7 +346,7 @@
       <div class="hours-row"><span class="hours-day">Wednesday</span><span class="hours-time">9:00 AM – 5:00 PM</span></div>
       <div class="hours-row"><span class="hours-day">Thursday</span><span class="hours-time">9:00 AM – 5:00 PM</span></div>
       <div class="hours-row"><span class="hours-day">Friday</span><span class="hours-time">9:00 AM – 5:00 PM</span></div>
-      <div class="hours-row"><span class="hours-day">Saturday</span><span class="hours-time">9:00 AM – 5:00 PM</span></div>
+      <div class="hours-row"><span class="hours-day">Saturday</span><span class="hours-time closed">CLOSED</span></div>
       <div class="hours-row"><span class="hours-day">Sunday</span><span class="hours-time closed">CLOSED</span></div>
     </div>
   </div>
@@ -388,7 +388,7 @@
         <h2>Schedule Your Wash</h2>
         <p>Fill out the form and your request goes straight to our team. We'll call or text you back to confirm your appointment.</p>
         <div class="info-row"><div class="icon-dot">📍</div><div><strong>Location</strong><span>263 Hiway Dr, Clinton, TN 37716</span></div></div>
-        <div class="info-row"><div class="icon-dot">🕘</div><div><strong>Hours</strong><span>Mon–Sat 9 AM–5 PM · Sun Closed</span></div></div>
+        <div class="info-row"><div class="icon-dot">🕘</div><div><strong>Hours</strong><span>Mon–Fri 9 AM–5 PM · Sat & Sun Closed</span></div></div>
         <div class="info-row"><div class="icon-dot">📞</div><div><strong>Phone</strong><span><a href="tel:+18654637464">(865) 463-7464</a></span></div></div>
       </div>
 
@@ -485,8 +485,8 @@
       </div>
       <div class="footer-col">
         <h4>HOURS</h4>
-        <p>Mon–Sat: 9:00 AM – 5:00 PM</p>
-        <p>Sunday: Closed</p>
+        <p>Mon–Fri: 9:00 AM – 5:00 PM</p>
+        <p>Sat & Sun: Closed</p>
       </div>
     </div>
     <div class="footer-bottom">&copy; 2026 Reflections Hand Car Wash. All rights reserved.</div>
@@ -516,7 +516,7 @@
 
   // ── Real-time open/closed badge ─────────────────────────────────────
   // Hours (Eastern Time): Mon–Sat 9–17, Sun closed
-  const HOURS = { 0:null, 1:[9,17], 2:[9,17], 3:[9,17], 4:[9,17], 5:[9,17], 6:[9,17] };
+  const HOURS = { 0:null, 1:[9,17], 2:[9,17], 3:[9,17], 4:[9,17], 5:[9,17], 6:null };
   const DAY_NAMES = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
 
   function updateBadge() {
