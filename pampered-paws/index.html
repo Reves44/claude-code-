@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pampered Paws Grooming — Knoxville, TN</title>
+<meta name="description" content="Pampered Paws Grooming in Knoxville, TN. Professional dog grooming services. Book your appointment today.">
+<style>
+  :root{
+    --bg:#0d0f0d;
+    --dark:#121a12;
+    --dark2:#1a241a;
+    --green:#2e7d32;
+    --green-light:#4caf50;
+    --gold:#f9a825;
+    --gray:#9aaa9a;
+    --white:#f4f6f4;
+    --line:#1e2a1e;
+    --pink:#e91e8c;
+    --pink-light:#f06292;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);color:var(--white);line-height:1.6;}
+  a{color:var(--green-light);text-decoration:none;}
+  a:hover{text-decoration:underline;}
+
+  /* Header */
+  header{background:rgba(13,15,13,.96);backdrop-filter:blur(10px);border-bottom:1px solid rgba(76,175,80,.2);padding:16px 28px;position:sticky;top:0;z-index:100;}
+  .header-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;}
+  .logo{font-size:1.25rem;font-weight:800;letter-spacing:1px;color:#fff;}
+  .logo span{color:var(--green-light);}
+  .logo-paw{font-size:1.2rem;margin-right:6px;}
+  .nav{display:flex;gap:24px;align-items:center;}
+  .nav a{color:var(--gray);font-size:.9rem;transition:.2s;}
+  .nav a:hover{color:var(--green-light);text-decoration:none;}
+  #open-badge{
+    padding:5px 14px;border-radius:20px;font-size:.78rem;font-weight:700;letter-spacing:1px;
+    background:rgba(76,175,80,.15);border:1px solid rgba(76,175,80,.4);color:var(--green-light);
+  }
+  #open-badge.closed{background:rgba(200,50,50,.15);border-color:rgba(200,50,50,.4);color:#ef5350;}
+
+  /* Hero */
+  .hero{position:relative;height:100vh;min-height:600px;overflow:hidden;display:flex;align-items:center;justify-content:center;}
+  .hero-slides{position:absolute;inset:0;}
+  .hero-slide{
+    position:absolute;inset:0;background-size:cover;background-position:center;
+    opacity:0;transition:opacity 1.2s ease;
+  }
+  .hero-slide.active{opacity:1;}
+  .hero-slide::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.45) 0%,rgba(0,0,0,.65) 100%);}
+  .hero-content{position:relative;z-index:2;text-align:center;padding:0 24px;}
+  .hero-tag{display:inline-block;background:rgba(76,175,80,.2);border:1px solid rgba(76,175,80,.5);color:var(--green-light);font-size:.75rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;padding:6px 18px;border-radius:20px;margin-bottom:24px;}
+  .hero h1{font-size:clamp(2.4rem,7vw,4.2rem);font-weight:900;line-height:1.1;margin-bottom:18px;text-shadow:0 2px 20px rgba(0,0,0,.6);}
+  .hero h1 span{color:var(--green-light);}
+  .hero-sub{color:rgba(255,255,255,.8);font-size:1.1rem;max-width:520px;margin:0 auto 36px;}
+  .hero-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
+  .btn-primary{background:var(--green);color:#fff;padding:14px 32px;border-radius:8px;font-weight:700;font-size:1rem;text-decoration:none;transition:.2s;border:none;cursor:pointer;}
+  .btn-primary:hover{background:var(--green-light);text-decoration:none;}
+  .btn-outline{background:transparent;color:#fff;padding:14px 32px;border-radius:8px;font-weight:700;font-size:1rem;text-decoration:none;transition:.2s;border:2px solid rgba(255,255,255,.5);}
+  .btn-outline:hover{border-color:#fff;text-decoration:none;}
+
+  /* Slide indicators */
+  .slide-dots{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:3;}
+  .dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.4);cursor:pointer;transition:.3s;}
+  .dot.active{background:#fff;width:24px;border-radius:4px;}
+
+  /* Open/closed info bar */
+  .info-bar{background:var(--dark2);border-bottom:1px solid var(--line);padding:12px 28px;}
+  .info-bar-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:center;gap:32px;flex-wrap:wrap;font-size:.88rem;color:var(--gray);}
+  .info-bar-inner span{display:flex;align-items:center;gap:6px;}
+
+  /* Services */
+  .section{padding:90px 28px;}
+  .container{max-width:1100px;margin:0 auto;}
+  .section-tag{color:var(--green-light);font-size:.75rem;letter-spacing:3px;text-transform:uppercase;font-weight:700;margin-bottom:10px;}
+  .section-title{font-size:2rem;font-weight:800;margin-bottom:10px;}
+  .section-sub{color:var(--gray);margin-bottom:48px;max-width:520px;}
+  .services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;}
+  .service-card{
+    background:var(--dark);border:1px solid var(--line);border-radius:16px;
+    padding:36px 28px;transition:.25s;
+  }
+  .service-card:hover{border-color:var(--green);transform:translateY(-4px);}
+  .s-icon{font-size:2.4rem;margin-bottom:16px;}
+  .service-card h3{font-size:1.15rem;font-weight:700;margin-bottom:10px;}
+  .service-card p{color:var(--gray);font-size:.9rem;line-height:1.65;}
+  .service-price{margin-top:14px;font-size:.95rem;color:var(--green-light);font-weight:700;}
+
+  /* Hours + Parallax strip */
+  .parallax-strip{
+    height:320px;background-image:url('https://upload.wikimedia.org/wikipedia/commons/2/26/YellowLabradorLooking_new.jpg');
+    background-size:cover;background-position:center;background-attachment:fixed;
+    position:relative;display:flex;align-items:center;justify-content:center;
+  }
+  .parallax-strip::before{content:'';position:absolute;inset:0;background:rgba(0,0,0,.55);}
+  .parallax-content{position:relative;z-index:1;text-align:center;padding:0 24px;}
+  .parallax-content h2{font-size:2rem;font-weight:800;margin-bottom:12px;}
+  .parallax-content p{color:rgba(255,255,255,.8);font-size:1rem;max-width:480px;margin:0 auto;}
+
+  .hours-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start;}
+  .hours-table{width:100%;border-collapse:collapse;}
+  .hours-table tr{border-bottom:1px solid var(--line);}
+  .hours-table tr:last-child{border-bottom:none;}
+  .hours-table td{padding:12px 0;font-size:.93rem;}
+  .hours-table td:first-child{color:var(--gray);}
+  .hours-table td:last-child{text-align:right;font-weight:600;}
+  .hours-table .today td{color:var(--green-light);}
+  td.closed-day{color:#ef5350 !important;}
+  .hours-note{background:rgba(76,175,80,.08);border:1px solid rgba(76,175,80,.25);border-radius:10px;padding:20px 24px;margin-top:24px;}
+  .hours-note p{color:var(--gray);font-size:.88rem;}
+  .hours-note strong{color:var(--white);}
+
+  /* About */
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
+  .about-img{border-radius:16px;overflow:hidden;height:420px;}
+  .about-img img{width:100%;height:100%;object-fit:cover;}
+  .about-text .section-tag{margin-bottom:10px;}
+  .about-text h2{font-size:1.9rem;font-weight:800;margin-bottom:18px;}
+  .about-text p{color:var(--gray);font-size:.95rem;margin-bottom:16px;line-height:1.75;}
+  .about-stat{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:28px;}
+  .stat-box{background:var(--dark2);border:1px solid var(--line);border-radius:10px;padding:18px 20px;}
+  .stat-box strong{display:block;font-size:1.5rem;font-weight:900;color:var(--green-light);}
+  .stat-box span{font-size:.82rem;color:var(--gray);}
+
+  /* Booking */
+  .booking-section{background:var(--dark);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .booking-grid{display:grid;grid-template-columns:1fr 1.3fr;gap:60px;align-items:flex-start;}
+  .booking-info h2{font-size:1.8rem;font-weight:800;margin-bottom:14px;}
+  .booking-info p{color:var(--gray);margin-bottom:24px;}
+  .contact-row{display:flex;gap:14px;align-items:center;margin-bottom:16px;}
+  .c-icon{width:42px;height:42px;border-radius:10px;background:rgba(76,175,80,.12);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;}
+  .contact-row strong{display:block;font-size:.93rem;margin-bottom:2px;}
+  .contact-row span{color:var(--gray);font-size:.86rem;}
+  .steps{margin-top:8px;}
+  .step{display:flex;gap:14px;align-items:flex-start;margin-bottom:18px;}
+  .step-num{width:32px;height:32px;border-radius:50%;background:var(--green);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;flex-shrink:0;}
+  .step-text strong{display:block;font-size:.93rem;margin-bottom:2px;}
+  .step-text span{color:var(--gray);font-size:.85rem;}
+  form{display:grid;gap:14px;}
+  .field{display:flex;flex-direction:column;gap:6px;}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  label{font-size:.8rem;color:var(--gray);text-transform:uppercase;letter-spacing:.5px;}
+  input,select,textarea{
+    background:var(--dark2);border:1px solid var(--line);color:#fff;
+    padding:12px 14px;font-size:.95rem;font-family:inherit;border-radius:8px;
+  }
+  input::placeholder,textarea::placeholder{color:#3a4a3a;}
+  input:focus,select:focus,textarea:focus{outline:none;border-color:var(--green);}
+  textarea{resize:vertical;min-height:90px;}
+  .btn-submit{
+    background:var(--green);color:#fff;border:none;padding:15px;
+    border-radius:8px;font-weight:700;font-size:1rem;cursor:pointer;
+    font-family:inherit;transition:.2s;width:100%;letter-spacing:.5px;
+  }
+  .btn-submit:hover{background:var(--green-light);}
+  .form-note{font-size:.76rem;color:#3a5a3a;text-align:center;}
+  #booking-status{font-size:.85rem;color:var(--gold);text-align:center;}
+
+  footer{padding:48px 28px 32px;border-top:1px solid var(--line);}
+  .footer-inner{max-width:1100px;margin:0 auto;}
+  .footer-top{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:40px;margin-bottom:36px;}
+  .footer-logo{font-size:1.1rem;font-weight:800;margin-bottom:12px;}
+  .footer-logo span{color:var(--green-light);}
+  .footer-desc{color:var(--gray);font-size:.88rem;line-height:1.65;}
+  .footer-col h4{font-size:.82rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gray);margin-bottom:14px;}
+  .footer-col p{color:var(--gray);font-size:.88rem;line-height:1.8;}
+  .footer-bottom{border-top:1px solid var(--line);padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+  .footer-bottom p{color:var(--gray);font-size:.82rem;}
+
+  @media(max-width:768px){
+    .hours-grid,.about-grid,.booking-grid,.footer-top{grid-template-columns:1fr;}
+    .form-row{grid-template-columns:1fr;}
+    .about-img{height:280px;}
+    .nav{display:none;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="logo"><span class="logo-paw">🐾</span>Pampered <span>Paws</span></div>
+    <nav class="nav">
+      <a href="#services">Services</a>
+      <a href="#hours">Hours</a>
+      <a href="#about">About</a>
+      <a href="#book">Book Now</a>
+    </nav>
+    <div id="open-badge">Checking hours…</div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-slides" id="slides">
+    <div class="hero-slide active" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/b/b3/Dog_retrieving_stick_in_pond.jpg')"></div>
+    <div class="hero-slide" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/2/26/YellowLabradorLooking_new.jpg')"></div>
+    <div class="hero-slide" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/d/d9/Collage_of_Nine_Dogs.jpg')"></div>
+    <div class="hero-slide" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/2/27/Beagle_puppy_Cadet_%281month%29.jpg')"></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-tag">🐾 Professional Dog Grooming · Knoxville, TN</div>
+    <h1>Your Dog Deserves to Feel <span>Pampered</span></h1>
+    <p class="hero-sub">Expert grooming with love and care. Bath, trim, and style — your pup leaves looking and feeling their best.</p>
+    <div class="hero-btns">
+      <a href="#book" class="btn-primary">Book an Appointment</a>
+      <a href="#services" class="btn-outline">View Services</a>
+    </div>
+  </div>
+  <div class="slide-dots" id="dots"></div>
+</section>
+
+<div class="info-bar">
+  <div class="info-bar-inner">
+    <span>📍 7544 Oak Ridge Hwy #2, Knoxville, TN 37931</span>
+    <span>📞 (865) 692-5335</span>
+    <span>🕘 Wed–Fri 9:30 AM–5:00 PM</span>
+    <span id="hours-status-bar" style="color:var(--green-light);font-weight:600;"></span>
+  </div>
+</div>
+
+<section class="section" id="services">
+  <div class="container">
+    <div class="section-tag">Services</div>
+    <h2 class="section-title">Full-Service Dog Grooming</h2>
+    <p class="section-sub">We offer everything your pup needs to look and feel their very best.</p>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="s-icon">🛁</div>
+        <h3>Bath & Blow Dry</h3>
+        <p>Gentle shampoo, conditioning treatment, and professional blow dry with a brush-out to leave your dog's coat shiny and soft.</p>
+        <div class="service-price">Starting at $35+</div>
+      </div>
+      <div class="service-card">
+        <div class="s-icon">✂️</div>
+        <h3>Full Groom</h3>
+        <p>Complete bath, blow dry, haircut styled to breed standard or your preference, nail trim, ear cleaning, and finishing spritz.</p>
+        <div class="service-price">Starting at $55+</div>
+      </div>
+      <div class="service-card">
+        <div class="s-icon">💅</div>
+        <h3>Nail Trim & Grind</h3>
+        <p>Quick and stress-free nail trim and grind to keep your dog comfortable and walking properly.</p>
+        <div class="service-price">Starting at $15</div>
+      </div>
+      <div class="service-card">
+        <div class="s-icon">👂</div>
+        <h3>Ear Cleaning</h3>
+        <p>Gentle ear cleaning to remove buildup and debris, helping prevent infections and keeping ears healthy.</p>
+        <div class="service-price">Starting at $10</div>
+      </div>
+      <div class="service-card">
+        <div class="s-icon">🦷</div>
+        <h3>Teeth Brushing</h3>
+        <p>Freshen up your pup's breath with a gentle brushing using pet-safe toothpaste — a great add-on to any service.</p>
+        <div class="service-price">Starting at $10</div>
+      </div>
+      <div class="service-card">
+        <div class="s-icon">🐾</div>
+        <h3>De-Shed Treatment</h3>
+        <p>Deep conditioning and de-shedding treatment to dramatically reduce shedding and leave the coat healthy and manageable.</p>
+        <div class="service-price">Starting at $20</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="parallax-strip">
+  <div class="parallax-content">
+    <h2>Every Dog Treated Like Family</h2>
+    <p>We take the time to make sure every dog is comfortable, happy, and safe throughout their grooming session.</p>
+  </div>
+</div>
+
+<section class="section" id="hours">
+  <div class="container">
+    <div class="hours-grid">
+      <div>
+        <div class="section-tag">Hours</div>
+        <h2 class="section-title">When We're Open</h2>
+        <p class="section-sub" style="margin-bottom:28px;">Walk-ins welcome based on availability — booking ahead is recommended.</p>
+        <table class="hours-table" id="hours-table">
+          <tr data-day="1"><td>Monday</td><td class="closed-day">Closed</td></tr>
+          <tr data-day="2"><td>Tuesday</td><td class="closed-day">Closed</td></tr>
+          <tr data-day="3"><td>Wednesday</td><td>9:30 AM – 5:00 PM</td></tr>
+          <tr data-day="4"><td>Thursday</td><td>9:30 AM – 5:00 PM</td></tr>
+          <tr data-day="5"><td>Friday</td><td>9:30 AM – 5:00 PM</td></tr>
+          <tr data-day="6"><td>Saturday</td><td class="closed-day">Closed</td></tr>
+          <tr data-day="0"><td>Sunday</td><td class="closed-day">Closed</td></tr>
+        </table>
+        <div class="hours-note" style="margin-top:24px;">
+          <p><strong>📍 Location:</strong> 7544 Oak Ridge Hwy #2, Knoxville, TN 37931<br>
+          <strong>📞 Phone:</strong> (865) 692-5335<br><br>
+          Prices vary by breed size and coat condition. Contact us for a quote.</p>
+        </div>
+      </div>
+      <div>
+        <div class="section-tag">Find Us</div>
+        <h2 class="section-title">Visit Our Salon</h2>
+        <p style="color:var(--gray);margin-bottom:24px;">Located on Oak Ridge Hwy in Knoxville — easy to find and plenty of parking.</p>
+        <div style="border-radius:14px;overflow:hidden;border:1px solid var(--line);height:320px;background:var(--dark2);display:flex;align-items:center;justify-content:center;">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3220.0!2d-84.1400!3d36.0600!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzbCsDAzJzM2LjAiTiA4NMKwMDgnMjQuMCJX!5e0!3m2!1sen!2sus!4v1234567890"
+            width="100%" height="320" style="border:0;display:block;" allowfullscreen loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="about" style="background:var(--dark);border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-img">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/2/26/YellowLabradorLooking_new.jpg" alt="Happy dog after grooming">
+      </div>
+      <div class="about-text">
+        <div class="section-tag">About Us</div>
+        <h2>Professional Grooming You Can Trust</h2>
+        <p>At Pampered Paws Grooming, we believe every dog deserves to be treated with patience, care, and love. Our experienced groomers take the time to make your pet feel comfortable from start to finish.</p>
+        <p>Located in Knoxville, TN, we serve dogs of all breeds and sizes. Whether your pup needs a quick bath and nail trim or a full groom, we've got them covered.</p>
+        <div class="about-stat">
+          <div class="stat-box">
+            <strong>All Breeds</strong>
+            <span>Welcome — big or small</span>
+          </div>
+          <div class="stat-box">
+            <strong>Safe &amp; Gentle</strong>
+            <span>Stress-free environment</span>
+          </div>
+          <div class="stat-box">
+            <strong>Wed–Fri</strong>
+            <span>Open 3 days a week</span>
+          </div>
+          <div class="stat-box">
+            <strong>Book Ahead</strong>
+            <span>Spots fill fast</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section booking-section" id="book">
+  <div class="container">
+    <div class="booking-grid">
+      <div class="booking-info">
+        <div class="section-tag">Booking</div>
+        <h2>Book Your Appointment</h2>
+        <p>Fill out the form and the owner will receive your request directly. We'll confirm your appointment as soon as possible.</p>
+        <div class="contact-row">
+          <div class="c-icon">📞</div>
+          <div><strong>Call or Text</strong><span>(865) 692-5335</span></div>
+        </div>
+        <div class="contact-row">
+          <div class="c-icon">📍</div>
+          <div><strong>Address</strong><span>7544 Oak Ridge Hwy #2, Knoxville, TN 37931</span></div>
+        </div>
+        <div class="contact-row">
+          <div class="c-icon">🕘</div>
+          <div><strong>Hours</strong><span>Wed–Fri 9:30 AM – 5:00 PM</span></div>
+        </div>
+        <div class="steps" style="margin-top:24px;">
+          <div class="step">
+            <div class="step-num">1</div>
+            <div class="step-text"><strong>Fill out the form</strong><span>Tell us about your dog and what services you need.</span></div>
+          </div>
+          <div class="step">
+            <div class="step-num">2</div>
+            <div class="step-text"><strong>We'll reach out</strong><span>The owner will confirm your date and time.</span></div>
+          </div>
+          <div class="step">
+            <div class="step-num">3</div>
+            <div class="step-text"><strong>Drop off your pup!</strong><span>We'll take great care of them from there.</span></div>
+          </div>
+        </div>
+      </div>
+
+      <form id="booking-form" action="https://formsubmit.co/8656925335@txt.att.net" method="POST">
+        <input type="hidden" name="_subject" value="New Grooming Appointment Request — Pampered Paws">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="text" name="_honey" style="display:none">
+
+        <div class="form-row">
+          <div class="field"><label>Your First Name</label><input type="text" name="Owner First Name" required placeholder="Jane"></div>
+          <div class="field"><label>Your Last Name</label><input type="text" name="Owner Last Name" required placeholder="Smith"></div>
+        </div>
+        <div class="field"><label>Your Phone Number</label><input type="tel" name="Phone" required placeholder="(865) 555-0000"></div>
+        <div class="field"><label>Your Email</label><input type="email" name="Email" required placeholder="jane@email.com"></div>
+        <div class="form-row">
+          <div class="field"><label>Dog's Name</label><input type="text" name="Dog Name" required placeholder="Buddy"></div>
+          <div class="field"><label>Breed</label><input type="text" name="Breed" required placeholder="Golden Retriever"></div>
+        </div>
+        <div class="form-row">
+          <div class="field"><label>Size / Weight</label>
+            <select name="Dog Size" required>
+              <option value="">Select size</option>
+              <option>Small (under 20 lbs)</option>
+              <option>Medium (20–50 lbs)</option>
+              <option>Large (50–80 lbs)</option>
+              <option>XLarge (80+ lbs)</option>
+            </select>
+          </div>
+          <div class="field"><label>Service Requested</label>
+            <select name="Service" required>
+              <option value="">Select service</option>
+              <option>Bath &amp; Blow Dry</option>
+              <option>Full Groom</option>
+              <option>Nail Trim &amp; Grind</option>
+              <option>Ear Cleaning</option>
+              <option>Teeth Brushing</option>
+              <option>De-Shed Treatment</option>
+              <option>Multiple Services</option>
+            </select>
+          </div>
+        </div>
+        <div class="field"><label>Preferred Date</label><input type="date" name="Preferred Date" required></div>
+        <div class="field"><label>Additional Notes</label><textarea name="Notes" placeholder="Any special instructions, health concerns, or requests for your dog..."></textarea></div>
+        <button type="submit" class="btn-submit">🐾 Request Appointment</button>
+        <p class="form-note">The owner will receive your request and reach out to confirm.</p>
+        <p id="booking-status"></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo">🐾 Pampered <span>Paws</span> Grooming</div>
+        <p class="footer-desc">Professional dog grooming in Knoxville, TN. Every dog leaves clean, styled, and happy.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Hours</h4>
+        <p>Wednesday 9:30 AM–5 PM<br>Thursday 9:30 AM–5 PM<br>Friday 9:30 AM–5 PM<br>Mon/Tue/Sat/Sun Closed</p>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <p>(865) 692-5335<br>7544 Oak Ridge Hwy #2<br>Knoxville, TN 37931</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Pampered Paws Grooming. All rights reserved.</p>
+      <p>Knoxville, TN</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Hero slideshow
+  const slides = document.querySelectorAll('.hero-slide');
+  const dotsContainer = document.getElementById('dots');
+  let current = 0;
+  slides.forEach((_,i) => {
+    const d = document.createElement('div');
+    d.className = 'dot' + (i===0?' active':'');
+    d.onclick = () => goTo(i);
+    dotsContainer.appendChild(d);
+  });
+  function goTo(n) {
+    slides[current].classList.remove('active');
+    document.querySelectorAll('.dot')[current].classList.remove('active');
+    current = n;
+    slides[current].classList.add('active');
+    document.querySelectorAll('.dot')[current].classList.add('active');
+  }
+  setInterval(() => goTo((current+1) % slides.length), 5000);
+
+  // Open/Closed badge
+  // Wed=3, Thu=4, Fri=5 open 9:30–17:00; all others closed
+  const HOURS = { 0:null, 1:null, 2:null, 3:[9.5,17], 4:[9.5,17], 5:[9.5,17], 6:null };
+  function updateBadge() {
+    const now = new Date(new Date().toLocaleString('en-US',{timeZone:'America/New_York'}));
+    const day = now.getDay();
+    const h = now.getHours() + now.getMinutes()/60;
+    const slot = HOURS[day];
+    const isOpen = slot && h >= slot[0] && h < slot[1];
+    const badge = document.getElementById('open-badge');
+    const bar = document.getElementById('hours-status-bar');
+    badge.textContent = isOpen ? '● Open Now' : '● Closed';
+    badge.className = isOpen ? '' : 'closed';
+    if(bar) bar.textContent = isOpen ? '✓ Open Right Now' : 'Currently Closed';
+
+    // Highlight today's row
+    document.querySelectorAll('#hours-table tr').forEach(r => {
+      r.classList.remove('today');
+      if(parseInt(r.dataset.day) === day) r.classList.add('today');
+    });
+  }
+  updateBadge();
+  setInterval(updateBadge, 60000);
+
+  // Booking form
+  document.getElementById('booking-form').addEventListener('submit', function() {
+    document.getElementById('booking-status').textContent = 'Sending your request…';
+  });
+</script>
+
+</body>
+</html>
