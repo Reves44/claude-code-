@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Booking Confirmed – Pampered Paws Grooming</title>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--teal:#2a9d8f;--teal-d:#1f7a6e;--teal-l:#e8f7f5;--dark:#264653;--gold:#e9c46a;--muted:#5f7070;--border:#dde8e6}
+    body{font-family:'Segoe UI',system-ui,sans-serif;background:#f7fbfa;color:#1e2a2a;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px}
+    .card{background:white;border-radius:20px;box-shadow:0 4px 32px rgba(0,0,0,.1);max-width:560px;width:100%;overflow:hidden}
+    .card-head{background:linear-gradient(135deg,var(--dark),var(--teal));color:white;padding:40px 32px;text-align:center}
+    .card-head .ico{font-size:3.5rem;margin-bottom:12px}
+    .card-head h1{font-size:1.7rem;font-weight:800;margin-bottom:6px}
+    .card-head p{opacity:.8;font-size:.93rem}
+    .card-body{padding:32px}
+    table{width:100%;border-collapse:collapse;font-size:.93rem;margin-bottom:20px}
+    td{padding:10px 0;border-bottom:1px solid var(--border)}
+    td:first-child{color:var(--muted);width:100px}
+    tr:last-child td{border-bottom:none}
+    .info-box{background:var(--teal-l);border-radius:10px;padding:16px;font-size:.85rem;color:var(--teal-d);line-height:1.7;margin-bottom:22px}
+    .btns{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+    .btn-teal{background:var(--teal);color:white;padding:12px 26px;border-radius:999px;font-weight:800;text-decoration:none;font-size:.93rem;display:inline-block}
+    .btn-outline{border:1.5px solid var(--border);color:var(--muted);padding:11px 22px;border-radius:999px;font-weight:700;text-decoration:none;font-size:.88rem;display:inline-block}
+    .loading{text-align:center;padding:40px;color:var(--muted)}
+    footer{margin-top:24px;font-size:.8rem;color:var(--muted);text-align:center}
+  </style>
+</head>
+<body>
+
+<div class="card" id="card">
+  <div class="loading">Loading your confirmation…</div>
+</div>
+
+<footer>Pampered Paws Grooming · 7544 Oak Ridge Hwy #2, Knoxville, TN 37931</footer>
+
+<script>
+(async () => {
+  const params = new URLSearchParams(location.search);
+  const sessionId = params.get('session_id');
+  const card = document.getElementById('card');
+
+  function fmt(d) {
+    return new Date(d+'T00:00:00').toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'});
+  }
+
+  if (!sessionId) {
+    card.innerHTML = `
+      <div style="padding:40px;text-align:center">
+        <div style="font-size:2rem;margin-bottom:12px">🐾</div>
+        <h2 style="color:var(--dark);margin-bottom:8px">Your Appointment is Confirmed!</h2>
+        <p style="color:var(--muted);margin-bottom:24px">We'll see you soon. Questions? Give us a call.</p>
+        <a href="/" style="background:var(--teal);color:white;padding:12px 26px;border-radius:999px;font-weight:800;text-decoration:none">Back to Home</a>
+      </div>`;
+    return;
+  }
+
+  try {
+    const res = await fetch(`/api/session/${sessionId}`);
+    const { status, booking: b } = await res.json();
+
+    if (status !== 'paid') throw new Error('Payment not complete');
+
+    card.innerHTML = `
+      <div class="card-head">
+        <div class="ico">🐾</div>
+        <h1>You're All Set!</h1>
+        <p>Booking confirmed & deposit received</p>
+      </div>
+      <div class="card-body">
+        <table>
+          <tr><td>Service</td><td><strong>${b.service}</strong></td></tr>
+          <tr><td>Date</td><td><strong>${fmt(b.date)}</strong></td></tr>
+          <tr><td>Time</td><td><strong>${b.time}</strong></td></tr>
+          <tr><td>Pet</td><td>${b.pet_name} (${b.breed})</td></tr>
+          <tr><td>Owner</td><td>${b.owner_name}</td></tr>
+          ${b.notes ? `<tr><td>Notes</td><td>${b.notes}</td></tr>` : ''}
+        </table>
+        <div class="info-box">
+          📍 <strong>Location:</strong> 7544 Oak Ridge Hwy #2, Knoxville, TN 37931<br>
+          📞 <strong>Questions?</strong> (865) 692-5335<br>
+          ⏰ Please arrive 5 minutes early. A confirmation email is on its way!
+        </div>
+        <div class="btns">
+          <a href="/" class="btn-teal">Back to Home</a>
+          <a href="tel:8656925335" class="btn-outline">📞 Call Us</a>
+        </div>
+      </div>`;
+  } catch {
+    card.innerHTML = `
+      <div class="card-head">
+        <div class="ico">✅</div>
+        <h1>Booking Received!</h1>
+        <p>We'll confirm your appointment shortly</p>
+      </div>
+      <div class="card-body">
+        <p style="color:var(--muted);margin-bottom:24px">Thank you! We'll be in touch to confirm your slot. If you have any questions, give us a call.</p>
+        <div class="btns">
+          <a href="/" class="btn-teal">Back to Home</a>
+          <a href="tel:8656925335" class="btn-outline">📞 (865) 692-5335</a>
+        </div>
+      </div>`;
+  }
+})();
+</script>
+</body>
+</html>

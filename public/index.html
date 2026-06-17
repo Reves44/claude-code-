@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pampered Paws Grooming – Knoxville, TN</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --teal:#2a9d8f; --teal-d:#1f7a6e; --teal-l:#e8f7f5;
+      --dark:#264653; --gold:#e9c46a; --orange:#f4a261;
+      --text:#1e2a2a; --muted:#5f7070; --border:#dde8e6;
+      --bg:#f7fbfa; --white:#fff; --red:#e63946; --r:12px;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family:'Segoe UI',system-ui,sans-serif; background:var(--bg); color:var(--text); line-height:1.6; }
+
+    /* ── NAV ── */
+    nav { position:sticky; top:0; z-index:200; background:var(--white); border-bottom:1px solid var(--border); box-shadow:0 2px 8px rgba(0,0,0,.06); }
+    .nav-inner { max-width:1100px; margin:0 auto; padding:0 24px; height:64px; display:flex; align-items:center; justify-content:space-between; }
+    .nav-logo { display:flex; align-items:center; gap:10px; text-decoration:none; color:var(--dark); font-weight:800; font-size:1.1rem; }
+    .nav-logo span { font-size:1.5rem; }
+    .nav-links { display:flex; align-items:center; gap:28px; list-style:none; }
+    .nav-links a { text-decoration:none; color:var(--muted); font-size:.9rem; font-weight:600; transition:color .2s; }
+    .nav-links a:hover { color:var(--teal); }
+    .nav-cta { background:var(--teal) !important; color:white !important; padding:9px 22px; border-radius:999px; }
+    .nav-cta:hover { background:var(--teal-d) !important; }
+    .burger { display:none; background:none; border:none; cursor:pointer; padding:6px; }
+    .burger span { display:block; width:22px; height:2px; background:var(--dark); margin:5px 0; border-radius:2px; transition:.2s; }
+    @media(max-width:680px){
+      .nav-links { display:none; flex-direction:column; position:absolute; top:64px; left:0; right:0; background:white; border-bottom:1px solid var(--border); padding:16px 24px; gap:16px; box-shadow:0 4px 12px rgba(0,0,0,.08); }
+      .nav-links.open { display:flex; }
+      .burger { display:block; }
+    }
+
+    /* ── HERO ── */
+    .hero { background:linear-gradient(135deg,var(--dark) 0%,#2a6b5e 55%,var(--teal) 100%); color:white; padding:90px 24px 100px; text-align:center; position:relative; overflow:hidden; }
+    .hero::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 80% 20%,rgba(255,255,255,.04) 0%,transparent 60%); }
+    .hero-content { position:relative; max-width:700px; margin:0 auto; }
+    .badge { display:inline-block; background:rgba(255,255,255,.15); border:1px solid rgba(255,255,255,.3); border-radius:999px; padding:6px 18px; font-size:.8rem; font-weight:700; letter-spacing:.5px; text-transform:uppercase; margin-bottom:22px; }
+    .hero h1 { font-size:clamp(2rem,5vw,3.2rem); font-weight:900; line-height:1.15; margin-bottom:18px; }
+    .hero h1 em { font-style:normal; color:var(--gold); }
+    .hero p { font-size:1.05rem; opacity:.88; max-width:520px; margin:0 auto 34px; }
+    .hero-btns { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
+    .btn-gold { background:var(--gold); color:var(--dark); text-decoration:none; padding:14px 32px; border-radius:999px; font-weight:800; font-size:1rem; transition:transform .15s,box-shadow .15s; box-shadow:0 4px 16px rgba(0,0,0,.2); }
+    .btn-gold:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(0,0,0,.25); }
+    .btn-outline-w { border:2px solid rgba(255,255,255,.6); color:white; text-decoration:none; padding:12px 28px; border-radius:999px; font-weight:700; font-size:1rem; transition:background .2s; }
+    .btn-outline-w:hover { background:rgba(255,255,255,.1); }
+    .hero-stats { display:flex; justify-content:center; gap:40px; margin-top:52px; flex-wrap:wrap; }
+    .stat .num { font-size:1.8rem; font-weight:900; color:var(--gold); }
+    .stat .lbl { font-size:.75rem; opacity:.7; text-transform:uppercase; letter-spacing:.5px; margin-top:2px; }
+
+    /* ── SHARED ── */
+    section { padding:72px 24px; }
+    .wrap { max-width:1100px; margin:0 auto; }
+    .tag { display:inline-block; background:var(--teal-l); color:var(--teal-d); font-size:.73rem; font-weight:700; text-transform:uppercase; letter-spacing:1px; padding:4px 14px; border-radius:999px; margin-bottom:12px; }
+    .sec-title { font-size:clamp(1.5rem,3vw,2rem); font-weight:800; color:var(--dark); margin-bottom:10px; }
+    .sec-sub { color:var(--muted); font-size:.97rem; max-width:540px; }
+
+    /* ── SERVICES ── */
+    #services { background:var(--white); }
+    .svc-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:20px; margin-top:40px; }
+    .svc-card { background:var(--bg); border:1.5px solid var(--border); border-radius:var(--r); padding:26px 20px; text-align:center; cursor:pointer; transition:border-color .2s,box-shadow .2s,transform .15s; }
+    .svc-card:hover,.svc-card.selected { border-color:var(--teal); box-shadow:0 6px 24px rgba(42,157,143,.13); transform:translateY(-3px); }
+    .svc-card.selected { background:var(--teal-l); }
+    .svc-card .ico { font-size:2.2rem; margin-bottom:12px; }
+    .svc-card h3 { font-size:.97rem; font-weight:700; color:var(--dark); margin-bottom:5px; }
+    .svc-card p { font-size:.82rem; color:var(--muted); line-height:1.5; }
+
+    /* ── ABOUT ── */
+    #about { background:var(--bg); }
+    .about-grid { display:grid; grid-template-columns:1fr 1fr; gap:52px; align-items:center; margin-top:20px; }
+    @media(max-width:700px){ .about-grid { grid-template-columns:1fr; gap:32px; } }
+    .about-vis { background:linear-gradient(135deg,var(--teal-l),#c8ede8); border-radius:20px; padding:48px; text-align:center; font-size:4.5rem; }
+    .check-list { list-style:none; margin-top:18px; display:flex; flex-direction:column; gap:10px; }
+    .check-list li { display:flex; align-items:flex-start; gap:10px; font-size:.93rem; }
+    .check-list li::before { content:'✓'; flex-shrink:0; width:22px; height:22px; background:var(--teal); color:white; border-radius:50%; font-size:.72rem; font-weight:900; display:flex; align-items:center; justify-content:center; margin-top:1px; }
+
+    /* ── HOURS ── */
+    #hours { background:var(--dark); color:white; }
+    #hours .tag { background:rgba(255,255,255,.12); color:rgba(255,255,255,.85); }
+    #hours .sec-title { color:white; }
+    #hours .sec-sub { color:rgba(255,255,255,.65); }
+    .hours-flex { display:flex; gap:48px; margin-top:40px; flex-wrap:wrap; }
+    .hours-tbl { flex:1; min-width:260px; }
+    .hr { display:flex; justify-content:space-between; padding:12px 0; border-bottom:1px solid rgba(255,255,255,.1); font-size:.92rem; }
+    .hr:last-child { border-bottom:none; }
+    .hr .dy { color:rgba(255,255,255,.65); }
+    .hr .op { color:var(--gold); font-weight:700; }
+    .hr .cl { color:rgba(255,255,255,.3); }
+    .hr.today .dy { color:white; font-weight:700; }
+    .hours-info { flex:1; min-width:240px; display:flex; flex-direction:column; gap:14px; }
+    .info-box { background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.12); border-radius:var(--r); padding:22px; }
+    .info-box .lbl { font-size:.7rem; text-transform:uppercase; letter-spacing:1px; color:rgba(255,255,255,.45); margin-bottom:6px; }
+    .info-box .val { font-size:1rem; font-weight:700; }
+    .info-box .val a { color:var(--gold); text-decoration:none; }
+
+    /* ── BOOKING ── */
+    #book { background:var(--white); }
+    .book-wrap { display:grid; grid-template-columns:1fr 1.65fr; gap:48px; margin-top:40px; align-items:start; }
+    @media(max-width:860px){ .book-wrap { grid-template-columns:1fr; } }
+
+    /* aside */
+    .book-aside .callout { background:linear-gradient(135deg,var(--dark),var(--teal-d)); color:white; border-radius:var(--r); padding:30px 26px; margin-bottom:18px; }
+    .callout h3 { font-size:1.1rem; margin-bottom:8px; }
+    .callout p { opacity:.8; font-size:.87rem; line-height:1.6; margin-bottom:18px; }
+    .callout a { display:inline-flex; align-items:center; gap:8px; background:var(--gold); color:var(--dark); padding:11px 22px; border-radius:999px; font-weight:800; text-decoration:none; font-size:.92rem; }
+    .tip { background:var(--teal-l); border-left:3px solid var(--teal); border-radius:0 var(--r) var(--r) 0; padding:14px 16px; font-size:.84rem; color:var(--teal-d); line-height:1.6; }
+
+    /* form card */
+    .form-card { background:var(--bg); border:1.5px solid var(--border); border-radius:16px; padding:36px; }
+    @media(max-width:480px){ .form-card { padding:22px 16px; } }
+
+    /* step system */
+    .steps-bar { display:flex; gap:0; margin-bottom:30px; border-radius:999px; overflow:hidden; border:1.5px solid var(--border); }
+    .step-btn { flex:1; padding:9px 4px; text-align:center; font-size:.78rem; font-weight:700; background:white; color:var(--muted); border:none; cursor:default; text-transform:uppercase; letter-spacing:.4px; transition:background .2s,color .2s; }
+    .step-btn.active { background:var(--teal); color:white; }
+    .step-btn.done { background:var(--teal-l); color:var(--teal-d); }
+
+    .step { display:none; }
+    .step.active { display:block; }
+
+    h3.step-title { font-size:1.1rem; font-weight:800; color:var(--dark); margin-bottom:20px; }
+
+    /* service picker */
+    .mini-svc-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+    .mini-svc { border:1.5px solid var(--border); border-radius:10px; padding:14px 12px; cursor:pointer; transition:all .18s; display:flex; align-items:center; gap:10px; background:white; }
+    .mini-svc:hover { border-color:var(--teal); }
+    .mini-svc.on { border-color:var(--teal); background:var(--teal-l); }
+    .mini-svc .ico { font-size:1.4rem; flex-shrink:0; }
+    .mini-svc .name { font-size:.88rem; font-weight:700; color:var(--dark); }
+    .mini-svc .desc { font-size:.75rem; color:var(--muted); }
+
+    /* calendar */
+    .cal-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:14px; }
+    .cal-header span { font-weight:700; font-size:1rem; color:var(--dark); }
+    .cal-nav { background:none; border:1.5px solid var(--border); border-radius:8px; width:32px; height:32px; cursor:pointer; font-size:1rem; display:flex; align-items:center; justify-content:center; transition:border-color .2s; }
+    .cal-nav:hover { border-color:var(--teal); }
+    .cal-grid { display:grid; grid-template-columns:repeat(7,1fr); gap:4px; }
+    .cal-day-name { text-align:center; font-size:.72rem; font-weight:700; color:var(--muted); text-transform:uppercase; padding:4px 0 8px; }
+    .cal-day { aspect-ratio:1; display:flex; align-items:center; justify-content:center; border-radius:8px; font-size:.88rem; font-weight:600; cursor:default; color:var(--muted); }
+    .cal-day.open { color:var(--dark); cursor:pointer; background:white; border:1.5px solid var(--border); transition:all .18s; }
+    .cal-day.open:hover { border-color:var(--teal); color:var(--teal); }
+    .cal-day.selected { background:var(--teal) !important; color:white !important; border-color:var(--teal) !important; }
+    .cal-day.today-mark { border-color:var(--gold) !important; }
+    .cal-day.past { opacity:.3; }
+
+    .slots-wrap { margin-top:20px; }
+    .slots-wrap h4 { font-size:.85rem; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:.5px; margin-bottom:12px; }
+    .slots-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(90px,1fr)); gap:8px; }
+    .slot { padding:8px 4px; text-align:center; border:1.5px solid var(--border); border-radius:8px; font-size:.82rem; font-weight:600; cursor:pointer; background:white; transition:all .18s; }
+    .slot:hover:not(.taken) { border-color:var(--teal); color:var(--teal); }
+    .slot.taken { background:#f3f4f6; color:#ccc; cursor:not-allowed; text-decoration:line-through; }
+    .slot.picked { background:var(--teal); color:white; border-color:var(--teal); }
+    .slots-loading { color:var(--muted); font-size:.88rem; padding:12px 0; }
+
+    /* fields */
+    .fg { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+    @media(max-width:480px){ .fg { grid-template-columns:1fr; } }
+    .f { display:flex; flex-direction:column; gap:5px; }
+    .f.full { grid-column:1/-1; }
+    label { font-size:.73rem; font-weight:700; text-transform:uppercase; letter-spacing:.6px; color:var(--muted); }
+    input,select,textarea { border:1.5px solid var(--border); border-radius:8px; padding:10px 13px; font-size:.95rem; font-family:inherit; color:var(--text); background:white; transition:border-color .2s,box-shadow .2s; }
+    input:focus,select:focus,textarea:focus { outline:none; border-color:var(--teal); box-shadow:0 0 0 3px rgba(42,157,143,.12); }
+    textarea { resize:vertical; min-height:80px; }
+    .err { font-size:.75rem; color:var(--red); display:none; margin-top:2px; }
+    .f.bad .err { display:block; }
+    .f.bad input,.f.bad select,.f.bad textarea { border-color:var(--red); }
+
+    /* nav buttons */
+    .step-nav { display:flex; justify-content:space-between; align-items:center; margin-top:24px; gap:12px; }
+    .btn-back { background:none; border:1.5px solid var(--border); border-radius:999px; padding:11px 24px; font-size:.9rem; font-weight:700; cursor:pointer; color:var(--muted); transition:border-color .2s; }
+    .btn-back:hover { border-color:var(--teal); color:var(--teal); }
+    .btn-next { background:var(--teal); color:white; border:none; border-radius:999px; padding:12px 28px; font-size:.95rem; font-weight:800; cursor:pointer; transition:background .2s,transform .12s; }
+    .btn-next:hover { background:var(--teal-d); transform:translateY(-1px); }
+    .btn-next:disabled { background:#ccc; cursor:not-allowed; transform:none; }
+    .btn-pay { background:var(--gold); color:var(--dark); border:none; border-radius:999px; padding:13px 32px; font-size:.97rem; font-weight:900; cursor:pointer; transition:all .2s; }
+    .btn-pay:hover { opacity:.9; transform:translateY(-1px); }
+    .or-call { font-size:.83rem; color:var(--muted); }
+    .or-call a { color:var(--teal-d); font-weight:700; text-decoration:none; }
+
+    /* review box */
+    .review-box { background:white; border:1.5px solid var(--border); border-radius:var(--r); padding:20px; margin-bottom:20px; }
+    .review-box table { width:100%; border-collapse:collapse; font-size:.9rem; }
+    .review-box td { padding:8px 0; border-bottom:1px solid var(--border); }
+    .review-box td:first-child { color:var(--muted); width:110px; }
+    .review-box tr:last-child td { border-bottom:none; }
+    .deposit-note { background:var(--teal-l); border-radius:8px; padding:14px 16px; font-size:.84rem; color:var(--teal-d); line-height:1.6; margin-bottom:18px; }
+
+    /* success */
+    #success-msg { display:none; text-align:center; padding:40px 16px; }
+    #success-msg .big { font-size:3rem; margin-bottom:14px; }
+    #success-msg h3 { font-size:1.4rem; color:var(--teal-d); margin-bottom:8px; }
+    #success-msg p { color:var(--muted); max-width:360px; margin:0 auto 20px; }
+    #success-msg a { display:inline-block; background:var(--teal); color:white; padding:12px 28px; border-radius:999px; font-weight:800; text-decoration:none; }
+
+    /* error banner */
+    .api-err { background:#fef2f2; border:1px solid #fca5a5; border-radius:8px; padding:12px 16px; color:var(--red); font-size:.87rem; margin-bottom:16px; display:none; }
+    .api-err.show { display:block; }
+
+    /* ── FOOTER ── */
+    footer { background:var(--dark); color:rgba(255,255,255,.55); text-align:center; padding:30px 24px; font-size:.83rem; }
+    footer strong { color:white; }
+    footer a { color:var(--gold); text-decoration:none; }
+    footer a:hover { text-decoration:underline; }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="#"><span>🐾</span> Pampered Paws</a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#hours">Hours</a></li>
+      <li><a href="#book" class="nav-cta">Book Now</a></li>
+    </ul>
+    <button class="burger" id="burger"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="badge">🐶 Knoxville's Trusted Pet Groomers</div>
+    <h1>Your Pet Deserves to Feel <em>Pampered</em></h1>
+    <p>Professional grooming with love and care for every breed. Located on Oak Ridge Hwy in Knoxville, TN.</p>
+    <div class="hero-btns">
+      <a href="#book" class="btn-gold">Book an Appointment</a>
+      <a href="tel:8656925335" class="btn-outline-w">📞 (865) 692-5335</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><div class="num">Wed–Fri</div><div class="lbl">Open Days</div></div>
+      <div class="stat"><div class="num">9:30–5</div><div class="lbl">Hours</div></div>
+      <div class="stat"><div class="num">All Breeds</div><div class="lbl">Welcome</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="wrap">
+    <span class="tag">What We Offer</span>
+    <h2 class="sec-title">Grooming Services</h2>
+    <p class="sec-sub">From a quick nail trim to a full spa day — we've got your pup covered.</p>
+    <div class="svc-grid">
+      <div class="svc-card"><div class="ico">✂️</div><h3>Full Groom</h3><p>Bath, blow-dry, haircut, nail trim, ear cleaning & spritz.</p></div>
+      <div class="svc-card"><div class="ico">🛁</div><h3>Bath &amp; Brush</h3><p>Deep shampoo, conditioner, blow-dry & thorough brushing.</p></div>
+      <div class="svc-card"><div class="ico">💅</div><h3>Nail Trim</h3><p>Safe, gentle nail trimming to keep your pet comfortable.</p></div>
+      <div class="svc-card"><div class="ico">🦷</div><h3>Teeth Brushing</h3><p>Pet-safe toothpaste for fresh breath and oral health.</p></div>
+      <div class="svc-card"><div class="ico">👂</div><h3>Ear Cleaning</h3><p>Gentle cleaning to reduce risk of buildup and infection.</p></div>
+      <div class="svc-card"><div class="ico">🐕</div><h3>De-shedding</h3><p>Specialized treatment — great for heavy shedders.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="about-vis">🐾<br><span style="font-size:.95rem;color:var(--teal-d);font-weight:700;display:block;margin-top:10px">Pampered Paws Grooming</span></div>
+      <div>
+        <span class="tag">About Us</span>
+        <h2 class="sec-title">We Treat Every Pet Like Our Own</h2>
+        <p class="sec-sub">A dedicated grooming studio in Knoxville, TN — passionate about making sure your furry family member leaves looking and feeling their best.</p>
+        <ul class="check-list">
+          <li>Experienced with all breeds, sizes & temperaments</li>
+          <li>Calm, stress-free grooming environment</li>
+          <li>Only pet-safe, high-quality products</li>
+          <li>Appointment-based — no long waits</li>
+          <li>Locally owned and community focused</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOURS -->
+<section id="hours">
+  <div class="wrap">
+    <span class="tag">Find Us</span>
+    <h2 class="sec-title">Hours &amp; Location</h2>
+    <p class="sec-sub">Open Wednesday through Friday. Call or book online to reserve your spot.</p>
+    <div class="hours-flex">
+      <div class="hours-tbl" id="hrs">
+        <div class="hr" data-d="0"><span class="dy">Sunday</span><span class="cl">Closed</span></div>
+        <div class="hr" data-d="1"><span class="dy">Monday</span><span class="cl">Closed</span></div>
+        <div class="hr" data-d="2"><span class="dy">Tuesday</span><span class="cl">Closed</span></div>
+        <div class="hr" data-d="3"><span class="dy">Wednesday</span><span class="op">9:30 AM – 5:00 PM</span></div>
+        <div class="hr" data-d="4"><span class="dy">Thursday</span><span class="op">9:30 AM – 5:00 PM</span></div>
+        <div class="hr" data-d="5"><span class="dy">Friday</span><span class="op">9:30 AM – 5:00 PM</span></div>
+        <div class="hr" data-d="6"><span class="dy">Saturday</span><span class="cl">Closed</span></div>
+      </div>
+      <div class="hours-info">
+        <div class="info-box"><div class="lbl">Phone</div><div class="val"><a href="tel:8656925335">(865) 692-5335</a></div></div>
+        <div class="info-box"><div class="lbl">Address</div><div class="val">7544 Oak Ridge Hwy #2<br>Knoxville, TN 37931</div></div>
+        <div class="info-box"><div class="lbl">Open Days</div><div class="val">Wednesday · Thursday · Friday</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING -->
+<section id="book">
+  <div class="wrap">
+    <span class="tag">Appointments</span>
+    <h2 class="sec-title">Book an Appointment</h2>
+    <p class="sec-sub">Select a service, pick an available time, fill in your info, and you're set.</p>
+
+    <div class="book-wrap">
+      <!-- aside -->
+      <div class="book-aside">
+        <div class="callout">
+          <h3>Prefer to call?</h3>
+          <p>Give us a ring and we'll schedule you right over the phone — quick and easy.</p>
+          <a href="tel:8656925335">📞 (865) 692-5335</a>
+        </div>
+        <div class="tip"><strong>Tip:</strong> Slots fill up fast! Book at least a few days ahead, especially around holidays.</div>
+      </div>
+
+      <!-- multi-step form -->
+      <div class="form-card">
+        <!-- steps bar -->
+        <div class="steps-bar">
+          <button class="step-btn active" data-s="1">1 · Service</button>
+          <button class="step-btn" data-s="2">2 · Date &amp; Time</button>
+          <button class="step-btn" data-s="3">3 · Your Info</button>
+          <button class="step-btn" data-s="4">4 · Confirm</button>
+        </div>
+
+        <div id="form-wrap">
+
+          <!-- STEP 1: Service -->
+          <div class="step active" id="step1">
+            <h3 class="step-title">Choose a Service</h3>
+            <div class="mini-svc-grid">
+              <div class="mini-svc" data-svc="Full Groom"><span class="ico">✂️</span><div><div class="name">Full Groom</div><div class="desc">Bath, cut, nails & more</div></div></div>
+              <div class="mini-svc" data-svc="Bath &amp; Brush"><span class="ico">🛁</span><div><div class="name">Bath &amp; Brush</div><div class="desc">Shampoo, dry & brush</div></div></div>
+              <div class="mini-svc" data-svc="Nail Trim"><span class="ico">💅</span><div><div class="name">Nail Trim</div><div class="desc">Safe & gentle</div></div></div>
+              <div class="mini-svc" data-svc="Teeth Brushing"><span class="ico">🦷</span><div><div class="name">Teeth Brushing</div><div class="desc">Fresh breath</div></div></div>
+              <div class="mini-svc" data-svc="Ear Cleaning"><span class="ico">👂</span><div><div class="name">Ear Cleaning</div><div class="desc">Gentle & thorough</div></div></div>
+              <div class="mini-svc" data-svc="De-shedding"><span class="ico">🐕</span><div><div class="name">De-shedding</div><div class="desc">For heavy shedders</div></div></div>
+            </div>
+            <div class="step-nav">
+              <span></span>
+              <button class="btn-next" id="s1-next" disabled>Next →</button>
+            </div>
+          </div>
+
+          <!-- STEP 2: Calendar + Slots -->
+          <div class="step" id="step2">
+            <h3 class="step-title">Pick a Date &amp; Time</h3>
+            <div class="cal-header">
+              <button class="cal-nav" id="cal-prev">‹</button>
+              <span id="cal-label"></span>
+              <button class="cal-nav" id="cal-next">›</button>
+            </div>
+            <div class="cal-grid">
+              <div class="cal-day-name">Sun</div><div class="cal-day-name">Mon</div>
+              <div class="cal-day-name">Tue</div><div class="cal-day-name">Wed</div>
+              <div class="cal-day-name">Thu</div><div class="cal-day-name">Fri</div>
+              <div class="cal-day-name">Sat</div>
+            </div>
+            <div class="cal-grid" id="cal-days"></div>
+
+            <div class="slots-wrap" id="slots-wrap" style="display:none">
+              <h4 id="slots-date-label">Available times</h4>
+              <div id="slots-grid" class="slots-grid"></div>
+            </div>
+
+            <div class="step-nav">
+              <button class="btn-back" id="s2-back">← Back</button>
+              <button class="btn-next" id="s2-next" disabled>Next →</button>
+            </div>
+          </div>
+
+          <!-- STEP 3: Info -->
+          <div class="step" id="step3">
+            <h3 class="step-title">Your Details</h3>
+            <div class="fg">
+              <div class="f" id="f-name"><label for="owner-name">Your Name</label><input type="text" id="owner-name" placeholder="Jane Smith" autocomplete="name" /><span class="err">Please enter your name.</span></div>
+              <div class="f" id="f-phone"><label for="owner-phone">Phone Number</label><input type="tel" id="owner-phone" placeholder="(865) 555-1234" autocomplete="tel" /><span class="err">Please enter a valid phone number.</span></div>
+              <div class="f full" id="f-email"><label for="owner-email">Email Address</label><input type="email" id="owner-email" placeholder="jane@example.com" autocomplete="email" /><span class="err">Please enter a valid email.</span></div>
+              <div class="f" id="f-pet"><label for="pet-name">Pet's Name</label><input type="text" id="pet-name" placeholder="Buddy" /><span class="err">Please enter your pet's name.</span></div>
+              <div class="f" id="f-breed"><label for="breed">Breed</label><input type="text" id="breed" placeholder="Golden Retriever" /><span class="err">Please enter the breed.</span></div>
+              <div class="f full" id="f-notes"><label for="notes">Special Requests / Notes</label><textarea id="notes" placeholder="Allergies, temperament, special instructions…"></textarea></div>
+            </div>
+            <div class="step-nav">
+              <button class="btn-back" id="s3-back">← Back</button>
+              <button class="btn-next" id="s3-next">Review →</button>
+            </div>
+          </div>
+
+          <!-- STEP 4: Review & Pay -->
+          <div class="step" id="step4">
+            <h3 class="step-title">Review &amp; Confirm</h3>
+            <div class="review-box">
+              <table>
+                <tr><td>Service</td><td id="rv-svc"></td></tr>
+                <tr><td>Date</td><td id="rv-date"></td></tr>
+                <tr><td>Time</td><td id="rv-time"></td></tr>
+                <tr><td>Pet</td><td id="rv-pet"></td></tr>
+                <tr><td>Owner</td><td id="rv-owner"></td></tr>
+                <tr><td>Phone</td><td id="rv-phone"></td></tr>
+                <tr><td>Email</td><td id="rv-email"></td></tr>
+                <tr id="rv-notes-row" style="display:none"><td>Notes</td><td id="rv-notes"></td></tr>
+              </table>
+            </div>
+            <div class="deposit-note" id="deposit-note">
+              💳 A <strong>$25 deposit</strong> is required to hold your slot. It will be applied toward your total on the day of your appointment.
+            </div>
+            <div class="api-err" id="api-err"></div>
+            <div class="step-nav">
+              <button class="btn-back" id="s4-back">← Back</button>
+              <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px">
+                <button class="btn-pay" id="confirm-btn">Confirm &amp; Pay $25 Deposit</button>
+                <span class="or-call">or call <a href="tel:8656925335">(865) 692-5335</a></span>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /form-wrap -->
+
+        <div id="success-msg">
+          <div class="big">✅</div>
+          <h3>You're Booked!</h3>
+          <p>We've sent a confirmation to your email. We can't wait to pamper your pet!</p>
+          <a href="tel:8656925335">📞 (865) 692-5335</a>
+        </div>
+
+      </div><!-- /form-card -->
+    </div><!-- /book-wrap -->
+  </div>
+</section>
+
+<footer>
+  <p><strong>Pampered Paws Grooming</strong> &nbsp;·&nbsp; 7544 Oak Ridge Hwy #2, Knoxville, TN 37931 &nbsp;·&nbsp; <a href="tel:8656925335">(865) 692-5335</a></p>
+  <p style="margin-top:8px">Open Wednesday – Friday &nbsp;·&nbsp; 9:30 AM – 5:00 PM</p>
+</footer>
+
+<script>
+// ── State ────────────────────────────────────────────────────────────────────
+const state = { service:'', date:'', time:'', calYear:0, calMonth:0 };
+
+// ── Nav ──────────────────────────────────────────────────────────────────────
+document.getElementById('burger').addEventListener('click', () =>
+  document.getElementById('nav-links').classList.toggle('open'));
+
+document.querySelectorAll('.nav-links a').forEach(a =>
+  a.addEventListener('click', () => document.getElementById('nav-links').classList.remove('open')));
+
+// ── Today highlight ──────────────────────────────────────────────────────────
+document.querySelectorAll('#hrs .hr').forEach(r => {
+  if (parseInt(r.dataset.d) === new Date().getDay()) r.classList.add('today');
+});
+
+// ── Step navigation ───────────────────────────────────────────────────────────
+function goStep(n) {
+  document.querySelectorAll('.step').forEach((s,i) => s.classList.toggle('active', i+1===n));
+  document.querySelectorAll('.step-btn').forEach((b,i) => {
+    b.classList.toggle('active', i+1===n);
+    b.classList.toggle('done', i+1<n);
+  });
+  if (n===2) renderCalendar();
+  if (n===4) fillReview();
+}
+
+// ── Step 1: Service ───────────────────────────────────────────────────────────
+document.querySelectorAll('.mini-svc').forEach(el => {
+  el.addEventListener('click', () => {
+    document.querySelectorAll('.mini-svc').forEach(e => e.classList.remove('on'));
+    el.classList.add('on');
+    state.service = el.dataset.svc;
+    document.getElementById('s1-next').disabled = false;
+  });
+});
+document.getElementById('s1-next').addEventListener('click', () => goStep(2));
+
+// ── Step 2: Calendar ─────────────────────────────────────────────────────────
+const today = new Date(); today.setHours(0,0,0,0);
+state.calYear = today.getFullYear(); state.calMonth = today.getMonth();
+
+function renderCalendar() {
+  const yr = state.calYear, mo = state.calMonth;
+  const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  document.getElementById('cal-label').textContent = `${months[mo]} ${yr}`;
+
+  const first = new Date(yr, mo, 1).getDay();
+  const days = new Date(yr, mo+1, 0).getDate();
+  const grid = document.getElementById('cal-days');
+  grid.innerHTML = '';
+
+  for (let i=0; i<first; i++) addCalCell(grid, '', false, false, false);
+  for (let d=1; d<=days; d++) {
+    const dt = new Date(yr, mo, d);
+    const dateStr = `${yr}-${String(mo+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+    const dow = dt.getDay();
+    const isOpen = [3,4,5].includes(dow);
+    const isPast = dt < today;
+    const isTdy = dt.getTime()===today.getTime();
+    const isSel = state.date===dateStr;
+    addCalCell(grid, d, isOpen && !isPast, isPast && !isTdy, isSel, isTdy, dateStr);
+  }
+}
+
+function addCalCell(grid, label, clickable, past, selected, todayMark, dateStr) {
+  const el = document.createElement('div');
+  el.className = 'cal-day';
+  el.textContent = label;
+  if (past) el.classList.add('past');
+  if (selected) el.classList.add('selected');
+  if (todayMark) el.classList.add('today-mark');
+  if (clickable) {
+    el.classList.add('open');
+    el.addEventListener('click', () => selectDate(dateStr));
+  }
+  grid.appendChild(el);
+}
+
+async function selectDate(dateStr) {
+  state.date = dateStr; state.time = '';
+  document.getElementById('s2-next').disabled = true;
+  renderCalendar();
+
+  const sw = document.getElementById('slots-wrap');
+  const sg = document.getElementById('slots-grid');
+  sw.style.display = 'block';
+  sg.innerHTML = '<div class="slots-loading">Loading available times…</div>';
+
+  const d = new Date(dateStr+'T00:00:00');
+  const dn = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'][d.getDay()];
+  const dm = d.toLocaleDateString('en-US',{month:'long',day:'numeric'});
+  document.getElementById('slots-date-label').textContent = `Available times — ${dn}, ${dm}`;
+
+  try {
+    const r = await fetch(`/api/slots?date=${dateStr}`);
+    const { slots } = await r.json();
+    sg.innerHTML = '';
+    slots.forEach(({ time, available }) => {
+      const el = document.createElement('div');
+      el.className = 'slot' + (available ? '' : ' taken');
+      el.textContent = time;
+      if (available) {
+        el.addEventListener('click', () => {
+          document.querySelectorAll('.slot').forEach(s => s.classList.remove('picked'));
+          el.classList.add('picked');
+          state.time = time;
+          document.getElementById('s2-next').disabled = false;
+        });
+      }
+      sg.appendChild(el);
+    });
+  } catch {
+    sg.innerHTML = '<div class="slots-loading" style="color:var(--red)">Could not load slots. Please try again.</div>';
+  }
+}
+
+document.getElementById('cal-prev').addEventListener('click', () => {
+  if (state.calYear === today.getFullYear() && state.calMonth === today.getMonth()) return;
+  state.calMonth--; if (state.calMonth<0){ state.calMonth=11; state.calYear--; }
+  renderCalendar();
+});
+document.getElementById('cal-next').addEventListener('click', () => {
+  state.calMonth++; if (state.calMonth>11){ state.calMonth=0; state.calYear++; }
+  renderCalendar();
+});
+
+document.getElementById('s2-back').addEventListener('click', () => goStep(1));
+document.getElementById('s2-next').addEventListener('click', () => goStep(3));
+
+// ── Step 3: Info ─────────────────────────────────────────────────────────────
+document.getElementById('owner-phone').addEventListener('input', function() {
+  let v = this.value.replace(/\D/g,'').slice(0,10);
+  if (v.length>=7) v=`(${v.slice(0,3)}) ${v.slice(3,6)}-${v.slice(6)}`;
+  else if (v.length>=4) v=`(${v.slice(0,3)}) ${v.slice(3)}`;
+  else if (v.length) v=`(${v}`;
+  this.value=v;
+});
+
+function validateInfo() {
+  let ok=true;
+  const checks=[
+    ['f-name','owner-name', v=>v.length>1],
+    ['f-phone','owner-phone', v=>v.replace(/\D/g,'').length>=10],
+    ['f-email','owner-email', v=>/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)],
+    ['f-pet','pet-name', v=>v.length>0],
+    ['f-breed','breed', v=>v.length>0],
+  ];
+  checks.forEach(([fid,eid,fn])=>{
+    const v=document.getElementById(eid).value.trim();
+    const valid=fn(v);
+    document.getElementById(fid).classList.toggle('bad',!valid);
+    if(!valid) ok=false;
+  });
+  return ok;
+}
+
+document.getElementById('s3-back').addEventListener('click', () => goStep(2));
+document.getElementById('s3-next').addEventListener('click', () => {
+  if (validateInfo()) goStep(4);
+  else document.querySelector('#step3 .bad')?.scrollIntoView({behavior:'smooth',block:'center'});
+});
+
+// ── Step 4: Review ────────────────────────────────────────────────────────────
+function fillReview() {
+  const fmt=d=>{const dt=new Date(d+'T00:00:00');return dt.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'});};
+  document.getElementById('rv-svc').textContent   = state.service;
+  document.getElementById('rv-date').textContent  = fmt(state.date);
+  document.getElementById('rv-time').textContent  = state.time;
+  document.getElementById('rv-pet').textContent   = `${document.getElementById('pet-name').value} (${document.getElementById('breed').value})`;
+  document.getElementById('rv-owner').textContent = document.getElementById('owner-name').value;
+  document.getElementById('rv-phone').textContent = document.getElementById('owner-phone').value;
+  document.getElementById('rv-email').textContent = document.getElementById('owner-email').value;
+  const notes = document.getElementById('notes').value;
+  document.getElementById('rv-notes-row').style.display = notes ? '' : 'none';
+  document.getElementById('rv-notes').textContent = notes;
+}
+
+document.getElementById('s4-back').addEventListener('click', () => goStep(3));
+
+document.getElementById('confirm-btn').addEventListener('click', async () => {
+  const btn = document.getElementById('confirm-btn');
+  const errEl = document.getElementById('api-err');
+  errEl.classList.remove('show');
+  btn.disabled = true; btn.textContent = 'Processing…';
+
+  const body = {
+    owner_name:  document.getElementById('owner-name').value.trim(),
+    owner_phone: document.getElementById('owner-phone').value.trim(),
+    owner_email: document.getElementById('owner-email').value.trim(),
+    pet_name:    document.getElementById('pet-name').value.trim(),
+    breed:       document.getElementById('breed').value.trim(),
+    service:     state.service,
+    date:        state.date,
+    time:        state.time,
+    notes:       document.getElementById('notes').value.trim(),
+  };
+
+  try {
+    const res = await fetch('/api/bookings', {
+      method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(body)
+    });
+    const data = await res.json();
+
+    if (!res.ok) throw new Error(data.error || 'Something went wrong');
+
+    if (data.url) {
+      // Redirect to Stripe
+      window.location.href = data.url;
+    } else if (data.success) {
+      // No Stripe — direct confirm
+      document.getElementById('form-wrap').style.display = 'none';
+      document.getElementById('success-msg').style.display = 'block';
+      document.getElementById('deposit-note').style.display = 'none';
+    }
+  } catch(e) {
+    errEl.textContent = e.message;
+    errEl.classList.add('show');
+    btn.disabled = false; btn.textContent = 'Confirm & Pay $25 Deposit';
+  }
+});
+
+// Hide deposit note & change button label when Stripe not configured
+fetch('/api/slots?date=2099-01-01').catch(()=>{}); // warm up
+(async()=>{
+  try {
+    // Quick probe — if booking without payment works, update button text
+    const r = await fetch('/api/slots?date='+new Date().toISOString().split('T')[0]);
+    if(r.ok) {
+      // Check if Stripe is live by seeing what server says
+      // We'll just leave the button as-is; server handles both paths
+    }
+  } catch {}
+})();
+</script>
+</body>
+</html>
