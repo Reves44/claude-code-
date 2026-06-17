@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pampered Paws Grooming – Book an Appointment</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --teal: #2a9d8f;
+      --teal-dark: #1f7a6e;
+      --cream: #fdf8f0;
+      --warm: #f4a261;
+      --text: #2d2d2d;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --red: #e63946;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: linear-gradient(135deg, var(--teal) 0%, #264653 100%);
+      color: white;
+      padding: 0;
+    }
+
+    .header-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 36px 24px 32px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .logo {
+      width: 72px;
+      height: 72px;
+      background: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      flex-shrink: 0;
+      box-shadow: 0 4px 12px rgba(0,0,0,.2);
+    }
+
+    .header-text h1 {
+      font-size: 1.9rem;
+      font-weight: 700;
+      letter-spacing: -.5px;
+    }
+
+    .header-text p {
+      opacity: .85;
+      font-size: .95rem;
+      margin-top: 4px;
+    }
+
+    .header-contact {
+      margin-left: auto;
+      text-align: right;
+      font-size: .9rem;
+    }
+
+    .header-contact a {
+      color: white;
+      text-decoration: none;
+      font-size: 1.2rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      justify-content: flex-end;
+    }
+
+    .header-contact a:hover { text-decoration: underline; }
+
+    .header-contact .addr {
+      opacity: .8;
+      margin-top: 6px;
+      line-height: 1.5;
+    }
+
+    /* ── HOURS BANNER ── */
+    .hours-bar {
+      background: var(--teal-dark);
+      color: white;
+      font-size: .85rem;
+      text-align: center;
+      padding: 8px 16px;
+    }
+
+    /* ── MAIN ── */
+    main {
+      max-width: 720px;
+      margin: 40px auto;
+      padding: 0 16px 60px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 2px 16px rgba(0,0,0,.08);
+      padding: 36px 40px;
+    }
+
+    .card h2 {
+      font-size: 1.35rem;
+      margin-bottom: 28px;
+      color: var(--teal-dark);
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 14px;
+    }
+
+    /* ── FORM ── */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    @media (max-width: 560px) {
+      .grid-2 { grid-template-columns: 1fr; }
+      .card { padding: 24px 18px; }
+      .header-inner { flex-direction: column; align-items: flex-start; }
+      .header-contact { margin-left: 0; text-align: left; }
+      .header-contact a { justify-content: flex-start; }
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .field.full { grid-column: 1 / -1; }
+
+    label {
+      font-size: .82rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      color: var(--muted);
+    }
+
+    input, select, textarea {
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: .97rem;
+      font-family: inherit;
+      color: var(--text);
+      transition: border-color .2s;
+      background: white;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: var(--teal);
+      box-shadow: 0 0 0 3px rgba(42,157,143,.15);
+    }
+
+    input.invalid, select.invalid { border-color: var(--red); }
+
+    textarea { resize: vertical; min-height: 80px; }
+
+    .error-msg {
+      font-size: .78rem;
+      color: var(--red);
+      display: none;
+    }
+
+    .field.show-error .error-msg { display: block; }
+    .field.show-error input,
+    .field.show-error select { border-color: var(--red); }
+
+    /* ── DATE / TIME ── */
+    #date-note {
+      font-size: .8rem;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    #date-note.closed { color: var(--red); font-weight: 600; }
+
+    /* ── SERVICE PILLS ── */
+    .service-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 4px;
+    }
+
+    .service-pill {
+      cursor: pointer;
+      border: 1.5px solid var(--border);
+      border-radius: 999px;
+      padding: 7px 18px;
+      font-size: .88rem;
+      transition: all .2s;
+      user-select: none;
+      background: white;
+    }
+
+    .service-pill:hover { border-color: var(--teal); color: var(--teal); }
+
+    .service-pill.selected {
+      background: var(--teal);
+      border-color: var(--teal);
+      color: white;
+    }
+
+    #service-hidden { display: none; }
+
+    /* ── SUBMIT ── */
+    .submit-row {
+      margin-top: 28px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    button[type="submit"] {
+      background: var(--teal);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      padding: 14px 36px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background .2s, transform .1s;
+    }
+
+    button[type="submit"]:hover { background: var(--teal-dark); transform: translateY(-1px); }
+    button[type="submit"]:active { transform: translateY(0); }
+
+    .or-call {
+      font-size: .88rem;
+      color: var(--muted);
+    }
+
+    .or-call a {
+      color: var(--teal-dark);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .or-call a:hover { text-decoration: underline; }
+
+    /* ── SUCCESS ── */
+    #success {
+      display: none;
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    #success .check {
+      font-size: 3.5rem;
+      margin-bottom: 16px;
+    }
+
+    #success h3 {
+      font-size: 1.5rem;
+      color: var(--teal-dark);
+      margin-bottom: 10px;
+    }
+
+    #success p { color: var(--muted); line-height: 1.6; }
+
+    #success .phone-link {
+      display: inline-block;
+      margin-top: 20px;
+      background: var(--teal);
+      color: white;
+      padding: 12px 28px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    /* ── HOURS SIDEBAR (below form on mobile, aside on desktop) ── */
+    .hours-card {
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 2px 16px rgba(0,0,0,.08);
+      padding: 24px 28px;
+      margin-top: 24px;
+    }
+
+    .hours-card h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--teal-dark);
+      margin-bottom: 14px;
+    }
+
+    .hours-list { list-style: none; }
+
+    .hours-list li {
+      display: flex;
+      justify-content: space-between;
+      padding: 6px 0;
+      font-size: .9rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hours-list li:last-child { border-bottom: none; }
+
+    .hours-list .day { color: var(--muted); }
+
+    .hours-list .open { color: var(--teal-dark); font-weight: 600; }
+    .hours-list .closed-label { color: var(--muted); }
+
+    .hours-list li.today .day { font-weight: 700; color: var(--text); }
+    .hours-list li.today .open { color: var(--teal); }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="logo">🐾</div>
+    <div class="header-text">
+      <h1>Pampered Paws Grooming</h1>
+      <p>Professional Pet Grooming · Knoxville, TN</p>
+    </div>
+    <div class="header-contact">
+      <a href="tel:8656925335">📞 (865) 692-5335</a>
+      <div class="addr">7544 Oak Ridge Hwy #2<br>Knoxville, TN 37931</div>
+    </div>
+  </div>
+</header>
+
+<div class="hours-bar">
+  Open Wednesday – Friday &nbsp;·&nbsp; 9:30 AM – 5:00 PM &nbsp;·&nbsp; Closed Saturday – Tuesday
+</div>
+
+<main>
+  <div class="card">
+    <h2>Book an Appointment</h2>
+
+    <div id="form-wrap">
+      <form id="booking-form" novalidate>
+        <div class="grid-2">
+
+          <div class="field" id="f-name">
+            <label for="owner-name">Your Name</label>
+            <input type="text" id="owner-name" placeholder="Jane Smith" autocomplete="name" />
+            <span class="error-msg">Please enter your name.</span>
+          </div>
+
+          <div class="field" id="f-phone">
+            <label for="owner-phone">Phone Number</label>
+            <input type="tel" id="owner-phone" placeholder="(865) 555-1234" autocomplete="tel" />
+            <span class="error-msg">Please enter a valid phone number.</span>
+          </div>
+
+          <div class="field" id="f-pet">
+            <label for="pet-name">Pet's Name</label>
+            <input type="text" id="pet-name" placeholder="Buddy" />
+            <span class="error-msg">Please enter your pet's name.</span>
+          </div>
+
+          <div class="field" id="f-breed">
+            <label for="breed">Breed</label>
+            <input type="text" id="breed" placeholder="Golden Retriever" />
+            <span class="error-msg">Please enter the breed.</span>
+          </div>
+
+          <div class="field" id="f-date">
+            <label for="appt-date">Preferred Date</label>
+            <input type="date" id="appt-date" />
+            <div id="date-note">Pick a Wednesday, Thursday, or Friday.</div>
+            <span class="error-msg">Please choose a Wednesday, Thursday, or Friday.</span>
+          </div>
+
+          <div class="field" id="f-time">
+            <label for="appt-time">Preferred Time</label>
+            <select id="appt-time">
+              <option value="">-- Select a time --</option>
+              <option value="9:30 AM">9:30 AM</option>
+              <option value="10:00 AM">10:00 AM</option>
+              <option value="10:30 AM">10:30 AM</option>
+              <option value="11:00 AM">11:00 AM</option>
+              <option value="11:30 AM">11:30 AM</option>
+              <option value="12:00 PM">12:00 PM</option>
+              <option value="12:30 PM">12:30 PM</option>
+              <option value="1:00 PM">1:00 PM</option>
+              <option value="1:30 PM">1:30 PM</option>
+              <option value="2:00 PM">2:00 PM</option>
+              <option value="2:30 PM">2:30 PM</option>
+              <option value="3:00 PM">3:00 PM</option>
+              <option value="3:30 PM">3:30 PM</option>
+              <option value="4:00 PM">4:00 PM</option>
+              <option value="4:30 PM">4:30 PM</option>
+            </select>
+            <span class="error-msg">Please select a time.</span>
+          </div>
+
+          <div class="field full" id="f-service">
+            <label>Service</label>
+            <input type="hidden" id="service-hidden" />
+            <div class="service-group" id="service-pills">
+              <span class="service-pill" data-value="Full Groom">Full Groom</span>
+              <span class="service-pill" data-value="Bath & Brush">Bath &amp; Brush</span>
+              <span class="service-pill" data-value="Nail Trim">Nail Trim</span>
+              <span class="service-pill" data-value="Teeth Brushing">Teeth Brushing</span>
+              <span class="service-pill" data-value="Ear Cleaning">Ear Cleaning</span>
+              <span class="service-pill" data-value="De-shedding">De-shedding</span>
+            </div>
+            <span class="error-msg">Please select a service.</span>
+          </div>
+
+          <div class="field full" id="f-notes">
+            <label for="notes">Special Requests / Notes</label>
+            <textarea id="notes" placeholder="Any special instructions, allergies, or behaviors we should know about…"></textarea>
+          </div>
+
+        </div><!-- grid -->
+
+        <div class="submit-row">
+          <button type="submit">Request Appointment</button>
+          <span class="or-call">or call us at <a href="tel:8656925335">(865) 692-5335</a></span>
+        </div>
+      </form>
+    </div>
+
+    <div id="success">
+      <div class="check">✅</div>
+      <h3>Request Received!</h3>
+      <p>Thank you! We'll call you at the number you provided to confirm your appointment.<br>
+         If you need to reach us sooner, give us a call.</p>
+      <a class="phone-link" href="tel:8656925335">📞 Call (865) 692-5335</a>
+    </div>
+  </div>
+
+  <div class="hours-card">
+    <h3>Hours of Operation</h3>
+    <ul class="hours-list" id="hours-list">
+      <li data-day="0"><span class="day">Sunday</span>    <span class="closed-label">Closed</span></li>
+      <li data-day="1"><span class="day">Monday</span>    <span class="closed-label">Closed</span></li>
+      <li data-day="2"><span class="day">Tuesday</span>   <span class="closed-label">Closed</span></li>
+      <li data-day="3"><span class="day">Wednesday</span> <span class="open">9:30 AM – 5:00 PM</span></li>
+      <li data-day="4"><span class="day">Thursday</span>  <span class="open">9:30 AM – 5:00 PM</span></li>
+      <li data-day="5"><span class="day">Friday</span>    <span class="open">9:30 AM – 5:00 PM</span></li>
+      <li data-day="6"><span class="day">Saturday</span>  <span class="closed-label">Closed</span></li>
+    </ul>
+  </div>
+</main>
+
+<script>
+  // Highlight today in hours list
+  const todayDay = new Date().getDay();
+  const li = document.querySelector(`#hours-list li[data-day="${todayDay}"]`);
+  if (li) li.classList.add('today');
+
+  // Set min date to today
+  const dateInput = document.getElementById('appt-date');
+  const today = new Date();
+  dateInput.min = today.toISOString().split('T')[0];
+
+  // Date validation feedback
+  const dateNote = document.getElementById('date-note');
+  dateInput.addEventListener('change', () => {
+    const val = dateInput.value;
+    if (!val) { dateNote.textContent = 'Pick a Wednesday, Thursday, or Friday.'; dateNote.className = ''; return; }
+    const d = new Date(val + 'T00:00:00');
+    const day = d.getDay();
+    if (day === 3 || day === 4 || day === 5) {
+      const names = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+      dateNote.textContent = `✓ ${names[day]} — we're open!`;
+      dateNote.className = '';
+    } else {
+      dateNote.textContent = 'We are closed that day. Please pick a Wednesday, Thursday, or Friday.';
+      dateNote.className = 'closed';
+    }
+  });
+
+  // Service pills
+  const pills = document.querySelectorAll('.service-pill');
+  const serviceHidden = document.getElementById('service-hidden');
+  pills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      pills.forEach(p => p.classList.remove('selected'));
+      pill.classList.add('selected');
+      serviceHidden.value = pill.dataset.value;
+      document.getElementById('f-service').classList.remove('show-error');
+    });
+  });
+
+  // Form validation & submit
+  function req(id, check) {
+    const field = document.getElementById('f-' + id);
+    const el = document.getElementById(id === 'name' ? 'owner-name' : id === 'phone' ? 'owner-phone' : 'appt-' + id) || document.getElementById(id);
+    const val = el ? el.value.trim() : '';
+    const ok = check ? check(val) : val.length > 0;
+    if (ok) { field.classList.remove('show-error'); }
+    else { field.classList.add('show-error'); }
+    return ok;
+  }
+
+  document.getElementById('booking-form').addEventListener('submit', e => {
+    e.preventDefault();
+
+    const nameOk   = req('name',  v => v.length > 1);
+    const phoneOk  = req('phone', v => v.replace(/\D/g,'').length >= 10);
+    const petOk    = req('pet',   v => v.length > 0);
+    const breedOk  = req('breed', v => v.length > 0);
+
+    // date
+    const dateVal = dateInput.value;
+    let dateOk = false;
+    if (dateVal) {
+      const day = new Date(dateVal + 'T00:00:00').getDay();
+      dateOk = (day === 3 || day === 4 || day === 5);
+    }
+    const dateField = document.getElementById('f-date');
+    dateOk ? dateField.classList.remove('show-error') : dateField.classList.add('show-error');
+
+    // time
+    const timeEl = document.getElementById('appt-time');
+    const timeOk = timeEl.value !== '';
+    const timeField = document.getElementById('f-time');
+    timeOk ? timeField.classList.remove('show-error') : timeField.classList.add('show-error');
+
+    // service
+    const svcOk = serviceHidden.value !== '';
+    const svcField = document.getElementById('f-service');
+    svcOk ? svcField.classList.remove('show-error') : svcField.classList.add('show-error');
+
+    if (nameOk && phoneOk && petOk && breedOk && dateOk && timeOk && svcOk) {
+      document.getElementById('form-wrap').style.display = 'none';
+      document.getElementById('success').style.display = 'block';
+    } else {
+      document.querySelector('.show-error')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  });
+
+  // Phone auto-format
+  document.getElementById('owner-phone').addEventListener('input', function() {
+    let v = this.value.replace(/\D/g,'').slice(0,10);
+    if (v.length >= 7) v = `(${v.slice(0,3)}) ${v.slice(3,6)}-${v.slice(6)}`;
+    else if (v.length >= 4) v = `(${v.slice(0,3)}) ${v.slice(3)}`;
+    else if (v.length > 0) v = `(${v}`;
+    this.value = v;
+  });
+</script>
+</body>
+</html>
