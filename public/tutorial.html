@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MUR Nutrition – Complete App Tutorial</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --orange: #f26522;
+      --orange-d: #c94e10;
+      --orange-l: #fff4ee;
+      --green: #2dba7e;
+      --green-l: #e8faf3;
+      --dark: #1a1a2e;
+      --text: #1e1e2e;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --bg: #f8fafc;
+      --white: #fff;
+      --r: 14px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 1px 8px rgba(0,0,0,.06);
+    }
+    .nav-inner {
+      max-width: 1000px; margin: 0 auto;
+      padding: 0 24px; height: 60px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-brand {
+      display: flex; align-items: center; gap: 10px;
+      font-weight: 800; font-size: 1rem; color: var(--dark); text-decoration: none;
+    }
+    .nav-brand .logo-box {
+      width: 34px; height: 34px; border-radius: 8px;
+      background: var(--orange);
+      display: flex; align-items: center; justify-content: center;
+      color: white; font-weight: 900; font-size: .95rem;
+    }
+    .nav-links { display: flex; gap: 20px; list-style: none; }
+    .nav-links a { text-decoration: none; color: var(--muted); font-size: .85rem; font-weight: 600; transition: color .2s; }
+    .nav-links a:hover { color: var(--orange); }
+    .nav-badge { background: var(--orange); color: white; font-size: .72rem; font-weight: 700; padding: 3px 10px; border-radius: 999px; }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, #1a1a2e 0%, #2d1b4e 50%, #1a3a2e 100%);
+      color: white; padding: 80px 24px 90px; text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 30% 50%, rgba(242,101,34,.15) 0%, transparent 60%),
+                  radial-gradient(ellipse at 70% 30%, rgba(45,186,126,.1) 0%, transparent 50%);
+    }
+    .hero-inner { position: relative; max-width: 700px; margin: 0 auto; }
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(242,101,34,.2); border: 1px solid rgba(242,101,34,.4);
+      border-radius: 999px; padding: 6px 16px;
+      font-size: .78rem; font-weight: 700; text-transform: uppercase; letter-spacing: .8px;
+      margin-bottom: 22px; color: #ffb38a;
+    }
+    .hero h1 { font-size: clamp(2rem,5vw,3rem); font-weight: 900; line-height: 1.15; margin-bottom: 16px; }
+    .hero h1 span { color: var(--orange); }
+    .hero p { font-size: 1.05rem; opacity: .8; max-width: 520px; margin: 0 auto 32px; }
+    .hero-app-badge {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2);
+      border-radius: 12px; padding: 10px 20px; font-size: .88rem;
+    }
+    .hero-app-badge .dot { width: 8px; height: 8px; background: #4ade80; border-radius: 50%; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
+
+    .toc-chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 32px; }
+    .toc-chip {
+      background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.15);
+      color: rgba(255,255,255,.8); border-radius: 999px;
+      padding: 7px 16px; font-size: .8rem; font-weight: 600;
+      text-decoration: none; transition: background .2s;
+    }
+    .toc-chip:hover { background: rgba(255,255,255,.18); color: white; }
+
+    /* ── MAIN ── */
+    main { max-width: 860px; margin: 0 auto; padding: 0 24px 80px; }
+
+    /* ── SECTION ── */
+    .tutorial-section { margin-top: 64px; }
+    .section-header {
+      display: flex; align-items: center; gap: 14px; margin-bottom: 28px;
+      padding-bottom: 18px; border-bottom: 2px solid var(--border);
+    }
+    .step-num {
+      width: 44px; height: 44px; border-radius: 12px;
+      background: var(--orange); color: white;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; font-weight: 900; flex-shrink: 0;
+    }
+    .step-num.green { background: var(--green); }
+    .step-num.purple { background: #7c3aed; }
+    .step-num.blue { background: #0ea5e9; }
+    .step-num.rose { background: #f43f5e; }
+    .step-num.amber { background: #f59e0b; }
+    .section-header h2 { font-size: 1.45rem; font-weight: 800; color: var(--dark); }
+    .section-header p { font-size: .88rem; color: var(--muted); margin-top: 3px; }
+
+    /* ── CARDS ── */
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-bottom: 24px; }
+    .card {
+      background: var(--white); border: 1.5px solid var(--border); border-radius: var(--r);
+      padding: 22px 20px;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .card:hover { border-color: var(--orange); box-shadow: 0 4px 20px rgba(242,101,34,.08); }
+    .card .card-ico { font-size: 1.8rem; margin-bottom: 10px; }
+    .card h3 { font-size: .97rem; font-weight: 700; color: var(--dark); margin-bottom: 6px; }
+    .card p { font-size: .84rem; color: var(--muted); line-height: 1.6; }
+
+    /* ── STEP LIST ── */
+    .steps { display: flex; flex-direction: column; gap: 14px; }
+    .step-item {
+      display: flex; gap: 16px; align-items: flex-start;
+      background: var(--white); border: 1.5px solid var(--border);
+      border-radius: var(--r); padding: 18px 20px;
+    }
+    .step-circle {
+      width: 30px; height: 30px; border-radius: 50%;
+      background: var(--orange-l); color: var(--orange);
+      display: flex; align-items: center; justify-content: center;
+      font-size: .8rem; font-weight: 900; flex-shrink: 0; margin-top: 2px;
+    }
+    .step-item h4 { font-size: .95rem; font-weight: 700; color: var(--dark); margin-bottom: 4px; }
+    .step-item p { font-size: .84rem; color: var(--muted); line-height: 1.6; }
+
+    /* ── TIP BOX ── */
+    .tip {
+      border-radius: var(--r); padding: 16px 20px;
+      font-size: .87rem; line-height: 1.7; margin-top: 20px;
+      display: flex; gap: 12px; align-items: flex-start;
+    }
+    .tip.orange { background: var(--orange-l); border-left: 3px solid var(--orange); color: #7c3010; }
+    .tip.green  { background: var(--green-l);  border-left: 3px solid var(--green);  color: #14532d; }
+    .tip.blue   { background: #eff6ff; border-left: 3px solid #3b82f6; color: #1e3a5f; }
+    .tip .tip-ico { font-size: 1.2rem; flex-shrink: 0; margin-top: 1px; }
+
+    /* ── FAQ ── */
+    .faq-list { display: flex; flex-direction: column; gap: 10px; }
+    .faq-item {
+      background: var(--white); border: 1.5px solid var(--border);
+      border-radius: var(--r); overflow: hidden;
+    }
+    .faq-q {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 16px 20px; cursor: pointer; font-weight: 700; font-size: .93rem;
+      gap: 12px; user-select: none;
+    }
+    .faq-q:hover { color: var(--orange); }
+    .faq-q .arrow { transition: transform .25s; font-size: .8rem; color: var(--muted); flex-shrink: 0; }
+    .faq-item.open .faq-q .arrow { transform: rotate(180deg); }
+    .faq-a { max-height: 0; overflow: hidden; transition: max-height .3s ease; }
+    .faq-item.open .faq-a { max-height: 300px; }
+    .faq-a-inner { padding: 0 20px 16px; font-size: .88rem; color: var(--muted); line-height: 1.7; }
+
+    /* ── FEATURE TABLE ── */
+    .feature-table { width: 100%; border-collapse: collapse; background: var(--white); border-radius: var(--r); overflow: hidden; border: 1.5px solid var(--border); margin-top: 4px; }
+    .feature-table th { background: var(--dark); color: white; padding: 12px 16px; text-align: left; font-size: .82rem; text-transform: uppercase; letter-spacing: .5px; }
+    .feature-table td { padding: 12px 16px; border-bottom: 1px solid var(--border); font-size: .88rem; }
+    .feature-table tr:last-child td { border-bottom: none; }
+    .feature-table tr:hover td { background: var(--orange-l); }
+    .badge-yes { background: var(--green-l); color: var(--green); font-size: .75rem; font-weight: 700; padding: 2px 10px; border-radius: 999px; }
+
+    /* ── CONTACT CARDS ── */
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 4px; }
+    @media(max-width:540px){ .contact-grid { grid-template-columns: 1fr; } }
+    .contact-card {
+      background: var(--white); border: 1.5px solid var(--border); border-radius: var(--r);
+      padding: 22px; display: flex; gap: 14px; align-items: flex-start;
+    }
+    .contact-card .c-ico {
+      width: 44px; height: 44px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem; flex-shrink: 0;
+    }
+    .c-ico.org { background: #fff4ee; }
+    .c-ico.grn { background: #e8faf3; }
+    .contact-card h4 { font-weight: 700; font-size: .95rem; color: var(--dark); margin-bottom: 4px; }
+    .contact-card p { font-size: .83rem; color: var(--muted); line-height: 1.5; }
+    .contact-card a { color: var(--orange); font-weight: 600; text-decoration: none; }
+    .contact-card a:hover { text-decoration: underline; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dark); color: rgba(255,255,255,.5);
+      text-align: center; padding: 28px 24px; font-size: .82rem; margin-top: 40px;
+    }
+    footer strong { color: white; }
+    footer a { color: var(--orange); text-decoration: none; }
+
+    @media(max-width:600px){
+      .nav-links { display: none; }
+      .hero { padding: 60px 20px 70px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a class="nav-brand" href="#">
+      <div class="logo-box">M</div>
+      MUR Nutrition Tutorial
+    </a>
+    <ul class="nav-links">
+      <li><a href="#getting-started">Getting Started</a></li>
+      <li><a href="#features">Features</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#support">Support</a></li>
+      <li><span class="nav-badge">Free Guide</span></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-tag">📱 Complete Beginner's Guide</div>
+    <h1>How to Use <span>MUR Nutrition</span></h1>
+    <p>Your step-by-step tutorial for MUR Nutrition — the AI-powered fitness and nutrition companion. Master every feature in minutes.</p>
+    <div class="hero-app-badge">
+      <span class="dot"></span>
+      <strong>mur-nutrition.base44.app</strong> &nbsp;·&nbsp; AI-Powered · Food Scanner · Coaching
+    </div>
+    <div class="toc-chips">
+      <a class="toc-chip" href="#getting-started">1. Getting Started</a>
+      <a class="toc-chip" href="#food-scanner">2. Food Scanner</a>
+      <a class="toc-chip" href="#ai-coach">3. AI Coach</a>
+      <a class="toc-chip" href="#workouts">4. Workouts</a>
+      <a class="toc-chip" href="#recipes">5. Recipes</a>
+      <a class="toc-chip" href="#supplements">6. Supplements</a>
+      <a class="toc-chip" href="#account">7. Account</a>
+      <a class="toc-chip" href="#faq">8. FAQ</a>
+    </div>
+  </div>
+</section>
+
+<main>
+
+  <!-- ── SECTION 1: WHAT IS MUR ── -->
+  <section class="tutorial-section" id="what-is-mur">
+    <div class="section-header">
+      <div class="step-num">🌟</div>
+      <div>
+        <h2>What is MUR Nutrition?</h2>
+        <p>A quick overview before you dive in</p>
+      </div>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <div class="card-ico">🤖</div>
+        <h3>AI-Powered Coaching</h3>
+        <p>Get personalized fitness and nutrition recommendations powered by artificial intelligence — available 24/7.</p>
+      </div>
+      <div class="card">
+        <div class="card-ico">📷</div>
+        <h3>Food Scanner</h3>
+        <p>Point your camera at any food or meal and instantly get full nutritional data — calories, macros, and more.</p>
+      </div>
+      <div class="card">
+        <div class="card-ico">🏋️</div>
+        <h3>Workout Planning</h3>
+        <p>Access personalized exercise programs designed around your goals, fitness level, and schedule.</p>
+      </div>
+      <div class="card">
+        <div class="card-ico">🥗</div>
+        <h3>Recipe Library</h3>
+        <p>Discover healthy, goal-aligned recipes filtered to match your dietary preferences and targets.</p>
+      </div>
+      <div class="card">
+        <div class="card-ico">💊</div>
+        <h3>Supplement Shop</h3>
+        <p>Browse and purchase nutritional supplements directly inside the app.</p>
+      </div>
+      <div class="card">
+        <div class="card-ico">👥</div>
+        <h3>Community & Coaching</h3>
+        <p>Connect with real human coaches, join group sessions, and engage with a community of members.</p>
+      </div>
+    </div>
+    <div class="tip blue">
+      <span class="tip-ico">ℹ️</span>
+      <span>MUR Nutrition is primarily a <strong>mobile app</strong>. The website at <a href="https://mur-nutrition.base44.app" target="_blank" style="color:#1d4ed8">mur-nutrition.base44.app</a> serves as the support portal and help center. Download the mobile app on iOS for the full experience.</span>
+    </div>
+  </section>
+
+  <!-- ── SECTION 2: GETTING STARTED ── -->
+  <section class="tutorial-section" id="getting-started">
+    <div class="section-header">
+      <div class="step-num">1</div>
+      <div>
+        <h2>Getting Started</h2>
+        <p>Create your account and set up your profile</p>
+      </div>
+    </div>
+    <div class="steps">
+      <div class="step-item">
+        <div class="step-circle">1</div>
+        <div>
+          <h4>Download the App</h4>
+          <p>Search "MUR Nutrition" in the App Store (iOS) or Google Play and install the app on your device.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-circle">2</div>
+        <div>
+          <h4>Create an Account</h4>
+          <p>Open the app and tap <strong>Sign Up</strong>. Enter your email address and create a password. You can also sign in with Apple or Google for a faster setup.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-circle">3</div>
+        <div>
+          <h4>Enter Your Body Stats</h4>
+          <p>Input your age, height, weight, and biological sex. This data powers MUR's AI recommendations and calorie/macro targets.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-circle">4</div>
+        <div>
+          <h4>Set Your Goals</h4>
+          <p>Choose your primary goal — <strong>lose weight</strong>, <strong>build muscle</strong>, <strong>improve endurance</strong>, or <strong>eat healthier</strong>. You can update this anytime.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-circle">5</div>
+        <div>
+          <h4>Connect Apple Health (Optional)</h4>
+          <p>Open <strong>iPhone Settings → Health → Sources</strong> and tap MUR Nutrition to allow syncing. This lets the app read your steps, workouts, and vitals automatically.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-circle">6</div>
+        <div>
+          <h4>Explore Your Dashboard</h4>
+          <p>You'll land on your personal dashboard showing daily nutrition targets, upcoming workouts, and AI coach suggestions.</p>
+        </div>
+      </div>
+    </div>
+    <div class="tip orange">
+      <span class="tip-ico">💡</span>
+      <span>Be accurate with your body stats — MUR's AI uses them to calculate your personalized calorie and macro targets. You can always update them later in <strong>Account → Settings</strong>.</span>
+    </div>
+  </section>
+
+  <!-- ── SECTION 3: FOOD SCANNER ── -->
+  <section class="tutorial-section" id="food-scanner">
+    <div class="section-header">
+      <div class="step-num green">2</div>
+      <div>
+        <h2>Food Scanner</h2>
+        <p>Instantly log any meal with your camera</p>
+      </div>
+    </div>
+    <div class="steps">
+      <div class="step-item">
+        <div class="step-circle">1</div>
+        <div>
+          <h4>Open the Scanner</h4>
+          <p>Tap the <strong>camera icon</strong> or the <strong>Scan</strong> button on the home screen or bottom nav bar.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-circle">2</div>
+        <div>
+          <h4>Point at Your Food</h4>
+          <p>Hold your phone over the food item or meal. Make sure it's well lit and the food fills most of the frame.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-circle">3</div>
+        <div>
+          <h4>Tap the Scan Button</h4>
+          <p>Tap the scan button and the AI (powered by OpenAI/Google Vision) will identify the food within seconds.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-circle">4</div>
+        <div>
+          <h4>Review Nutritional Info</h4>
+          <p>MUR shows you <strong>calories, protein, carbs, fat, fiber</strong>, and more. Adjust the portion size if needed.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-circle">5</div>
+        <div>
+          <h4>Log the Meal</h4>
+          <p>Tap <strong>Add to Log</strong> to save it to your daily nutrition diary. It instantly updates your macros and calorie totals.</p>
+        </div>
+      </div>
+    </div>
+    <div class="tip green">
+      <span class="tip-ico">✅</span>
+      <span>The scanner works best with <strong>whole food items</strong> (fruit, vegetables, meat) and common packaged foods. For complex mixed dishes, you can also search by name manually.</span>
+    </div>
+    <div class="tip orange" style="margin-top:12px">
+      <span class="tip-ico">🔒</span>
+      <span>Food photos are sent to AI services (OpenAI/Google) only to identify food content — they are not stored or shared for any other purpose.</span>
+    </div>
+  </section>
+
+  <!-- ── SECTION 4: AI COACH ── -->
+  <section class="tutorial-section" id="ai-coach">
+    <div class="section-header">
+      <div class="step-num purple">3</div>
+      <div>
+        <h2>AI Coach</h2>
+        <p>Your 24/7 personalized nutrition and fitness advisor</p>
+      </div>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <div class="card-ico">💬</div>
+        <h3>Ask Anything</h3>
+        <p>Type questions like "What should I eat before a workout?" or "How many calories should I eat today?" and get instant AI answers.</p>
+      </div>
+      <div class="card">
+        <div class="card-ico">🎯</div>
+        <h3>Personalized Plans</h3>
+        <p>The AI creates meal and workout plans tailored specifically to your body stats, goals, and progress history.</p>
+      </div>
+      <div class="card">
+        <div class="card-ico">📊</div>
+        <h3>Progress Analysis</h3>
+        <p>Get AI insights on your nutrition trends, workout consistency, and suggestions for reaching your goals faster.</p>
+      </div>
+      <div class="card">
+        <div class="card-ico">👨‍⚕️</div>
+        <h3>Human Coach Option</h3>
+        <p>Upgrade to connect with a real human certified coach for one-on-one guidance, check-ins, and accountability.</p>
+      </div>
+    </div>
+    <div class="tip blue">
+      <span class="tip-ico">💡</span>
+      <span>Find the AI Coach by tapping <strong>"Coach"</strong> in the bottom navigation. The more you use the app and log food/workouts, the smarter and more personalized the AI gets over time.</span>
+    </div>
+  </section>
+
+  <!-- ── SECTION 5: WORKOUTS ── -->
+  <section class="tutorial-section" id="workouts">
+    <div class="section-header">
+      <div class="step-num blue">4</div>
+      <div>
+        <h2>Workout Planning</h2>
+        <p>Structured exercise programs built for your goals</p>
+      </div>
+    </div>
+    <div class="steps">
+      <div class="step-item">
+        <div class="step-circle">1</div>
+        <div>
+          <h4>Go to Workouts</h4>
+          <p>Tap the <strong>Workouts</strong> icon in the navigation bar to access your fitness hub.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-circle">2</div>
+        <div>
+          <h4>Browse or Generate a Plan</h4>
+          <p>Choose from pre-built programs or let the AI generate a custom weekly plan based on your schedule and equipment.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-circle">3</div>
+        <div>
+          <h4>Start a Workout</h4>
+          <p>Tap any workout to start. The app walks you through each exercise with sets, reps, rest timers, and form tips.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-circle">4</div>
+        <div>
+          <h4>Log Your Session</h4>
+          <p>After completing, your workout is automatically saved. Your progress and personal records are tracked over time.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-circle">5</div>
+        <div>
+          <h4>Join Group Coaching</h4>
+          <p>Tap <strong>Coach → Group</strong> to join live or recorded group coaching sessions led by certified trainers.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SECTION 6: RECIPES ── -->
+  <section class="tutorial-section" id="recipes">
+    <div class="section-header">
+      <div class="step-num rose">5</div>
+      <div>
+        <h2>Recipe Library</h2>
+        <p>Healthy meal ideas aligned with your nutrition goals</p>
+      </div>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <div class="card-ico">🔍</div>
+        <h3>Browse &amp; Search</h3>
+        <p>Filter recipes by dietary type (high protein, low carb, vegan, etc.), prep time, or available ingredients.</p>
+      </div>
+      <div class="card">
+        <div class="card-ico">🥦</div>
+        <h3>Full Nutrition Facts</h3>
+        <p>Every recipe shows complete macros and calories per serving so you know exactly what you're eating.</p>
+      </div>
+      <div class="card">
+        <div class="card-ico">➕</div>
+        <h3>Log from Recipe</h3>
+        <p>Tap <strong>Add to Log</strong> on any recipe to instantly add it to your daily nutrition diary.</p>
+      </div>
+      <div class="card">
+        <div class="card-ico">⭐</div>
+        <h3>Save Favourites</h3>
+        <p>Bookmark your go-to meals for quick access — perfect for meal prepping or weekly planning.</p>
+      </div>
+    </div>
+    <div class="tip green">
+      <span class="tip-ico">🍽️</span>
+      <span>Ask the <strong>AI Coach</strong> to "suggest recipes for my goal" and it will pull from the library based on your exact calorie and macro targets for the day.</span>
+    </div>
+  </section>
+
+  <!-- ── SECTION 7: SUPPLEMENTS ── -->
+  <section class="tutorial-section" id="supplements">
+    <div class="section-header">
+      <div class="step-num amber">6</div>
+      <div>
+        <h2>Supplement Shop</h2>
+        <p>Buy nutritional products directly inside the app</p>
+      </div>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <div class="card-ico">🛒</div>
+        <h3>In-App Shopping</h3>
+        <p>Browse protein powders, vitamins, and other supplements curated to complement your fitness goals.</p>
+      </div>
+      <div class="card">
+        <div class="card-ico">🤖</div>
+        <h3>AI Recommendations</h3>
+        <p>The AI Coach can suggest which supplements might help based on your nutrition gaps and workout habits.</p>
+      </div>
+      <div class="card">
+        <div class="card-ico">📦</div>
+        <h3>Easy Checkout</h3>
+        <p>Purchase using saved payment methods. Orders are managed through the app and delivered to your door.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SECTION 8: ACCOUNT & SETTINGS ── -->
+  <section class="tutorial-section" id="account">
+    <div class="section-header">
+      <div class="step-num">7</div>
+      <div>
+        <h2>Account &amp; Settings</h2>
+        <p>Manage your profile, subscription, and privacy</p>
+      </div>
+    </div>
+    <table class="feature-table">
+      <thead>
+        <tr>
+          <th>Setting</th>
+          <th>Where to Find</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Update body stats</td>
+          <td>Account → Profile</td>
+          <td>Update whenever your weight changes</td>
+        </tr>
+        <tr>
+          <td>Change goal</td>
+          <td>Account → Goals</td>
+          <td>Switch between lose, gain, maintain</td>
+        </tr>
+        <tr>
+          <td>Reset password</td>
+          <td>Login screen → Forgot Password</td>
+          <td>Check spam folder for reset email</td>
+        </tr>
+        <tr>
+          <td>Cancel subscription</td>
+          <td>iOS: Settings → Apple ID → Subscriptions</td>
+          <td>Or email support@murnutrition.com</td>
+        </tr>
+        <tr>
+          <td>Connect Apple Health</td>
+          <td>iPhone Settings → Health → Sources → MUR</td>
+          <td>Syncs steps, workouts, and vitals</td>
+        </tr>
+        <tr>
+          <td>Notifications</td>
+          <td>Account → Notifications</td>
+          <td>Meal reminders, coaching alerts</td>
+        </tr>
+        <tr>
+          <td>Delete account</td>
+          <td>Account → scroll down → Delete Account</td>
+          <td><strong style="color:var(--rose,#f43f5e)">⚠️ Permanent — cannot be undone</strong></td>
+        </tr>
+        <tr>
+          <td>Privacy &amp; data</td>
+          <td>Account → Privacy</td>
+          <td>See what data is collected and how</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="tip orange" style="margin-top:20px">
+      <span class="tip-ico">⚠️</span>
+      <span>Deleting your account is <strong>permanent and irreversible</strong>. All your food logs, workout history, and progress data will be erased. If you just want a break, consider simply logging out instead.</span>
+    </div>
+  </section>
+
+  <!-- ── SECTION 9: FAQ ── -->
+  <section class="tutorial-section" id="faq">
+    <div class="section-header">
+      <div class="step-num green">8</div>
+      <div>
+        <h2>Frequently Asked Questions</h2>
+        <p>Answers straight from the MUR Nutrition support page</p>
+      </div>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q">How do I reset my password? <span class="arrow">▾</span></div>
+        <div class="faq-a"><div class="faq-a-inner">On the login screen, tap <strong>"Forgot Password"</strong> and enter your email address. You will receive a reset link shortly. Check your spam/junk folder if it doesn't arrive within a few minutes.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">How do I cancel my subscription? <span class="arrow">▾</span></div>
+        <div class="faq-a"><div class="faq-a-inner">You can cancel at any time through your device's App Store settings:<br><strong>iOS:</strong> Settings → Apple ID → Subscriptions → MUR Nutrition → Cancel.<br>Or contact the support team at <a href="mailto:support@murnutrition.com" style="color:var(--orange)">support@murnutrition.com</a>.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">How does the food scanner work? <span class="arrow">▾</span></div>
+        <div class="faq-a"><div class="faq-a-inner">Point your camera at any food item or meal and tap the scan button. MUR's AI (using OpenAI/Google Vision technology) will identify the food and provide detailed nutritional information including calories, protein, carbs, fat, and fiber within seconds.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Can I connect Apple Health? <span class="arrow">▾</span></div>
+        <div class="faq-a"><div class="faq-a-inner">Yes! Open the <strong>Health app</strong> on your iPhone, go to <strong>Browse → Sources</strong>, and tap MUR Nutrition to manage sync permissions. You can control exactly what data is shared.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">How do I delete my account? <span class="arrow">▾</span></div>
+        <div class="faq-a"><div class="faq-a-inner">Go to <strong>Account → scroll to the bottom → tap "Delete Account"</strong>. This will permanently erase all your data including food logs, workout history, and personal stats. <strong>This action cannot be undone.</strong></div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What data does the app collect? <span class="arrow">▾</span></div>
+        <div class="faq-a"><div class="faq-a-inner">MUR collects your account info, body stats, nutrition logs, workout history, and goals to power personalized recommendations. Your food photos are analyzed by AI services (OpenAI/Google) solely to identify nutritional content and are not stored beyond that process. Read the full <a href="https://mur-nutrition.base44.app" target="_blank" style="color:var(--orange)">Privacy Policy</a> for complete details.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Is there a free version? <span class="arrow">▾</span></div>
+        <div class="faq-a"><div class="faq-a-inner">MUR Nutrition offers a free tier with core features. Premium subscription unlocks full AI coaching, unlimited food scanning, advanced analytics, and access to the supplement shop. Subscription can be managed through your App Store settings.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SECTION 10: SUPPORT ── -->
+  <section class="tutorial-section" id="support">
+    <div class="section-header">
+      <div class="step-num purple">9</div>
+      <div>
+        <h2>Get Support</h2>
+        <p>Reach the MUR Nutrition team directly</p>
+      </div>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <div class="c-ico org">📧</div>
+        <div>
+          <h4>Email Support</h4>
+          <p><a href="mailto:support@murnutrition.com">support@murnutrition.com</a></p>
+          <p style="margin-top:4px">Response within 24 hours</p>
+        </div>
+      </div>
+      <div class="contact-card">
+        <div class="c-ico grn">🌐</div>
+        <div>
+          <h4>Visit the Website</h4>
+          <p><a href="https://murnutrition.com" target="_blank">murnutrition.com</a></p>
+          <p style="margin-top:4px">News, updates &amp; resources</p>
+        </div>
+      </div>
+    </div>
+    <div class="tip blue" style="margin-top:20px">
+      <span class="tip-ico">💬</span>
+      <span>For fastest help, include your <strong>account email</strong>, a <strong>description of the issue</strong>, and a <strong>screenshot</strong> if possible when contacting support.</span>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p><strong>MUR Nutrition Tutorial Guide</strong> &nbsp;·&nbsp; <a href="https://mur-nutrition.base44.app" target="_blank">mur-nutrition.base44.app</a></p>
+  <p style="margin-top:6px">This is an unofficial tutorial guide. For official support, contact <a href="mailto:support@murnutrition.com">support@murnutrition.com</a></p>
+</footer>
+
+<script>
+  // FAQ accordion
+  document.querySelectorAll('.faq-q').forEach(q => {
+    q.addEventListener('click', () => {
+      const item = q.parentElement;
+      const wasOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!wasOpen) item.classList.add('open');
+    });
+  });
+
+  // Highlight today's nav link on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const links = document.querySelectorAll('.nav-links a[href^="#"]');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 100) current = s.id; });
+    links.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + current ? 'var(--orange)' : '';
+    });
+  }, { passive: true });
+</script>
+</body>
+</html>
