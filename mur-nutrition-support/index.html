@@ -153,16 +153,6 @@
 <div class="container">
   <div class="quick-links">
     <div class="quick-card" onclick="document.getElementById('faq').scrollIntoView({behavior:'smooth'})">
-      <div class="icon">📦</div>
-      <h3>Orders & Shipping</h3>
-      <p>Track, modify, or cancel an order</p>
-    </div>
-    <div class="quick-card" onclick="document.getElementById('faq').scrollIntoView({behavior:'smooth'})">
-      <div class="icon">🔄</div>
-      <h3>Returns & Refunds</h3>
-      <p>Start a return or check refund status</p>
-    </div>
-    <div class="quick-card" onclick="document.getElementById('faq').scrollIntoView({behavior:'smooth'})">
       <div class="icon">👤</div>
       <h3>Account Help</h3>
       <p>Login issues, password reset, billing</p>
@@ -181,16 +171,6 @@
     <h2 class="section-title">Frequently Asked Questions</h2>
     <p class="section-sub">Quick answers to the most common questions.</p>
     <div class="faq-list" id="faq-list">
-
-      <div class="faq-item" data-keywords="order track shipping where">
-        <button class="faq-q" onclick="toggleFAQ(this)">Where is my order? <span class="arrow">▼</span></button>
-        <div class="faq-a">Once your order ships you'll receive a tracking email. Orders typically ship within 1–2 business days. If you haven't received a tracking number after 3 business days, contact us below and we'll look into it right away.</div>
-      </div>
-
-      <div class="faq-item" data-keywords="return refund money back exchange">
-        <button class="faq-q" onclick="toggleFAQ(this)">What is your return policy? <span class="arrow">▼</span></button>
-        <div class="faq-a">We accept returns within 30 days of delivery for unopened products. If you received a damaged or incorrect item, we'll make it right at no cost to you. Contact us with your order number and a photo of the issue to get started.</div>
-      </div>
 
       <div class="faq-item" data-keywords="subscribe subscription cancel cancel recurring">
         <button class="faq-q" onclick="toggleFAQ(this)">How do I cancel or modify my subscription? <span class="arrow">▼</span></button>
@@ -266,8 +246,6 @@
           <label for="topic">Topic</label>
           <select id="topic" name="Topic" required>
             <option value="">Select a topic</option>
-            <option>Order / Shipping Issue</option>
-            <option>Return or Refund Request</option>
             <option>Account / Login Help</option>
             <option>Subscription Management</option>
             <option>Product Question</option>
