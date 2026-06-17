@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Danni's Pet Service | Pet Sitting in Heiskell, TN</title>
+<meta name="description" content="Danni's Pet Service — trusted pet sitting and dog daycare in Heiskell, TN. 4.8 stars, 12 reviews. Danni treats every pet like family. Book online.">
+<style>
+  :root{
+    --black:#07080a;
+    --dark:#101214;
+    --dark2:#161a1e;
+    --green:#27804a;
+    --green-light:#2ecc71;
+    --warm:#e8a838;
+    --warm-light:#f5c842;
+    --gray:#8a8a9a;
+    --white:#f4f5f0;
+    --line:#1e2224;
+    --paw:#d4a04a;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Segoe UI',Arial,sans-serif;background:var(--black);color:var(--white);line-height:1.6;}
+  a{color:inherit;text-decoration:none;}
+  .container{max-width:1160px;margin:0 auto;padding:0 28px;}
+
+  /* ── Header ── */
+  header{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(7,8,10,.95);backdrop-filter:blur(14px);border-bottom:1px solid rgba(39,128,74,.25);}
+  nav{display:flex;align-items:center;justify-content:space-between;padding:16px 28px;max-width:1160px;margin:0 auto;}
+  .logo{font-size:1.2rem;font-weight:800;letter-spacing:.5px;}
+  .logo span{color:var(--green-light);}
+  .logo .paw{color:var(--warm-light);}
+  .nav-links{display:flex;gap:28px;list-style:none;}
+  .nav-links a{font-size:.88rem;color:var(--gray);transition:.2s;}
+  .nav-links a:hover{color:var(--green-light);}
+  .nav-cta{background:var(--green);color:#fff;padding:11px 22px;border-radius:6px;font-size:.85rem;font-weight:700;transition:.2s;}
+  .nav-cta:hover{background:var(--green-light);}
+
+  /* ── Hero slideshow ── */
+  .hero{min-height:100vh;position:relative;display:flex;align-items:center;padding-top:90px;overflow:hidden;}
+  .hero-slides{position:absolute;inset:0;z-index:0;}
+  .slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity 1.8s ease-in-out;}
+  .slide.active{opacity:1;}
+  .s1{background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/D%C3%BClmen%2C_Hausd%C3%BClmen%2C_Golden_Retriever_--_2022_--_5945.jpg/1920px-D%C3%BClmen%2C_Hausd%C3%BClmen%2C_Golden_Retriever_--_2022_--_5945.jpg');}
+  .s2{background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Golden_Retriever_dog_at_MAV-USP.jpg/1920px-Golden_Retriever_dog_at_MAV-USP.jpg');}
+  .s3{background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Callie_the_golden_retriever_puppy.jpg/1920px-Callie_the_golden_retriever_puppy.jpg');}
+  .s4{background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Golden_retriever_gnawing_at_the_farmer%27s_market.jpg/1920px-Golden_retriever_gnawing_at_the_farmer%27s_market.jpg');}
+  .hero-slides::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(110deg,rgba(7,8,10,.95) 28%,rgba(7,8,10,.65) 62%,rgba(7,8,10,.3) 100%);}
+  .slide-dots{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);display:flex;gap:10px;z-index:10;}
+  .dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.25);border:none;cursor:pointer;transition:.2s;}
+  .dot.active{background:var(--warm-light);}
+  .hero-content{position:relative;z-index:2;max-width:640px;}
+  .badge{display:inline-flex;align-items:center;gap:10px;background:rgba(39,128,74,.14);border:1px solid rgba(39,128,74,.5);padding:8px 16px;border-radius:30px;font-size:.82rem;color:var(--green-light);margin-bottom:24px;font-weight:600;}
+  .hero h1{font-size:clamp(2.4rem,5.5vw,3.8rem);font-weight:800;line-height:1.1;margin-bottom:20px;}
+  .hero h1 .hl{color:var(--warm-light);}
+  .hero p{color:#c4c8c0;font-size:1.1rem;max-width:520px;margin-bottom:34px;}
+  .btn-row{display:flex;gap:16px;flex-wrap:wrap;}
+  .btn{padding:15px 30px;border-radius:6px;font-weight:700;font-size:.92rem;display:inline-block;transition:.2s;border:none;cursor:pointer;font-family:inherit;}
+  .btn-primary{background:var(--green);color:#fff;}
+  .btn-primary:hover{background:var(--green-light);transform:translateY(-2px);}
+  .btn-outline{border:1px solid rgba(255,255,255,.4);color:#fff;background:transparent;}
+  .btn-outline:hover{border-color:var(--warm-light);color:var(--warm-light);transform:translateY(-2px);}
+  .stat-row{display:flex;gap:46px;margin-top:52px;flex-wrap:wrap;}
+  .stat .num{font-size:2rem;font-weight:800;color:var(--warm-light);}
+  .stat .label{font-size:.78rem;color:var(--gray);letter-spacing:.5px;text-transform:uppercase;}
+
+  /* ── Sections ── */
+  section{padding:100px 0;}
+  .section-tag{color:var(--green-light);font-size:.78rem;letter-spacing:3px;text-transform:uppercase;font-weight:700;margin-bottom:14px;}
+  .section-title{font-size:2.2rem;font-weight:800;margin-bottom:16px;letter-spacing:-.5px;}
+  .section-sub{color:var(--gray);max-width:620px;margin-bottom:52px;}
+  .alt{background:var(--dark2);}
+
+  /* ── Services ── */
+  .services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;}
+  .card{background:var(--dark);border:1px solid var(--line);border-radius:12px;padding:32px;transition:.25s;position:relative;overflow:hidden;}
+  .card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--green),var(--warm-light));transform:scaleX(0);transform-origin:left;transition:.3s;}
+  .card:hover::before{transform:scaleX(1);}
+  .card:hover{border-color:var(--green);transform:translateY(-4px);box-shadow:0 14px 32px rgba(39,128,74,.18);}
+  .card-icon{font-size:2rem;margin-bottom:16px;}
+  .card h3{font-size:1.1rem;margin-bottom:10px;}
+  .card p{color:var(--gray);font-size:.92rem;}
+
+  /* ── Why us ── */
+  .why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:30px;}
+  .why-item{padding:26px;border-left:3px solid var(--green);}
+  .why-item h4{margin-bottom:8px;font-size:1.05rem;}
+  .why-item p{color:#b0b8b0;font-size:.9rem;}
+
+  /* ── About ── */
+  .about-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:60px;align-items:center;}
+  .about-photo{aspect-ratio:4/5;border-radius:12px;background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Callie_the_golden_retriever_puppy.jpg/1920px-Callie_the_golden_retriever_puppy.jpg');background-size:cover;background-position:center top;border:1px solid var(--line);}
+  .about-grid h2{font-size:2rem;margin-bottom:18px;}
+  .about-grid p{color:var(--gray);margin-bottom:16px;}
+  .info-row{display:flex;gap:14px;margin-top:18px;align-items:flex-start;}
+  .icon-dot{width:38px;height:38px;border-radius:10px;background:rgba(39,128,74,.12);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1.1rem;}
+  .info-row strong{display:block;font-size:.95rem;}
+  .info-row span{color:var(--gray);font-size:.88rem;}
+
+  /* ── Hours ── */
+  .hours-table{max-width:480px;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--dark);}
+  .hours-row{display:flex;justify-content:space-between;align-items:center;padding:15px 24px;border-bottom:1px solid var(--line);font-size:.95rem;}
+  .hours-row:last-child{border-bottom:none;}
+  .hours-row.today{background:rgba(39,128,74,.08);}
+  .hours-day{font-weight:700;}
+  .hours-time{color:var(--gray);}
+  .open-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border-radius:30px;font-size:.85rem;font-weight:600;margin-bottom:28px;}
+  .open-badge.is-open{background:rgba(111,209,122,.12);border:1px solid rgba(111,209,122,.4);color:#6fd17a;}
+  .open-badge.is-open::before{content:"●";color:#6fd17a;}
+  .open-badge.is-closed{background:rgba(224,122,122,.12);border:1px solid rgba(224,122,122,.4);color:#e07a7a;}
+  .open-badge.is-closed::before{content:"●";color:#e07a7a;}
+
+  /* ── Reviews ── */
+  .reviews-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;}
+  .review-card{background:var(--dark);border:1px solid var(--line);border-radius:12px;padding:28px;transition:.2s;}
+  .review-card:hover{border-color:var(--green);transform:translateY(-3px);}
+  .review-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+  .review-name{font-weight:700;}
+  .review-meta{color:var(--gray);font-size:.82rem;}
+  .stars{color:var(--warm-light);display:block;margin-bottom:12px;font-size:1.05rem;}
+  .review-card p{color:#c4c8c0;font-size:.93rem;font-style:italic;}
+  .owner-resp{margin-top:14px;padding:12px 16px;background:rgba(39,128,74,.07);border-left:3px solid var(--green);border-radius:6px;font-size:.84rem;color:var(--gray);font-style:normal;}
+  .owner-resp strong{color:var(--green-light);}
+
+  /* ── Dog profile form ── */
+  .dog-form-section{position:relative;overflow:hidden;}
+  .dog-form-bg{position:absolute;inset:0;z-index:0;background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Golden_Retriever_dog_at_MAV-USP.jpg/1920px-Golden_Retriever_dog_at_MAV-USP.jpg');background-size:cover;background-position:center;opacity:.08;}
+  .dog-form-inner{position:relative;z-index:1;padding:100px 0;}
+  .form-wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:60px;align-items:flex-start;}
+  .form-intro h2{font-size:2rem;margin-bottom:18px;}
+  .form-intro p{color:#b0b8b0;margin-bottom:20px;}
+  .paw-list{list-style:none;display:grid;gap:14px;margin-top:10px;}
+  .paw-list li{display:flex;align-items:flex-start;gap:12px;font-size:.93rem;color:#b0b8b0;}
+  .paw-list li::before{content:"🐾";flex-shrink:0;}
+  form{display:grid;gap:20px;}
+  fieldset{border:1px solid var(--line);padding:26px;border-radius:10px;background:rgba(7,8,10,.8);}
+  legend{font-size:.78rem;letter-spacing:2px;text-transform:uppercase;color:var(--green-light);font-weight:700;padding:0 8px;}
+  .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .field{display:flex;flex-direction:column;gap:6px;}
+  .field.full{grid-column:1/-1;}
+  label{font-size:.82rem;color:var(--gray);}
+  input,select,textarea{background:var(--dark2);border:1px solid var(--line);color:#fff;padding:12px 14px;font-size:.95rem;font-family:inherit;border-radius:6px;}
+  input::placeholder,textarea::placeholder{color:#44484a;}
+  input:focus,select:focus,textarea:focus{outline:none;border-color:var(--green);}
+  textarea{resize:vertical;min-height:90px;}
+  .form-note{font-size:.78rem;color:#44484a;}
+  .submit-row{display:flex;align-items:center;gap:18px;}
+  #form-status{font-size:.85rem;color:var(--warm-light);}
+
+  /* ── CTA ── */
+  .cta-section{text-align:center;background:linear-gradient(135deg,#040a06,#0e1a10);}
+  .cta-section h2{font-size:2.4rem;font-weight:800;margin-bottom:16px;}
+  .cta-section p{color:var(--gray);margin-bottom:34px;}
+
+  /* ── Footer ── */
+  footer{padding:60px 0 30px;position:relative;background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/D%C3%BClmen%2C_Hausd%C3%BClmen%2C_Golden_Retriever_--_2022_--_5945.jpg/1920px-D%C3%BClmen%2C_Hausd%C3%BClmen%2C_Golden_Retriever_--_2022_--_5945.jpg');background-size:cover;background-position:center;}
+  footer::before{content:"";position:absolute;inset:0;background:rgba(7,8,10,.94);}
+  footer .container{position:relative;z-index:1;}
+  .footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:30px;margin-bottom:30px;}
+  .footer-col h4{color:var(--green-light);margin-bottom:14px;font-size:.92rem;letter-spacing:1px;}
+  .footer-col p,.footer-col a{font-size:.88rem;color:var(--gray);display:block;margin-bottom:8px;}
+  .footer-bottom{text-align:center;font-size:.8rem;padding-top:24px;border-top:1px solid var(--line);color:var(--gray);}
+
+  @media(max-width:900px){
+    .about-grid,.form-wrap{grid-template-columns:1fr;}
+    .form-grid{grid-template-columns:1fr;}
+    .nav-links{display:none;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ── Nav ── -->
+<header>
+  <nav>
+    <a href="#top" class="logo">DANNI'S <span>PET</span> <span class="paw">SERVICE</span></a>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#hours">Hours</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+      <li><a href="#your-dog">Your Dog</a></li>
+    </ul>
+    <a href="#your-dog" class="nav-cta">Tell Us About Your Dog</a>
+  </nav>
+</header>
+
+<!-- ── Hero ── -->
+<section class="hero" id="top">
+  <div class="hero-slides">
+    <div class="slide s1 active"></div>
+    <div class="slide s2"></div>
+    <div class="slide s3"></div>
+    <div class="slide s4"></div>
+  </div>
+  <div class="container">
+    <div class="hero-content">
+      <div class="badge">🐾 4.8 stars · 12 reviews · Heiskell, TN</div>
+      <h1>Your pet deserves someone who truly <span class="hl">cares.</span></h1>
+      <p>Danni's Pet Service provides trusted, loving pet sitting and dog daycare in Heiskell, TN. Danni sends photos and videos every visit — because your peace of mind matters.</p>
+      <div class="btn-row">
+        <a href="#your-dog" class="btn btn-primary">Tell Us About Your Dog</a>
+        <a href="tel:+18654102691" class="btn btn-outline">Call (865) 410-2691</a>
+      </div>
+      <div class="stat-row">
+        <div class="stat"><div class="num">4.8★</div><div class="label">Avg Rating</div></div>
+        <div class="stat"><div class="num">12</div><div class="label">Reviews</div></div>
+        <div class="stat"><div class="num">5+</div><div class="label">Years Caring</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-dots">
+    <button class="dot active" data-slide="0"></button>
+    <button class="dot" data-slide="1"></button>
+    <button class="dot" data-slide="2"></button>
+    <button class="dot" data-slide="3"></button>
+  </div>
+</section>
+
+<!-- ── Services ── -->
+<section id="services">
+  <div class="container">
+    <div class="section-tag">Services</div>
+    <h2 class="section-title">How Danni Can Help</h2>
+    <p class="section-sub">Whether you need someone to check in daily or watch your fur baby for a week — Danni's got you covered.</p>
+    <div class="services-grid">
+      <div class="card"><div class="card-icon">🏡</div><h3>In-Home Pet Sitting</h3><p>Danni comes to your home to care for your pet — feeding, walks, playtime, and lots of love.</p></div>
+      <div class="card"><div class="card-icon">🐕</div><h3>Dog Daycare</h3><p>Drop your dog off for a full day of play, socialization, and supervised care with other dogs.</p></div>
+      <div class="card"><div class="card-icon">🌙</div><h3>Overnight Stays</h3><p>Extended care for when you're away — your pet stays comfortable and loved while you travel.</p></div>
+      <div class="card"><div class="card-icon">🚶</div><h3>Dog Walking</h3><p>Regular daily walks to keep your pup healthy, exercised, and happy while you're at work.</p></div>
+      <div class="card"><div class="card-icon">🐱</div><h3>Cat Sitting</h3><p>Check-in visits for your cats — food, water, litter, and companionship while you're away.</p></div>
+      <div class="card"><div class="card-icon">📸</div><h3>Photo & Video Updates</h3><p>Danni sends photos and videos every visit so you always know your pet is safe and happy.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Why us ── -->
+<section class="alt">
+  <div class="container">
+    <div class="section-tag">Why Danni's</div>
+    <h2 class="section-title">Why families trust Danni</h2>
+    <div class="why-grid">
+      <div class="why-item"><h4>She genuinely loves animals</h4><p>"Dani is absolutely amazing with dogs!" — Amy W. She's not just a sitter — she treats every pet like her own.</p></div>
+      <div class="why-item"><h4>Great for senior pets</h4><p>"She came twice a day to care for her and was amazing!" — Amy W. Danni takes special care of older and special-needs pets.</p></div>
+      <div class="why-item"><h4>Above and beyond</h4><p>"She was extremely caring; catering to needs of our dog and giving her the attention she required. She went above and beyond." — Jane M.</p></div>
+      <div class="why-item"><h4>Great with any dog</h4><p>"My dog is insane, and she just came home exhausted and happy." — Brittany A. Even the wild ones feel right at home.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── About ── -->
+<section id="about">
+  <div class="container about-grid">
+    <div class="about-photo"></div>
+    <div>
+      <div class="section-tag">About</div>
+      <h2>Heiskell's most trusted pet sitter</h2>
+      <p>Danni has been caring for dogs and cats in Heiskell, TN for years — building a loyal base of families who trust her completely with their most beloved companions.</p>
+      <p>She sends photo and video updates every single visit, so you never have to wonder if your pet is okay. Whether it's a chug, a senior lab, or an energetic pup — Danni handles every animal with patience and heart.</p>
+      <div class="info-row"><div class="icon-dot">📍</div><div><strong>Location</strong><span>9851 Heiskell Rd, Heiskell, TN 37754</span></div></div>
+      <div class="info-row"><div class="icon-dot">🕘</div><div><strong>Hours</strong><span>See full schedule below</span></div></div>
+      <div class="info-row"><div class="icon-dot">📞</div><div><strong>Phone</strong><span><a href="tel:+18654102691">(865) 410-2691</a></span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Hours ── -->
+<section id="hours" class="alt">
+  <div class="container">
+    <div class="section-tag">Hours</div>
+    <h2 class="section-title">When We're Available</h2>
+    <div class="open-badge" id="open-badge">Checking hours...</div>
+    <div class="hours-table">
+      <div class="hours-row"><span class="hours-day">Monday</span><span class="hours-time">8:00 AM – 8:00 PM</span></div>
+      <div class="hours-row"><span class="hours-day">Tuesday</span><span class="hours-time">8:00 AM – 8:00 PM</span></div>
+      <div class="hours-row"><span class="hours-day">Wednesday</span><span class="hours-time">8:00 AM – 8:00 PM</span></div>
+      <div class="hours-row"><span class="hours-day">Thursday</span><span class="hours-time">8:00 AM – 8:00 PM</span></div>
+      <div class="hours-row"><span class="hours-day">Friday</span><span class="hours-time">8:00 AM – 8:00 PM</span></div>
+      <div class="hours-row"><span class="hours-day">Saturday</span><span class="hours-time">8:00 AM – 8:00 PM</span></div>
+      <div class="hours-row"><span class="hours-day">Sunday</span><span class="hours-time">8:00 AM – 8:00 PM</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Reviews ── -->
+<section id="reviews">
+  <div class="container">
+    <div class="section-tag">Reviews</div>
+    <h2 class="section-title">What Pet Parents Are Saying</h2>
+    <p class="section-sub">4.8 stars across 12 Google reviews — Heiskell's most loved pet sitter.</p>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="review-top"><span class="review-name">Amy Wright</span><span class="review-meta">5 years ago</span></div>
+        <span class="stars">★★★★★</span>
+        <p>"Dani is absolutely amazing with dogs! She started caring for my dogs when my oldest dog started having a hard time getting around. She came twice a day to care for her and was amazing! She sends videos and pictures every time she is there."</p>
+        <div class="owner-resp"><strong>Danni:</strong> Thanks Amy of course it's my pleasure to hang out with my furry friends. Me and the girls love Mr. Happy Buddy boy!</div>
+      </div>
+      <div class="review-card">
+        <div class="review-top"><span class="review-name">Jane McGee</span><span class="review-meta">3 years ago</span></div>
+        <span class="stars">★★★★★</span>
+        <p>"Danni is great! My husband and I felt very comfortable leaving our senior fur baby with Danni for a week. She was extremely caring; catering to needs of our dog and giving her the attention she required. She went above and beyond."</p>
+        <div class="owner-resp"><strong>Danni:</strong> Thank you — it really was my pleasure. She was the sweetest girl!</div>
+      </div>
+      <div class="review-card">
+        <div class="review-top"><span class="review-name">Brittany Alexander</span><span class="review-meta">3 years ago · Local Guide</span></div>
+        <span class="stars">★★★★★</span>
+        <p>"Danni fit my dog in last minute when I couldn't get her in anywhere else. I'm so lucky I found her! She cares about her animals and I knew I was leaving Lilly in good hands. My dog is insane, and she just came home exhausted and happy."</p>
+        <div class="owner-resp"><strong>Danni:</strong> Of course it was my pleasure! Lilly is welcome anytime.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Dog Profile Form ── -->
+<section class="dog-form-section" id="your-dog">
+  <div class="dog-form-bg"></div>
+  <div class="dog-form-inner">
+    <div class="container form-wrap">
+      <div class="form-intro">
+        <div class="section-tag">Your Dog</div>
+        <h2>Tell us about your furry friend</h2>
+        <p>Fill out the form with your dog's details and what you're looking for. Your message goes straight to Danni so she can reach out and get your pup scheduled.</p>
+        <ul class="paw-list">
+          <li>Dog's name, breed, age &amp; personality</li>
+          <li>Any medical needs or special instructions</li>
+          <li>Service you need and preferred dates</li>
+          <li>Your contact info so Danni can follow up</li>
+        </ul>
+        <div class="info-row" style="margin-top:28px;"><div class="icon-dot">📞</div><div><strong>Phone</strong><span><a href="tel:+18654102691">(865) 410-2691</a></span></div></div>
+        <div class="info-row"><div class="icon-dot">📍</div><div><strong>Location</strong><span>9851 Heiskell Rd, Heiskell, TN 37754</span></div></div>
+      </div>
+
+      <!--
+        Form sends to (865) 410-2691 via AT&T SMS gateway.
+        If the number is on a different carrier, swap the domain:
+          Verizon  → 8654102691@vtext.com
+          T-Mobile → 8654102691@tmomail.net
+          AT&T     → 8654102691@txt.att.net  (current)
+        First submission triggers a one-time confirmation text to activate.
+      -->
+      <form id="dog-form" action="https://formsubmit.co/8654102691@txt.att.net" method="POST">
+        <input type="hidden" name="_subject" value="New Danni's Pet Service Inquiry">
+        <input type="hidden" name="_template" value="table">
+        <input type="text" name="_honey" style="display:none">
+
+        <fieldset>
+          <legend>Your Information</legend>
+          <div class="form-grid">
+            <div class="field"><label for="owner-name">Your Name</label><input type="text" id="owner-name" name="Owner Name" required></div>
+            <div class="field"><label for="owner-phone">Phone Number</label><input type="tel" id="owner-phone" name="Phone Number" required></div>
+            <div class="field full"><label for="owner-email">Email Address</label><input type="email" id="owner-email" name="Email Address" required></div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>🐾 About Your Dog</legend>
+          <div class="form-grid">
+            <div class="field"><label for="dog-name">Dog's Name</label><input type="text" id="dog-name" name="Dog Name" placeholder="e.g. Buddy" required></div>
+            <div class="field"><label for="dog-breed">Breed</label><input type="text" id="dog-breed" name="Dog Breed" placeholder="e.g. Golden Retriever"></div>
+            <div class="field"><label for="dog-age">Age</label><input type="text" id="dog-age" name="Dog Age" placeholder="e.g. 3 years"></div>
+            <div class="field"><label for="dog-weight">Weight</label><input type="text" id="dog-weight" name="Dog Weight" placeholder="e.g. 45 lbs"></div>
+            <div class="field full">
+              <label for="dog-personality">Personality & Temperament</label>
+              <input type="text" id="dog-personality" name="Dog Personality" placeholder="e.g. Friendly, loves other dogs, very energetic">
+            </div>
+            <div class="field full">
+              <label for="dog-medical">Medical Needs or Special Instructions</label>
+              <textarea id="dog-medical" name="Medical Needs / Special Instructions" placeholder="Any medications, allergies, health conditions, feeding schedule, or things Danni should know..."></textarea>
+            </div>
+            <div class="field">
+              <label for="vaccinated">Vaccinations Up to Date?</label>
+              <select id="vaccinated" name="Vaccinations Up to Date">
+                <option value="">Select</option>
+                <option>Yes, fully up to date</option>
+                <option>Partially vaccinated</option>
+                <option>Not sure</option>
+                <option>No</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="spayed">Spayed / Neutered?</label>
+              <select id="spayed" name="Spayed or Neutered">
+                <option value="">Select</option>
+                <option>Yes</option>
+                <option>No</option>
+              </select>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Service Request</legend>
+          <div class="form-grid">
+            <div class="field full">
+              <label for="service">Service Needed</label>
+              <select id="service" name="Service Needed" required>
+                <option value="">Select a service</option>
+                <option>In-Home Pet Sitting</option>
+                <option>Dog Daycare</option>
+                <option>Overnight Stay</option>
+                <option>Dog Walking</option>
+                <option>Cat Sitting</option>
+                <option>Not Sure / Other</option>
+              </select>
+            </div>
+            <div class="field"><label for="start-date">Start Date</label><input type="date" id="start-date" name="Start Date"></div>
+            <div class="field"><label for="end-date">End Date</label><input type="date" id="end-date" name="End Date"></div>
+            <div class="field full">
+              <label for="extra-notes">Anything Else Danni Should Know?</label>
+              <textarea id="extra-notes" name="Additional Notes" placeholder="Drop-off instructions, emergency contacts, feeding times, favorite toys..."></textarea>
+            </div>
+          </div>
+        </fieldset>
+
+        <div class="submit-row">
+          <button type="submit" class="btn btn-primary">🐾 Send to Danni</button>
+          <span id="form-status"></span>
+        </div>
+        <p class="form-note">Your dog's details go directly to Danni. She'll reach out to confirm availability and get your pup scheduled!</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<section class="cta-section">
+  <div class="container">
+    <h2>Your pet will love Danni. 🐾</h2>
+    <p>Book online or call — your furry family member is in the best hands.</p>
+    <div class="btn-row" style="justify-content:center;">
+      <a href="#your-dog" class="btn btn-primary">Tell Us About Your Dog</a>
+      <a href="tel:+18654102691" class="btn btn-outline">Call (865) 410-2691</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── Footer ── -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col"><h4>DANNI'S PET SERVICE</h4><p>Pet Sitting &amp; Dog Daycare</p><p>Heiskell, TN</p></div>
+      <div class="footer-col"><h4>CONTACT</h4><a href="tel:+18654102691">(865) 410-2691</a><p>9851 Heiskell Rd, Heiskell, TN 37754</p></div>
+      <div class="footer-col"><h4>HOURS</h4><p>Every Day: 8:00 AM – 8:00 PM</p></div>
+    </div>
+    <div class="footer-bottom">&copy; 2026 Danni's Pet Service. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+  // ── Slideshow ──────────────────────────────────────────────────────
+  const slides = document.querySelectorAll('.slide');
+  const dots   = document.querySelectorAll('.dot');
+  let current = 0, timer;
+  function goTo(n){
+    slides[current].classList.remove('active'); dots[current].classList.remove('active');
+    current = n; slides[current].classList.add('active'); dots[current].classList.add('active');
+  }
+  timer = setInterval(()=>goTo((current+1)%slides.length), 5000);
+  dots.forEach(d=>d.addEventListener('click',()=>{
+    clearInterval(timer); goTo(+d.dataset.slide);
+    timer = setInterval(()=>goTo((current+1)%slides.length), 5000);
+  }));
+
+  // ── Open / Closed badge ────────────────────────────────────────────
+  const HOURS = {0:[8,20],1:[8,20],2:[8,20],3:[8,20],4:[8,20],5:[8,20],6:[8,20]};
+  const DAY_NAMES = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  function updateBadge(){
+    const badge = document.getElementById('open-badge');
+    const now   = new Date(new Date().toLocaleString('en-US',{timeZone:'America/New_York'}));
+    const day   = now.getDay();
+    const mins  = now.getHours()*60+now.getMinutes();
+    const range = HOURS[day];
+    const open  = range && mins>=range[0]*60 && mins<range[1]*60;
+    if(open){
+      badge.textContent='Open now'; badge.className='open-badge is-open';
+    } else {
+      let next=(day+1)%7, checked=0;
+      while(checked<7&&!HOURS[next]){next=(next+1)%7;checked++;}
+      const h=HOURS[next]?HOURS[next][0]:8;
+      badge.textContent=`Closed · Opens ${h>12?h-12:h} ${h>=12?'PM':'AM'} ${DAY_NAMES[next]}`;
+      badge.className='open-badge is-closed';
+    }
+  }
+  updateBadge(); setInterval(updateBadge,60000);
+
+  // ── Highlight today ────────────────────────────────────────────────
+  const today=DAY_NAMES[new Date(new Date().toLocaleString('en-US',{timeZone:'America/New_York'})).getDay()];
+  document.querySelectorAll('.hours-row').forEach(r=>{
+    if(r.querySelector('.hours-day').textContent===today) r.classList.add('today');
+  });
+
+  // ── Form ───────────────────────────────────────────────────────────
+  document.getElementById('dog-form').addEventListener('submit',function(){
+    document.getElementById('form-status').textContent='Sending to Danni...';
+  });
+</script>
+
+</body>
+</html>
