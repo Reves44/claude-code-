@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MUR Nutrition — Support & Help Center</title>
+<meta name="description" content="MUR Nutrition Support Center — get answers to common questions, troubleshoot your account, or contact our support team directly.">
+<style>
+  :root{
+    --bg:#0d0d0f;
+    --dark:#141418;
+    --dark2:#1c1c22;
+    --green:#27ae60;
+    --green-light:#2ecc71;
+    --gold:#f0c040;
+    --gray:#9a9aaa;
+    --white:#f4f4f6;
+    --line:#252530;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);color:var(--white);line-height:1.6;}
+  a{color:var(--green-light);text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  .container{max-width:900px;margin:0 auto;padding:0 28px;}
+
+  /* Header */
+  header{background:rgba(13,13,15,.96);backdrop-filter:blur(10px);border-bottom:1px solid rgba(39,174,96,.2);padding:18px 28px;position:sticky;top:0;z-index:100;}
+  .header-inner{max-width:900px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;}
+  .logo{font-size:1.2rem;font-weight:800;letter-spacing:1px;color:#fff;}
+  .logo span{color:var(--green-light);}
+  .header-tag{font-size:.82rem;color:var(--gray);letter-spacing:2px;text-transform:uppercase;}
+
+  /* Hero */
+  .hero{padding:80px 0 60px;text-align:center;border-bottom:1px solid var(--line);}
+  .hero h1{font-size:clamp(2rem,5vw,3rem);font-weight:800;margin-bottom:16px;}
+  .hero h1 span{color:var(--green-light);}
+  .hero p{color:var(--gray);font-size:1.05rem;max-width:520px;margin:0 auto 36px;}
+  .search-bar{
+    display:flex;gap:0;max-width:480px;margin:0 auto;
+    border:1px solid var(--line);border-radius:8px;overflow:hidden;
+  }
+  .search-bar input{
+    flex:1;background:var(--dark2);color:#fff;border:none;
+    padding:14px 18px;font-size:.95rem;font-family:inherit;
+  }
+  .search-bar input::placeholder{color:#555560;}
+  .search-bar input:focus{outline:none;}
+  .search-bar button{
+    background:var(--green);color:#fff;border:none;padding:14px 20px;
+    font-weight:700;font-size:.9rem;cursor:pointer;font-family:inherit;transition:.2s;
+  }
+  .search-bar button:hover{background:var(--green-light);}
+
+  /* Quick links */
+  .quick-links{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;padding:60px 0;}
+  .quick-card{
+    background:var(--dark);border:1px solid var(--line);border-radius:12px;
+    padding:28px 24px;text-align:center;transition:.2s;cursor:pointer;
+  }
+  .quick-card:hover{border-color:var(--green);transform:translateY(-3px);}
+  .quick-card .icon{font-size:2rem;margin-bottom:12px;}
+  .quick-card h3{font-size:1rem;margin-bottom:6px;}
+  .quick-card p{color:var(--gray);font-size:.85rem;}
+
+  /* Section */
+  section{padding:60px 0;border-top:1px solid var(--line);}
+  .section-tag{color:var(--green-light);font-size:.78rem;letter-spacing:3px;text-transform:uppercase;font-weight:700;margin-bottom:12px;}
+  .section-title{font-size:1.8rem;font-weight:800;margin-bottom:8px;}
+  .section-sub{color:var(--gray);margin-bottom:36px;}
+
+  /* FAQ */
+  .faq-list{display:grid;gap:12px;}
+  .faq-item{background:var(--dark);border:1px solid var(--line);border-radius:10px;overflow:hidden;}
+  .faq-q{
+    width:100%;text-align:left;background:none;border:none;color:#fff;
+    padding:20px 24px;font-size:.97rem;font-weight:600;cursor:pointer;
+    display:flex;justify-content:space-between;align-items:center;font-family:inherit;
+  }
+  .faq-q:hover{color:var(--green-light);}
+  .faq-q .arrow{font-size:.8rem;transition:.3s;color:var(--gray);}
+  .faq-item.open .arrow{transform:rotate(180deg);color:var(--green-light);}
+  .faq-a{display:none;padding:0 24px 20px;color:var(--gray);font-size:.93rem;line-height:1.7;}
+  .faq-item.open .faq-a{display:block;}
+
+  /* Contact form */
+  .contact-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:50px;align-items:flex-start;}
+  .contact-info h2{font-size:1.6rem;margin-bottom:14px;}
+  .contact-info p{color:var(--gray);margin-bottom:20px;}
+  .contact-method{display:flex;gap:14px;align-items:flex-start;margin-bottom:18px;}
+  .c-icon{width:40px;height:40px;border-radius:10px;background:rgba(39,174,96,.12);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;}
+  .contact-method strong{display:block;font-size:.95rem;margin-bottom:2px;}
+  .contact-method span{color:var(--gray);font-size:.88rem;}
+  form{display:grid;gap:16px;}
+  .field{display:flex;flex-direction:column;gap:6px;}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  label{font-size:.82rem;color:var(--gray);}
+  input,select,textarea{
+    background:var(--dark2);border:1px solid var(--line);color:#fff;
+    padding:12px 14px;font-size:.95rem;font-family:inherit;border-radius:6px;
+  }
+  input::placeholder,textarea::placeholder{color:#555560;}
+  input:focus,select:focus,textarea:focus{outline:none;border-color:var(--green);}
+  textarea{resize:vertical;min-height:100px;}
+  .btn-submit{
+    background:var(--green);color:#fff;border:none;padding:14px 28px;
+    border-radius:6px;font-weight:700;font-size:.95rem;cursor:pointer;
+    font-family:inherit;transition:.2s;width:100%;
+  }
+  .btn-submit:hover{background:var(--green-light);}
+  .form-note{font-size:.78rem;color:#555560;text-align:center;}
+  #contact-status{font-size:.85rem;color:var(--gold);text-align:center;}
+
+  /* Status banner */
+  .status-banner{
+    background:rgba(39,174,96,.08);border:1px solid rgba(39,174,96,.3);
+    border-radius:10px;padding:18px 24px;display:flex;align-items:center;gap:14px;
+    margin-bottom:36px;
+  }
+  .status-dot{width:10px;height:10px;border-radius:50%;background:var(--green-light);flex-shrink:0;animation:pulse 2s infinite;}
+  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.4;}}
+  .status-banner p{color:var(--gray);font-size:.9rem;}
+  .status-banner strong{color:var(--white);}
+
+  footer{padding:40px 0;border-top:1px solid var(--line);text-align:center;color:var(--gray);font-size:.85rem;}
+  footer a{color:var(--gray);}
+
+  @media(max-width:700px){
+    .contact-grid,.form-row{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="logo">MUR <span>NUTRITION</span></div>
+    <div class="header-tag">Support Center</div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <h1>How can we <span>help you?</span></h1>
+    <p>Search our help articles, browse common questions, or reach out to our support team directly.</p>
+    <div class="search-bar">
+      <input type="text" id="faq-search" placeholder="Search for answers..." oninput="searchFAQ(this.value)">
+      <button type="button">Search</button>
+    </div>
+  </div>
+</section>
+
+<div class="container">
+  <div class="quick-links">
+    <div class="quick-card" onclick="document.getElementById('faq').scrollIntoView({behavior:'smooth'})">
+      <div class="icon">📦</div>
+      <h3>Orders & Shipping</h3>
+      <p>Track, modify, or cancel an order</p>
+    </div>
+    <div class="quick-card" onclick="document.getElementById('faq').scrollIntoView({behavior:'smooth'})">
+      <div class="icon">🔄</div>
+      <h3>Returns & Refunds</h3>
+      <p>Start a return or check refund status</p>
+    </div>
+    <div class="quick-card" onclick="document.getElementById('faq').scrollIntoView({behavior:'smooth'})">
+      <div class="icon">👤</div>
+      <h3>Account Help</h3>
+      <p>Login issues, password reset, billing</p>
+    </div>
+    <div class="quick-card" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+      <div class="icon">💬</div>
+      <h3>Contact Us</h3>
+      <p>Send us a message directly</p>
+    </div>
+  </div>
+</div>
+
+<section id="faq">
+  <div class="container">
+    <div class="section-tag">FAQ</div>
+    <h2 class="section-title">Frequently Asked Questions</h2>
+    <p class="section-sub">Quick answers to the most common questions.</p>
+    <div class="faq-list" id="faq-list">
+
+      <div class="faq-item" data-keywords="order track shipping where">
+        <button class="faq-q" onclick="toggleFAQ(this)">Where is my order? <span class="arrow">▼</span></button>
+        <div class="faq-a">Once your order ships you'll receive a tracking email. Orders typically ship within 1–2 business days. If you haven't received a tracking number after 3 business days, contact us below and we'll look into it right away.</div>
+      </div>
+
+      <div class="faq-item" data-keywords="return refund money back exchange">
+        <button class="faq-q" onclick="toggleFAQ(this)">What is your return policy? <span class="arrow">▼</span></button>
+        <div class="faq-a">We accept returns within 30 days of delivery for unopened products. If you received a damaged or incorrect item, we'll make it right at no cost to you. Contact us with your order number and a photo of the issue to get started.</div>
+      </div>
+
+      <div class="faq-item" data-keywords="subscribe subscription cancel cancel recurring">
+        <button class="faq-q" onclick="toggleFAQ(this)">How do I cancel or modify my subscription? <span class="arrow">▼</span></button>
+        <div class="faq-a">Log in to your account and go to "Subscriptions" to pause, modify, or cancel at any time. Changes made before your next billing date will take effect immediately. If you need help, send us a message below.</div>
+      </div>
+
+      <div class="faq-item" data-keywords="account password login forgot reset">
+        <button class="faq-q" onclick="toggleFAQ(this)">I can't log in to my account. What do I do? <span class="arrow">▼</span></button>
+        <div class="faq-a">Use the "Forgot Password" link on the login page to reset your password via email. If you're still having trouble, contact our support team with the email address associated with your account and we'll get you back in.</div>
+      </div>
+
+      <div class="faq-item" data-keywords="ingredients product supplement facts allergen gluten">
+        <button class="faq-q" onclick="toggleFAQ(this)">Where can I find product ingredients and supplement facts? <span class="arrow">▼</span></button>
+        <div class="faq-a">Full ingredient lists and supplement facts panels are listed on each product page. If you have a specific allergy concern or need additional information, reach out to us and we'll provide detailed information.</div>
+      </div>
+
+      <div class="faq-item" data-keywords="discount code promo coupon deal">
+        <button class="faq-q" onclick="toggleFAQ(this)">How do I apply a discount or promo code? <span class="arrow">▼</span></button>
+        <div class="faq-a">Enter your promo code in the "Discount Code" field at checkout before completing your purchase. Codes are case-sensitive and can only be used once per account unless stated otherwise. Expired or invalid codes cannot be applied retroactively.</div>
+      </div>
+
+      <div class="faq-item" data-keywords="ship international outside usa country">
+        <button class="faq-q" onclick="toggleFAQ(this)">Do you ship internationally? <span class="arrow">▼</span></button>
+        <div class="faq-a">Currently we ship within the United States. We're working on expanding international shipping. Sign up for our newsletter to be notified when your country becomes available.</div>
+      </div>
+
+      <div class="faq-item" data-keywords="payment billing charge credit card">
+        <button class="faq-q" onclick="toggleFAQ(this)">Why was my card charged twice / unexpected charge? <span class="arrow">▼</span></button>
+        <div class="faq-a">Double charges are usually a temporary authorization hold that clears within 3–5 business days. If the charge is still showing after that window, contact us with your order number and we'll investigate immediately.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <div class="status-banner">
+      <div class="status-dot"></div>
+      <p><strong>Support team is available.</strong> We typically respond within 1 business day.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div class="section-tag">Contact</div>
+        <h2>Get in touch</h2>
+        <p>Can't find what you're looking for? Send us a message and we'll get back to you as quickly as possible.</p>
+        <div class="contact-method">
+          <div class="c-icon">📧</div>
+          <div><strong>Email Support</strong><span>support@murnutrition.com</span></div>
+        </div>
+        <div class="contact-method">
+          <div class="c-icon">🕘</div>
+          <div><strong>Response Time</strong><span>Within 1 business day</span></div>
+        </div>
+        <div class="contact-method">
+          <div class="c-icon">📋</div>
+          <div><strong>Have your order number ready</strong><span>It helps us resolve your issue faster</span></div>
+        </div>
+      </div>
+
+      <form id="support-form" action="https://formsubmit.co/support@murnutrition.com" method="POST">
+        <input type="hidden" name="_subject" value="MUR Nutrition Support Request">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_next" value="https://mur-nutrition.base44.app/support-thanks">
+        <input type="text" name="_honey" style="display:none">
+
+        <div class="form-row">
+          <div class="field"><label for="fname">First Name</label><input type="text" id="fname" name="First Name" required></div>
+          <div class="field"><label for="lname">Last Name</label><input type="text" id="lname" name="Last Name" required></div>
+        </div>
+        <div class="field"><label for="email">Email Address</label><input type="email" id="email" name="Email" required></div>
+        <div class="field">
+          <label for="topic">Topic</label>
+          <select id="topic" name="Topic" required>
+            <option value="">Select a topic</option>
+            <option>Order / Shipping Issue</option>
+            <option>Return or Refund Request</option>
+            <option>Account / Login Help</option>
+            <option>Subscription Management</option>
+            <option>Product Question</option>
+            <option>Billing / Payment Issue</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="field"><label for="order">Order Number (if applicable)</label><input type="text" id="order" name="Order Number" placeholder="e.g. MUR-12345"></div>
+        <div class="field"><label for="message">Message</label><textarea id="message" name="Message" placeholder="Describe your issue or question in detail..." required></textarea></div>
+        <button type="submit" class="btn-submit">Send Message</button>
+        <p class="form-note">We'll reply to the email address you provided above.</p>
+        <p id="contact-status"></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>&copy; 2026 MUR Nutrition. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+  function toggleFAQ(btn) {
+    const item = btn.closest('.faq-item');
+    const wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+    if (!wasOpen) item.classList.add('open');
+  }
+
+  function searchFAQ(q) {
+    const term = q.toLowerCase().trim();
+    document.querySelectorAll('#faq-list .faq-item').forEach(item => {
+      const text = (item.textContent + item.dataset.keywords).toLowerCase();
+      item.style.display = (!term || text.includes(term)) ? '' : 'none';
+    });
+  }
+
+  document.getElementById('support-form').addEventListener('submit', function() {
+    document.getElementById('contact-status').textContent = 'Sending your message...';
+  });
+</script>
+
+</body>
+</html>
