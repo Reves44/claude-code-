@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Topknotch Mobile Hand Car Wash | Knoxville, TN</title>
+<meta name="description" content="Topknotch Mobile Hand Car Wash — professional mobile detailing in Knoxville, TN. 4.9 stars, 54 reviews. We come to you. Book online.">
+<style>
+  :root{
+    --black:#07070a;
+    --dark:#101014;
+    --dark2:#16161d;
+    --purple:#6c3fc9;
+    --purple-light:#8b5cf6;
+    --gold:#f0c040;
+    --gray:#9a9ab0;
+    --white:#f4f4f8;
+    --line:#1e1e2a;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Segoe UI',Arial,sans-serif;background:var(--black);color:var(--white);line-height:1.6;}
+  a{color:inherit;text-decoration:none;}
+  .container{max-width:1160px;margin:0 auto;padding:0 28px;}
+
+  /* ── Header ── */
+  header{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(7,7,10,.95);backdrop-filter:blur(14px);border-bottom:1px solid rgba(108,63,201,.25);}
+  nav{display:flex;align-items:center;justify-content:space-between;padding:16px 28px;max-width:1160px;margin:0 auto;}
+  .logo{font-size:1.15rem;font-weight:800;letter-spacing:1px;}
+  .logo span{color:var(--purple-light);}
+  .nav-links{display:flex;gap:28px;list-style:none;}
+  .nav-links a{font-size:.88rem;color:var(--gray);transition:.2s;}
+  .nav-links a:hover{color:var(--purple-light);}
+  .nav-cta{background:var(--purple);color:#fff;padding:11px 22px;border-radius:6px;font-size:.85rem;font-weight:700;transition:.2s;}
+  .nav-cta:hover{background:var(--purple-light);}
+
+  /* ── Hero slideshow ── */
+  .hero{min-height:100vh;position:relative;display:flex;align-items:center;padding-top:90px;overflow:hidden;color:#fff;}
+  .hero-slides{position:absolute;inset:0;z-index:0;}
+  .slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity 1.8s ease-in-out;}
+  .slide.active{opacity:1;}
+  .s1{background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Ferrari_LaFerrari_at_the_Ferrari_museum.jpg/1920px-Ferrari_LaFerrari_at_the_Ferrari_museum.jpg');}
+  .s2{background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Porsche_911_Carrera_964_Stratstone_2.jpg/1920px-Porsche_911_Carrera_964_Stratstone_2.jpg');}
+  .s3{background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Silver_Ferrari_Luxury_Sports_Car.jpg/1920px-Silver_Ferrari_Luxury_Sports_Car.jpg');}
+  .s4{background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Lamborghini_Car_Wash_%287049187235%29.jpg/1920px-Lamborghini_Car_Wash_%287049187235%29.jpg');}
+  .s5{background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Porsche_964_front_20080515.jpg/1920px-Porsche_964_front_20080515.jpg');}
+  .hero-slides::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(110deg,rgba(7,7,10,.96) 30%,rgba(7,7,10,.65) 65%,rgba(7,7,10,.3) 100%);}
+  .slide-dots{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);display:flex;gap:10px;z-index:10;}
+  .dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.25);border:none;cursor:pointer;transition:.2s;}
+  .dot.active{background:var(--purple-light);}
+  .hero-content{position:relative;z-index:2;max-width:650px;}
+  .badge{display:inline-flex;align-items:center;gap:10px;background:rgba(108,63,201,.14);border:1px solid rgba(108,63,201,.5);padding:8px 16px;border-radius:30px;font-size:.82rem;color:var(--purple-light);margin-bottom:24px;font-weight:600;}
+  .hero h1{font-size:clamp(2.4rem,5.5vw,3.8rem);font-weight:800;line-height:1.1;margin-bottom:20px;}
+  .hero h1 .hl{color:var(--gold);}
+  .hero p{color:#c4c4d4;font-size:1.1rem;max-width:520px;margin-bottom:34px;}
+  .btn-row{display:flex;gap:16px;flex-wrap:wrap;}
+  .btn{padding:15px 30px;border-radius:6px;font-weight:700;font-size:.92rem;display:inline-block;transition:.2s;border:none;cursor:pointer;font-family:inherit;}
+  .btn-primary{background:var(--purple);color:#fff;}
+  .btn-primary:hover{background:var(--purple-light);transform:translateY(-2px);}
+  .btn-outline{border:1px solid rgba(255,255,255,.4);color:#fff;background:transparent;}
+  .btn-outline:hover{border-color:var(--purple-light);color:var(--purple-light);transform:translateY(-2px);}
+  .stat-row{display:flex;gap:46px;margin-top:54px;flex-wrap:wrap;}
+  .stat .num{font-size:2rem;font-weight:800;color:var(--gold);}
+  .stat .label{font-size:.8rem;color:var(--gray);letter-spacing:.5px;text-transform:uppercase;}
+
+  /* ── Sections ── */
+  section{padding:100px 0;}
+  .section-tag{color:var(--purple-light);font-size:.8rem;letter-spacing:3px;text-transform:uppercase;font-weight:700;margin-bottom:14px;}
+  .section-title{font-size:2.2rem;font-weight:800;margin-bottom:16px;letter-spacing:-.5px;}
+  .section-sub{color:var(--gray);max-width:620px;margin-bottom:54px;}
+  .alt{background:var(--dark2);}
+
+  /* ── Services ── */
+  .services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;}
+  .card{background:var(--dark);border:1px solid var(--line);border-radius:12px;padding:32px;transition:.25s;position:relative;overflow:hidden;}
+  .card::after{content:"";position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--purple),var(--purple-light));transform:scaleX(0);transform-origin:left;transition:.3s;}
+  .card:hover::after{transform:scaleX(1);}
+  .card:hover{border-color:var(--purple);transform:translateY(-4px);box-shadow:0 14px 32px rgba(108,63,201,.18);}
+  .card-icon{font-size:1.8rem;margin-bottom:16px;}
+  .card h3{font-size:1.1rem;margin-bottom:10px;}
+  .card p{color:var(--gray);font-size:.92rem;}
+
+  /* ── Exotic strip ── */
+  .exotic-strip{height:340px;position:relative;overflow:hidden;background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Porsche_911_964.jpg/1920px-Porsche_911_964.jpg');background-size:cover;background-position:center;background-attachment:fixed;}
+  .exotic-strip::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,7,10,.75),rgba(108,63,201,.25),rgba(7,7,10,.75));}
+  .exotic-strip-text{position:relative;z-index:1;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 20px;}
+  .exotic-strip-text h2{font-size:2.2rem;font-weight:800;margin-bottom:10px;}
+  .exotic-strip-text p{color:#c4c4d4;max-width:500px;font-size:1.05rem;}
+
+  /* ── Why us ── */
+  .why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:30px;}
+  .why-item{padding:26px;border-left:3px solid var(--purple);}
+  .why-item h4{margin-bottom:8px;font-size:1.05rem;}
+  .why-item p{color:#b0b0c4;font-size:.9rem;}
+
+  /* ── About ── */
+  .about-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:60px;align-items:center;}
+  .about-photo{aspect-ratio:4/5;border-radius:12px;background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Silver_Ferrari_Luxury_Sports_Car.jpg/1920px-Silver_Ferrari_Luxury_Sports_Car.jpg');background-size:cover;background-position:center;border:1px solid var(--line);}
+  .about-grid h2{font-size:2rem;margin-bottom:18px;}
+  .about-grid p{color:var(--gray);margin-bottom:16px;}
+  .info-row{display:flex;gap:14px;margin-top:20px;align-items:flex-start;}
+  .icon-dot{width:38px;height:38px;border-radius:10px;background:rgba(108,63,201,.12);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1.1rem;}
+  .info-row strong{display:block;font-size:.95rem;}
+  .info-row span{color:var(--gray);font-size:.88rem;}
+
+  /* ── Hours ── */
+  .hours-table{max-width:480px;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--dark);}
+  .hours-row{display:flex;justify-content:space-between;align-items:center;padding:15px 24px;border-bottom:1px solid var(--line);font-size:.95rem;}
+  .hours-row:last-child{border-bottom:none;}
+  .hours-row.today{background:rgba(108,63,201,.08);}
+  .hours-day{font-weight:700;}
+  .hours-time{color:var(--gray);}
+  .hours-time.closed{color:#e07a7a;}
+  .open-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border-radius:30px;font-size:.85rem;font-weight:600;margin-bottom:28px;}
+  .open-badge.is-open{background:rgba(111,209,122,.12);border:1px solid rgba(111,209,122,.4);color:#6fd17a;}
+  .open-badge.is-open::before{content:"●";color:#6fd17a;}
+  .open-badge.is-closed{background:rgba(224,122,122,.12);border:1px solid rgba(224,122,122,.4);color:#e07a7a;}
+  .open-badge.is-closed::before{content:"●";color:#e07a7a;}
+
+  /* ── Reviews ── */
+  .reviews-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;}
+  .review-card{background:var(--dark);border:1px solid var(--line);border-radius:12px;padding:28px;transition:.2s;}
+  .review-card:hover{border-color:var(--purple);transform:translateY(-3px);}
+  .review-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+  .review-name{font-weight:700;}
+  .review-meta{color:var(--gray);font-size:.82rem;}
+  .stars{color:var(--gold);display:block;margin-bottom:12px;font-size:1.05rem;}
+  .review-card p{color:#c4c4d4;font-size:.93rem;font-style:italic;}
+
+  /* ── Booking ── */
+  .booking-section{position:relative;overflow:hidden;}
+  .booking-bg{position:absolute;inset:0;z-index:0;background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Ferrari_LaFerrari_at_the_Ferrari_museum.jpg/1920px-Ferrari_LaFerrari_at_the_Ferrari_museum.jpg');background-size:cover;background-position:center;opacity:.1;}
+  .booking-inner{position:relative;z-index:1;padding:100px 0;}
+  .booking-wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:60px;align-items:flex-start;}
+  .booking-info h2{font-size:2rem;margin-bottom:18px;}
+  .booking-info p{color:#b0b0c4;margin-bottom:20px;}
+  form{display:grid;gap:20px;}
+  fieldset{border:1px solid var(--line);padding:26px;border-radius:8px;background:rgba(7,7,10,.75);}
+  legend{font-size:.78rem;letter-spacing:2px;text-transform:uppercase;color:var(--purple-light);font-weight:700;padding:0 8px;}
+  .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .field{display:flex;flex-direction:column;gap:6px;}
+  .field.full{grid-column:1/-1;}
+  label{font-size:.82rem;color:var(--gray);}
+  input,select,textarea{background:var(--dark2);border:1px solid var(--line);color:#fff;padding:12px 14px;font-size:.95rem;font-family:inherit;border-radius:6px;}
+  input::placeholder,textarea::placeholder{color:#4a4a5a;}
+  input:focus,select:focus,textarea:focus{outline:none;border-color:var(--purple);}
+  textarea{resize:vertical;min-height:90px;}
+  .form-note{font-size:.78rem;color:#4a4a5a;}
+  .submit-row{display:flex;align-items:center;gap:18px;}
+  #form-status{font-size:.85rem;color:var(--gold);}
+
+  /* ── CTA ── */
+  .cta-section{text-align:center;background:linear-gradient(135deg,#070712,#110d1e);}
+  .cta-section h2{font-size:2.4rem;font-weight:800;margin-bottom:16px;}
+  .cta-section p{color:var(--gray);margin-bottom:34px;}
+
+  /* ── Footer ── */
+  footer{padding:60px 0 30px;background:var(--dark);background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Lamborghini_Car_Wash_%287049187235%29.jpg/1920px-Lamborghini_Car_Wash_%287049187235%29.jpg');background-size:cover;background-position:center;position:relative;}
+  footer::before{content:"";position:absolute;inset:0;background:rgba(7,7,10,.93);}
+  footer .container{position:relative;z-index:1;}
+  .footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:30px;margin-bottom:30px;}
+  .footer-col h4{color:var(--purple-light);margin-bottom:14px;font-size:.92rem;letter-spacing:1px;}
+  .footer-col p,.footer-col a{font-size:.88rem;color:var(--gray);display:block;margin-bottom:8px;}
+  .footer-bottom{text-align:center;font-size:.8rem;padding-top:24px;border-top:1px solid var(--line);color:var(--gray);}
+
+  @media(max-width:900px){
+    .about-grid,.booking-wrap{grid-template-columns:1fr;}
+    .form-grid{grid-template-columns:1fr;}
+    .nav-links{display:none;}
+    .exotic-strip{background-attachment:scroll;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ── Nav ── -->
+<header>
+  <nav>
+    <a href="#top" class="logo">TOPKNOTCH <span>MOBILE HAND CAR WASH</span></a>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#hours">Hours</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+      <li><a href="#booking">Book Now</a></li>
+    </ul>
+    <a href="#booking" class="nav-cta">Book Now</a>
+  </nav>
+</header>
+
+<!-- ── Hero ── -->
+<section class="hero" id="top">
+  <div class="hero-slides">
+    <div class="slide s1 active"></div>
+    <div class="slide s2"></div>
+    <div class="slide s3"></div>
+    <div class="slide s4"></div>
+    <div class="slide s5"></div>
+  </div>
+  <div class="container">
+    <div class="hero-content">
+      <div class="badge">★★★★★ 4.9 rating · 54 reviews</div>
+      <h1>We come to you. <span class="hl">Your car, perfected.</span></h1>
+      <p>Topknotch Mobile Hand Car Wash brings professional detailing straight to your driveway in Knoxville, TN. No drop-off, no waiting — just a spotless result.</p>
+      <div class="btn-row">
+        <a href="#booking" class="btn btn-primary">Book a Wash</a>
+        <a href="tel:+18654434724" class="btn btn-outline">Call (865) 443-4724</a>
+      </div>
+      <div class="stat-row">
+        <div class="stat"><div class="num">4.9★</div><div class="label">Avg Rating</div></div>
+        <div class="stat"><div class="num">54</div><div class="label">Reviews</div></div>
+        <div class="stat"><div class="num">100%</div><div class="label">Mobile Service</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-dots">
+    <button class="dot active" data-slide="0"></button>
+    <button class="dot" data-slide="1"></button>
+    <button class="dot" data-slide="2"></button>
+    <button class="dot" data-slide="3"></button>
+    <button class="dot" data-slide="4"></button>
+  </div>
+</section>
+
+<!-- ── Services ── -->
+<section id="services">
+  <div class="container">
+    <div class="section-tag">Services</div>
+    <h2 class="section-title">What We Offer</h2>
+    <p class="section-sub">Every service is done by hand at your location — we bring everything we need to you.</p>
+    <div class="services-grid">
+      <div class="card"><div class="card-icon">🚿</div><h3>Mobile Hand Wash</h3><p>Full exterior hand wash, wheel cleaning, window wipe-down, and tire shine — at your home or office.</p></div>
+      <div class="card"><div class="card-icon">✨</div><h3>Wash, Wax & Shine</h3><p>Hand wash plus a full hand wax for a deep, lasting shine and paint protection.</p></div>
+      <div class="card"><div class="card-icon">🧼</div><h3>Interior Detail</h3><p>Deep vacuum, surface wipe-down, stain removal, and odor treatment — completely refreshed inside.</p></div>
+      <div class="card"><div class="card-icon">🐾</div><h3>Pet Hair Removal</h3><p>Specialized tools to remove every last bit of pet hair from seats, carpets, and crevices.</p></div>
+      <div class="card"><div class="card-icon">🌟</div><h3>Full Detail Package</h3><p>Our most comprehensive service — complete interior and exterior detail for a showroom finish.</p></div>
+      <div class="card"><div class="card-icon">🚛</div><h3>Truck & SUV Wash</h3><p>Full-size truck and SUV washing and detailing. We handle any size vehicle.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Exotic strip ── -->
+<div class="exotic-strip">
+  <div class="exotic-strip-text">
+    <h2>Every car deserves the best.</h2>
+    <p>From a daily driver to an exotic — Topknotch treats every vehicle with top-tier care.</p>
+  </div>
+</div>
+
+<!-- ── Why us ── -->
+<section class="alt">
+  <div class="container">
+    <div class="section-tag">Why Topknotch</div>
+    <h2 class="section-title">Why customers keep coming back</h2>
+    <div class="why-grid">
+      <div class="why-item"><h4>Unmatched price</h4><p>"Found them on Facebook and the price is unmatched for a mobile car wash service!" — verified review</p></div>
+      <div class="why-item"><h4>We come to you</h4><p>No drop-off, no waiting in line. We show up at your home or office and get to work.</p></div>
+      <div class="why-item"><h4>Pet hair specialists</h4><p>"I honestly didn't think it was possible to get all the hair out, but they made my car look brand new again." — Linda L.</p></div>
+      <div class="why-item"><h4>Professional every time</h4><p>"Easy to schedule, professional, friendly, and did an amazing job on both my SUVs." — Tammy B.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── About ── -->
+<section id="about">
+  <div class="container about-grid">
+    <div class="about-photo"></div>
+    <div>
+      <div class="section-tag">About</div>
+      <h2>Knoxville's top-rated mobile car wash</h2>
+      <p>Topknotch Mobile Hand Car Wash comes straight to your driveway, parking lot, or office with a 4.9-star reputation and 54 glowing reviews behind them.</p>
+      <p>Chloe says it best: "Topknotch Mobile is the only way to go. Very kind, efficient, and reasonably priced." Ashley has been a loyal customer for years — because when you find a team this good, you don't go anywhere else.</p>
+      <div class="info-row"><div class="icon-dot">📍</div><div><strong>Based In</strong><span>3032 Bakertown Rd, Knoxville, TN 37931</span></div></div>
+      <div class="info-row"><div class="icon-dot">🚗</div><div><strong>Service Area</strong><span>Knoxville, TN &amp; surrounding areas</span></div></div>
+      <div class="info-row"><div class="icon-dot">🕘</div><div><strong>Hours</strong><span>Every day 10 AM–5 PM — <a href="#hours" style="color:var(--purple-light);">full schedule</a></span></div></div>
+      <div class="info-row"><div class="icon-dot">📞</div><div><strong>Phone</strong><span><a href="tel:+18654434724">(865) 443-4724</a></span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Hours ── -->
+<section id="hours" class="alt">
+  <div class="container">
+    <div class="section-tag">Hours</div>
+    <h2 class="section-title">When We're Available</h2>
+    <div class="open-badge" id="open-badge">Checking hours...</div>
+    <div class="hours-table">
+      <div class="hours-row"><span class="hours-day">Monday</span><span class="hours-time">10:00 AM – 5:00 PM</span></div>
+      <div class="hours-row"><span class="hours-day">Tuesday</span><span class="hours-time">10:00 AM – 5:00 PM</span></div>
+      <div class="hours-row"><span class="hours-day">Wednesday</span><span class="hours-time">10:00 AM – 5:00 PM</span></div>
+      <div class="hours-row"><span class="hours-day">Thursday</span><span class="hours-time">10:00 AM – 5:00 PM</span></div>
+      <div class="hours-row"><span class="hours-day">Friday</span><span class="hours-time">10:00 AM – 5:00 PM</span></div>
+      <div class="hours-row"><span class="hours-day">Saturday</span><span class="hours-time">10:00 AM – 5:00 PM</span></div>
+      <div class="hours-row"><span class="hours-day">Sunday</span><span class="hours-time">10:00 AM – 5:00 PM</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Reviews ── -->
+<section id="reviews">
+  <div class="container">
+    <div class="section-tag">Reviews</div>
+    <h2 class="section-title">What People Are Saying</h2>
+    <p class="section-sub">4.9 stars across 54 Google reviews — Knoxville's most trusted mobile car wash.</p>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="review-top"><span class="review-name">Tammy Bobbitt</span><span class="review-meta">8 months ago · Local Guide</span></div>
+        <span class="stars">★★★★★</span>
+        <p>"Easy to schedule, professional, friendly, and did an amazing job on both my SUVs. I will definitely be a regular customer! Highly recommend this service!"</p>
+      </div>
+      <div class="review-card">
+        <div class="review-top"><span class="review-name">Linda Lucas</span><span class="review-meta">4 months ago</span></div>
+        <span class="stars">★★★★★</span>
+        <p>"I recently had my car detailed after it was completely covered in dog hair, and I am beyond impressed with the results! I honestly didn't think it was possible to get all the hair out, but they made my car look brand new again."</p>
+      </div>
+      <div class="review-card">
+        <div class="review-top"><span class="review-name">Chloe Ivens</span><span class="review-meta">4 months ago</span></div>
+        <span class="stars">★★★★★</span>
+        <p>"Topknotch Mobile is the only way to go. Very kind, efficient, and reasonably priced. My car was so beyond overdue for a wash, wax and detail. Topknotch got my car back shining like new in no time."</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Booking ── -->
+<section class="booking-section" id="booking">
+  <div class="booking-bg"></div>
+  <div class="booking-inner">
+    <div class="container booking-wrap">
+      <div class="booking-info">
+        <div class="section-tag">Book Now</div>
+        <h2>Schedule Your Mobile Wash</h2>
+        <p>Fill out the form and your booking goes straight to our team. We'll text or call to confirm your appointment and location.</p>
+        <div class="info-row"><div class="icon-dot">🚗</div><div><strong>We Come to You</strong><span>Your home, office, or anywhere in Knoxville, TN</span></div></div>
+        <div class="info-row"><div class="icon-dot">🕘</div><div><strong>Hours</strong><span>Every day 10 AM – 5 PM</span></div></div>
+        <div class="info-row"><div class="icon-dot">📞</div><div><strong>Phone</strong><span><a href="tel:+18654434724">(865) 443-4724</a></span></div></div>
+      </div>
+
+      <!--
+        Booking form — submits to (865) 443-4724 via AT&T SMS gateway.
+        If the number is on a different carrier, swap the domain:
+          Verizon  → 8654434724@vtext.com
+          T-Mobile → 8654434724@tmomail.net
+          AT&T     → 8654434724@txt.att.net  (current)
+        First submission sends a one-time confirmation text — tap the link to activate.
+      -->
+      <form id="booking-form" action="https://formsubmit.co/8654434724@txt.att.net" method="POST">
+        <input type="hidden" name="_subject" value="New Topknotch Mobile Booking Request">
+        <input type="hidden" name="_template" value="table">
+        <input type="text" name="_honey" style="display:none">
+
+        <fieldset>
+          <legend>Your Information</legend>
+          <div class="form-grid">
+            <div class="field"><label for="name">Full Name</label><input type="text" id="name" name="Full Name" required></div>
+            <div class="field"><label for="phone">Phone Number</label><input type="tel" id="phone" name="Phone Number" required></div>
+            <div class="field full"><label for="email">Email Address</label><input type="email" id="email" name="Email Address" required></div>
+            <div class="field full"><label for="address">Service Address</label><input type="text" id="address" name="Service Address" placeholder="Where should we come to you?" required></div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Vehicle Information</legend>
+          <div class="form-grid">
+            <div class="field"><label for="year">Year</label><input type="text" id="year" name="Vehicle Year" placeholder="2022" required></div>
+            <div class="field"><label for="make">Make</label><input type="text" id="make" name="Vehicle Make" placeholder="Ford" required></div>
+            <div class="field"><label for="model">Model</label><input type="text" id="model" name="Vehicle Model" placeholder="F-150" required></div>
+            <div class="field"><label for="color">Color</label><input type="text" id="color" name="Vehicle Color" placeholder="Black"></div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Service Details</legend>
+          <div class="form-grid">
+            <div class="field full">
+              <label for="service">Service Requested</label>
+              <select id="service" name="Service Requested" required>
+                <option value="">Select a service</option>
+                <option>Mobile Hand Wash</option>
+                <option>Wash, Wax & Shine</option>
+                <option>Interior Detail</option>
+                <option>Pet Hair Removal</option>
+                <option>Full Detail Package</option>
+                <option>Truck & SUV Wash</option>
+                <option>Not Sure / Other</option>
+              </select>
+            </div>
+            <div class="field"><label for="date">Preferred Date</label><input type="date" id="date" name="Preferred Date"></div>
+            <div class="field"><label for="time">Preferred Time</label><input type="time" id="time" name="Preferred Time"></div>
+            <div class="field full"><label for="notes">Additional Notes</label><textarea id="notes" name="Additional Notes" placeholder="Pet hair, stains, parking instructions, anything we should know..."></textarea></div>
+          </div>
+        </fieldset>
+
+        <div class="submit-row">
+          <button type="submit" class="btn btn-primary">Request Appointment</button>
+          <span id="form-status"></span>
+        </div>
+        <p class="form-note">Your request goes directly to Topknotch Mobile. We'll follow up to confirm your time and location.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<section class="cta-section">
+  <div class="container">
+    <h2>Ready for a spotless ride?</h2>
+    <p>Book online or give us a call — we'll come to you.</p>
+    <div class="btn-row" style="justify-content:center;">
+      <a href="#booking" class="btn btn-primary">Book a Wash</a>
+      <a href="tel:+18654434724" class="btn btn-outline">Call (865) 443-4724</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── Footer ── -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col"><h4>TOPKNOTCH MOBILE</h4><p>Mobile Hand Car Wash &amp; Detailing</p><p>Knoxville, TN</p></div>
+      <div class="footer-col"><h4>CONTACT</h4><a href="tel:+18654434724">(865) 443-4724</a><p>3032 Bakertown Rd, Knoxville, TN 37931</p></div>
+      <div class="footer-col"><h4>HOURS</h4><p>Every Day: 10:00 AM – 5:00 PM</p></div>
+    </div>
+    <div class="footer-bottom">&copy; 2026 Topknotch Mobile Hand Car Wash. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+  // ── Slideshow ──────────────────────────────────────────────────────
+  const slides = document.querySelectorAll('.slide');
+  const dots   = document.querySelectorAll('.dot');
+  let current = 0, timer;
+  function goTo(n){
+    slides[current].classList.remove('active'); dots[current].classList.remove('active');
+    current = n;
+    slides[current].classList.add('active'); dots[current].classList.add('active');
+  }
+  timer = setInterval(()=>goTo((current+1)%slides.length), 5000);
+  dots.forEach(d=>d.addEventListener('click',()=>{
+    clearInterval(timer); goTo(+d.dataset.slide);
+    timer = setInterval(()=>goTo((current+1)%slides.length), 5000);
+  }));
+
+  // ── Open / Closed badge ────────────────────────────────────────────
+  // Every day 10–17 Eastern Time
+  const HOURS = {0:[10,17],1:[10,17],2:[10,17],3:[10,17],4:[10,17],5:[10,17],6:[10,17]};
+  const DAY_NAMES = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  function updateBadge(){
+    const badge = document.getElementById('open-badge');
+    const now   = new Date(new Date().toLocaleString('en-US',{timeZone:'America/New_York'}));
+    const day   = now.getDay();
+    const mins  = now.getHours()*60+now.getMinutes();
+    const range = HOURS[day];
+    const open  = range && mins>=range[0]*60 && mins<range[1]*60;
+    if(open){
+      badge.textContent='Open now'; badge.className='open-badge is-open';
+    } else {
+      let next=(day+1)%7, checked=0;
+      while(checked<7&&!HOURS[next]){next=(next+1)%7;checked++;}
+      const h=HOURS[next]?HOURS[next][0]:10;
+      badge.textContent=`Closed · Opens ${h>12?h-12:h} ${h>=12?'PM':'AM'} ${DAY_NAMES[next]}`;
+      badge.className='open-badge is-closed';
+    }
+  }
+  updateBadge(); setInterval(updateBadge,60000);
+
+  // ── Highlight today ────────────────────────────────────────────────
+  const today=DAY_NAMES[new Date(new Date().toLocaleString('en-US',{timeZone:'America/New_York'})).getDay()];
+  document.querySelectorAll('.hours-row').forEach(r=>{
+    if(r.querySelector('.hours-day').textContent===today) r.classList.add('today');
+  });
+
+  // ── Form ───────────────────────────────────────────────────────────
+  document.getElementById('booking-form').addEventListener('submit',function(){
+    document.getElementById('form-status').textContent='Sending...';
+  });
+</script>
+
+</body>
+</html>
