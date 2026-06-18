@@ -1,0 +1,1847 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Paws & Petals — Dog Grooming Studio | Corryton, TN</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --sage:       #7A9E7E;
+      --sage-light: #A8C5AB;
+      --sage-dark:  #4E6E52;
+      --blush:      #D9A8A0;
+      --blush-light:#EDD5D0;
+      --blush-dark: #B07068;
+      --cream:      #FAF7F2;
+      --cream-dark: #F0EAE0;
+      --ivory:      #FFFDF9;
+      --charcoal:   #2C2018;
+      --warm-gray:  #6B5B4E;
+      --light-text: #9A8070;
+
+      --shadow-soft: 0 2px 20px rgba(44,32,24,0.08);
+      --shadow-card: 0 8px 40px rgba(44,32,24,0.1);
+      --shadow-lift: 0 20px 60px rgba(44,32,24,0.15);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--ivory);
+      color: var(--charcoal);
+      overflow-x: hidden;
+    }
+
+    /* ─── CURSOR ─── */
+    body { cursor: none; }
+    .cursor {
+      width: 10px; height: 10px;
+      background: var(--sage);
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+      transition: transform 0.15s ease, opacity 0.15s;
+      transform: translate(-50%, -50%);
+    }
+    .cursor-ring {
+      width: 36px; height: 36px;
+      border: 1.5px solid var(--sage);
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      z-index: 9998;
+      transition: transform 0.3s ease, width 0.3s, height 0.3s, opacity 0.3s;
+      transform: translate(-50%, -50%);
+      opacity: 0.6;
+    }
+    .cursor.expand { transform: translate(-50%, -50%) scale(3); opacity: 0.3; }
+    .cursor-ring.expand { width: 60px; height: 60px; opacity: 0.2; }
+
+    /* ─── NAVBAR ─── */
+    nav {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(100% - 48px);
+      max-width: 1160px;
+      background: rgba(250,247,242,0.82);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(122,158,126,0.18);
+      border-radius: 100px;
+      padding: 14px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 100;
+      box-shadow: 0 4px 32px rgba(44,32,24,0.07);
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .nav-brand-icon {
+      width: 32px; height: 32px;
+      background: linear-gradient(135deg, var(--sage), var(--sage-dark));
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .nav-brand-icon svg { width: 18px; height: 18px; fill: white; }
+
+    .nav-brand-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--charcoal);
+      letter-spacing: 0.01em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--warm-gray);
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: color 200ms;
+    }
+
+    .nav-links a:hover { color: var(--sage-dark); }
+
+    .nav-book {
+      background: var(--charcoal);
+      color: var(--ivory) !important;
+      padding: 10px 22px;
+      border-radius: 50px;
+      font-size: 0.8rem !important;
+      letter-spacing: 0.08em !important;
+      transition: background 200ms, transform 150ms !important;
+    }
+
+    .nav-book:hover { background: var(--sage-dark) !important; transform: translateY(-1px); }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 140px 64px 80px 80px;
+      position: relative;
+      z-index: 2;
+      background: var(--ivory);
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 32px;
+    }
+
+    .hero-tag-line {
+      width: 36px;
+      height: 1px;
+      background: var(--sage);
+    }
+
+    .hero-tag span {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--sage-dark);
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 5vw, 5rem);
+      font-weight: 400;
+      line-height: 1.1;
+      color: var(--charcoal);
+      margin-bottom: 24px;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--sage-dark);
+    }
+
+    .hero-subtitle {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-weight: 300;
+      color: var(--warm-gray);
+      line-height: 1.8;
+      max-width: 420px;
+      margin-bottom: 48px;
+      font-style: italic;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-dark {
+      background: var(--charcoal);
+      color: var(--ivory);
+      border: none;
+      padding: 16px 36px;
+      border-radius: 50px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      transition: background 200ms, transform 150ms;
+    }
+
+    .btn-dark:hover { background: var(--sage-dark); transform: translateY(-2px); }
+
+    .btn-ghost {
+      color: var(--warm-gray);
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: color 200ms;
+      cursor: pointer;
+    }
+
+    .btn-ghost:hover { color: var(--sage-dark); }
+
+    .btn-ghost svg { transition: transform 200ms; }
+    .btn-ghost:hover svg { transform: translateX(4px); }
+
+    .hero-rating {
+      margin-top: 52px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding-top: 28px;
+      border-top: 1px solid var(--cream-dark);
+    }
+
+    .rating-stars {
+      display: flex;
+      gap: 3px;
+    }
+
+    .rating-stars svg { width: 16px; height: 16px; fill: var(--blush-dark); }
+
+    .rating-text strong {
+      display: block;
+      font-size: 0.88rem;
+      color: var(--charcoal);
+      font-weight: 600;
+    }
+
+    .rating-text span {
+      font-size: 0.76rem;
+      color: var(--light-text);
+    }
+
+    /* Hero right — split photo panel */
+    .hero-right {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-img-main {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 20%;
+      display: block;
+      animation: heroFade 1.2s ease both;
+    }
+
+    @keyframes heroFade {
+      from { opacity: 0; transform: scale(1.03); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+
+    .hero-overlay-panel {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(122,158,126,0.15) 0%, rgba(44,32,24,0.2) 100%);
+    }
+
+    /* Botanical SVG decoration */
+    .botanical-deco {
+      position: absolute;
+      opacity: 0.12;
+      pointer-events: none;
+    }
+
+    /* Floating info card on hero */
+    .hero-info-card {
+      position: absolute;
+      bottom: 48px;
+      left: -48px;
+      background: var(--ivory);
+      border-radius: 18px;
+      padding: 20px 24px;
+      box-shadow: var(--shadow-card);
+      z-index: 3;
+      min-width: 200px;
+      border: 1px solid rgba(122,158,126,0.15);
+    }
+
+    .hero-info-card p {
+      font-size: 0.78rem;
+      color: var(--light-text);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .hero-info-card strong {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: var(--charcoal);
+    }
+
+    /* ─── MARQUEE STRIP ─── */
+    .marquee-strip {
+      background: var(--sage-dark);
+      overflow: hidden;
+      padding: 14px 0;
+      white-space: nowrap;
+    }
+
+    .marquee-track {
+      display: inline-flex;
+      animation: marquee 28s linear infinite;
+    }
+
+    .marquee-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 20px;
+      padding: 0 40px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.8);
+    }
+
+    .marquee-dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--blush-light);
+      flex-shrink: 0;
+    }
+
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ─── SECTIONS ─── */
+    section { padding: 100px 24px; }
+    .container { max-width: 1100px; margin: 0 auto; }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .eyebrow-line { width: 28px; height: 1px; background: var(--sage); }
+
+    .eyebrow span {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--sage-dark);
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 400;
+      color: var(--charcoal);
+      line-height: 1.2;
+    }
+
+    .section-title em { font-style: italic; color: var(--sage-dark); }
+
+    .section-body {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-weight: 300;
+      color: var(--warm-gray);
+      line-height: 1.85;
+      font-style: italic;
+    }
+
+    /* ─── ABOUT / STUDIO ─── */
+    .studio { background: var(--cream); }
+
+    .studio-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .studio-photos {
+      position: relative;
+    }
+
+    .studio-photo-main {
+      width: 100%;
+      height: 480px;
+      object-fit: cover;
+      border-radius: 24px;
+      display: block;
+    }
+
+    .studio-photo-inset {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 16px;
+      bottom: -28px;
+      right: -28px;
+      border: 6px solid var(--ivory);
+      box-shadow: var(--shadow-card);
+    }
+
+    .studio-text { display: flex; flex-direction: column; gap: 24px; }
+
+    .abby-sig {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 18px 22px;
+      background: var(--ivory);
+      border-radius: 14px;
+      border: 1px solid rgba(122,158,126,0.2);
+      margin-top: 8px;
+    }
+
+    .abby-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--sage-light), var(--sage-dark));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    .abby-sig strong {
+      display: block;
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      color: var(--charcoal);
+    }
+
+    .abby-sig span { font-size: 0.8rem; color: var(--light-text); }
+
+    /* ─── SERVICES ─── */
+    .services { background: var(--ivory); }
+
+    .services-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: end;
+      margin-bottom: 60px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: rgba(122,158,126,0.12);
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .service-tile {
+      background: var(--ivory);
+      padding: 36px 28px;
+      transition: background 300ms;
+      cursor: default;
+    }
+
+    .service-tile:hover { background: var(--cream); }
+
+    .service-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      font-weight: 400;
+      color: rgba(122,158,126,0.2);
+      line-height: 1;
+      margin-bottom: 20px;
+    }
+
+    .service-tile h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      font-weight: 500;
+      color: var(--charcoal);
+      margin-bottom: 10px;
+    }
+
+    .service-tile p {
+      font-size: 0.85rem;
+      color: var(--warm-gray);
+      line-height: 1.7;
+    }
+
+    .service-tag {
+      display: inline-block;
+      margin-top: 16px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--sage-dark);
+      background: rgba(122,158,126,0.1);
+      padding: 4px 12px;
+      border-radius: 50px;
+    }
+
+    /* ─── GALLERY — EDITORIAL GRID ─── */
+    .gallery { background: var(--charcoal); padding: 100px 24px; }
+
+    .gallery-header { text-align: center; margin-bottom: 56px; }
+    .gallery-header .section-title { color: var(--ivory); }
+    .gallery-header .section-body { color: rgba(255,255,255,0.5); }
+    .gallery-header .eyebrow-line { background: var(--blush); }
+    .gallery-header .eyebrow span { color: var(--blush-light); }
+    .gallery-header .eyebrow { justify-content: center; }
+
+    .gallery-mosaic {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      grid-template-rows: 320px 220px;
+      gap: 10px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .gallery-mosaic img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 12px;
+      transition: transform 400ms ease, filter 400ms;
+      cursor: pointer;
+      filter: saturate(0.9) brightness(0.95);
+    }
+
+    .gallery-mosaic img:hover { transform: scale(1.02); filter: saturate(1.1) brightness(1); }
+
+    .gallery-mosaic img:nth-child(1) { grid-row: span 2; }
+
+    /* ─── REVIEWS ─── */
+    .reviews { background: var(--cream); }
+
+    .reviews-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 56px;
+    }
+
+    .reviews-score {
+      text-align: right;
+    }
+
+    .score-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 5rem;
+      font-weight: 400;
+      color: var(--charcoal);
+      line-height: 1;
+    }
+
+    .score-label { font-size: 0.8rem; color: var(--light-text); letter-spacing: 0.1em; text-transform: uppercase; }
+
+    .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+
+    .review-card {
+      background: var(--ivory);
+      border-radius: 20px;
+      padding: 32px;
+      border: 1px solid rgba(122,158,126,0.12);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .review-card::before {
+      content: '\201C';
+      position: absolute;
+      top: 12px;
+      right: 24px;
+      font-family: 'Playfair Display', serif;
+      font-size: 6rem;
+      color: rgba(122,158,126,0.08);
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .review-stars { display: flex; gap: 3px; margin-bottom: 14px; }
+    .review-stars svg { width: 15px; height: 15px; fill: var(--blush-dark); }
+
+    .review-card blockquote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--warm-gray);
+      line-height: 1.8;
+      margin-bottom: 22px;
+    }
+
+    .reviewer {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .reviewer-dot {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--sage-light), var(--sage-dark));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 0.78rem;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+
+    .reviewer strong { display: block; font-size: 0.85rem; color: var(--charcoal); font-weight: 600; }
+    .reviewer span { font-size: 0.76rem; color: var(--light-text); }
+
+    /* ─── BOOKING ─── */
+    .booking { background: var(--ivory); }
+
+    .booking-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 72px;
+      align-items: start;
+    }
+
+    .booking-info { padding-top: 8px; }
+    .booking-info .section-title { margin-bottom: 20px; }
+    .booking-info .section-body { margin-bottom: 32px; }
+
+    .info-list { display: flex; flex-direction: column; gap: 16px; margin-bottom: 32px; }
+
+    .info-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .info-row-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: var(--cream);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      border: 1px solid rgba(122,158,126,0.15);
+    }
+
+    .info-row-icon svg { width: 18px; height: 18px; stroke: var(--sage-dark); fill: none; }
+
+    .info-row strong { display: block; font-size: 0.85rem; color: var(--charcoal); font-weight: 600; margin-bottom: 1px; }
+    .info-row p { font-size: 0.82rem; color: var(--warm-gray); line-height: 1.5; }
+
+    .hours-grid {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 6px 20px;
+      font-size: 0.83rem;
+    }
+
+    .hours-day { color: var(--charcoal); font-weight: 500; }
+    .hours-time { color: var(--warm-gray); }
+    .hours-closed { color: var(--blush-dark); }
+
+    /* Booking Form */
+    .booking-form-wrap {
+      background: var(--cream);
+      border-radius: 24px;
+      padding: 44px 40px;
+      border: 1px solid rgba(122,158,126,0.15);
+    }
+
+    /* Step progress */
+    .steps-bar {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 36px;
+    }
+
+    .step-seg {
+      flex: 1;
+      height: 3px;
+      border-radius: 2px;
+      background: var(--cream-dark);
+      transition: background 300ms;
+    }
+
+    .step-seg.active { background: var(--sage); }
+    .step-seg.done { background: var(--sage-dark); }
+
+    .step-label-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 28px;
+    }
+
+    .step-label-row h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: var(--charcoal);
+    }
+
+    .step-counter {
+      font-size: 0.75rem;
+      color: var(--light-text);
+      letter-spacing: 0.1em;
+    }
+
+    .bstep { display: none; }
+    .bstep.active { display: block; }
+
+    /* Service selection */
+    .svc-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+
+    .svc-opt {
+      border: 1.5px solid rgba(122,158,126,0.2);
+      border-radius: 14px;
+      padding: 16px 18px;
+      cursor: pointer;
+      background: var(--ivory);
+      transition: border-color 200ms, background 200ms;
+    }
+
+    .svc-opt:hover { border-color: var(--sage); }
+    .svc-opt.sel { border-color: var(--sage-dark); background: rgba(122,158,126,0.07); }
+
+    .svc-opt strong { display: block; color: var(--charcoal); font-size: 0.9rem; font-weight: 600; margin-bottom: 2px; }
+    .svc-opt span { font-size: 0.78rem; color: var(--light-text); }
+
+    /* Calendar */
+    .cal-nav { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+
+    .cal-arrow {
+      width: 30px; height: 30px;
+      border: 1px solid rgba(122,158,126,0.25);
+      border-radius: 8px;
+      background: var(--ivory);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      transition: background 150ms;
+    }
+
+    .cal-arrow:hover { background: var(--cream-dark); }
+    .cal-arrow svg { width: 14px; height: 14px; stroke: var(--warm-gray); fill: none; }
+
+    .cal-title { font-weight: 600; font-size: 0.88rem; color: var(--charcoal); }
+
+    .cal-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 3px;
+      margin-bottom: 20px;
+    }
+
+    .cal-hdr { text-align: center; font-size: 0.68rem; font-weight: 600; color: var(--light-text); letter-spacing: 0.05em; padding: 4px 0; }
+
+    .cal-cell {
+      aspect-ratio: 1;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 500;
+      transition: all 150ms;
+    }
+
+    .cal-cell.avail {
+      cursor: pointer;
+      color: var(--charcoal);
+      background: var(--ivory);
+      border: 1px solid rgba(122,158,126,0.15);
+    }
+
+    .cal-cell.avail:hover { background: rgba(122,158,126,0.12); border-color: var(--sage); }
+    .cal-cell.picked { background: var(--sage-dark); color: white; border-color: var(--sage-dark); }
+    .cal-cell.off { color: rgba(107,91,78,0.3); cursor: not-allowed; }
+
+    .time-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+      margin-bottom: 24px;
+    }
+
+    .t-slot {
+      border: 1px solid rgba(122,158,126,0.2);
+      border-radius: 8px;
+      padding: 8px 4px;
+      text-align: center;
+      cursor: pointer;
+      font-size: 0.76rem;
+      font-weight: 500;
+      color: var(--warm-gray);
+      background: var(--ivory);
+      transition: all 150ms;
+    }
+
+    .t-slot:hover { border-color: var(--sage); color: var(--sage-dark); }
+    .t-slot.picked { background: var(--sage-dark); color: white; border-color: var(--sage-dark); }
+
+    /* Form inputs */
+    .f-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+    .f-group { display: flex; flex-direction: column; gap: 5px; margin-bottom: 12px; }
+
+    .f-group label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.06em; color: var(--warm-gray); text-transform: uppercase; }
+
+    .f-group input,
+    .f-group select,
+    .f-group textarea {
+      border: 1.5px solid rgba(122,158,126,0.22);
+      border-radius: 10px;
+      padding: 11px 14px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.88rem;
+      color: var(--charcoal);
+      background: var(--ivory);
+      outline: none;
+      transition: border-color 200ms, box-shadow 200ms;
+    }
+
+    .f-group input:focus,
+    .f-group select:focus,
+    .f-group textarea:focus {
+      border-color: var(--sage);
+      box-shadow: 0 0 0 3px rgba(122,158,126,0.12);
+    }
+
+    .f-group textarea { resize: vertical; min-height: 70px; }
+
+    /* Confirm */
+    .confirm-box {
+      background: var(--ivory);
+      border-radius: 14px;
+      padding: 20px;
+      margin-bottom: 18px;
+      border: 1px solid rgba(122,158,126,0.18);
+    }
+
+    .cline {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.84rem;
+      padding: 7px 0;
+      border-bottom: 1px solid rgba(122,158,126,0.1);
+    }
+
+    .cline:last-child { border-bottom: none; }
+    .cline span:first-child { color: var(--light-text); }
+    .cline span:last-child { color: var(--charcoal); font-weight: 600; text-align: right; max-width: 55%; }
+
+    .sms-note {
+      background: rgba(122,158,126,0.08);
+      border: 1px solid rgba(122,158,126,0.2);
+      border-radius: 10px;
+      padding: 14px 16px;
+      font-size: 0.82rem;
+      color: var(--warm-gray);
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    /* Nav buttons */
+    .form-nav { display: flex; gap: 10px; }
+
+    .btn-back {
+      background: none;
+      border: 1.5px solid rgba(122,158,126,0.3);
+      border-radius: 50px;
+      padding: 12px 22px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--warm-gray);
+      cursor: pointer;
+      letter-spacing: 0.06em;
+      transition: border-color 200ms;
+    }
+
+    .btn-back:hover { border-color: var(--sage); }
+
+    .btn-fwd {
+      flex: 1;
+      background: var(--charcoal);
+      border: none;
+      border-radius: 50px;
+      padding: 14px 28px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ivory);
+      cursor: pointer;
+      transition: background 200ms, transform 150ms;
+    }
+
+    .btn-fwd:hover { background: var(--sage-dark); transform: translateY(-1px); }
+    .btn-fwd:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }
+
+    /* Success */
+    .booking-success {
+      display: none;
+      text-align: center;
+      padding: 12px 0;
+    }
+
+    .success-ring {
+      width: 68px; height: 68px;
+      border-radius: 50%;
+      border: 2px solid var(--sage);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 18px;
+    }
+
+    .success-ring svg { width: 30px; height: 30px; stroke: var(--sage-dark); fill: none; stroke-width: 2.5; }
+
+    .booking-success h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      color: var(--charcoal);
+      margin-bottom: 10px;
+    }
+
+    .booking-success p { font-size: 0.9rem; color: var(--warm-gray); line-height: 1.7; }
+
+    /* ─── LOCATION ─── */
+    .location { background: var(--cream); }
+
+    .location-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 60px; align-items: start; }
+
+    .map-wrap {
+      border-radius: 20px;
+      overflow: hidden;
+      height: 380px;
+      box-shadow: var(--shadow-card);
+      border: 1px solid rgba(122,158,126,0.15);
+    }
+
+    .map-wrap iframe { width: 100%; height: 100%; border: none; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--charcoal);
+      padding: 64px 24px 32px;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 48px;
+    }
+
+    .footer-brand-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: var(--ivory);
+      margin-bottom: 4px;
+    }
+
+    .footer-brand-tag {
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--sage-light);
+      margin-bottom: 16px;
+    }
+
+    .footer-brand p {
+      font-size: 0.84rem;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.7;
+      max-width: 280px;
+    }
+
+    footer h5 {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 18px;
+    }
+
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+
+    .footer-links a {
+      text-decoration: none;
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.6);
+      transition: color 200ms;
+    }
+
+    .footer-links a:hover { color: var(--sage-light); }
+
+    .footer-bottom {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding-top: 28px;
+      border-top: 1px solid rgba(255,255,255,0.07);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.76rem;
+      color: rgba(255,255,255,0.3);
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 1024px) {
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-left { padding: 120px 40px 60px; }
+      .hero-right { height: 55vw; min-height: 340px; }
+      .hero-info-card { display: none; }
+      .studio-grid, .booking-layout, .location-grid { grid-template-columns: 1fr; gap: 48px; }
+      .services-header { grid-template-columns: 1fr; gap: 20px; }
+      .services-grid { grid-template-columns: 1fr 1fr; }
+      .reviews-grid { grid-template-columns: 1fr; }
+      .footer-inner { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 640px) {
+      nav { width: calc(100% - 24px); padding: 12px 18px; }
+      .nav-links { display: none; }
+      .hero-left { padding: 100px 24px 50px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .gallery-mosaic { grid-template-columns: 1fr 1fr; grid-template-rows: 180px 180px 180px; }
+      .gallery-mosaic img:nth-child(1) { grid-column: span 1; grid-row: span 1; }
+      .footer-inner { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+      .time-row { grid-template-columns: repeat(3, 1fr); }
+      .svc-grid { grid-template-columns: 1fr; }
+      .booking-form-wrap { padding: 28px 20px; }
+      .f-row { grid-template-columns: 1fr; }
+      body { cursor: auto; }
+      .cursor, .cursor-ring { display: none; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition-duration: 0.01ms !important; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Custom cursor -->
+<div class="cursor" id="cur"></div>
+<div class="cursor-ring" id="curRing"></div>
+
+<!-- NAVBAR -->
+<nav>
+  <a class="nav-brand" href="#top">
+    <div class="nav-brand-icon">
+      <svg viewBox="0 0 20 20"><path d="M6.5 5a2.5 2.5 0 100 5 2.5 2.5 0 000-5zM13.5 5a2.5 2.5 0 100 5 2.5 2.5 0 000-5zM3 10a2 2 0 100 4 2 2 0 000-4zM17 10a2 2 0 100 4 2 2 0 000-4zM10 11.5c-3 0-5.5 2-5.5 4v.5h11v-.5c0-2-2.5-4-5.5-4z"/></svg>
+    </div>
+    <span class="nav-brand-name">Paws & Petals</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#studio">Studio</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#booking">Booking</a></li>
+    <li><a href="#booking" class="nav-book">Book Now</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top" style="padding:0;">
+  <div class="hero-left">
+    <div class="hero-tag">
+      <div class="hero-tag-line"></div>
+      <span>Corryton, Tennessee</span>
+    </div>
+
+    <h1 class="hero-title">
+      Grooming as<br/>
+      <em>gentle as it</em><br/>
+      should be.
+    </h1>
+
+    <p class="hero-subtitle">
+      A boutique studio where every dog is treated with<br/>
+      patience, love, and artistry. Meet Abby.
+    </p>
+
+    <div class="hero-actions">
+      <a href="#booking" class="btn-dark">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Book an Appointment
+      </a>
+      <a href="#studio" class="btn-ghost">
+        Meet Abby
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+
+    <div class="hero-rating">
+      <div class="rating-stars">
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      </div>
+      <div class="rating-text">
+        <strong>5.0 Perfect Score</strong>
+        <span>5 reviews on Google</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <img
+      class="hero-img-main"
+      src="https://images.unsplash.com/photo-1601979031925-424e53b6caaa?w=1200&q=85"
+      alt="Dog being lovingly groomed at Paws and Petals studio"
+    />
+    <div class="hero-overlay-panel"></div>
+    <div class="hero-info-card">
+      <p>Est. in</p>
+      <strong>Corryton, TN</strong>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-strip">
+  <div class="marquee-track">
+    <span class="marquee-item">Full Grooming <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Bath & Blowout <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Hand Scissor Finish <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Nail Trim & Grind <span class="marquee-dot"></span></span>
+    <span class="marquee-item">De-Shedding Treatment <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Breed-Specific Styling <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Gentle &amp; Patient Care <span class="marquee-dot"></span></span>
+    <!-- duplicate for seamless loop -->
+    <span class="marquee-item">Full Grooming <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Bath & Blowout <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Hand Scissor Finish <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Nail Trim & Grind <span class="marquee-dot"></span></span>
+    <span class="marquee-item">De-Shedding Treatment <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Breed-Specific Styling <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Gentle &amp; Patient Care <span class="marquee-dot"></span></span>
+  </div>
+</div>
+
+<!-- STUDIO / ABOUT -->
+<section class="studio" id="studio">
+  <div class="container">
+    <div class="studio-grid">
+      <div class="studio-photos">
+        <img
+          class="studio-photo-main"
+          src="https://images.unsplash.com/photo-1516132006923-6cf348e5dee2?w=800&q=80"
+          alt="Happy dog after grooming at Paws and Petals"
+          loading="lazy"
+        />
+        <img
+          class="studio-photo-inset"
+          src="https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?w=400&q=80"
+          alt="Fluffy dog looking beautiful after grooming"
+          loading="lazy"
+        />
+      </div>
+
+      <div class="studio-text">
+        <div>
+          <div class="eyebrow"><div class="eyebrow-line"></div><span>About the Studio</span></div>
+          <h2 class="section-title">Crafted for dogs<br/>who deserve <em>the best.</em></h2>
+        </div>
+
+        <p class="section-body">
+          At Paws & Petals, grooming isn't a transaction — it's a relationship. Abby takes the time to get to know your dog, understand their personality, and create an experience that's calm, comfortable, and truly loving.
+        </p>
+
+        <p style="font-size:0.88rem;color:var(--warm-gray);line-height:1.75;">
+          The studio is kept clean and serene — no chaos, no assembly line. Each appointment is given undivided attention, so your pup gets the care they actually deserve.
+        </p>
+
+        <div class="abby-sig">
+          <div class="abby-avatar">A</div>
+          <div>
+            <strong>Abby</strong>
+            <span>Groomer &amp; Studio Owner, Paws &amp; Petals</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="container">
+    <div class="services-header">
+      <div>
+        <div class="eyebrow"><div class="eyebrow-line"></div><span>What We Offer</span></div>
+        <h2 class="section-title">Every service, done<br/><em>with intention.</em></h2>
+      </div>
+      <p class="section-body">
+        No rush, no shortcuts. Each service is performed with the same care Abby would give her own dog.
+      </p>
+    </div>
+
+    <div class="services-grid">
+      <div class="service-tile">
+        <div class="service-num">01</div>
+        <h3>Full Groom</h3>
+        <p>Bath, blow-dry, breed-specific haircut, nail trim, ear cleaning — the complete head-to-tail experience.</p>
+        <span class="service-tag">Signature</span>
+      </div>
+      <div class="service-tile">
+        <div class="service-num">02</div>
+        <h3>Bath & Blowout</h3>
+        <p>Deep conditioning shampoo, professional blow-dry, and a thorough brush-out that leaves coats gleaming.</p>
+        <span class="service-tag">Popular</span>
+      </div>
+      <div class="service-tile">
+        <div class="service-num">03</div>
+        <h3>Breed Styling</h3>
+        <p>Hand-scissored, breed-correct cuts for doodles, poodles, terriers, and more — tailored to your dog.</p>
+        <span class="service-tag">Artisan</span>
+      </div>
+      <div class="service-tile">
+        <div class="service-num">04</div>
+        <h3>Nail Trim & Grind</h3>
+        <p>Precise trimming and smooth grinding. Safe paws, every time — as a standalone or add-on.</p>
+        <span class="service-tag">Quick Add-On</span>
+      </div>
+      <div class="service-tile">
+        <div class="service-num">05</div>
+        <h3>De-Shedding</h3>
+        <p>A specialized treatment that dramatically reduces shedding — perfect for double-coated breeds in any season.</p>
+        <span class="service-tag">Seasonal</span>
+      </div>
+      <div class="service-tile">
+        <div class="service-num">06</div>
+        <h3>Anxious Dog Care</h3>
+        <p>Abby specializes in nervous and anxious dogs — slow, gentle handling that builds trust over time.</p>
+        <span class="service-tag">Specialty</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery" id="gallery" style="padding:100px 24px;">
+  <div class="gallery-header">
+    <div class="eyebrow"><div class="eyebrow-line" style="background:var(--blush)"></div><span style="color:var(--blush-light)">Our Work</span></div>
+    <h2 class="section-title" style="color:var(--ivory);margin-bottom:10px;">Happy pups,<br/><em style="color:var(--blush-light);">happy hearts.</em></h2>
+  </div>
+  <div class="gallery-mosaic">
+    <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=800&q=80" alt="Two happy dogs running" loading="lazy" />
+    <img src="https://images.unsplash.com/photo-1529429617124-95b109e86bb8?w=600&q=80" alt="Fluffy white dog" loading="lazy" />
+    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt="Golden retriever portrait" loading="lazy" />
+    <img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=600&q=80" alt="Labrador retriever" loading="lazy" />
+    <img src="https://images.unsplash.com/photo-1477884213360-7e9d7dcc1e48?w=600&q=80" alt="Dog grooming close-up" loading="lazy" />
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews" id="reviews">
+  <div class="container">
+    <div class="reviews-top">
+      <div>
+        <div class="eyebrow"><div class="eyebrow-line"></div><span>Client Reviews</span></div>
+        <h2 class="section-title">What pet parents<br/><em>are saying.</em></h2>
+      </div>
+      <div class="reviews-score">
+        <div class="score-num">5.0</div>
+        <div style="display:flex;gap:3px;justify-content:flex-end;margin:4px 0 2px;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#B07068"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#B07068"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#B07068"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#B07068"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#B07068"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <div class="score-label">5 Google reviews</div>
+      </div>
+    </div>
+
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="review-stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <blockquote>"Shadow leaves Paws and Petals looking absolutely incredible — clean, fluffy, and perfectly groomed. Abby is so gentle, patient, and clearly loves what she does."</blockquote>
+        <div class="reviewer">
+          <div class="reviewer-dot">F</div>
+          <div>
+            <strong>The Farrington's</strong>
+            <span>Local Guide · 17 reviews</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <blockquote>"Abby shows so much love and care. She is the best groomer ever. My Toby was always so calm when we brought him to Abby. Thank you for your sweet spirit."</blockquote>
+        <div class="reviewer">
+          <div class="reviewer-dot">S</div>
+          <div>
+            <strong>Sherry Cox</strong>
+            <span>10 reviews</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <blockquote>"He is an anxious fella but feels right at home with Abby. He leaves happy & handsome. Her shop is clean and inviting. She deserves 10 stars."</blockquote>
+        <div class="reviewer">
+          <div class="reviewer-dot">T</div>
+          <div>
+            <strong>Terry Woodard</strong>
+            <span>Local Guide · 10 reviews</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING -->
+<section class="booking" id="booking">
+  <div class="container">
+    <div class="booking-layout">
+      <!-- Left info -->
+      <div class="booking-info">
+        <div class="eyebrow"><div class="eyebrow-line"></div><span>Appointments</span></div>
+        <h2 class="section-title">Book with<br/><em>Abby.</em></h2>
+        <p class="section-body">
+          Fill out the form and we'll send your details as a text message to confirm your spot.
+        </p>
+
+        <div class="info-list">
+          <div class="info-row">
+            <div class="info-row-icon">
+              <svg viewBox="0 0 24 24" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11.5a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .84h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            </div>
+            <div>
+              <strong>(865) 221-5040</strong>
+              <p>Call or text any time during business hours.</p>
+            </div>
+          </div>
+          <div class="info-row">
+            <div class="info-row-icon">
+              <svg viewBox="0 0 24 24" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div>
+              <strong>7332 Tazewell Pike, Corryton, TN 37721</strong>
+              <p>Located in Corryton, East Tennessee.</p>
+            </div>
+          </div>
+          <div class="info-row">
+            <div class="info-row-icon">
+              <svg viewBox="0 0 24 24" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div>
+              <strong>Studio Hours</strong>
+              <div class="hours-grid" style="margin-top:6px;">
+                <span class="hours-day">Tue – Thu</span><span class="hours-time">8:00 AM – 4:00 PM</span>
+                <span class="hours-day">Friday</span><span class="hours-time">8:00 AM – 4:00 PM</span>
+                <span class="hours-day">Saturday</span><span class="hours-time">8:00 AM – 4:00 PM</span>
+                <span class="hours-day">Wednesday</span><span class="hours-time">8:00 AM – 4:00 PM</span>
+                <span class="hours-day">Sun – Mon</span><span class="hours-time hours-closed">Closed</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right form -->
+      <div class="booking-form-wrap">
+        <!-- Progress bar -->
+        <div class="steps-bar">
+          <div class="step-seg active" id="seg1"></div>
+          <div class="step-seg" id="seg2"></div>
+          <div class="step-seg" id="seg3"></div>
+          <div class="step-seg" id="seg4"></div>
+        </div>
+
+        <!-- Step 1 -->
+        <div class="bstep active" id="bs1">
+          <div class="step-label-row">
+            <h3>Choose a Service</h3>
+            <span class="step-counter">Step 1 of 4</span>
+          </div>
+          <div class="svc-grid">
+            <div class="svc-opt" data-v="Full Groom" onclick="pickSvc(this)"><strong>Full Groom</strong><span>Bath, cut, nails, ears</span></div>
+            <div class="svc-opt" data-v="Bath & Blowout" onclick="pickSvc(this)"><strong>Bath &amp; Blowout</strong><span>Deep clean + dry</span></div>
+            <div class="svc-opt" data-v="Breed Styling" onclick="pickSvc(this)"><strong>Breed Styling</strong><span>Hand-scissor trim</span></div>
+            <div class="svc-opt" data-v="Nail Trim & Grind" onclick="pickSvc(this)"><strong>Nail Trim &amp; Grind</strong><span>Quick add-on</span></div>
+            <div class="svc-opt" data-v="De-Shedding" onclick="pickSvc(this)"><strong>De-Shedding</strong><span>Heavy coat treatment</span></div>
+            <div class="svc-opt" data-v="Anxious Dog Care" onclick="pickSvc(this)"><strong>Anxious Dog Care</strong><span>Gentle specialty</span></div>
+          </div>
+          <div class="form-nav">
+            <div></div>
+            <button class="btn-fwd" id="fwd1" onclick="goB(2)" disabled>Select Date &amp; Time</button>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="bstep" id="bs2">
+          <div class="step-label-row">
+            <h3>Date &amp; Time</h3>
+            <span class="step-counter">Step 2 of 4</span>
+          </div>
+          <p style="font-size:0.78rem;color:var(--light-text);margin-bottom:14px;letter-spacing:0.02em;">Open Tuesday–Saturday &amp; Wednesday, 8AM–4PM. Closed Sunday &amp; Monday.</p>
+          <div class="cal-nav">
+            <button class="cal-arrow" onclick="prevMo()" aria-label="Previous month"><svg viewBox="0 0 24 24" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg></button>
+            <span class="cal-title" id="calTit"></span>
+            <button class="cal-arrow" onclick="nextMo()" aria-label="Next month"><svg viewBox="0 0 24 24" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></button>
+          </div>
+          <div class="cal-grid" id="calG"></div>
+          <div id="timeSec" style="display:none;">
+            <p style="font-size:0.76rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--light-text);margin-bottom:8px;">Select a Time</p>
+            <div class="time-row" id="timeR"></div>
+          </div>
+          <div class="form-nav">
+            <button class="btn-back" onclick="goB(1)">Back</button>
+            <button class="btn-fwd" id="fwd2" onclick="goB(3)" disabled>Your Details</button>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="bstep" id="bs3">
+          <div class="step-label-row">
+            <h3>Your Details</h3>
+            <span class="step-counter">Step 3 of 4</span>
+          </div>
+          <div class="f-row">
+            <div class="f-group"><label for="oName">Your Name *</label><input type="text" id="oName" placeholder="Jane Smith" oninput="vStep3()" /></div>
+            <div class="f-group"><label for="oPhone">Your Phone *</label><input type="tel" id="oPhone" placeholder="(865) 555-0000" oninput="fmtPhone(this);vStep3()" /></div>
+          </div>
+          <div class="f-row">
+            <div class="f-group"><label for="dName">Dog's Name *</label><input type="text" id="dName" placeholder="Shadow" oninput="vStep3()" /></div>
+            <div class="f-group"><label for="dBreed">Breed</label><input type="text" id="dBreed" placeholder="Goldendoodle" /></div>
+          </div>
+          <div class="f-row">
+            <div class="f-group">
+              <label for="dSize">Size</label>
+              <select id="dSize">
+                <option value="">Select…</option>
+                <option>Small (under 20 lbs)</option>
+                <option>Medium (20–50 lbs)</option>
+                <option>Large (50–80 lbs)</option>
+                <option>Extra Large (80+ lbs)</option>
+              </select>
+            </div>
+            <div class="f-group"><label for="oEmail">Email (optional)</label><input type="email" id="oEmail" placeholder="jane@email.com" /></div>
+          </div>
+          <div class="f-group"><label for="notes">Special Notes</label><textarea id="notes" placeholder="Anxiety, allergies, matting, anything Abby should know…"></textarea></div>
+          <div class="form-nav">
+            <button class="btn-back" onclick="goB(2)">Back</button>
+            <button class="btn-fwd" id="fwd3" onclick="goB(4)" disabled>Review Booking</button>
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="bstep" id="bs4">
+          <div class="step-label-row">
+            <h3>Confirm Booking</h3>
+            <span class="step-counter">Step 4 of 4</span>
+          </div>
+          <div class="confirm-box" id="cBox"></div>
+          <div class="sms-note">
+            Tapping <strong>Confirm</strong> will open your messaging app with a pre-filled text to <strong>the studio</strong> — just hit send to complete your request. Abby will confirm your spot shortly.
+          </div>
+          <div class="form-nav">
+            <button class="btn-back" onclick="goB(3)">Back</button>
+            <button class="btn-fwd" onclick="submitB()">Confirm Appointment</button>
+          </div>
+        </div>
+
+        <!-- Success -->
+        <div class="booking-success" id="bSuccess">
+          <div class="success-ring">
+            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <h3>You're on the books.</h3>
+          <p>Your text has been sent to Abby. She'll confirm your appointment and reach out with any questions. We can't wait to see your pup!</p>
+          <br/>
+          <a href="tel:8652215040" class="btn-dark" style="display:inline-flex;margin:0 auto;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11.5a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .84h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            Call (865) 221-5040
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATION -->
+<section class="location" id="location">
+  <div class="container">
+    <div class="location-grid">
+      <div>
+        <div class="eyebrow"><div class="eyebrow-line"></div><span>Find Us</span></div>
+        <h2 class="section-title" style="margin-bottom:32px;">Visit the<br/><em>studio.</em></h2>
+        <div class="info-list">
+          <div class="info-row">
+            <div class="info-row-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div>
+              <strong>Address</strong>
+              <p>7332 Tazewell Pike<br/>Corryton, TN 37721</p>
+            </div>
+          </div>
+          <div class="info-row">
+            <div class="info-row-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11.5a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .84h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            </div>
+            <div>
+              <strong>Phone</strong>
+              <p><a href="tel:8652215040" style="color:var(--sage-dark);font-weight:600;text-decoration:none;">(865) 221-5040</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="map-wrap">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3193.5!2d-83.862!3d36.125!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x885c21f123456789%3A0x0!2s7332+Tazewell+Pike%2C+Corryton%2C+TN+37721!5e0!3m2!1sen!2sus!4v1700000000000"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Paws and Petals location map"
+        ></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-brand-name">Paws &amp; Petals</div>
+      <div class="footer-brand-tag">Dog Grooming Studio · Corryton, TN</div>
+      <p>A boutique grooming studio where every dog is treated with patience, love, and artistry. Proudly serving Corryton and East Tennessee.</p>
+    </div>
+    <div>
+      <h5>Navigate</h5>
+      <ul class="footer-links">
+        <li><a href="#studio">About Abby</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#booking">Book Now</a></li>
+        <li><a href="#location">Location</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Contact</h5>
+      <ul class="footer-links">
+        <li><a href="tel:8652215040">(865) 221-5040</a></li>
+        <li><a href="#location">7332 Tazewell Pike</a></li>
+        <li><a href="#location">Corryton, TN 37721</a></li>
+        <li><a href="#booking">Request Appointment</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2025 Paws &amp; Petals Dog Grooming. All rights reserved.</span>
+    <span>Corryton, Tennessee</span>
+  </div>
+</footer>
+
+<script>
+  // ── CURSOR ──────────────────────────────────────────
+  const cur = document.getElementById('cur');
+  const ring = document.getElementById('curRing');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+
+  function animCursor() {
+    cur.style.left = mx + 'px';
+    cur.style.top  = my + 'px';
+    rx += (mx - rx) * 0.12;
+    ry += (my - ry) * 0.12;
+    ring.style.left = rx + 'px';
+    ring.style.top  = ry + 'px';
+    requestAnimationFrame(animCursor);
+  }
+  animCursor();
+
+  document.querySelectorAll('a, button, .svc-opt, .cal-cell, .t-slot, .service-tile').forEach(el => {
+    el.addEventListener('mouseenter', () => { cur.classList.add('expand'); ring.classList.add('expand'); });
+    el.addEventListener('mouseleave', () => { cur.classList.remove('expand'); ring.classList.remove('expand'); });
+  });
+
+  // ── BOOKING STATE ───────────────────────────────────
+  const B = { service:'', date:null, time:'', name:'', phone:'', dog:'', breed:'', size:'', email:'', notes:'' };
+  let curStep = 1;
+  let cY, cM;
+
+  function pickSvc(el) {
+    document.querySelectorAll('.svc-opt').forEach(o => o.classList.remove('sel'));
+    el.classList.add('sel');
+    B.service = el.dataset.v;
+    document.getElementById('fwd1').disabled = false;
+  }
+
+  function goB(n) {
+    document.getElementById('bs' + curStep).classList.remove('active');
+    curStep = n;
+    document.getElementById('bs' + n).classList.add('active');
+    updSegs();
+    if (n === 2) renderCal();
+    if (n === 4) buildConfirm();
+  }
+
+  function updSegs() {
+    for (let i = 1; i <= 4; i++) {
+      const s = document.getElementById('seg' + i);
+      s.classList.remove('active', 'done');
+      if (i === curStep) s.classList.add('active');
+      else if (i < curStep) s.classList.add('done');
+    }
+  }
+
+  // ── CALENDAR ────────────────────────────────────────
+  function initCal() { const n = new Date(); cY = n.getFullYear(); cM = n.getMonth(); }
+
+  function prevMo() {
+    const n = new Date();
+    if (cY === n.getFullYear() && cM === n.getMonth()) return;
+    cM--; if (cM < 0) { cM = 11; cY--; } renderCal();
+  }
+  function nextMo() { cM++; if (cM > 11) { cM = 0; cY++; } renderCal(); }
+
+  function renderCal() {
+    const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+    document.getElementById('calTit').textContent = months[cM] + ' ' + cY;
+    const g = document.getElementById('calG');
+    g.innerHTML = '';
+    ['Su','Mo','Tu','We','Th','Fr','Sa'].forEach(d => {
+      const h = document.createElement('div');
+      h.className = 'cal-hdr'; h.textContent = d; g.appendChild(h);
+    });
+    const first = new Date(cY, cM, 1).getDay();
+    const days = new Date(cY, cM+1, 0).getDate();
+    const today = new Date(); today.setHours(0,0,0,0);
+    for (let i = 0; i < first; i++) {
+      const e = document.createElement('div'); e.className = 'cal-cell'; g.appendChild(e);
+    }
+    for (let d = 1; d <= days; d++) {
+      const cell = document.createElement('div');
+      const dt = new Date(cY, cM, d);
+      const dow = dt.getDay(); // 0=Sun, 1=Mon
+      const closed = (dow === 0 || dow === 1); // Sun & Mon closed
+      if (dt < today || closed) {
+        cell.className = 'cal-cell off';
+      } else {
+        cell.className = 'cal-cell avail';
+        cell.addEventListener('click', () => selectDay(dt, cell));
+      }
+      if (B.date && dt.toDateString() === B.date.toDateString()) {
+        cell.className = 'cal-cell picked';
+      }
+      cell.textContent = d;
+      g.appendChild(cell);
+    }
+  }
+
+  function selectDay(dt, el) {
+    B.date = dt; B.time = '';
+    document.querySelectorAll('.cal-cell.avail, .cal-cell.picked').forEach(c => {
+      c.classList.remove('picked');
+      if (!c.classList.contains('off')) c.classList.add('avail');
+    });
+    el.className = 'cal-cell picked';
+    renderTimes();
+    document.getElementById('fwd2').disabled = true;
+  }
+
+  function renderTimes() {
+    document.getElementById('timeSec').style.display = 'block';
+    const tr = document.getElementById('timeR');
+    tr.innerHTML = '';
+    ['8:00 AM','8:30 AM','9:00 AM','9:30 AM','10:00 AM','10:30 AM','11:00 AM','11:30 AM','12:00 PM','12:30 PM','1:00 PM','1:30 PM','2:00 PM','2:30 PM','3:00 PM','3:30 PM'].forEach(t => {
+      const btn = document.createElement('div');
+      btn.className = 't-slot'; btn.textContent = t;
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.t-slot').forEach(s => s.classList.remove('picked'));
+        btn.classList.add('picked');
+        B.time = t;
+        document.getElementById('fwd2').disabled = false;
+      });
+      tr.appendChild(btn);
+    });
+  }
+
+  // ── STEP 3 ───────────────────────────────────────────
+  function vStep3() {
+    const n = document.getElementById('oName').value.trim();
+    const p = document.getElementById('oPhone').value.trim();
+    const d = document.getElementById('dName').value.trim();
+    document.getElementById('fwd3').disabled = !(n && p.length >= 14 && d);
+  }
+
+  function fmtPhone(inp) {
+    let v = inp.value.replace(/\D/g,'').substring(0,10);
+    if (v.length >= 6) v = '(' + v.substring(0,3) + ') ' + v.substring(3,6) + '-' + v.substring(6);
+    else if (v.length >= 3) v = '(' + v.substring(0,3) + ') ' + v.substring(3);
+    inp.value = v;
+  }
+
+  // ── CONFIRM ──────────────────────────────────────────
+  function buildConfirm() {
+    B.name = document.getElementById('oName').value;
+    B.phone = document.getElementById('oPhone').value;
+    B.dog = document.getElementById('dName').value;
+    B.breed = document.getElementById('dBreed').value;
+    B.size = document.getElementById('dSize').value;
+    B.email = document.getElementById('oEmail').value;
+    B.notes = document.getElementById('notes').value;
+    const ds = B.date ? B.date.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'}) : '';
+    const rows = [
+      ['Service', B.service],
+      ['Date', ds],
+      ['Time', B.time],
+      ['Owner', B.name],
+      ['Phone', B.phone],
+      ["Dog's Name", B.dog],
+      ['Breed', B.breed || '—'],
+      ['Size', B.size || '—'],
+      ['Notes', B.notes || 'None'],
+    ];
+    document.getElementById('cBox').innerHTML = rows.map(([k,v]) =>
+      `<div class="cline"><span>${k}</span><span>${v}</span></div>`
+    ).join('');
+  }
+
+  // ── SUBMIT ───────────────────────────────────────────
+  function submitB() {
+    const btn = document.querySelector('#bs4 .btn-fwd');
+    btn.disabled = true; btn.textContent = 'Sending…';
+    const ds = B.date ? B.date.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'}) : '';
+    const msg = encodeURIComponent(
+      `New appointment request — Paws & Petals\n` +
+      `Service: ${B.service}\nDate: ${ds}\nTime: ${B.time}\n` +
+      `Owner: ${B.name} — ${B.phone}\n` +
+      `Dog: ${B.dog}${B.breed ? ' ('+B.breed+')' : ''}${B.size ? ', '+B.size : ''}\n` +
+      `Notes: ${B.notes || 'None'}`
+    );
+    // SMS to business phone — owner can update this number
+    window.location.href = `sms:+18652215040?body=${msg}`;
+    setTimeout(() => {
+      document.getElementById('steps-bar') && (document.getElementById('steps-bar').style.display='none');
+      document.getElementById('bs4').style.display = 'none';
+      document.querySelector('.steps-bar').style.display = 'none';
+      document.getElementById('bSuccess').style.display = 'block';
+    }, 800);
+  }
+
+  // ── INIT ─────────────────────────────────────────────
+  initCal();
+</script>
+</body>
+</html>
