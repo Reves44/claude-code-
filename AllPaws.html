@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>All Paws Pet Grooming — Clinton, TN</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Varela+Round&family=Nunito+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --orange:#F97316;
+  --orange-light:#FB923C;
+  --orange-deep:#EA580C;
+  --cream:#FFF7ED;
+  --warm:#FEF3C7;
+  --brown:#9A3412;
+  --brown-dark:#7C2D12;
+  --blue:#2563EB;
+  --blue-light:#3B82F6;
+  --slate:#1E293B;
+  --slate-mid:#475569;
+  --slate-light:#94A3B8;
+  --white:#FFFFFF;
+  --border:#FED7AA;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Nunito Sans',sans-serif;background:var(--cream);color:var(--slate);overflow-x:hidden}
+
+/* CURSOR */
+#cur{position:fixed;width:12px;height:12px;background:var(--orange);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform .1s,background .2s}
+#cur-ring{position:fixed;width:36px;height:36px;border:2px solid var(--orange);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:all .15s ease;opacity:.6}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 5%;display:flex;align-items:center;justify-content:space-between;height:72px;background:rgba(255,247,237,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.nav-logo{display:flex;align-items:center;gap:12px}
+.nav-logo-icon{width:44px;height:44px;background:var(--orange);border-radius:12px;display:flex;align-items:center;justify-content:center}
+.nav-logo-icon svg{width:26px;height:26px;fill:white}
+.nav-brand{font-family:'Varela Round',sans-serif;font-size:1.15rem;color:var(--brown-dark);line-height:1.1}
+.nav-brand span{display:block;font-family:'Nunito Sans',sans-serif;font-size:.72rem;font-weight:600;color:var(--orange);letter-spacing:.06em;text-transform:uppercase}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{font-size:.9rem;font-weight:600;color:var(--slate-mid);text-decoration:none;transition:color .2s;cursor:pointer}
+.nav-links a:hover{color:var(--orange)}
+.nav-cta{background:var(--orange);color:white;font-family:'Nunito Sans',sans-serif;font-weight:700;font-size:.9rem;padding:10px 22px;border-radius:100px;border:none;cursor:pointer;transition:background .2s,transform .15s}
+.nav-cta:hover{background:var(--orange-deep);transform:translateY(-1px)}
+
+/* HERO */
+.hero{min-height:100vh;padding-top:72px;display:grid;grid-template-columns:1fr 1fr;position:relative;overflow:hidden}
+.hero-left{display:flex;flex-direction:column;justify-content:center;padding:80px 6% 80px 8%;background:var(--cream)}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;background:var(--warm);border:1px solid #FCD34D;color:#92400E;font-size:.8rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:6px 14px;border-radius:100px;margin-bottom:28px}
+.hero-tag svg{width:14px;height:14px;fill:#F59E0B}
+.hero-h1{font-family:'Varela Round',sans-serif;font-size:clamp(2.4rem,4vw,3.6rem);color:var(--brown-dark);line-height:1.15;margin-bottom:20px}
+.hero-h1 em{font-style:normal;color:var(--orange)}
+.hero-sub{font-size:1.05rem;color:var(--slate-mid);line-height:1.7;max-width:480px;margin-bottom:36px}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:48px}
+.btn-primary{background:var(--orange);color:white;font-weight:700;font-size:1rem;padding:14px 30px;border-radius:100px;border:none;cursor:pointer;transition:all .2s;text-decoration:none;display:inline-flex;align-items:center;gap:8px}
+.btn-primary:hover{background:var(--orange-deep);transform:translateY(-2px);box-shadow:0 8px 24px rgba(249,115,22,.35)}
+.btn-secondary{background:white;color:var(--brown-dark);font-weight:700;font-size:1rem;padding:14px 30px;border-radius:100px;border:2px solid var(--border);cursor:pointer;transition:all .2s;text-decoration:none;display:inline-flex;align-items:center;gap:8px}
+.btn-secondary:hover{border-color:var(--orange);color:var(--orange);transform:translateY(-2px)}
+.hero-trust{display:flex;gap:24px;align-items:center}
+.trust-pill{display:flex;align-items:center;gap:8px;font-size:.85rem;font-weight:600;color:var(--slate-mid)}
+.trust-pill svg{width:16px;height:16px;fill:var(--orange)}
+.hero-right{position:relative;background:#FEE2B3}
+.hero-img{width:100%;height:100%;object-fit:cover;display:block}
+.hero-badge{position:absolute;top:40px;right:40px;background:white;border-radius:20px;padding:16px 20px;box-shadow:0 8px 32px rgba(0,0,0,.12);display:flex;align-items:center;gap:12px}
+.hero-badge-stars{display:flex;gap:2px}
+.hero-badge-stars svg{width:14px;height:14px;fill:#F59E0B}
+.hero-badge-text{font-size:.85rem}
+.hero-badge-text strong{display:block;color:var(--slate);font-weight:700}
+.hero-badge-text span{color:var(--slate-mid);font-size:.78rem}
+.hero-hours-badge{position:absolute;bottom:40px;left:-28px;background:var(--orange);color:white;border-radius:16px;padding:14px 20px;box-shadow:0 8px 24px rgba(249,115,22,.4)}
+.hero-hours-badge strong{display:block;font-size.85rem;font-weight:800;font-family:'Varela Round',sans-serif}
+.hero-hours-badge span{font-size:.75rem;opacity:.9}
+
+/* MARQUEE */
+.marquee-strip{background:var(--orange);padding:14px 0;overflow:hidden;display:flex;gap:0}
+.marquee-track{display:flex;gap:0;animation:marquee 22s linear infinite;white-space:nowrap}
+.marquee-track:hover{animation-play-state:paused}
+.marquee-item{display:inline-flex;align-items:center;gap:10px;padding:0 28px;color:white;font-weight:700;font-size:.88rem;letter-spacing:.03em;text-transform:uppercase}
+.marquee-item svg{width:16px;height:16px;fill:rgba(255,255,255,.7);flex-shrink:0}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* SECTION COMMON */
+section{padding:96px 8%}
+.section-tag{display:inline-flex;align-items:center;gap:8px;background:var(--warm);border:1px solid #FCD34D;color:#92400E;font-size:.78rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:5px 14px;border-radius:100px;margin-bottom:18px}
+.section-tag svg{width:13px;height:13px;fill:#F59E0B}
+.section-h2{font-family:'Varela Round',sans-serif;font-size:clamp(1.8rem,3vw,2.8rem);color:var(--brown-dark);line-height:1.2;margin-bottom:14px}
+.section-sub{font-size:1rem;color:var(--slate-mid);line-height:1.7;max-width:580px}
+
+/* SERVICES */
+#services{background:white}
+.services-head{text-align:center;margin-bottom:56px}
+.services-head .section-sub{margin:0 auto}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px}
+.svc-card{background:var(--cream);border:1.5px solid var(--border);border-radius:20px;padding:32px 28px;transition:all .25s;cursor:default;position:relative;overflow:hidden}
+.svc-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--orange);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.svc-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(249,115,22,.12);border-color:var(--orange-light)}
+.svc-card:hover::before{transform:scaleX(1)}
+.svc-icon{width:52px;height:52px;background:linear-gradient(135deg,var(--orange),var(--orange-light));border-radius:14px;display:flex;align-items:center;justify-content:center;margin-bottom:20px}
+.svc-icon svg{width:28px;height:28px;fill:white}
+.svc-name{font-family:'Varela Round',sans-serif;font-size:1.15rem;color:var(--brown-dark);margin-bottom:8px}
+.svc-desc{font-size:.88rem;color:var(--slate-mid);line-height:1.6;margin-bottom:16px}
+.svc-price{font-size:.82rem;font-weight:700;color:var(--orange);background:rgba(249,115,22,.08);padding:4px 12px;border-radius:100px;display:inline-block}
+
+/* ABOUT */
+#about{background:var(--cream)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
+.about-img-wrap{position:relative}
+.about-img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:24px;display:block}
+.about-img-placeholder{width:100%;aspect-ratio:4/5;background:linear-gradient(135deg,#FED7AA,#FEF3C7);border-radius:24px;display:flex;align-items:center;justify-content:center}
+.about-img-placeholder svg{width:80px;height:80px;fill:#FB923C;opacity:.4}
+.about-stat{position:absolute;bottom:-24px;right:-24px;background:var(--orange);color:white;border-radius:18px;padding:20px 24px;box-shadow:0 8px 32px rgba(249,115,22,.4)}
+.about-stat strong{display:block;font-family:'Varela Round',sans-serif;font-size:2rem;line-height:1}
+.about-stat span{font-size:.8rem;opacity:.9}
+.about-content{padding-left:16px}
+.about-features{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:32px}
+.about-feat{display:flex;align-items:flex-start;gap:12px}
+.about-feat-icon{width:36px;height:36px;background:var(--warm);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.about-feat-icon svg{width:18px;height:18px;fill:var(--orange)}
+.about-feat h4{font-size:.9rem;font-weight:700;color:var(--brown-dark);margin-bottom:3px}
+.about-feat p{font-size:.82rem;color:var(--slate-mid);line-height:1.5}
+
+/* REVIEWS */
+#reviews{background:white}
+.reviews-head{text-align:center;margin-bottom:56px}
+.reviews-head .section-sub{margin:0 auto}
+.reviews-rating{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:20px}
+.reviews-score{font-family:'Varela Round',sans-serif;font-size:3.5rem;color:var(--orange)}
+.reviews-stars{display:flex;flex-direction:column;gap:4px}
+.stars-row{display:flex;gap:4px}
+.stars-row svg{width:20px;height:20px;fill:#F59E0B}
+.reviews-count{color:var(--slate-mid);font-size:.9rem}
+.reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.review-card{background:var(--cream);border:1.5px solid var(--border);border-radius:20px;padding:28px;transition:transform .2s,box-shadow .2s}
+.review-card:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,.08)}
+.review-stars{display:flex;gap:3px;margin-bottom:14px}
+.review-stars svg{width:15px;height:15px;fill:#F59E0B}
+.review-text{font-size:.9rem;color:var(--slate-mid);line-height:1.7;margin-bottom:18px;font-style:italic}
+.review-author{display:flex;align-items:center;gap:10px}
+.review-avatar{width:36px;height:36px;background:linear-gradient(135deg,var(--orange),var(--orange-light));border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;color:white;font-size:.85rem}
+.review-name{font-weight:700;font-size:.88rem;color:var(--brown-dark)}
+.review-meta{font-size:.78rem;color:var(--slate-light)}
+
+/* BOOKING */
+#booking{background:linear-gradient(135deg,var(--brown-dark) 0%,#431407 100%);color:white;position:relative;overflow:hidden}
+#booking::before{content:'';position:absolute;top:-100px;right:-100px;width:400px;height:400px;background:var(--orange);border-radius:50%;opacity:.08}
+#booking::after{content:'';position:absolute;bottom:-80px;left:-80px;width:300px;height:300px;background:var(--orange-light);border-radius:50%;opacity:.06}
+.booking-wrap{position:relative;z-index:1;max-width:780px;margin:0 auto}
+.booking-wrap .section-tag{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2);color:rgba(255,255,255,.9)}
+.booking-wrap .section-h2{color:white}
+.booking-wrap .section-sub{color:rgba(255,255,255,.7);margin-bottom:40px}
+
+/* Steps bar */
+.steps-bar{display:flex;align-items:center;margin-bottom:40px;gap:0}
+.step-seg{flex:1;display:flex;align-items:center;gap:0}
+.step-dot{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.15);border:2px solid rgba(255,255,255,.3);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;color:rgba(255,255,255,.5);transition:all .3s;flex-shrink:0}
+.step-dot.active{background:var(--orange);border-color:var(--orange);color:white}
+.step-dot.done{background:rgba(249,115,22,.4);border-color:var(--orange);color:white}
+.step-line{flex:1;height:2px;background:rgba(255,255,255,.15);transition:background .3s}
+.step-line.done{background:var(--orange)}
+.step-label{font-size:.72rem;color:rgba(255,255,255,.5);margin-top:6px;white-space:nowrap}
+.steps-labels{display:flex;justify-content:space-between;margin-top:4px;margin-bottom:32px}
+.steps-labels span{font-size:.72rem;color:rgba(255,255,255,.5);flex:1;text-align:center}
+.steps-labels span:first-child{text-align:left}
+.steps-labels span:last-child{text-align:right}
+
+/* Booking panels */
+.bk-panel{display:none}
+.bk-panel.active{display:block}
+.bk-panel h3{font-family:'Varela Round',sans-serif;font-size:1.3rem;color:white;margin-bottom:24px}
+
+/* Step 1 — service */
+.svc-opts{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.svc-opt{background:rgba(255,255,255,.07);border:1.5px solid rgba(255,255,255,.15);border-radius:14px;padding:18px 20px;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:14px}
+.svc-opt:hover{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.3)}
+.svc-opt.selected{background:rgba(249,115,22,.2);border-color:var(--orange)}
+.svc-opt-icon{width:38px;height:38px;background:rgba(249,115,22,.2);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.svc-opt-icon svg{width:20px;height:20px;fill:var(--orange-light)}
+.svc-opt-name{font-weight:700;font-size:.9rem;color:white}
+.svc-opt-price{font-size:.8rem;color:rgba(255,255,255,.6);margin-top:2px}
+
+/* Step 2 — date/time */
+.cal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.cal-header h4{font-family:'Varela Round',sans-serif;font-size:1rem;color:white}
+.cal-nav{background:rgba(255,255,255,.1);border:none;color:white;width:32px;height:32px;border-radius:8px;cursor:pointer;font-size:1.1rem;transition:background .2s}
+.cal-nav:hover{background:rgba(255,255,255,.2)}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-bottom:24px}
+.cal-day-name{text-align:center;font-size:.72rem;font-weight:700;color:rgba(255,255,255,.4);padding:6px 0;text-transform:uppercase}
+.cal-cell{text-align:center;padding:8px 4px;border-radius:8px;font-size:.88rem;cursor:pointer;transition:all .2s;color:rgba(255,255,255,.7)}
+.cal-cell.avail:hover{background:rgba(249,115,22,.3);color:white}
+.cal-cell.selected{background:var(--orange);color:white;font-weight:700}
+.cal-cell.closed{color:rgba(255,255,255,.2);cursor:not-allowed;text-decoration:line-through}
+.cal-cell.empty{cursor:default}
+.cal-cell.today{border:1px solid rgba(255,255,255,.3)}
+.times-label{font-size:.85rem;font-weight:700;color:rgba(255,255,255,.7);margin-bottom:12px}
+.time-slots{display:flex;flex-wrap:wrap;gap:8px}
+.t-slot{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:8px 16px;font-size:.85rem;color:rgba(255,255,255,.8);cursor:pointer;transition:all .2s}
+.t-slot:hover{background:rgba(249,115,22,.25);border-color:var(--orange)}
+.t-slot.selected{background:var(--orange);border-color:var(--orange);color:white;font-weight:700}
+
+/* Step 3 — info */
+.bk-form{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.bk-field{display:flex;flex-direction:column;gap:6px}
+.bk-field.full{grid-column:1/-1}
+.bk-field label{font-size:.82rem;font-weight:700;color:rgba(255,255,255,.7);letter-spacing:.03em}
+.bk-field input,.bk-field select,.bk-field textarea{background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.2);border-radius:10px;padding:11px 14px;color:white;font-family:'Nunito Sans',sans-serif;font-size:.9rem;transition:border .2s;outline:none}
+.bk-field input::placeholder,.bk-field textarea::placeholder{color:rgba(255,255,255,.3)}
+.bk-field input:focus,.bk-field select:focus,.bk-field textarea:focus{border-color:var(--orange)}
+.bk-field select option{background:var(--brown-dark);color:white}
+.bk-field textarea{resize:vertical;min-height:80px}
+
+/* Step 4 — confirm */
+.confirm-card{background:rgba(255,255,255,.07);border:1.5px solid rgba(255,255,255,.15);border-radius:16px;padding:24px}
+.confirm-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.08)}
+.confirm-row:last-child{border-bottom:none}
+.confirm-label{font-size:.85rem;color:rgba(255,255,255,.55)}
+.confirm-val{font-size:.9rem;font-weight:700;color:white}
+.confirm-note{font-size:.8rem;color:rgba(255,255,255,.45);margin-top:16px;line-height:1.6;text-align:center}
+
+/* Booking nav */
+.bk-nav{display:flex;justify-content:space-between;align-items:center;margin-top:28px}
+.bk-back{background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.2);color:white;font-family:'Nunito Sans',sans-serif;font-weight:700;font-size:.9rem;padding:11px 24px;border-radius:100px;cursor:pointer;transition:all .2s}
+.bk-back:hover{background:rgba(255,255,255,.15)}
+.bk-next{background:var(--orange);border:none;color:white;font-family:'Nunito Sans',sans-serif;font-weight:700;font-size:.9rem;padding:11px 28px;border-radius:100px;cursor:pointer;transition:all .2s}
+.bk-next:hover{background:var(--orange-deep);transform:translateY(-1px)}
+.bk-next:disabled{opacity:.4;cursor:not-allowed;transform:none}
+
+/* LOCATION */
+#location{background:var(--cream)}
+.location-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+.loc-card{background:white;border:1.5px solid var(--border);border-radius:20px;overflow:hidden}
+.loc-map{width:100%;height:280px;background:linear-gradient(135deg,#FEF3C7,#FED7AA);display:flex;align-items:center;justify-content:center;position:relative}
+.loc-map svg{width:48px;height:48px;fill:var(--orange);opacity:.5}
+.loc-map-pin{position:absolute;width:48px;height:48px}
+.loc-info{padding:28px}
+.loc-info h3{font-family:'Varela Round',sans-serif;font-size:1.2rem;color:var(--brown-dark);margin-bottom:18px}
+.loc-detail{display:flex;align-items:flex-start;gap:12px;margin-bottom:16px}
+.loc-detail svg{width:18px;height:18px;fill:var(--orange);flex-shrink:0;margin-top:2px}
+.loc-detail p{font-size:.9rem;color:var(--slate-mid);line-height:1.5}
+.loc-detail a{color:var(--orange);text-decoration:none;font-weight:600}
+.hours-table{width:100%}
+.hours-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border);font-size:.88rem}
+.hours-row:last-child{border-bottom:none}
+.hours-row .day{font-weight:600;color:var(--slate)}
+.hours-row .time{color:var(--slate-mid)}
+.hours-row .time.closed{color:#EF4444;font-weight:600}
+.hours-row.today-row .day,.hours-row.today-row .time{color:var(--orange);font-weight:700}
+
+/* FOOTER */
+footer{background:var(--brown-dark);color:white;padding:60px 8% 36px}
+.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:48px;margin-bottom:48px}
+.footer-brand{font-family:'Varela Round',sans-serif;font-size:1.2rem;margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.footer-brand-icon{width:36px;height:36px;background:var(--orange);border-radius:10px;display:flex;align-items:center;justify-content:center}
+.footer-brand-icon svg{width:20px;height:20px;fill:white}
+.footer-desc{font-size:.88rem;color:rgba(255,255,255,.55);line-height:1.7;margin-bottom:20px}
+.footer-phone{display:inline-flex;align-items:center;gap:8px;background:var(--orange);color:white;font-weight:700;font-size:.9rem;padding:10px 20px;border-radius:100px;text-decoration:none;transition:background .2s}
+.footer-phone:hover{background:var(--orange-deep)}
+.footer-phone svg{width:16px;height:16px;fill:white}
+.footer-col h4{font-size:.82rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:16px}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.footer-col ul li{font-size:.88rem;color:rgba(255,255,255,.6)}
+.footer-col ul li a{color:rgba(255,255,255,.6);text-decoration:none;transition:color .2s}
+.footer-col ul li a:hover{color:var(--orange-light)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.08);padding-top:28px;display:flex;justify-content:space-between;align-items:center;font-size:.8rem;color:rgba(255,255,255,.3)}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  .hero{grid-template-columns:1fr}
+  .hero-right{height:420px}
+  .about-grid{grid-template-columns:1fr;gap:48px}
+  .about-img-wrap{max-width:500px}
+  .location-grid{grid-template-columns:1fr}
+  .reviews-grid{grid-template-columns:1fr 1fr}
+  .footer-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:768px){
+  section{padding:72px 5%}
+  .nav-links{display:none}
+  .services-grid{grid-template-columns:1fr}
+  .svc-opts{grid-template-columns:1fr}
+  .bk-form{grid-template-columns:1fr}
+  .reviews-grid{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr}
+  .hero-left{padding:60px 5%}
+}
+@media(prefers-reduced-motion:reduce){
+  .marquee-track{animation:none}
+  *{transition:none!important;animation:none!important}
+}
+</style>
+</head>
+<body>
+
+<div id="cur"></div>
+<div id="cur-ring"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <div class="nav-logo-icon">
+      <svg viewBox="0 0 24 24"><path d="M4.5 11a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm15 0a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM8 6a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm8 0a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM12 22c-4 0-7-2.686-7-6 0-2 1-3.5 2.5-4.5S10 10 12 10s3.5.5 4.5 1.5S19 14 19 16c0 3.314-3 6-7 6z"/></svg>
+    </div>
+    <div class="nav-brand">All Paws Pet Grooming<span>Clinton, TN</span></div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#booking">Book</a></li>
+    <li><a href="#location">Location</a></li>
+  </ul>
+  <button class="nav-cta" onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">Book Appointment</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-left">
+    <div class="hero-tag">
+      <svg viewBox="0 0 24 24"><path d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5z"/></svg>
+      Rated 4.0 Stars · 39 Reviews
+    </div>
+    <h1 class="hero-h1">Your Pet Deserves the<br><em>Best Grooming</em><br>in Clinton</h1>
+    <p class="hero-sub">Friendly, caring grooming services in the heart of Clinton, TN. We treat every dog like family — because every paw matters.</p>
+    <div class="hero-btns">
+      <a href="#booking" class="btn-primary" onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'});return false">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="white"><path d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5"/></svg>
+        Book an Appointment
+      </a>
+      <a href="tel:8654575217" class="btn-secondary">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M2.25 6.338c0 7.92 6.402 14.33 14.322 14.33h.003a14.257 14.257 0 0 0 4.083-.596.75.75 0 0 0 .427-.983l-1.5-3.75a.75.75 0 0 0-.881-.431l-3.75 1.5a.75.75 0 0 1-.84-.208 11.14 11.14 0 0 1-2.583-5.19.75.75 0 0 1 .34-.81l3-1.875a.75.75 0 0 0 .31-.91L13.5 3.338a.75.75 0 0 0-.972-.371A14.257 14.257 0 0 0 8.625 3.9 14.295 14.295 0 0 0 2.25 6.338z"/></svg>
+        Call Us
+      </a>
+    </div>
+    <div class="hero-trust">
+      <div class="trust-pill">
+        <svg viewBox="0 0 24 24"><path d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg>
+        Gentle Handling
+      </div>
+      <div class="trust-pill">
+        <svg viewBox="0 0 24 24"><path d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg>
+        All Breeds Welcome
+      </div>
+      <div class="trust-pill">
+        <svg viewBox="0 0 24 24"><path d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg>
+        Affordable Prices
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div style="width:100%;height:100%;background:linear-gradient(160deg,#FEE2B3 0%,#FDBA74 40%,#FB923C 100%);display:flex;align-items:center;justify-content:center;min-height:600px">
+      <svg viewBox="0 0 120 120" width="160" height="160" style="opacity:.25;fill:#7C2D12">
+        <path d="M20 55a12 12 0 1 0 0-24 12 12 0 0 0 0 24zm80 0a12 12 0 1 0 0-24 12 12 0 0 0 0 24zM35 30a12 12 0 1 0 0-24 12 12 0 0 0 0 24zm50 0a12 12 0 1 0 0-24 12 12 0 0 0 0 24zM60 110c-22 0-38-14-38-32 0-10 5-18 13-23s16-7 25-7 18 2 25 7 13 13 13 23c0 18-16 32-38 32z"/>
+      </svg>
+    </div>
+    <div class="hero-badge">
+      <div class="hero-badge-stars">
+        <svg viewBox="0 0 24 24"><path d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5z"/></svg>
+      </div>
+      <div class="hero-badge-text">
+        <strong>4.0 Stars</strong>
+        <span>39 Google Reviews</span>
+      </div>
+    </div>
+    <div class="hero-hours-badge">
+      <strong>Open Mon, Wed, Fri</strong>
+      <span>8:30 AM – 3:00 PM</span>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-strip">
+  <div class="marquee-track">
+    <div class="marquee-item"><svg viewBox="0 0 24 24"><path d="M4.5 11a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm15 0a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM8 6a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm8 0a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM12 22c-4 0-7-2.686-7-6 0-2 1-3.5 2.5-4.5S10 10 12 10s3.5.5 4.5 1.5S19 14 19 16c0 3.314-3 6-7 6z"/></svg>Full Groom Service</div>
+    <div class="marquee-item"><svg viewBox="0 0 24 24"><path d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5z"/></svg>39 Happy Customers</div>
+    <div class="marquee-item"><svg viewBox="0 0 24 24"><path d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0z"/></svg>Clinton, TN 37716</div>
+    <div class="marquee-item"><svg viewBox="0 0 24 24"><path d="M2.25 6.338c0 7.92 6.402 14.33 14.322 14.33h.003a14.257 14.257 0 0 0 4.083-.596.75.75 0 0 0 .427-.983l-1.5-3.75a.75.75 0 0 0-.881-.431l-3.75 1.5a.75.75 0 0 1-.84-.208 11.14 11.14 0 0 1-2.583-5.19.75.75 0 0 1 .34-.81l3-1.875a.75.75 0 0 0 .31-.91L13.5 3.338a.75.75 0 0 0-.972-.371A14.257 14.257 0 0 0 8.625 3.9 14.295 14.295 0 0 0 2.25 6.338z"/></svg>(865) 457-5217</div>
+    <div class="marquee-item"><svg viewBox="0 0 24 24"><path d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg>All Breeds Welcome</div>
+    <div class="marquee-item"><svg viewBox="0 0 24 24"><path d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"/></svg>Bath & Brush</div>
+    <div class="marquee-item"><svg viewBox="0 0 24 24"><path d="M4.5 11a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm15 0a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM8 6a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm8 0a2 2 0 1 0 0-4 2 2 0 0 0 0 24zM12 22c-4 0-7-2.686-7-6 0-2 1-3.5 2.5-4.5S10 10 12 10s3.5.5 4.5 1.5S19 14 19 16c0 3.314-3 6-7 6z"/></svg>Nail Trim</div>
+    <div class="marquee-item"><svg viewBox="0 0 24 24"><path d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg>Friendly Staff</div>
+    <!-- dupe for seamless loop -->
+    <div class="marquee-item"><svg viewBox="0 0 24 24"><path d="M4.5 11a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm15 0a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM8 6a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm8 0a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM12 22c-4 0-7-2.686-7-6 0-2 1-3.5 2.5-4.5S10 10 12 10s3.5.5 4.5 1.5S19 14 19 16c0 3.314-3 6-7 6z"/></svg>Full Groom Service</div>
+    <div class="marquee-item"><svg viewBox="0 0 24 24"><path d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5z"/></svg>39 Happy Customers</div>
+    <div class="marquee-item"><svg viewBox="0 0 24 24"><path d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0z"/></svg>Clinton, TN 37716</div>
+    <div class="marquee-item"><svg viewBox="0 0 24 24"><path d="M2.25 6.338c0 7.92 6.402 14.33 14.322 14.33h.003a14.257 14.257 0 0 0 4.083-.596.75.75 0 0 0 .427-.983l-1.5-3.75a.75.75 0 0 0-.881-.431l-3.75 1.5a.75.75 0 0 1-.84-.208 11.14 11.14 0 0 1-2.583-5.19.75.75 0 0 1 .34-.81l3-1.875a.75.75 0 0 0 .31-.91L13.5 3.338a.75.75 0 0 0-.972-.371A14.257 14.257 0 0 0 8.625 3.9 14.295 14.295 0 0 0 2.25 6.338z"/></svg>(865) 457-5217</div>
+    <div class="marquee-item"><svg viewBox="0 0 24 24"><path d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg>All Breeds Welcome</div>
+    <div class="marquee-item"><svg viewBox="0 0 24 24"><path d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"/></svg>Bath & Brush</div>
+    <div class="marquee-item"><svg viewBox="0 0 24 24"><path d="M4.5 11a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm15 0a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM8 6a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm8 0a2 2 0 1 0 0-4 2 2 0 0 0 0 24zM12 22c-4 0-7-2.686-7-6 0-2 1-3.5 2.5-4.5S10 10 12 10s3.5.5 4.5 1.5S19 14 19 16c0 3.314-3 6-7 6z"/></svg>Nail Trim</div>
+    <div class="marquee-item"><svg viewBox="0 0 24 24"><path d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg>Friendly Staff</div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="services-head">
+    <div class="section-tag"><svg viewBox="0 0 24 24"><path d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5z"/></svg>Our Services</div>
+    <h2 class="section-h2">Everything Your Pup Needs</h2>
+    <p class="section-sub">From a quick nail trim to a complete makeover — we've got your furry friend covered with gentle, professional care.</p>
+  </div>
+  <div class="services-grid">
+    <div class="svc-card">
+      <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9zm0 16c-3.86 0-7-3.14-7-7s3.14-7 7-7 7 3.14 7 7-3.14 7-7 7zm1-11h-2v3H8v2h3v3h2v-3h3v-2h-3z"/></svg></div>
+      <div class="svc-name">Full Groom</div>
+      <p class="svc-desc">Complete grooming package including bath, blow-dry, breed-specific haircut, nail trim, ear cleaning, and bandana.</p>
+      <span class="svc-price">Starting price varies by breed</span>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/></svg></div>
+      <div class="svc-name">Bath &amp; Brush</div>
+      <p class="svc-desc">Shampoo and conditioning bath, blow-dry, thorough brush-out, nail trim, and ear cleaning. No haircut.</p>
+      <span class="svc-price">Affordable pricing</span>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M7.5 3.75a.75.75 0 0 0-.75.75v.75H6a2.25 2.25 0 0 0-2.25 2.25v12A2.25 2.25 0 0 0 6 21.75h12A2.25 2.25 0 0 0 20.25 18V7.5A2.25 2.25 0 0 0 18 5.25h-.75V4.5a.75.75 0 0 0-1.5 0v.75H8.25V4.5a.75.75 0 0 0-.75-.75z"/></svg></div>
+      <div class="svc-name">Nail Trim</div>
+      <p class="svc-desc">Quick and stress-free nail trimming to keep your dog comfortable and your floors scratch-free.</p>
+      <span class="svc-price">Quick add-on service</span>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"/></svg></div>
+      <div class="svc-name">Puppy's First Groom</div>
+      <p class="svc-desc">A gentle introduction to grooming for puppies. We go at their pace to build a positive experience from the start.</p>
+      <span class="svc-price">Special puppy rate</span>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M9.53 16.122a3 3 0 0 0-5.78 1.128 2.25 2.25 0 0 1-2.4 2.245 4.5 4.5 0 0 0 8.4-2.245c0-.399-.078-.78-.22-1.128zm0 0a15.998 15.998 0 0 0 3.388-1.62m-5.043-.025a15.994 15.994 0 0 1 1.622-3.395m3.42 3.42a15.995 15.995 0 0 0 4.764-4.648l3.876-5.814a1.151 1.151 0 0 0-1.597-1.597L14.146 6.32a15.996 15.996 0 0 0-4.649 4.763m3.42 3.42a6.776 6.776 0 0 0-3.42-3.42"/></svg></div>
+      <div class="svc-name">Ear Cleaning</div>
+      <p class="svc-desc">Gentle ear cleaning to remove dirt and reduce the risk of infection. Included with full groom or as a standalone.</p>
+      <span class="svc-price">Add-on available</span>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09zM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456zM16.894 20.567 16.5 21.75l-.394-1.183a2.25 2.25 0 0 0-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 0 0 1.423-1.423L16.5 15.75l.394 1.183a2.25 2.25 0 0 0 1.423 1.423L19.5 18.75l-1.183.394a2.25 2.25 0 0 0-1.423 1.423z"/></svg></div>
+      <div class="svc-name">De-Shedding Treatment</div>
+      <p class="svc-desc">Special shampoo and conditioner treatment with thorough brushing to significantly reduce shedding at home.</p>
+      <span class="svc-price">Seasonal special</span>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-img-wrap">
+      <div class="about-img-placeholder">
+        <svg viewBox="0 0 24 24"><path d="M4.5 11a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm15 0a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM8 6a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm8 0a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM12 22c-4 0-7-2.686-7-6 0-2 1-3.5 2.5-4.5S10 10 12 10s3.5.5 4.5 1.5S19 14 19 16c0 3.314-3 6-7 6z"/></svg>
+      </div>
+      <div class="about-stat">
+        <strong>39+</strong>
+        <span>Happy Customers</span>
+      </div>
+    </div>
+    <div class="about-content">
+      <div class="section-tag"><svg viewBox="0 0 24 24"><path d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"/></svg>About Us</div>
+      <h2 class="section-h2">We Treat Every Dog Like Our Own</h2>
+      <p class="section-sub">Located right across from Burger King on S Charles G Seivers Blvd in Clinton, we're the friendly neighborhood groomer families trust. We believe great grooming starts with patience, kindness, and a genuine love for animals.</p>
+      <p class="section-sub" style="margin-top:16px">"She does a great job and can't beat the price." That's what our customers say — and we work hard every day to earn that trust.</p>
+      <div class="about-features">
+        <div class="about-feat">
+          <div class="about-feat-icon"><svg viewBox="0 0 24 24"><path d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg></div>
+          <div>
+            <h4>Gentle &amp; Patient</h4>
+            <p>We go at your dog's pace, especially for anxious pups</p>
+          </div>
+        </div>
+        <div class="about-feat">
+          <div class="about-feat-icon"><svg viewBox="0 0 24 24"><path d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg></div>
+          <div>
+            <h4>All Breeds</h4>
+            <p>Small dogs to large dogs, we handle them all</p>
+          </div>
+        </div>
+        <div class="about-feat">
+          <div class="about-feat-icon"><svg viewBox="0 0 24 24"><path d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg></div>
+          <div>
+            <h4>Fair Pricing</h4>
+            <p>Great quality grooming at prices you can afford</p>
+          </div>
+        </div>
+        <div class="about-feat">
+          <div class="about-feat-icon"><svg viewBox="0 0 24 24"><path d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg></div>
+          <div>
+            <h4>Friendly Staff</h4>
+            <p>Come in and feel the warm, welcoming atmosphere</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews">
+  <div class="reviews-head">
+    <div class="section-tag"><svg viewBox="0 0 24 24"><path d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5z"/></svg>Customer Reviews</div>
+    <h2 class="section-h2">What Our Customers Say</h2>
+    <div class="reviews-rating">
+      <div class="reviews-score">4.0</div>
+      <div class="reviews-stars">
+        <div class="stars-row">
+          <svg viewBox="0 0 24 24"><path d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5z"/></svg>
+        </div>
+        <div class="reviews-count">Based on 39 Google Reviews</div>
+      </div>
+    </div>
+  </div>
+  <div class="reviews-grid">
+    <div class="review-card">
+      <div class="review-stars">
+        <svg viewBox="0 0 24 24"><path d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5z"/></svg>
+      </div>
+      <p class="review-text">"Super friendly staff took great care of Bear Cub. She looks so cute. Very grateful they took such great care of her... And RED is her color!"</p>
+      <div class="review-author">
+        <div class="review-avatar">SH</div>
+        <div>
+          <div class="review-name">Sally Hammock</div>
+          <div class="review-meta">Local Guide · 3 years ago</div>
+        </div>
+      </div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">
+        <svg viewBox="0 0 24 24"><path d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5z"/></svg>
+      </div>
+      <p class="review-text">"We are so happy with your grooming. Even better you're a OU fan. Templin Family"</p>
+      <div class="review-author">
+        <div class="review-avatar">AH</div>
+        <div>
+          <div class="review-name">Angie Harber</div>
+          <div class="review-meta">Local Guide · a month ago</div>
+        </div>
+      </div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">
+        <svg viewBox="0 0 24 24"><path d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5z"/></svg>
+      </div>
+      <p class="review-text">"My puppy looked beautiful &amp; smelled wonderful. She does a great job and can't beat the price."</p>
+      <div class="review-author">
+        <div class="review-avatar">AP</div>
+        <div>
+          <div class="review-name">All Paws Customer</div>
+          <div class="review-meta">Google Review</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING -->
+<section id="booking">
+  <div class="booking-wrap">
+    <div class="section-tag"><svg viewBox="0 0 24 24"><path d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5"/></svg>Book an Appointment</div>
+    <h2 class="section-h2">Ready to Book Your Pup?</h2>
+    <p class="section-sub">Fill out the form below and your booking request will be sent directly to us via text message. We'll confirm your appointment as soon as possible!</p>
+
+    <!-- Steps Bar -->
+    <div class="steps-bar" id="stepsBar">
+      <div class="step-seg">
+        <div class="step-dot active" id="dot1">1</div>
+        <div class="step-line" id="line1"></div>
+      </div>
+      <div class="step-seg">
+        <div class="step-dot" id="dot2">2</div>
+        <div class="step-line" id="line2"></div>
+      </div>
+      <div class="step-seg">
+        <div class="step-dot" id="dot3">3</div>
+        <div class="step-line" id="line3"></div>
+      </div>
+      <div class="step-seg">
+        <div class="step-dot" id="dot4">4</div>
+      </div>
+    </div>
+    <div class="steps-labels">
+      <span>Service</span>
+      <span>Date &amp; Time</span>
+      <span>Your Info</span>
+      <span>Confirm</span>
+    </div>
+
+    <!-- STEP 1: Service -->
+    <div class="bk-panel active" id="bs1">
+      <h3>Choose a Service</h3>
+      <div class="svc-opts">
+        <div class="svc-opt" data-v="Full Groom" onclick="selectSvc(this)">
+          <div class="svc-opt-icon"><svg viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9zm1-11h-2v3H8v2h3v3h2v-3h3v-2h-3z"/></svg></div>
+          <div><div class="svc-opt-name">Full Groom</div><div class="svc-opt-price">Bath, cut, nails, ears</div></div>
+        </div>
+        <div class="svc-opt" data-v="Bath & Brush" onclick="selectSvc(this)">
+          <div class="svc-opt-icon"><svg viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/></svg></div>
+          <div><div class="svc-opt-name">Bath &amp; Brush</div><div class="svc-opt-price">No haircut</div></div>
+        </div>
+        <div class="svc-opt" data-v="Nail Trim" onclick="selectSvc(this)">
+          <div class="svc-opt-icon"><svg viewBox="0 0 24 24"><path d="M7.5 3.75a.75.75 0 0 0-.75.75v.75H6a2.25 2.25 0 0 0-2.25 2.25v12A2.25 2.25 0 0 0 6 21.75h12A2.25 2.25 0 0 0 20.25 18V7.5A2.25 2.25 0 0 0 18 5.25h-.75V4.5a.75.75 0 0 0-1.5 0v.75H8.25V4.5a.75.75 0 0 0-.75-.75z"/></svg></div>
+          <div><div class="svc-opt-name">Nail Trim</div><div class="svc-opt-price">Quick service</div></div>
+        </div>
+        <div class="svc-opt" data-v="Puppy's First Groom" onclick="selectSvc(this)">
+          <div class="svc-opt-icon"><svg viewBox="0 0 24 24"><path d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"/></svg></div>
+          <div><div class="svc-opt-name">Puppy's First Groom</div><div class="svc-opt-price">Gentle intro</div></div>
+        </div>
+        <div class="svc-opt" data-v="De-Shedding Treatment" onclick="selectSvc(this)">
+          <div class="svc-opt-icon"><svg viewBox="0 0 24 24"><path d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09z"/></svg></div>
+          <div><div class="svc-opt-name">De-Shedding</div><div class="svc-opt-price">Reduce shedding</div></div>
+        </div>
+        <div class="svc-opt" data-v="Other / Not Sure" onclick="selectSvc(this)">
+          <div class="svc-opt-icon"><svg viewBox="0 0 24 24"><path d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0zm-9 5.25h.008v.008H12v-.008z"/></svg></div>
+          <div><div class="svc-opt-name">Other / Not Sure</div><div class="svc-opt-price">We'll help you choose</div></div>
+        </div>
+      </div>
+      <div class="bk-nav">
+        <span></span>
+        <button class="bk-next" id="fwd1" onclick="goStep(2)" disabled>Next: Choose Date</button>
+      </div>
+    </div>
+
+    <!-- STEP 2: Date & Time -->
+    <div class="bk-panel" id="bs2">
+      <h3>Pick a Date &amp; Time</h3>
+      <div class="cal-header">
+        <button class="cal-nav" onclick="prevMonth()">&#8249;</button>
+        <h4 id="calTitle"></h4>
+        <button class="cal-nav" onclick="nextMonth()">&#8250;</button>
+      </div>
+      <div class="cal-grid" id="calGrid"></div>
+      <div class="times-label">Available Times</div>
+      <div class="time-slots" id="timeSlots"></div>
+      <div class="bk-nav">
+        <button class="bk-back" onclick="goStep(1)">Back</button>
+        <button class="bk-next" id="fwd2" onclick="goStep(3)" disabled>Next: Your Info</button>
+      </div>
+    </div>
+
+    <!-- STEP 3: Info -->
+    <div class="bk-panel" id="bs3">
+      <h3>Your Details</h3>
+      <div class="bk-form">
+        <div class="bk-field">
+          <label for="oName">Your Name</label>
+          <input type="text" id="oName" placeholder="Jane Smith">
+        </div>
+        <div class="bk-field">
+          <label for="oPhone">Your Phone Number</label>
+          <input type="tel" id="oPhone" placeholder="(865) 555-0100">
+        </div>
+        <div class="bk-field">
+          <label for="dName">Dog's Name</label>
+          <input type="text" id="dName" placeholder="Buddy">
+        </div>
+        <div class="bk-field">
+          <label for="dBreed">Breed</label>
+          <input type="text" id="dBreed" placeholder="Golden Retriever">
+        </div>
+        <div class="bk-field">
+          <label for="dSize">Dog's Size</label>
+          <select id="dSize">
+            <option value="">Select size…</option>
+            <option>Small (under 20 lbs)</option>
+            <option>Medium (20–50 lbs)</option>
+            <option>Large (50–80 lbs)</option>
+            <option>Extra Large (80+ lbs)</option>
+          </select>
+        </div>
+        <div class="bk-field">
+          <label for="dAge">Dog's Age</label>
+          <input type="text" id="dAge" placeholder="2 years">
+        </div>
+        <div class="bk-field full">
+          <label for="dNotes">Special Notes (optional)</label>
+          <textarea id="dNotes" placeholder="Anything we should know? e.g. anxious, matted, specific cut style…"></textarea>
+        </div>
+      </div>
+      <div class="bk-nav">
+        <button class="bk-back" onclick="goStep(2)">Back</button>
+        <button class="bk-next" id="fwd3" onclick="buildConfirm();goStep(4)">Review Booking</button>
+      </div>
+    </div>
+
+    <!-- STEP 4: Confirm -->
+    <div class="bk-panel" id="bs4">
+      <h3>Confirm Your Appointment</h3>
+      <div class="confirm-card" id="confirmCard"></div>
+      <p class="confirm-note">By tapping "Send Booking Request", a text message will be sent directly to All Paws Pet Grooming at (865) 457-5217. We'll reply to confirm your appointment. Message &amp; data rates may apply.</p>
+      <div class="bk-nav">
+        <button class="bk-back" onclick="goStep(3)">Back</button>
+        <button class="bk-next" onclick="sendSMS()">Send Booking Request</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATION -->
+<section id="location">
+  <div style="text-align:center;margin-bottom:56px">
+    <div class="section-tag"><svg viewBox="0 0 24 24"><path d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0z"/></svg>Find Us</div>
+    <h2 class="section-h2">Location &amp; Hours</h2>
+  </div>
+  <div class="location-grid">
+    <div class="loc-card">
+      <div class="loc-map">
+        <svg viewBox="0 0 24 24" width="60" height="60" style="fill:var(--orange);opacity:.3"><path d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0z"/></svg>
+      </div>
+      <div class="loc-info">
+        <h3>All Paws Pet Grooming</h3>
+        <div class="loc-detail">
+          <svg viewBox="0 0 24 24"><path d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0z"/></svg>
+          <p>286 S Charles G Seivers Blvd<br>Clinton, TN 37716<br><em style="font-size:.8rem;color:var(--orange)">(Across from Burger King)</em></p>
+        </div>
+        <div class="loc-detail">
+          <svg viewBox="0 0 24 24"><path d="M2.25 6.338c0 7.92 6.402 14.33 14.322 14.33h.003a14.257 14.257 0 0 0 4.083-.596.75.75 0 0 0 .427-.983l-1.5-3.75a.75.75 0 0 0-.881-.431l-3.75 1.5a.75.75 0 0 1-.84-.208 11.14 11.14 0 0 1-2.583-5.19.75.75 0 0 1 .34-.81l3-1.875a.75.75 0 0 0 .31-.91L13.5 3.338a.75.75 0 0 0-.972-.371A14.257 14.257 0 0 0 8.625 3.9 14.295 14.295 0 0 0 2.25 6.338z"/></svg>
+          <p><a href="tel:8654575217">(865) 457-5217</a></p>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="section-tag" style="margin-bottom:24px"><svg viewBox="0 0 24 24"><path d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg>Hours</div>
+      <div class="hours-table">
+        <div class="hours-row"><span class="day">Monday</span><span class="time">8:30 AM – 3:00 PM</span></div>
+        <div class="hours-row"><span class="day">Tuesday</span><span class="time closed">Closed</span></div>
+        <div class="hours-row"><span class="day">Wednesday</span><span class="time">8:30 AM – 3:00 PM</span></div>
+        <div class="hours-row"><span class="day">Thursday</span><span class="time closed">Closed</span></div>
+        <div class="hours-row"><span class="day">Friday</span><span class="time">8:30 AM – 3:00 PM</span></div>
+        <div class="hours-row"><span class="day">Saturday</span><span class="time closed">Closed</span></div>
+        <div class="hours-row"><span class="day">Sunday</span><span class="time closed">Closed</span></div>
+      </div>
+      <div style="margin-top:28px;background:var(--warm);border:1px solid #FCD34D;border-radius:14px;padding:18px 20px">
+        <p style="font-size:.88rem;color:#92400E;font-weight:600;margin-bottom:4px">Appointment Required</p>
+        <p style="font-size:.84rem;color:#A16207;line-height:1.6">We work by appointment only. Book online above or call us at <a href="tel:8654575217" style="color:var(--orange-deep);font-weight:700">(865) 457-5217</a>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand">
+        <div class="footer-brand-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="white"><path d="M4.5 11a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm15 0a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM8 6a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm8 0a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM12 22c-4 0-7-2.686-7-6 0-2 1-3.5 2.5-4.5S10 10 12 10s3.5.5 4.5 1.5S19 14 19 16c0 3.314-3 6-7 6z"/></svg></div>
+        All Paws Pet Grooming
+      </div>
+      <p class="footer-desc">Clinton's friendly neighborhood groomer. We treat every pup with patience, care, and love — because every paw matters.</p>
+      <a href="tel:8654575217" class="footer-phone">
+        <svg viewBox="0 0 24 24"><path d="M2.25 6.338c0 7.92 6.402 14.33 14.322 14.33h.003a14.257 14.257 0 0 0 4.083-.596.75.75 0 0 0 .427-.983l-1.5-3.75a.75.75 0 0 0-.881-.431l-3.75 1.5a.75.75 0 0 1-.84-.208 11.14 11.14 0 0 1-2.583-5.19.75.75 0 0 1 .34-.81l3-1.875a.75.75 0 0 0 .31-.91L13.5 3.338a.75.75 0 0 0-.972-.371A14.257 14.257 0 0 0 8.625 3.9 14.295 14.295 0 0 0 2.25 6.338z"/></svg>
+        (865) 457-5217
+      </a>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li>Full Groom</li>
+        <li>Bath &amp; Brush</li>
+        <li>Nail Trim</li>
+        <li>Puppy's First Groom</li>
+        <li>De-Shedding Treatment</li>
+        <li>Ear Cleaning</li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Visit Us</h4>
+      <ul>
+        <li>286 S Charles G Seivers Blvd</li>
+        <li>Clinton, TN 37716</li>
+        <li>Across from Burger King</li>
+        <li style="margin-top:8px"><a href="#booking">Book Appointment</a></li>
+        <li><a href="tel:8654575217">Call (865) 457-5217</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 All Paws Pet Grooming. Clinton, TN.</span>
+    <span>Open Mon · Wed · Fri · 8:30 AM – 3 PM</span>
+  </div>
+</footer>
+
+<script>
+// Cursor
+const cur = document.getElementById('cur');
+const ring = document.getElementById('cur-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px'});
+(function anim(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(anim)})();
+
+// Booking state
+let bkState={svc:'',date:'',time:'',step:1};
+let calYear,calMonth;
+
+function selectSvc(el){
+  document.querySelectorAll('.svc-opt').forEach(e=>e.classList.remove('selected'));
+  el.classList.add('selected');
+  bkState.svc=el.dataset.v;
+  document.getElementById('fwd1').disabled=false;
+}
+
+function goStep(n){
+  document.querySelectorAll('.bk-panel').forEach(p=>p.classList.remove('active'));
+  document.getElementById('bs'+n).classList.add('active');
+  bkState.step=n;
+  updateStepsBar(n);
+  if(n===2) renderCal();
+  document.getElementById('booking').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function updateStepsBar(n){
+  for(let i=1;i<=4;i++){
+    const dot=document.getElementById('dot'+i);
+    dot.classList.remove('active','done');
+    if(i<n) dot.classList.add('done');
+    if(i===n) dot.classList.add('active');
+  }
+  for(let i=1;i<=3;i++){
+    const line=document.getElementById('line'+i);
+    line.classList.remove('done');
+    if(i<n) line.classList.add('done');
+  }
+}
+
+// Calendar — open Mon(1), Wed(3), Fri(5)
+const OPEN_DAYS=[1,3,5];
+const TIMES=['8:30 AM','9:00 AM','9:30 AM','10:00 AM','10:30 AM','11:00 AM','11:30 AM','12:00 PM','12:30 PM','1:00 PM','1:30 PM','2:00 PM','2:30 PM'];
+
+function initCal(){
+  const now=new Date();
+  calYear=now.getFullYear();
+  calMonth=now.getMonth();
+}
+function prevMonth(){calMonth--;if(calMonth<0){calMonth=11;calYear--;}renderCal();}
+function nextMonth(){calMonth++;if(calMonth>11){calMonth=0;calYear++;}renderCal();}
+
+function renderCal(){
+  const days=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  const months=['January','February','March','April','May','June','July','August','September','October','November','December'];
+  document.getElementById('calTitle').textContent=months[calMonth]+' '+calYear;
+  const grid=document.getElementById('calGrid');
+  grid.innerHTML='';
+  days.forEach(d=>{
+    const el=document.createElement('div');
+    el.className='cal-day-name';el.textContent=d;grid.appendChild(el);
+  });
+  const first=new Date(calYear,calMonth,1).getDay();
+  const total=new Date(calYear,calMonth+1,0).getDate();
+  const today=new Date();
+  for(let i=0;i<first;i++){const el=document.createElement('div');el.className='cal-cell empty';grid.appendChild(el);}
+  for(let d=1;d<=total;d++){
+    const el=document.createElement('div');
+    const date=new Date(calYear,calMonth,d);
+    const dow=date.getDay();
+    const isPast=date<new Date(today.getFullYear(),today.getMonth(),today.getDate());
+    if(OPEN_DAYS.includes(dow)&&!isPast){
+      el.className='cal-cell avail';
+      el.onclick=()=>selectDate(d,el);
+      const ds=`${calYear}-${String(calMonth+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+      if(bkState.date===ds) el.classList.add('selected');
+    } else {
+      el.className='cal-cell closed';
+    }
+    el.textContent=d;
+    grid.appendChild(el);
+  }
+  renderTimes();
+}
+
+function selectDate(d,el){
+  document.querySelectorAll('.cal-cell').forEach(c=>c.classList.remove('selected'));
+  el.classList.add('selected');
+  bkState.date=`${calYear}-${String(calMonth+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+  bkState.time='';
+  document.getElementById('fwd2').disabled=true;
+  renderTimes();
+}
+
+function renderTimes(){
+  const ts=document.getElementById('timeSlots');
+  ts.innerHTML='';
+  if(!bkState.date){ts.innerHTML='<span style="color:rgba(255,255,255,.4);font-size:.85rem">Select a date above to see available times.</span>';return;}
+  TIMES.forEach(t=>{
+    const el=document.createElement('div');
+    el.className='t-slot'+(bkState.time===t?' selected':'');
+    el.textContent=t;
+    el.onclick=()=>{
+      document.querySelectorAll('.t-slot').forEach(s=>s.classList.remove('selected'));
+      el.classList.add('selected');
+      bkState.time=t;
+      document.getElementById('fwd2').disabled=false;
+    };
+    ts.appendChild(el);
+  });
+}
+
+function buildConfirm(){
+  const oName=document.getElementById('oName').value||'—';
+  const oPhone=document.getElementById('oPhone').value||'—';
+  const dName=document.getElementById('dName').value||'—';
+  const dBreed=document.getElementById('dBreed').value||'—';
+  const dSize=document.getElementById('dSize').value||'—';
+  const dNotes=document.getElementById('dNotes').value;
+  const dateObj=bkState.date?new Date(bkState.date+'T12:00:00'):null;
+  const dateStr=dateObj?dateObj.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'}):bkState.date;
+  const rows=[
+    ['Service',bkState.svc],
+    ['Date',dateStr],
+    ['Time',bkState.time],
+    ['Owner Name',oName],
+    ['Phone',oPhone],
+    ['Dog\'s Name',dName],
+    ['Breed',dBreed],
+    ['Size',dSize],
+  ];
+  if(dNotes) rows.push(['Notes',dNotes]);
+  document.getElementById('confirmCard').innerHTML=rows.map(r=>`<div class="confirm-row"><span class="confirm-label">${r[0]}</span><span class="confirm-val">${r[1]}</span></div>`).join('');
+  // store for SMS
+  bkState.oName=oName;bkState.oPhone=oPhone;bkState.dName=dName;bkState.dBreed=dBreed;bkState.dSize=dSize;bkState.dNotes=dNotes;bkState.dateStr=dateStr;
+}
+
+function sendSMS(){
+  const msg=`Hi All Paws! I'd like to book an appointment.%0AService: ${bkState.svc}%0ADate: ${bkState.dateStr}%0ATime: ${bkState.time}%0AOwner: ${bkState.oName}%0APhone: ${bkState.oPhone}%0ADog: ${bkState.dName} (${bkState.dBreed}, ${bkState.dSize})${bkState.dNotes?'%0ANotes: '+bkState.dNotes:''}`;
+  window.location.href=`sms:+18654575217?body=${msg}`;
+}
+
+initCal();
+</script>
+</body>
+</html>
