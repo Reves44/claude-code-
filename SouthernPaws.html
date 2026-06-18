@@ -1,0 +1,1841 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Southern Paws Grooming | Oliver Springs, TN</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Nunito+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --gold: #B5874A;
+      --gold-light: #D4A96A;
+      --gold-dark: #8B6235;
+      --brown: #3D2B1F;
+      --brown-light: #5C3D2E;
+      --cream: #FDF8F2;
+      --cream-dark: #F5ECD8;
+      --text-dark: #1C1009;
+      --text-mid: #4A3728;
+      --text-light: #7A6050;
+      --white: #FFFFFF;
+      --shadow-warm: 0 4px 24px rgba(61,43,31,0.18);
+      --shadow-card: 0 2px 16px rgba(61,43,31,0.12);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Nunito Sans', sans-serif;
+      background: var(--cream);
+      color: var(--text-dark);
+      overflow-x: hidden;
+    }
+
+    /* ---- NAVBAR ---- */
+    nav {
+      position: fixed;
+      top: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(100% - 48px);
+      max-width: 1200px;
+      background: rgba(253,248,242,0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(181,135,74,0.25);
+      border-radius: 16px;
+      padding: 14px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 50;
+      box-shadow: 0 4px 24px rgba(61,43,31,0.12);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .nav-logo svg { width: 36px; height: 36px; }
+
+    .nav-logo-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--brown);
+      line-height: 1.1;
+    }
+
+    .nav-logo-text span {
+      display: block;
+      font-size: 0.65rem;
+      font-family: 'Nunito Sans', sans-serif;
+      font-weight: 500;
+      color: var(--gold);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-mid);
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      transition: color 200ms;
+    }
+
+    .nav-links a:hover { color: var(--gold-dark); }
+
+    .nav-cta {
+      background: var(--gold);
+      color: var(--white) !important;
+      padding: 9px 22px;
+      border-radius: 10px;
+      font-weight: 700 !important;
+      transition: background 200ms, transform 150ms !important;
+    }
+
+    .nav-cta:hover {
+      background: var(--gold-dark) !important;
+      transform: translateY(-1px);
+    }
+
+    /* ---- HERO ---- */
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 640px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=1800&q=80');
+      background-size: cover;
+      background-position: center 30%;
+      animation: heroZoom 14s ease-in-out infinite alternate;
+    }
+
+    @keyframes heroZoom {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.06); }
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        160deg,
+        rgba(29,16,6,0.68) 0%,
+        rgba(61,43,31,0.52) 50%,
+        rgba(139,98,53,0.38) 100%
+      );
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 0 20px;
+      max-width: 780px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(181,135,74,0.22);
+      border: 1px solid rgba(181,135,74,0.5);
+      backdrop-filter: blur(8px);
+      border-radius: 50px;
+      padding: 7px 18px;
+      margin-bottom: 24px;
+      color: var(--gold-light);
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.6rem, 6vw, 4.2rem);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.15;
+      margin-bottom: 18px;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--gold-light);
+    }
+
+    .hero-subtitle {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.85);
+      line-height: 1.7;
+      margin-bottom: 36px;
+      font-weight: 400;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: var(--white);
+      border: none;
+      padding: 15px 34px;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 700;
+      font-family: 'Nunito Sans', sans-serif;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: background 200ms, transform 150ms, box-shadow 200ms;
+      box-shadow: 0 4px 20px rgba(181,135,74,0.45);
+    }
+
+    .btn-primary:hover {
+      background: var(--gold-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(181,135,74,0.5);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--white);
+      border: 2px solid rgba(255,255,255,0.55);
+      padding: 13px 30px;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 600;
+      font-family: 'Nunito Sans', sans-serif;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: border-color 200ms, background 200ms;
+    }
+
+    .btn-outline:hover {
+      background: rgba(255,255,255,0.12);
+      border-color: rgba(255,255,255,0.85);
+    }
+
+    .hero-stats {
+      position: absolute;
+      bottom: 36px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 32px;
+      z-index: 2;
+    }
+
+    .stat-pill {
+      background: rgba(253,248,242,0.14);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 50px;
+      padding: 10px 22px;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .stat-pill strong {
+      display: block;
+      color: var(--white);
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+
+    .stat-pill span {
+      color: rgba(255,255,255,0.72);
+      font-size: 0.75rem;
+      letter-spacing: 0.06em;
+    }
+
+    /* Floating paw prints */
+    .paw-float {
+      position: absolute;
+      opacity: 0.07;
+      animation: pawDrift 12s ease-in-out infinite;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    @keyframes pawDrift {
+      0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.07; }
+      50% { transform: translateY(-18px) rotate(8deg); opacity: 0.12; }
+    }
+
+    /* ---- SECTIONS ---- */
+    section { padding: 80px 24px; }
+
+    .container { max-width: 1100px; margin: 0 auto; }
+
+    .section-label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-weight: 700;
+      color: var(--brown);
+      line-height: 1.25;
+      margin-bottom: 14px;
+    }
+
+    .section-subtitle {
+      color: var(--text-light);
+      font-size: 1.05rem;
+      line-height: 1.7;
+      max-width: 560px;
+    }
+
+    /* ---- ABOUT ---- */
+    .about { background: var(--white); }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+
+    .about-photos {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 200px 200px;
+      gap: 12px;
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .about-photos img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 400ms ease;
+    }
+
+    .about-photos img:hover { transform: scale(1.05); }
+
+    .about-photos img:first-child {
+      grid-row: span 2;
+    }
+
+    .about-features {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      margin-top: 28px;
+    }
+
+    .about-feature {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .feature-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--cream-dark);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .feature-icon svg { width: 22px; height: 22px; color: var(--gold-dark); }
+
+    .feature-text strong {
+      display: block;
+      color: var(--brown);
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+
+    .feature-text p {
+      color: var(--text-light);
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    /* ---- SERVICES ---- */
+    .services { background: var(--cream); }
+
+    .services-header { text-align: center; margin-bottom: 48px; }
+    .services-header .section-subtitle { margin: 0 auto; }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .service-card {
+      background: var(--white);
+      border-radius: 18px;
+      padding: 28px 24px;
+      border: 1px solid rgba(181,135,74,0.15);
+      transition: box-shadow 250ms, transform 250ms, border-color 250ms;
+      cursor: default;
+    }
+
+    .service-card:hover {
+      box-shadow: var(--shadow-warm);
+      transform: translateY(-4px);
+      border-color: rgba(181,135,74,0.35);
+    }
+
+    .service-icon {
+      width: 54px;
+      height: 54px;
+      background: linear-gradient(135deg, var(--cream-dark), var(--cream));
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+      border: 1px solid rgba(181,135,74,0.2);
+    }
+
+    .service-icon svg { width: 26px; height: 26px; }
+
+    .service-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--brown);
+      margin-bottom: 8px;
+    }
+
+    .service-card p {
+      color: var(--text-light);
+      font-size: 0.88rem;
+      line-height: 1.6;
+    }
+
+    /* ---- GALLERY ---- */
+    .gallery { background: var(--white); }
+    .gallery-header { text-align: center; margin-bottom: 40px; }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: 200px 200px;
+      gap: 12px;
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .gallery-grid img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 400ms ease;
+      cursor: pointer;
+    }
+
+    .gallery-grid img:hover { transform: scale(1.04); }
+    .gallery-grid img:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+    .gallery-grid img:nth-child(2) { grid-column: span 2; }
+
+    /* ---- TESTIMONIALS ---- */
+    .testimonials { background: var(--cream); }
+    .testimonials-header { text-align: center; margin-bottom: 48px; }
+
+    .stars {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 12px;
+    }
+
+    .stars svg { width: 18px; height: 18px; fill: var(--gold); }
+
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .review-card {
+      background: var(--white);
+      border-radius: 18px;
+      padding: 26px;
+      border: 1px solid rgba(181,135,74,0.12);
+      box-shadow: var(--shadow-card);
+    }
+
+    .review-card p {
+      color: var(--text-mid);
+      font-size: 0.92rem;
+      line-height: 1.7;
+      font-style: italic;
+      margin-bottom: 16px;
+    }
+
+    .reviewer {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .reviewer-avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold), var(--brown-light));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      font-weight: 700;
+      font-size: 0.85rem;
+      flex-shrink: 0;
+    }
+
+    .reviewer strong {
+      display: block;
+      color: var(--brown);
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    .reviewer span {
+      font-size: 0.78rem;
+      color: var(--text-light);
+    }
+
+    /* ---- BOOKING ---- */
+    .booking { background: var(--white); }
+    .booking-header { text-align: center; margin-bottom: 48px; }
+
+    .booking-wrapper {
+      max-width: 680px;
+      margin: 0 auto;
+      background: var(--cream);
+      border-radius: 24px;
+      padding: 40px;
+      border: 1px solid rgba(181,135,74,0.2);
+      box-shadow: var(--shadow-warm);
+    }
+
+    /* Steps */
+    .step-nav {
+      display: flex;
+      align-items: center;
+      margin-bottom: 36px;
+      gap: 0;
+    }
+
+    .step-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex: 1;
+    }
+
+    .step-circle {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.85rem;
+      border: 2px solid var(--cream-dark);
+      background: var(--white);
+      color: var(--text-light);
+      flex-shrink: 0;
+      transition: all 250ms;
+    }
+
+    .step-item.active .step-circle {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: var(--white);
+    }
+
+    .step-item.done .step-circle {
+      background: var(--gold-dark);
+      border-color: var(--gold-dark);
+      color: var(--white);
+    }
+
+    .step-label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-light);
+      white-space: nowrap;
+    }
+
+    .step-item.active .step-label { color: var(--gold-dark); }
+    .step-item.done .step-label { color: var(--text-mid); }
+
+    .step-connector {
+      flex: 1;
+      height: 2px;
+      background: var(--cream-dark);
+      margin: 0 6px;
+      flex-shrink: 1;
+    }
+
+    .step-connector.done { background: var(--gold-dark); }
+
+    .booking-step { display: none; }
+    .booking-step.active { display: block; }
+
+    .booking-step h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--brown);
+      margin-bottom: 22px;
+    }
+
+    .service-options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .service-opt {
+      border: 2px solid var(--cream-dark);
+      border-radius: 14px;
+      padding: 16px;
+      cursor: pointer;
+      transition: border-color 200ms, background 200ms;
+      background: var(--white);
+    }
+
+    .service-opt:hover { border-color: var(--gold-light); }
+    .service-opt.selected { border-color: var(--gold); background: rgba(181,135,74,0.06); }
+
+    .service-opt strong {
+      display: block;
+      color: var(--brown);
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin-bottom: 3px;
+    }
+
+    .service-opt span {
+      font-size: 0.82rem;
+      color: var(--text-light);
+    }
+
+    /* Calendar */
+    .calendar-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+
+    .cal-btn {
+      background: none;
+      border: 1px solid var(--cream-dark);
+      border-radius: 8px;
+      width: 32px;
+      height: 32px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-mid);
+      transition: background 150ms;
+    }
+
+    .cal-btn:hover { background: var(--cream-dark); }
+
+    .cal-month {
+      font-weight: 700;
+      color: var(--brown);
+      font-size: 0.95rem;
+    }
+
+    .calendar-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 4px;
+      margin-bottom: 22px;
+    }
+
+    .cal-header {
+      text-align: center;
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--text-light);
+      letter-spacing: 0.05em;
+      padding: 4px 0;
+    }
+
+    .cal-day {
+      aspect-ratio: 1;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--text-mid);
+      transition: all 150ms;
+    }
+
+    .cal-day.available {
+      cursor: pointer;
+      background: var(--white);
+      border: 1px solid rgba(181,135,74,0.2);
+      color: var(--brown);
+      font-weight: 600;
+    }
+
+    .cal-day.available:hover { background: rgba(181,135,74,0.15); border-color: var(--gold); }
+    .cal-day.selected { background: var(--gold); color: var(--white); border-color: var(--gold); }
+    .cal-day.disabled { color: rgba(122,96,80,0.35); cursor: not-allowed; }
+    .cal-day.empty { background: none; }
+
+    .time-slots {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+
+    .time-slot {
+      border: 1px solid rgba(181,135,74,0.25);
+      border-radius: 10px;
+      padding: 10px 8px;
+      text-align: center;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-mid);
+      background: var(--white);
+      transition: all 150ms;
+    }
+
+    .time-slot:hover { border-color: var(--gold); color: var(--gold-dark); }
+    .time-slot.selected { background: var(--gold); color: var(--white); border-color: var(--gold); }
+
+    /* Form fields */
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+
+    .form-group label {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--text-mid);
+      letter-spacing: 0.03em;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      border: 1.5px solid rgba(181,135,74,0.3);
+      border-radius: 10px;
+      padding: 12px 14px;
+      font-family: 'Nunito Sans', sans-serif;
+      font-size: 0.9rem;
+      color: var(--text-dark);
+      background: var(--white);
+      outline: none;
+      transition: border-color 200ms, box-shadow 200ms;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(181,135,74,0.15);
+    }
+
+    .form-group textarea { resize: vertical; min-height: 80px; }
+
+    /* Confirm step */
+    .confirm-summary {
+      background: var(--white);
+      border-radius: 14px;
+      padding: 22px;
+      margin-bottom: 22px;
+      border: 1px solid rgba(181,135,74,0.2);
+    }
+
+    .confirm-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(181,135,74,0.1);
+      font-size: 0.88rem;
+    }
+
+    .confirm-row:last-child { border-bottom: none; }
+    .confirm-row span:first-child { color: var(--text-light); font-weight: 600; }
+    .confirm-row span:last-child { color: var(--brown); font-weight: 700; text-align: right; }
+
+    .confirm-note {
+      background: rgba(181,135,74,0.1);
+      border: 1px solid rgba(181,135,74,0.25);
+      border-radius: 10px;
+      padding: 14px;
+      font-size: 0.84rem;
+      color: var(--text-mid);
+      line-height: 1.6;
+      margin-bottom: 22px;
+    }
+
+    .booking-nav {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .btn-step-back {
+      background: none;
+      border: 2px solid var(--cream-dark);
+      border-radius: 12px;
+      padding: 12px 24px;
+      font-family: 'Nunito Sans', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--text-mid);
+      cursor: pointer;
+      transition: border-color 200ms;
+    }
+
+    .btn-step-back:hover { border-color: var(--gold-light); }
+
+    .btn-step-next {
+      flex: 1;
+      background: var(--gold);
+      border: none;
+      border-radius: 12px;
+      padding: 14px 28px;
+      font-family: 'Nunito Sans', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--white);
+      cursor: pointer;
+      transition: background 200ms, transform 150ms;
+    }
+
+    .btn-step-next:hover { background: var(--gold-dark); transform: translateY(-1px); }
+    .btn-step-next:disabled { opacity: 0.55; cursor: not-allowed; transform: none; }
+
+    /* Success state */
+    .booking-success {
+      display: none;
+      text-align: center;
+      padding: 20px 0;
+    }
+
+    .success-icon {
+      width: 70px;
+      height: 70px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+    }
+
+    .success-icon svg { width: 36px; height: 36px; color: white; }
+
+    .booking-success h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      color: var(--brown);
+      margin-bottom: 10px;
+    }
+
+    .booking-success p {
+      color: var(--text-light);
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    /* ---- LOCATION ---- */
+    .location { background: var(--cream); }
+
+    .location-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    .location-info { display: flex; flex-direction: column; gap: 22px; }
+
+    .info-block {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+
+    .info-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--white);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      border: 1px solid rgba(181,135,74,0.2);
+    }
+
+    .info-icon svg { width: 20px; height: 20px; color: var(--gold-dark); }
+
+    .info-block strong {
+      display: block;
+      color: var(--brown);
+      font-weight: 700;
+      margin-bottom: 3px;
+    }
+
+    .info-block p {
+      color: var(--text-light);
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    .hours-table { width: 100%; }
+
+    .hours-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 5px 0;
+      border-bottom: 1px solid rgba(181,135,74,0.1);
+      font-size: 0.88rem;
+    }
+
+    .hours-row:last-child { border-bottom: none; }
+    .hours-row span:first-child { color: var(--text-mid); font-weight: 600; }
+    .hours-row span:last-child { color: var(--text-light); }
+    .hours-row.closed span:last-child { color: #C0392B; }
+
+    .map-container {
+      border-radius: 18px;
+      overflow: hidden;
+      height: 350px;
+      border: 1px solid rgba(181,135,74,0.2);
+    }
+
+    .map-container iframe { width: 100%; height: 100%; border: none; }
+
+    /* ---- FOOTER ---- */
+    footer {
+      background: var(--brown);
+      color: rgba(255,255,255,0.7);
+      padding: 48px 24px 28px;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-brand p {
+      font-size: 0.88rem;
+      line-height: 1.7;
+      margin-top: 12px;
+      max-width: 300px;
+    }
+
+    .footer-logo-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--white);
+    }
+
+    .footer-logo-text span {
+      display: block;
+      font-family: 'Nunito Sans', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      margin-top: 2px;
+    }
+
+    footer h4 {
+      color: var(--white);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+
+    .footer-links a {
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      font-size: 0.88rem;
+      transition: color 200ms;
+    }
+
+    .footer-links a:hover { color: var(--gold-light); }
+
+    .footer-bottom {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.8rem;
+    }
+
+    /* ---- RESPONSIVE ---- */
+    @media (max-width: 900px) {
+      .about-grid, .location-grid { grid-template-columns: 1fr; }
+      .services-grid { grid-template-columns: 1fr 1fr; }
+      .reviews-grid { grid-template-columns: 1fr; }
+      .footer-inner { grid-template-columns: 1fr 1fr; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: 180px 180px 180px; }
+      .gallery-grid img:nth-child(1) { grid-column: span 1; grid-row: span 1; }
+      .gallery-grid img:nth-child(2) { grid-column: span 1; }
+    }
+
+    @media (max-width: 640px) {
+      nav { top: 10px; width: calc(100% - 24px); padding: 12px 16px; }
+      .nav-links { display: none; }
+      .services-grid { grid-template-columns: 1fr; }
+      .service-options { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .hero-stats { gap: 12px; }
+      .booking-wrapper { padding: 24px 18px; }
+      .footer-inner { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+      .time-slots { grid-template-columns: repeat(2, 1fr); }
+      .about-photos { grid-template-rows: 160px 160px; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition-duration: 0.01ms !important; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <a class="nav-logo" href="#home" aria-label="Southern Paws Home">
+    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="16" cy="14" rx="5" ry="7" fill="#B5874A"/>
+      <ellipse cx="32" cy="14" rx="5" ry="7" fill="#B5874A"/>
+      <ellipse cx="8" cy="28" rx="4" ry="5.5" fill="#B5874A"/>
+      <ellipse cx="40" cy="28" rx="4" ry="5.5" fill="#B5874A"/>
+      <ellipse cx="24" cy="33" rx="11" ry="10" fill="#B5874A"/>
+    </svg>
+    <div class="nav-logo-text">
+      Southern Paws
+      <span>Professional Grooming</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#booking">Book Now</a></li>
+    <li><a href="#location">Location</a></li>
+    <li><a href="#booking" class="nav-cta">Book Appointment</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+
+  <!-- Floating paws -->
+  <svg class="paw-float" style="top:15%;left:8%;width:90px;animation-delay:0s" viewBox="0 0 48 48" fill="white"><ellipse cx="16" cy="14" rx="5" ry="7"/><ellipse cx="32" cy="14" rx="5" ry="7"/><ellipse cx="8" cy="28" rx="4" ry="5.5"/><ellipse cx="40" cy="28" rx="4" ry="5.5"/><ellipse cx="24" cy="33" rx="11" ry="10"/></svg>
+  <svg class="paw-float" style="top:65%;right:6%;width:60px;animation-delay:4s" viewBox="0 0 48 48" fill="white"><ellipse cx="16" cy="14" rx="5" ry="7"/><ellipse cx="32" cy="14" rx="5" ry="7"/><ellipse cx="8" cy="28" rx="4" ry="5.5"/><ellipse cx="40" cy="28" rx="4" ry="5.5"/><ellipse cx="24" cy="33" rx="11" ry="10"/></svg>
+  <svg class="paw-float" style="top:35%;right:12%;width:50px;animation-delay:8s" viewBox="0 0 48 48" fill="white"><ellipse cx="16" cy="14" rx="5" ry="7"/><ellipse cx="32" cy="14" rx="5" ry="7"/><ellipse cx="8" cy="28" rx="4" ry="5.5"/><ellipse cx="40" cy="28" rx="4" ry="5.5"/><ellipse cx="24" cy="33" rx="11" ry="10"/></svg>
+
+  <div class="hero-content">
+    <div class="hero-badge">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      Oliver Springs, Tennessee
+    </div>
+    <h1 class="hero-title">
+      Where Every Pup Gets the<br/><em>Royal Treatment</em>
+    </h1>
+    <p class="hero-subtitle">
+      Premium grooming with Southern warmth. Your dog deserves to look and feel their very best — and we treat every pet like family.
+    </p>
+    <div class="hero-actions">
+      <a href="#booking" class="btn-primary">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Book an Appointment
+      </a>
+      <a href="tel:8656176950" class="btn-outline">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11.5a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .84h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+        (865) 617-6950
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-stats">
+    <div class="stat-pill">
+      <strong>4.3★</strong>
+      <span>Rated</span>
+    </div>
+    <div class="stat-pill">
+      <strong>Mon–Sat</strong>
+      <span>8:30AM–5PM</span>
+    </div>
+    <div class="stat-pill">
+      <strong>Oliver Springs</strong>
+      <span>Tennessee</span>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-photos">
+        <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=600&q=80" alt="Happy dogs at Southern Paws grooming" loading="lazy" />
+        <img src="https://images.unsplash.com/photo-1601979031925-424e53b6caaa?w=400&q=80" alt="Dog grooming session" loading="lazy" />
+        <img src="https://images.unsplash.com/photo-1477884213360-7e9d7dcc1e48?w=400&q=80" alt="Clean and happy dog after grooming" loading="lazy" />
+      </div>
+      <div>
+        <p class="section-label">About Us</p>
+        <h2 class="section-title">Southern Hospitality for Your Four-Legged Family</h2>
+        <p class="section-subtitle">
+          At Southern Paws, we bring old-fashioned care and attention to every groom. Located right here in Oliver Springs, we know your pets by name — and we treat them with the love they deserve.
+        </p>
+        <div class="about-features">
+          <div class="about-feature">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+            </div>
+            <div class="feature-text">
+              <strong>Stress-Free Experience</strong>
+              <p>We take our time with every pet, ensuring a calm, comfortable grooming session they'll actually enjoy.</p>
+            </div>
+          </div>
+          <div class="about-feature">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div class="feature-text">
+              <strong>Safe & Professional</strong>
+              <p>All tools sanitized between every appointment. Your pet's safety is our top priority, always.</p>
+            </div>
+          </div>
+          <div class="about-feature">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div class="feature-text">
+              <strong>Always On Time</strong>
+              <p>We respect your schedule. Book online and get a text confirmation — no waiting, no surprises.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="container">
+    <div class="services-header">
+      <p class="section-label">What We Offer</p>
+      <h2 class="section-title">Full-Service Grooming</h2>
+      <p class="section-subtitle">From a quick tidy-up to a head-to-tail spa day — we have a service for every pup.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#B5874A" stroke-width="2"><path d="M7 16.3c2.2 0 4-1.83 4-4.05 0-1.16-.57-2.26-1.71-3.19S7.29 7.5 7 5.3c-.29 2.2-1.64 3.47-2.79 4.76C3.07 11.1 3 12.06 3 12.25 3 14.47 4.8 16.3 7 16.3z"/><path d="M12.56 6.6A10.97 10.97 0 0014 3.02c.5 2.5 2 4.9 4 6.5s3 3.5 3 5.5a6.98 6.98 0 01-11.91 4.97"/></svg>
+        </div>
+        <h3>Full Groom</h3>
+        <p>Complete bath, blow-dry, haircut, nail trim, ear cleaning — the full Southern Paws experience.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#B5874A" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </div>
+        <h3>Bath & Brush</h3>
+        <p>Deep cleansing shampoo, conditioning rinse, professional blow-dry, and thorough brush-out.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#B5874A" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <h3>Puppy's First Groom</h3>
+        <p>A gentle introduction to grooming for puppies. We make their first visit fun and stress-free.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#B5874A" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        </div>
+        <h3>Nail Trim & Grind</h3>
+        <p>Precision nail trimming and grinding for smooth, safe paws. Quick add-on or standalone service.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#B5874A" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+        </div>
+        <h3>De-Shedding Treatment</h3>
+        <p>Specialized treatment to dramatically reduce shedding. Perfect for heavy-coat breeds year-round.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#B5874A" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <h3>Ear Cleaning & Plucking</h3>
+        <p>Gentle ear cleaning to prevent infections. Plucking available for breeds that require it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery" id="gallery">
+  <div class="container">
+    <div class="gallery-header">
+      <p class="section-label">Our Work</p>
+      <h2 class="section-title">Happy Pups, Happy Hearts</h2>
+    </div>
+    <div class="gallery-grid">
+      <img src="https://images.unsplash.com/photo-1516132006923-6cf348e5dee2?w=700&q=80" alt="Groomed golden retriever" loading="lazy" />
+      <img src="https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?w=500&q=80" alt="Happy poodle after grooming" loading="lazy" />
+      <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80" alt="Clean terrier mix" loading="lazy" />
+      <img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=400&q=80" alt="Labrador being groomed" loading="lazy" />
+      <img src="https://images.unsplash.com/photo-1529429617124-95b109e86bb8?w=400&q=80" alt="Fluffy dog after bath" loading="lazy" />
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="reviews">
+  <div class="container">
+    <div class="testimonials-header">
+      <p class="section-label">Reviews</p>
+      <h2 class="section-title">What Our Customers Say</h2>
+      <p class="section-subtitle" style="margin:0 auto">Rated 4.3 stars by our Oliver Springs neighbors.</p>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p>"My golden retriever Biscuit looks absolutely amazing after every visit. The team at Southern Paws truly cares about the animals — highly recommend!"</p>
+        <div class="reviewer">
+          <div class="reviewer-avatar">JM</div>
+          <div>
+            <strong>Jennifer M.</strong>
+            <span>Oliver Springs, TN</span>
+          </div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" style="opacity:0.3"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p>"Took my anxious rescue pup here and they were so patient and gentle with her. She came out looking beautiful and calm. That means everything to me."</p>
+        <div class="reviewer">
+          <div class="reviewer-avatar">TR</div>
+          <div>
+            <strong>Tommy R.</strong>
+            <span>Oliver Springs, TN</span>
+          </div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p>"Best groomer in the area, period. My doodle always comes out looking like a show dog. Love that they're local to Oliver Springs — easy to get to!"</p>
+        <div class="reviewer">
+          <div class="reviewer-avatar">SH</div>
+          <div>
+            <strong>Sarah H.</strong>
+            <span>Oliver Springs, TN</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING -->
+<section class="booking" id="booking">
+  <div class="container">
+    <div class="booking-header">
+      <p class="section-label">Appointments</p>
+      <h2 class="section-title">Book Your Pup's Appointment</h2>
+      <p class="section-subtitle" style="margin:0 auto">Fill out the form below and we'll send a text confirmation to your phone. Easy as that.</p>
+    </div>
+
+    <div class="booking-wrapper">
+      <!-- Step indicator -->
+      <div class="step-nav" id="stepNav">
+        <div class="step-item active" data-step="1">
+          <div class="step-circle">1</div>
+          <span class="step-label">Service</span>
+        </div>
+        <div class="step-connector" id="conn1"></div>
+        <div class="step-item" data-step="2">
+          <div class="step-circle">2</div>
+          <span class="step-label">Date & Time</span>
+        </div>
+        <div class="step-connector" id="conn2"></div>
+        <div class="step-item" data-step="3">
+          <div class="step-circle">3</div>
+          <span class="step-label">Your Info</span>
+        </div>
+        <div class="step-connector" id="conn3"></div>
+        <div class="step-item" data-step="4">
+          <div class="step-circle">4</div>
+          <span class="step-label">Confirm</span>
+        </div>
+      </div>
+
+      <!-- Step 1: Service -->
+      <div class="booking-step active" id="step1">
+        <h3>Choose a Service</h3>
+        <div class="service-options">
+          <div class="service-opt" data-value="Full Groom" onclick="selectService(this)">
+            <strong>Full Groom</strong>
+            <span>Bath, cut, nails, ears</span>
+          </div>
+          <div class="service-opt" data-value="Bath & Brush" onclick="selectService(this)">
+            <strong>Bath & Brush</strong>
+            <span>Deep clean + blow-dry</span>
+          </div>
+          <div class="service-opt" data-value="Puppy's First Groom" onclick="selectService(this)">
+            <strong>Puppy's First Groom</strong>
+            <span>Gentle intro session</span>
+          </div>
+          <div class="service-opt" data-value="Nail Trim & Grind" onclick="selectService(this)">
+            <strong>Nail Trim & Grind</strong>
+            <span>Quick & precise</span>
+          </div>
+          <div class="service-opt" data-value="De-Shedding Treatment" onclick="selectService(this)">
+            <strong>De-Shedding Treatment</strong>
+            <span>Reduces shedding</span>
+          </div>
+          <div class="service-opt" data-value="Ear Cleaning" onclick="selectService(this)">
+            <strong>Ear Cleaning</strong>
+            <span>Gentle & safe</span>
+          </div>
+        </div>
+        <div class="booking-nav">
+          <div></div>
+          <button class="btn-step-next" id="next1" onclick="goStep(2)" disabled>Next: Choose a Date</button>
+        </div>
+      </div>
+
+      <!-- Step 2: Date & Time -->
+      <div class="booking-step" id="step2">
+        <h3>Pick a Date & Time</h3>
+        <p style="font-size:0.83rem;color:var(--text-light);margin-bottom:16px;">Open Monday–Saturday, 8:30AM–5PM. Sunday we're closed.</p>
+        <div class="calendar-nav">
+          <button class="cal-btn" onclick="prevMonth()" aria-label="Previous month">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <span class="cal-month" id="calMonth"></span>
+          <button class="cal-btn" onclick="nextMonth()" aria-label="Next month">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        </div>
+        <div class="calendar-grid" id="calGrid"></div>
+
+        <div id="timeSection" style="display:none;">
+          <p style="font-size:0.85rem;font-weight:700;color:var(--text-mid);margin-bottom:10px;">Select a Time</p>
+          <div class="time-slots" id="timeSlots"></div>
+        </div>
+
+        <div class="booking-nav">
+          <button class="btn-step-back" onclick="goStep(1)">Back</button>
+          <button class="btn-step-next" id="next2" onclick="goStep(3)" disabled>Next: Your Info</button>
+        </div>
+      </div>
+
+      <!-- Step 3: Owner Info -->
+      <div class="booking-step" id="step3">
+        <h3>Your Information</h3>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="ownerName">Your Name *</label>
+            <input type="text" id="ownerName" placeholder="Jane Smith" oninput="validateStep3()" />
+          </div>
+          <div class="form-group">
+            <label for="ownerPhone">Phone Number *</label>
+            <input type="tel" id="ownerPhone" placeholder="(865) 555-0000" oninput="formatPhone(this); validateStep3()" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="dogName">Dog's Name *</label>
+            <input type="text" id="dogName" placeholder="Biscuit" oninput="validateStep3()" />
+          </div>
+          <div class="form-group">
+            <label for="dogBreed">Breed</label>
+            <input type="text" id="dogBreed" placeholder="Golden Retriever" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="dogSize">Dog Size</label>
+            <select id="dogSize">
+              <option value="">Select size…</option>
+              <option>Small (under 20 lbs)</option>
+              <option>Medium (20–50 lbs)</option>
+              <option>Large (50–80 lbs)</option>
+              <option>Extra Large (80+ lbs)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="ownerEmail">Email (optional)</label>
+            <input type="email" id="ownerEmail" placeholder="jane@email.com" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="notes">Special Notes or Instructions</label>
+          <textarea id="notes" placeholder="Allergies, behavioral notes, anything we should know…"></textarea>
+        </div>
+        <div class="booking-nav">
+          <button class="btn-step-back" onclick="goStep(2)">Back</button>
+          <button class="btn-step-next" id="next3" onclick="goStep(4)" disabled>Review Booking</button>
+        </div>
+      </div>
+
+      <!-- Step 4: Confirm -->
+      <div class="booking-step" id="step4">
+        <h3>Review & Confirm</h3>
+        <div class="confirm-summary" id="confirmSummary"></div>
+        <div class="confirm-note">
+          <strong style="color:var(--brown);">Text Confirmation:</strong> Once you submit, we'll send a confirmation text to <strong>(865) 617-6950</strong> with your appointment details. We'll call or text you if we need to make any changes.
+        </div>
+        <div class="booking-nav">
+          <button class="btn-step-back" onclick="goStep(3)">Back</button>
+          <button class="btn-step-next" onclick="submitBooking()">Confirm Appointment</button>
+        </div>
+      </div>
+
+      <!-- Success -->
+      <div class="booking-success" id="bookingSuccess">
+        <div class="success-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <h3>You're All Set!</h3>
+        <p>Your appointment request has been sent. We'll text you a confirmation shortly at the number you provided. See you soon — we can't wait to pamper your pup!</p>
+        <br/>
+        <a href="tel:8656176950" class="btn-primary" style="display:inline-flex;margin:0 auto;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11.5a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .84h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+          Call (865) 617-6950
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATION -->
+<section class="location" id="location">
+  <div class="container">
+    <div class="location-grid">
+      <div class="location-info">
+        <div>
+          <p class="section-label">Find Us</p>
+          <h2 class="section-title">Visit Southern Paws</h2>
+        </div>
+        <div class="info-block">
+          <div class="info-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div>
+            <strong>Address</strong>
+            <p>339 E Tri County Blvd<br/>Oliver Springs, TN 37840</p>
+          </div>
+        </div>
+        <div class="info-block">
+          <div class="info-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11.5a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .84h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+          </div>
+          <div>
+            <strong>Phone</strong>
+            <p><a href="tel:8656176950" style="color:var(--gold-dark);text-decoration:none;font-weight:600;">(865) 617-6950</a></p>
+          </div>
+        </div>
+        <div class="info-block">
+          <div class="info-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div>
+            <strong>Hours</strong>
+            <div class="hours-table">
+              <div class="hours-row"><span>Monday</span><span>8:30AM – 5:00PM</span></div>
+              <div class="hours-row"><span>Tuesday</span><span>8:30AM – 5:00PM</span></div>
+              <div class="hours-row"><span>Wednesday</span><span>8:30AM – 5:00PM</span></div>
+              <div class="hours-row"><span>Thursday</span><span>8:30AM – 5:00PM</span></div>
+              <div class="hours-row"><span>Friday</span><span>8:30AM – 5:00PM</span></div>
+              <div class="hours-row"><span>Saturday</span><span>8:30AM – 5:00PM</span></div>
+              <div class="hours-row closed"><span>Sunday</span><span>Closed</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="map-container">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3194.0!2d-84.3303!3d36.0452!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x885c6e0c9b3b5555%3A0x0!2s339+E+Tri+County+Blvd%2C+Oliver+Springs%2C+TN+37840!5e0!3m2!1sen!2sus!4v1700000000000"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Southern Paws location map"
+        ></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo-text">
+        Southern Paws
+        <span>Professional Grooming</span>
+      </div>
+      <p>Premium pet grooming with Southern warmth and charm. Proudly serving Oliver Springs and the surrounding communities of East Tennessee.</p>
+    </div>
+    <div>
+      <h4>Quick Links</h4>
+      <ul class="footer-links">
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#booking">Book Now</a></li>
+        <li><a href="#location">Location</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <ul class="footer-links">
+        <li><a href="tel:8656176950">(865) 617-6950</a></li>
+        <li><a href="#location">339 E Tri County Blvd</a></li>
+        <li><a href="#location">Oliver Springs, TN 37840</a></li>
+        <li><a href="#booking">Book Appointment</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2025 Southern Paws Grooming. All rights reserved.</span>
+    <span>Oliver Springs, Tennessee</span>
+  </div>
+</footer>
+
+<script>
+  // ---- BOOKING STATE ----
+  const booking = {
+    service: '',
+    date: null,
+    time: '',
+    ownerName: '',
+    ownerPhone: '',
+    dogName: '',
+    dogBreed: '',
+    dogSize: '',
+    ownerEmail: '',
+    notes: ''
+  };
+
+  let currentStep = 1;
+  let calYear, calMonth;
+
+  // ---- SERVICE SELECTION ----
+  function selectService(el) {
+    document.querySelectorAll('.service-opt').forEach(o => o.classList.remove('selected'));
+    el.classList.add('selected');
+    booking.service = el.dataset.value;
+    document.getElementById('next1').disabled = false;
+  }
+
+  // ---- STEP NAVIGATION ----
+  function goStep(n) {
+    document.getElementById('step' + currentStep).classList.remove('active');
+    currentStep = n;
+    document.getElementById('step' + n).classList.add('active');
+    updateStepNav();
+    if (n === 2) renderCalendar();
+    if (n === 4) buildConfirmSummary();
+  }
+
+  function updateStepNav() {
+    document.querySelectorAll('.step-item').forEach(item => {
+      const s = parseInt(item.dataset.step);
+      item.classList.remove('active', 'done');
+      if (s === currentStep) item.classList.add('active');
+      else if (s < currentStep) item.classList.add('done');
+    });
+    for (let i = 1; i <= 3; i++) {
+      const conn = document.getElementById('conn' + i);
+      if (conn) conn.classList.toggle('done', i < currentStep);
+    }
+  }
+
+  // ---- CALENDAR ----
+  function initCalendar() {
+    const now = new Date();
+    calYear = now.getFullYear();
+    calMonth = now.getMonth();
+  }
+
+  function prevMonth() {
+    const now = new Date();
+    if (calYear === now.getFullYear() && calMonth === now.getMonth()) return;
+    calMonth--;
+    if (calMonth < 0) { calMonth = 11; calYear--; }
+    renderCalendar();
+  }
+
+  function nextMonth() {
+    calMonth++;
+    if (calMonth > 11) { calMonth = 0; calYear++; }
+    renderCalendar();
+  }
+
+  function renderCalendar() {
+    const monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+    document.getElementById('calMonth').textContent = monthNames[calMonth] + ' ' + calYear;
+
+    const grid = document.getElementById('calGrid');
+    grid.innerHTML = '';
+
+    ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].forEach(d => {
+      const h = document.createElement('div');
+      h.className = 'cal-header';
+      h.textContent = d;
+      grid.appendChild(h);
+    });
+
+    const firstDay = new Date(calYear, calMonth, 1).getDay();
+    const daysInMonth = new Date(calYear, calMonth + 1, 0).getDate();
+    const today = new Date();
+    today.setHours(0,0,0,0);
+
+    for (let i = 0; i < firstDay; i++) {
+      const empty = document.createElement('div');
+      empty.className = 'cal-day empty';
+      grid.appendChild(empty);
+    }
+
+    for (let day = 1; day <= daysInMonth; day++) {
+      const d = document.createElement('div');
+      const date = new Date(calYear, calMonth, day);
+      const dow = date.getDay(); // 0=Sun, 6=Sat
+      const isPast = date < today;
+      const isSunday = dow === 0;
+
+      d.className = 'cal-day';
+
+      if (isPast || isSunday) {
+        d.classList.add('disabled');
+      } else {
+        d.classList.add('available');
+        d.addEventListener('click', () => selectDate(date, d));
+      }
+
+      // Mark selected
+      if (booking.date && date.toDateString() === booking.date.toDateString()) {
+        d.classList.remove('available');
+        d.classList.add('selected');
+      }
+
+      d.textContent = day;
+      grid.appendChild(d);
+    }
+  }
+
+  function selectDate(date, el) {
+    booking.date = date;
+    booking.time = '';
+    document.querySelectorAll('.cal-day').forEach(d => {
+      d.classList.remove('selected');
+      if (!d.classList.contains('disabled') && !d.classList.contains('empty')) d.classList.add('available');
+    });
+    el.classList.remove('available');
+    el.classList.add('selected');
+    renderTimeSlots();
+    document.getElementById('next2').disabled = true;
+  }
+
+  function renderTimeSlots() {
+    const ts = document.getElementById('timeSection');
+    const slots = document.getElementById('timeSlots');
+    ts.style.display = 'block';
+    slots.innerHTML = '';
+
+    const times = ['8:30 AM','9:00 AM','9:30 AM','10:00 AM','10:30 AM','11:00 AM','11:30 AM','12:00 PM','12:30 PM','1:00 PM','1:30 PM','2:00 PM','2:30 PM','3:00 PM','3:30 PM','4:00 PM','4:30 PM'];
+
+    times.forEach(t => {
+      const btn = document.createElement('div');
+      btn.className = 'time-slot';
+      btn.textContent = t;
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.time-slot').forEach(s => s.classList.remove('selected'));
+        btn.classList.add('selected');
+        booking.time = t;
+        document.getElementById('next2').disabled = false;
+      });
+      slots.appendChild(btn);
+    });
+  }
+
+  // ---- STEP 3 VALIDATION ----
+  function validateStep3() {
+    const name = document.getElementById('ownerName').value.trim();
+    const phone = document.getElementById('ownerPhone').value.trim();
+    const dog = document.getElementById('dogName').value.trim();
+    document.getElementById('next3').disabled = !(name && phone.length >= 14 && dog);
+  }
+
+  function formatPhone(input) {
+    let v = input.value.replace(/\D/g, '').substring(0, 10);
+    if (v.length >= 6) v = '(' + v.substring(0,3) + ') ' + v.substring(3,6) + '-' + v.substring(6);
+    else if (v.length >= 3) v = '(' + v.substring(0,3) + ') ' + v.substring(3);
+    input.value = v;
+  }
+
+  // ---- CONFIRM SUMMARY ----
+  function buildConfirmSummary() {
+    const dateStr = booking.date ? booking.date.toLocaleDateString('en-US', {weekday:'long', month:'long', day:'numeric', year:'numeric'}) : '';
+    booking.ownerName = document.getElementById('ownerName').value;
+    booking.ownerPhone = document.getElementById('ownerPhone').value;
+    booking.dogName = document.getElementById('dogName').value;
+    booking.dogBreed = document.getElementById('dogBreed').value;
+    booking.dogSize = document.getElementById('dogSize').value;
+    booking.ownerEmail = document.getElementById('ownerEmail').value;
+    booking.notes = document.getElementById('notes').value;
+
+    const rows = [
+      ['Service', booking.service],
+      ['Date', dateStr],
+      ['Time', booking.time],
+      ['Your Name', booking.ownerName],
+      ['Phone', booking.ownerPhone],
+      ["Dog's Name", booking.dogName],
+      ['Breed', booking.dogBreed || '—'],
+      ['Size', booking.dogSize || '—'],
+      ['Notes', booking.notes || '—'],
+    ];
+
+    document.getElementById('confirmSummary').innerHTML = rows.map(([k, v]) =>
+      `<div class="confirm-row"><span>${k}</span><span>${v}</span></div>`
+    ).join('');
+  }
+
+  // ---- SUBMIT ----
+  function submitBooking() {
+    const btn = document.querySelector('#step4 .btn-step-next');
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+
+    const msg = encodeURIComponent(
+      `New appointment request at Southern Paws!\n` +
+      `Service: ${booking.service}\n` +
+      `Date: ${booking.date ? booking.date.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'}) : ''}\n` +
+      `Time: ${booking.time}\n` +
+      `Owner: ${booking.ownerName} — ${booking.ownerPhone}\n` +
+      `Dog: ${booking.dogName} (${booking.dogBreed || 'breed N/A'}, ${booking.dogSize || 'size N/A'})\n` +
+      `Notes: ${booking.notes || 'None'}`
+    );
+
+    // Open SMS to business number with pre-filled message
+    window.location.href = `sms:+18656176950?body=${msg}`;
+
+    setTimeout(() => {
+      document.getElementById('stepNav').style.display = 'none';
+      document.getElementById('step4').style.display = 'none';
+      document.getElementById('bookingSuccess').style.display = 'block';
+    }, 800);
+  }
+
+  // ---- INIT ----
+  initCalendar();
+</script>
+
+</body>
+</html>
