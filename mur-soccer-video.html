@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MUR Nutrition</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  background: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-family: 'Arial Black', Arial, sans-serif;
+  overflow: hidden;
+}
+
+/* ── PHONE SHELL ── */
+.phone {
+  position: relative;
+  width: 390px;
+  height: 844px;
+  border-radius: 50px;
+  background: #0d0d0d;
+  box-shadow:
+    0 0 0 2px #2a2a2a,
+    0 0 0 4px #111,
+    0 0 0 10px #1c1c1c,
+    0 0 0 12px #2e2e2e,
+    0 40px 100px rgba(0,0,0,0.9);
+  overflow: hidden;
+}
+
+/* notch */
+.phone::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 120px; height: 30px;
+  background: #0d0d0d;
+  border-radius: 0 0 20px 20px;
+  z-index: 100;
+}
+
+/* ── FILM GRAIN ── */
+.grain {
+  position: absolute;
+  inset: 0;
+  z-index: 90;
+  pointer-events: none;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+  background-size: 150px 150px;
+  animation: grainShift 0.08s steps(1) infinite;
+}
+@keyframes grainShift {
+  0%  { background-position: 0 0; }
+  25% { background-position: -30px 10px; }
+  50% { background-position: 15px -20px; }
+  75% { background-position: -10px 30px; }
+}
+
+/* ── SCENES ── */
+.scene {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+.scene.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ── BG IMAGES with Ken Burns ── */
+.bg {
+  position: absolute;
+  inset: -5%;
+  width: 110%; height: 110%;
+  object-fit: cover;
+  will-change: transform;
+}
+.bg-a { animation: kbA 8s ease-out forwards; }
+.bg-b { animation: kbB 8s ease-out forwards; }
+.bg-c { animation: kbC 8s ease-out forwards; }
+
+@keyframes kbA {
+  from { transform: scale(1.12) translate(2%, 1%); }
+  to   { transform: scale(1.00) translate(0%, 0%); }
+}
+@keyframes kbB {
+  from { transform: scale(1.1) translate(-2%, 0%); }
+  to   { transform: scale(1.02) translate(1%, -1%); }
+}
+@keyframes kbC {
+  from { transform: scale(1.08) translate(0%, -2%); }
+  to   { transform: scale(1.0) translate(-1%, 1%); }
+}
+
+/* ── CINEMATIC GRADE ── */
+.grade {
+  position: absolute;
+  inset: 0;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+/* letterbox vignette */
+.vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 50%, transparent 50%, rgba(0,0,0,0.7) 100%);
+  pointer-events: none;
+}
+/* top/bottom gradient */
+.grad-top {
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 180px;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.75), transparent);
+  pointer-events: none;
+}
+.grad-bot {
+  position: absolute;
+  bottom: 0; left: 0; right: 0; height: 260px;
+  background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+  pointer-events: none;
+}
+
+/* ── SCENE 1: SCANNING ── */
+#s1 { filter: contrast(1.05) saturate(0.85); }
+
+.s1-caption {
+  position: absolute;
+  top: 52px; left: 0; right: 0;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(-8px);
+  transition: all 0.5s ease 0.6s;
+}
+#s1.active .s1-caption { opacity: 1; transform: translateY(0); }
+
+.s1-cap-time {
+  display: inline-block;
+  background: rgba(0,0,0,0.5);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  padding: 4px 14px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  backdrop-filter: blur(6px);
+}
+
+/* Phone in scene */
+.phone-mockup {
+  position: absolute;
+  bottom: 100px;
+  left: 50%;
+  transform: translateX(-50%) translateY(50px) rotate(3deg);
+  width: 175px;
+  opacity: 0;
+  transition: all 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 1s;
+  filter: drop-shadow(0 20px 40px rgba(0,0,0,0.8));
+}
+#s1.active .phone-mockup {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0) rotate(-1deg);
+}
+
+.pm-shell {
+  background: #0a0a0a;
+  border-radius: 22px;
+  padding: 8px;
+  box-shadow: 0 0 0 1px #333, 0 0 0 3px #111, inset 0 0 0 1px #222;
+}
+
+.pm-screen {
+  background: #000;
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+}
+
+.pm-screenshot {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+}
+
+.pm-header {
+  color: #fff;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+  text-align: center;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+
+.pm-viewfinder {
+  position: relative;
+  background: #000;
+  border-radius: 8px;
+  overflow: hidden;
+  height: 72px;
+}
+
+.pm-food-img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  opacity: 0.7;
+}
+
+.pm-scan-line {
+  position: absolute;
+  left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent 0%, #00ff88 30%, #00ffaa 50%, #00ff88 70%, transparent 100%);
+  box-shadow: 0 0 10px #00ff88, 0 0 20px rgba(0,255,136,0.4);
+  animation: scanLine 1.8s ease-in-out infinite;
+}
+@keyframes scanLine {
+  0%   { top: 10%; }
+  50%  { top: 80%; }
+  100% { top: 10%; }
+}
+
+/* scan corners */
+.pm-corner { position: absolute; width: 10px; height: 10px; border-color: #00ff88; border-style: solid; }
+.pm-corner.tl { top: 4px; left: 4px; border-width: 2px 0 0 2px; }
+.pm-corner.tr { top: 4px; right: 4px; border-width: 2px 2px 0 0; }
+.pm-corner.bl { bottom: 4px; left: 4px; border-width: 0 0 2px 2px; }
+.pm-corner.br { bottom: 4px; right: 4px; border-width: 0 2px 2px 0; }
+
+.pm-analyzing {
+  position: absolute;
+  bottom: 4px; left: 0; right: 0;
+  text-align: center;
+  color: #00ff88;
+  font-size: 6px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  animation: blink 1s ease infinite alternate;
+}
+@keyframes blink { from { opacity: 0.5; } to { opacity: 1; } }
+
+.pm-macros {
+  margin-top: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.pm-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255,255,255,0.04);
+  border-radius: 4px;
+  padding: 2px 6px;
+}
+
+.pm-label { color: #888; font-size: 6.5px; font-weight: 700; letter-spacing: 0.5px; }
+.pm-val-good { color: #00ff88; font-size: 7px; font-weight: 900; }
+.pm-val { color: #ccc; font-size: 7px; font-weight: 700; }
+
+.pm-bar {
+  width: 100%;
+  background: rgba(255,255,255,0.06);
+  border-radius: 2px;
+  height: 2px;
+  margin-top: 1px;
+  overflow: hidden;
+}
+.pm-bar-fill {
+  height: 100%;
+  border-radius: 2px;
+  animation: fillBar 2s ease 1.5s forwards;
+  width: 0;
+}
+@keyframes fillBar { to { width: var(--w); } }
+
+.pm-home-bar {
+  height: 3px;
+  background: #fff;
+  width: 40%;
+  border-radius: 2px;
+  margin: 6px auto 0;
+  opacity: 0.3;
+}
+
+/* ── SCENE 2: GOAL ── */
+#s2 { filter: contrast(1.1) saturate(1.15); }
+
+.goal-flash {
+  position: absolute;
+  inset: 0;
+  background: #fff;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 5;
+}
+#s2.active .goal-flash {
+  animation: flash 0.2s ease 0.6s 3 alternate;
+}
+@keyframes flash {
+  from { opacity: 0; }
+  to   { opacity: 0.35; }
+}
+
+.goal-stamp {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.3) rotate(-8deg);
+  text-align: center;
+  opacity: 0;
+  transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.5) 0.7s;
+  z-index: 6;
+  white-space: nowrap;
+}
+#s2.active .goal-stamp {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1) rotate(-4deg);
+}
+
+.goal-big {
+  display: block;
+  font-size: 100px;
+  font-weight: 900;
+  color: #fff;
+  line-height: 0.9;
+  letter-spacing: -2px;
+  text-shadow:
+    0 0 0 #000,
+    3px 3px 0 #000,
+    -3px -3px 0 #000,
+    3px -3px 0 #000,
+    -3px 3px 0 #000,
+    0 6px 30px rgba(0,0,0,0.8),
+    0 0 60px rgba(255,220,0,0.6);
+  animation: goalWobble 0.4s ease 1.2s 4 alternate;
+}
+@keyframes goalWobble {
+  from { transform: rotate(-2deg) scale(1); }
+  to   { transform: rotate(2deg) scale(1.04); }
+}
+
+.goal-nation {
+  display: block;
+  font-size: 13px;
+  font-weight: 900;
+  color: #ffd700;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+  margin-top: 4px;
+}
+
+/* crowd confetti */
+.confetti { position: absolute; inset: 0; pointer-events: none; z-index: 4; overflow: hidden; opacity: 0; transition: opacity 0.3s ease 1s; }
+#s2.active .confetti { opacity: 1; }
+.confetti span {
+  position: absolute;
+  top: -20px;
+  border-radius: 2px;
+  animation: confFall linear infinite;
+}
+@keyframes confFall {
+  to { transform: translateY(900px) rotate(720deg); opacity: 0; }
+}
+
+/* broadcast lower-third */
+.lower-third {
+  position: absolute;
+  bottom: 90px;
+  left: 0; right: 0;
+  padding: 0 20px;
+  opacity: 0;
+  transform: translateX(-30px);
+  transition: all 0.5s ease 1.6s;
+  z-index: 6;
+}
+#s2.active .lower-third { opacity: 1; transform: translateX(0); }
+
+.lt-bar {
+  background: linear-gradient(135deg, #e8650a, #ff4500);
+  display: inline-block;
+  padding: 5px 14px 5px 10px;
+  clip-path: polygon(0 0, 100% 0, 95% 100%, 0 100%);
+}
+.lt-name { color: #fff; font-size: 11px; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; }
+.lt-sub { color: rgba(255,255,255,0.7); font-size: 8px; letter-spacing: 1px; margin-top: 1px; }
+
+.crowd-roar {
+  position: absolute;
+  bottom: 50px; left: 0; right: 0;
+  text-align: center;
+  color: rgba(255,215,0,0.8);
+  font-size: 10px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  font-weight: 700;
+  opacity: 0;
+  transition: opacity 0.4s ease 2s;
+  z-index: 6;
+}
+#s2.active .crowd-roar { opacity: 1; }
+
+/* ── SCENE 3: END CARD ── */
+#s3 { background: #000; }
+
+.s3-bg-lines {
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 3px,
+      rgba(255,255,255,0.012) 3px,
+      rgba(255,255,255,0.012) 4px
+    );
+}
+
+.end-wrap {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  padding: 50px 36px 36px;
+}
+
+.end-logo-ring {
+  opacity: 0;
+  transform: scale(0.6);
+  transition: all 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 0.4s;
+}
+#s3.active .end-logo-ring { opacity: 1; transform: scale(1); }
+
+.ring {
+  width: 150px; height: 150px;
+  border-radius: 50%;
+  border: 2px solid #e8650a;
+  background: #000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 0 6px rgba(232,101,10,0.1), 0 0 50px rgba(232,101,10,0.3);
+  animation: ringPulse 2s ease infinite;
+}
+@keyframes ringPulse {
+  0%, 100% { box-shadow: 0 0 0 6px rgba(232,101,10,0.1), 0 0 50px rgba(232,101,10,0.3); }
+  50%       { box-shadow: 0 0 0 12px rgba(232,101,10,0.05), 0 0 80px rgba(232,101,10,0.5); }
+}
+
+.r-mur { color: #e8650a; font-size: 44px; font-weight: 900; letter-spacing: 3px; line-height: 1; }
+.r-line { width: 86px; height: 1.5px; background: #e8650a; margin: 4px 0 6px; }
+.r-nut { color: #e8650a; font-size: 8.5px; letter-spacing: 5px; font-weight: 700; text-transform: uppercase; }
+
+.end-divider {
+  width: 40px; height: 1px;
+  background: linear-gradient(90deg, transparent, #e8650a, transparent);
+  opacity: 0;
+  transition: opacity 0.5s ease 1s;
+}
+#s3.active .end-divider { opacity: 1; }
+
+.end-title {
+  color: #fff;
+  font-size: 24px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  text-align: center;
+  line-height: 1.2;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: all 0.6s ease 1.1s;
+}
+#s3.active .end-title { opacity: 1; transform: translateY(0); }
+
+.end-easy {
+  color: #e8650a;
+  font-size: 17px;
+  font-style: italic;
+  font-weight: 700;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: all 0.6s ease 1.5s;
+}
+#s3.active .end-easy { opacity: 1; transform: translateY(0); }
+
+.end-cta {
+  display: block;
+  width: 100%;
+  background: linear-gradient(135deg, #ff7700, #ff3300);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 900;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  padding: 16px;
+  border-radius: 50px;
+  text-align: center;
+  text-decoration: none;
+  box-shadow: 0 6px 30px rgba(255,80,0,0.5);
+  opacity: 0;
+  transform: translateY(16px);
+  transition: all 0.6s ease 2s;
+  margin-top: 6px;
+}
+#s3.active .end-cta { opacity: 1; transform: translateY(0); }
+
+.end-store {
+  color: #444;
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  opacity: 0;
+  transition: opacity 0.5s ease 2.5s;
+}
+#s3.active .end-store { opacity: 1; }
+
+/* ── PROGRESS ── */
+.progress-track {
+  position: absolute;
+  bottom: 14px; left: 28px; right: 28px;
+  height: 2px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 2px;
+  z-index: 95;
+}
+.progress-fill {
+  height: 100%; width: 0%;
+  background: #e8650a;
+  border-radius: 2px;
+  transition: width linear;
+}
+
+/* ── DOTS ── */
+.dots {
+  position: absolute;
+  top: 44px; left: 50%;
+  transform: translateX(-50%);
+  display: flex; gap: 5px;
+  z-index: 95;
+}
+.dot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.25);
+  transition: all 0.3s;
+}
+.dot.active { background: #fff; width: 14px; border-radius: 3px; }
+
+/* ── REPLAY ── */
+.replay-btn {
+  display: none;
+  position: absolute;
+  bottom: 36px; left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: #fff;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 10px 24px;
+  border-radius: 50px;
+  cursor: pointer;
+  z-index: 96;
+  font-family: 'Arial Black', Arial, sans-serif;
+  font-weight: 700;
+  backdrop-filter: blur(6px);
+}
+</style>
+</head>
+<body>
+
+<div class="phone">
+  <div class="grain"></div>
+
+  <div class="dots">
+    <div class="dot active" id="dot0"></div>
+    <div class="dot" id="dot1"></div>
+    <div class="dot" id="dot2"></div>
+  </div>
+
+  <!-- ══ SCENE 1: FOOD SCAN ══ -->
+  <div class="scene active" id="s1">
+    <img class="bg bg-a"
+      src="https://images.unsplash.com/photo-1547347298-4074fc3086f0?w=900&q=85"
+      alt="" crossorigin="anonymous" />
+    <div class="vignette"></div>
+    <div class="grad-top"></div>
+    <div class="grad-bot"></div>
+
+    <div class="s1-caption">
+      <span class="s1-cap-time">⏰ 5:30 AM &nbsp;·&nbsp; Game Day</span>
+    </div>
+
+    <!-- Phone mockup -->
+    <div class="phone-mockup">
+      <div class="pm-shell">
+        <div class="pm-screen">
+          <img
+            class="pm-screenshot"
+            src="https://d2ol7oe51mr4n9.cloudfront.net/user_3FCEN7gS8xe7dbLQccadSITBqxJ/36ac52d0-5f38-4b63-967e-c64e19059448.png"
+            alt="MUR Food Scanner"
+            crossorigin="anonymous"
+          />
+          <div class="pm-scan-line"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SCENE 2: GOAL ══ -->
+  <div class="scene" id="s2">
+    <img class="bg bg-b"
+      src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=900&q=85"
+      alt="" crossorigin="anonymous" />
+    <div class="vignette"></div>
+    <div class="grad-top"></div>
+    <div class="grad-bot"></div>
+    <div class="goal-flash"></div>
+
+    <div class="confetti" id="confetti"></div>
+
+    <div class="goal-stamp">
+      <span class="goal-big">GOAL!</span>
+      <span class="goal-nation">🏟 The Stadium Erupts</span>
+    </div>
+
+    <div class="lower-third">
+      <div class="lt-bar">
+        <div class="lt-name">MUR Athlete</div>
+        <div class="lt-sub">Fueled by MUR Nutrition</div>
+      </div>
+    </div>
+
+    <div class="crowd-roar">📣 &nbsp; Crowd Going Absolutely Wild &nbsp; 📣</div>
+  </div>
+
+  <!-- ══ SCENE 3: END CARD ══ -->
+  <div class="scene" id="s3">
+    <div class="s3-bg-lines"></div>
+    <div class="end-wrap">
+      <div class="end-logo-ring">
+        <div class="ring">
+          <span class="r-mur">MUR</span>
+          <div class="r-line"></div>
+          <span class="r-nut">Nutrition</span>
+        </div>
+      </div>
+      <div class="end-divider"></div>
+      <div class="end-title">MUR Nutrition</div>
+      <div class="end-easy">(It is that easy)</div>
+      <a class="end-cta"
+        href="https://apps.apple.com/us/app/mur-nutrition-app/id6777554513"
+        target="_blank">DOWNLOAD TODAY</a>
+      <div class="end-store">Available on the App Store</div>
+    </div>
+  </div>
+
+  <div class="progress-track">
+    <div class="progress-fill" id="progress"></div>
+  </div>
+
+  <button class="replay-btn" id="replayBtn" onclick="startAd()">↺ Replay</button>
+</div>
+
+<script>
+  // Confetti
+  const colors = ['#ffd700','#ff4500','#fff','#00ff88','#e8650a','#4a9eff','#ff0050'];
+  const conf = document.getElementById('confetti');
+  for (let i = 0; i < 80; i++) {
+    const s = document.createElement('span');
+    s.style.cssText = `
+      left:${Math.random()*100}%;
+      background:${colors[i%colors.length]};
+      width:${5+Math.random()*8}px;
+      height:${8+Math.random()*12}px;
+      opacity:${0.7+Math.random()*0.3};
+      animation-duration:${1.2+Math.random()*2.5}s;
+      animation-delay:${Math.random()*2.5}s;
+    `;
+    conf.appendChild(s);
+  }
+
+  const scenes = ['s1','s2','s3'];
+  const durations = [6000, 5000, 7000];
+  let timer = null;
+
+  function startAd() {
+    document.getElementById('replayBtn').style.display = 'none';
+    scenes.forEach(id => {
+      const el = document.getElementById(id);
+      el.classList.remove('active');
+      // reset bg animation
+      const bg = el.querySelector('.bg');
+      if (bg) { bg.style.animation = 'none'; void bg.offsetWidth; }
+    });
+    document.querySelectorAll('.dot').forEach(d => d.classList.remove('active'));
+    showScene(0);
+  }
+
+  function showScene(idx) {
+    clearTimeout(timer);
+    scenes.forEach(id => document.getElementById(id).classList.remove('active'));
+    document.querySelectorAll('.dot').forEach(d => d.classList.remove('active'));
+
+    const el = document.getElementById(scenes[idx]);
+    // restart bg anim
+    const bg = el.querySelector('.bg');
+    if (bg) { bg.style.animation = 'none'; void bg.offsetWidth; bg.style.animation = ''; }
+
+    el.classList.add('active');
+    document.getElementById('dot'+idx).classList.add('active');
+
+    // progress bar
+    const prog = document.getElementById('progress');
+    prog.style.transition = 'none';
+    prog.style.width = '0%';
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      prog.style.transition = `width ${durations[idx]}ms linear`;
+      prog.style.width = '100%';
+    }));
+
+    timer = setTimeout(() => {
+      if (idx + 1 < scenes.length) showScene(idx + 1);
+      else {
+        document.getElementById('replayBtn').style.display = 'block';
+      }
+    }, durations[idx]);
+  }
+
+  startAd();
+</script>
+</body>
+</html>

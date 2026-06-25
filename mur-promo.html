@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MUR Nutrition - Download Now</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: 'Arial Black', Arial, sans-serif;
+  }
+
+  .card {
+    position: relative;
+    width: 430px;
+    aspect-ratio: 9/16;
+    overflow: hidden;
+    border-radius: 16px;
+    box-shadow: 0 0 80px rgba(255, 80, 0, 0.9), 0 0 160px rgba(255, 60, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    padding: 40px 32px 48px;
+  }
+
+  .gym-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+  }
+
+  .brand-logo {
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 280px;
+    height: 280px;
+    background: #000;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+  }
+
+  .logo-mur {
+    color: #e8650a;
+    font-size: 72px;
+    font-weight: 900;
+    font-family: 'Arial Black', Arial, sans-serif;
+    letter-spacing: 4px;
+    line-height: 1;
+  }
+
+  .logo-line {
+    width: 160px;
+    height: 2px;
+    background: #e8650a;
+    margin: 6px 0 8px;
+  }
+
+  .logo-nutrition {
+    color: #e8650a;
+    font-size: 15px;
+    font-weight: 700;
+    font-family: Arial, sans-serif;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+  }
+
+  .download-btn {
+    position: absolute;
+    z-index: 2;
+    bottom: 40px;
+    left: 32px;
+    right: 32px;
+    display: block;
+    background: linear-gradient(135deg, #ff7700, #ff4500);
+    color: #fff;
+    font-size: 16px;
+    font-weight: 900;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 16px 40px;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 24px rgba(255, 100, 0, 0.6);
+    text-decoration: none;
+    transition: transform 0.15s, box-shadow 0.15s;
+    text-align: center;
+  }
+
+  .download-btn:hover {
+    transform: scale(1.04);
+    box-shadow: 0 6px 32px rgba(255, 100, 0, 0.8);
+  }
+</style>
+</head>
+<body>
+
+<div class="card">
+  <img
+    class="gym-bg"
+    src="https://d8j0ntlcm91z4.cloudfront.net/user_3FCEN7gS8xe7dbLQccadSITBqxJ/hf_20260622_171017_09f1ed8f-f60b-43ce-8f0e-9e1b61ce85ef.png"
+    alt="Gym background"
+    crossorigin="anonymous"
+  />
+  <div class="overlay"></div>
+  <div class="brand-logo">
+    <span class="logo-mur">MUR</span>
+    <div class="logo-line"></div>
+    <span class="logo-nutrition">Nutrition</span>
+  </div>
+  <a class="download-btn" href="https://apps.apple.com/us/app/mur-nutrition-app/id6777554513" target="_blank" rel="noopener">DOWNLOAD NOW</a>
+</div>
+
+</body>
+</html>

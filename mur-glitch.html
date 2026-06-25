@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MUR Nutrition - Signal Lost</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  background: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-family: 'Arial Black', Arial, sans-serif;
+  overflow: hidden;
+}
+
+.card {
+  position: relative;
+  width: 390px;
+  aspect-ratio: 9/16;
+  overflow: hidden;
+  border-radius: 16px;
+  box-shadow: 0 0 60px rgba(0,180,60,0.4), 0 0 120px rgba(0,80,20,0.2);
+}
+
+/* ── BACKGROUND ── */
+.bg {
+  position: absolute;
+  inset: -5%;
+  width: 110%; height: 110%;
+  object-fit: cover;
+  animation: kbSlow 12s ease-in-out infinite alternate;
+}
+@keyframes kbSlow {
+  from { transform: scale(1.08) translate(1%, 0%); }
+  to   { transform: scale(1.00) translate(-1%, -1%); }
+}
+
+/* ── DARK OVERLAY ── */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+}
+
+/* ── VIGNETTE ── */
+.vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 50%, transparent 40%, rgba(0,0,0,0.75) 100%);
+  pointer-events: none;
+}
+
+/* ── SCANLINES ── */
+.scanlines {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 3px,
+    rgba(0,0,0,0.12) 3px,
+    rgba(0,0,0,0.12) 4px
+  );
+  pointer-events: none;
+  z-index: 3;
+  animation: scanRoll 8s linear infinite;
+}
+@keyframes scanRoll {
+  from { background-position: 0 0; }
+  to   { background-position: 0 200px; }
+}
+
+/* ── FILM GRAIN ── */
+.grain {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+  animation: grainShift 0.07s steps(1) infinite;
+}
+@keyframes grainShift {
+  0%  { background-position: 0 0; }
+  25% { background-position: -40px 15px; }
+  50% { background-position: 20px -25px; }
+  75% { background-position: -15px 35px; }
+}
+
+/* ── HORIZONTAL GLITCH BARS ── */
+.glitch-bar {
+  position: absolute;
+  left: 0; right: 0;
+  background: rgba(232, 101, 10, 0.15);
+  pointer-events: none;
+  z-index: 5;
+  opacity: 0;
+}
+.glitch-bar.gb1 { top: 30%; height: 4px; animation: glitchBar1 3.5s steps(1) infinite; }
+.glitch-bar.gb2 { top: 55%; height: 2px; animation: glitchBar2 2.8s steps(1) infinite 0.4s; }
+.glitch-bar.gb3 { top: 72%; height: 6px; animation: glitchBar3 4.1s steps(1) infinite 1.2s; }
+
+@keyframes glitchBar1 {
+  0%,89%,100% { opacity: 0; transform: scaleX(1) translateX(0); }
+  90%  { opacity: 1; transform: scaleX(1.02) translateX(-3px); }
+  92%  { opacity: 0; }
+  94%  { opacity: 1; transform: scaleX(0.98) translateX(5px); }
+  96%  { opacity: 0; }
+}
+@keyframes glitchBar2 {
+  0%,84%,100% { opacity: 0; }
+  85%  { opacity: 1; transform: translateX(8px); }
+  87%  { opacity: 0; }
+  89%  { opacity: 1; transform: translateX(-4px); }
+  91%  { opacity: 0; }
+}
+@keyframes glitchBar3 {
+  0%,76%,100% { opacity: 0; }
+  77%  { opacity: 1; transform: translateX(-6px); }
+  79%  { opacity: 0; }
+  81%  { opacity: 1; transform: translateX(3px); }
+  83%  { opacity: 0; }
+}
+
+/* ── LOGO WRAPPER ── */
+.logo-wrap {
+  position: absolute;
+  z-index: 10;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: logoSignal 0.1s steps(1) infinite;
+}
+
+/* Main signal flicker — drops in and out */
+@keyframes logoSignal {
+  0%    { opacity: 1; filter: brightness(1) blur(0px); transform: translate(-50%,-50%) skewX(0deg); }
+  2%    { opacity: 0; }
+  3%    { opacity: 1; filter: brightness(2.5) blur(1px); transform: translate(-52%,-50%) skewX(-1deg); }
+  4%    { opacity: 0; }
+  5%    { opacity: 1; filter: brightness(1); transform: translate(-50%,-50%) skewX(0deg); }
+  18%   { opacity: 1; filter: brightness(1); }
+  19%   { opacity: 0; }
+  20%   { opacity: 1; filter: brightness(3) blur(2px); transform: translate(-49%,-51%) skewX(1.5deg); }
+  21%   { opacity: 0; }
+  22%   { opacity: 1; filter: brightness(1.2); transform: translate(-50%,-50%) skewX(0deg); }
+  35%   { opacity: 1; }
+  36%   { opacity: 0; }
+  36.5% { opacity: 0; }
+  37%   { opacity: 1; filter: brightness(4) blur(3px); transform: translate(-51%,-49%) skewX(-2deg); }
+  38%   { opacity: 0; }
+  38.5% { opacity: 1; filter: brightness(1); transform: translate(-50%,-50%); }
+  50%   { opacity: 1; filter: brightness(1); }
+  51%   { opacity: 0; filter: brightness(5) blur(4px); transform: translate(-48%,-50%) skewX(2deg); }
+  51.5% { opacity: 1; }
+  52%   { opacity: 0; }
+  52.5% { opacity: 1; filter: brightness(1); transform: translate(-50%,-50%); }
+  65%   { opacity: 1; }
+  65.5% { opacity: 0; }
+  66%   { opacity: 1; filter: brightness(2) blur(1px); }
+  66.5% { opacity: 0; }
+  67%   { opacity: 1; filter: brightness(1); }
+  80%   { opacity: 1; }
+  80.5% { opacity: 0; }
+  81%   { opacity: 0; }
+  81.5% { opacity: 1; filter: brightness(6) blur(5px); transform: translate(-52%,-51%) skewX(-3deg); }
+  82%   { opacity: 0; }
+  82.5% { opacity: 0; }
+  83%   { opacity: 1; filter: brightness(1.5); transform: translate(-50%,-50%); }
+  84%   { opacity: 0; }
+  84.5% { opacity: 1; filter: brightness(1); }
+  100%  { opacity: 1; filter: brightness(1); transform: translate(-50%,-50%); }
+}
+
+/* Chromatic aberration on the text itself */
+.logo-mur {
+  color: #e8650a;
+  font-size: 80px;
+  font-weight: 900;
+  font-family: 'Arial Black', Arial, sans-serif;
+  letter-spacing: 4px;
+  line-height: 1;
+  position: relative;
+  animation: chromAb 0.1s steps(1) infinite;
+}
+@keyframes chromAb {
+  0%,89%,100% { text-shadow: 0 0 40px rgba(232,101,10,0.8), 0 0 80px rgba(232,101,10,0.4); }
+  90%  { text-shadow: -3px 0 rgba(0,255,200,0.6), 3px 0 rgba(255,0,80,0.6), 0 0 60px rgba(232,101,10,1); }
+  91%  { text-shadow: 2px 0 rgba(0,200,255,0.5), -2px 0 rgba(255,50,0,0.5), 0 0 80px rgba(255,255,255,0.6); }
+  92%  { text-shadow: 0 0 40px rgba(232,101,10,0.8); }
+  50%  { text-shadow: -4px 0 rgba(0,255,180,0.7), 4px 0 rgba(255,0,100,0.7), 0 0 100px rgba(232,101,10,1.0); }
+  50.5%{ text-shadow: 0 0 40px rgba(232,101,10,0.8); }
+  81%  { text-shadow: -5px 0 rgba(0,255,150,0.8), 5px 0 rgba(255,0,120,0.8), 0 0 120px rgba(255,255,255,0.8); }
+  82%  { text-shadow: 0 0 40px rgba(232,101,10,0.8); }
+}
+
+.logo-line {
+  width: 170px;
+  height: 2px;
+  background: #e8650a;
+  margin: 8px 0 10px;
+  animation: lineFlicker 0.1s steps(1) infinite;
+}
+@keyframes lineFlicker {
+  0%,88%,100% { box-shadow: 0 0 10px rgba(232,101,10,0.6); transform: scaleX(1); }
+  89%  { box-shadow: 0 0 30px rgba(232,101,10,1), 0 0 60px rgba(255,255,255,0.4); transform: scaleX(1.05); }
+  90%  { box-shadow: 0 0 10px rgba(232,101,10,0.6); transform: scaleX(0.95); }
+  91%  { box-shadow: 0 0 40px rgba(255,255,255,0.6); transform: scaleX(1.1); }
+  92%  { box-shadow: 0 0 10px rgba(232,101,10,0.6); transform: scaleX(1); }
+}
+
+.logo-nutrition {
+  color: #e8650a;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: Arial, sans-serif;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  text-shadow: 0 0 20px rgba(232,101,10,0.5);
+}
+
+/* ── SIGNAL STRENGTH INDICATOR ── */
+.signal {
+  position: absolute;
+  z-index: 10;
+  top: 52px;
+  right: 28px;
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  animation: signalAnim 0.1s steps(1) infinite;
+}
+.signal-bar {
+  width: 5px;
+  background: #00ff88;
+  border-radius: 1px;
+  box-shadow: 0 0 6px rgba(0,255,136,0.8);
+}
+.signal-bar:nth-child(1) { height: 6px; }
+.signal-bar:nth-child(2) { height: 10px; }
+.signal-bar:nth-child(3) { height: 14px; animation: barLost 2.3s steps(1) infinite; }
+.signal-bar:nth-child(4) { height: 18px; animation: barLost 2.3s steps(1) infinite 0.3s; }
+
+@keyframes barLost {
+  0%,60%   { opacity: 1; background: #00ff88; }
+  61%,80%  { opacity: 0.2; background: #ff4400; }
+  81%,100% { opacity: 1; background: #00ff88; }
+}
+@keyframes signalAnim {
+  0%,85%,100% { opacity: 1; }
+  86%  { opacity: 0; }
+  87%  { opacity: 1; }
+  88%  { opacity: 0; }
+  89%  { opacity: 1; }
+}
+
+.signal-label {
+  position: absolute;
+  top: 78px;
+  right: 28px;
+  color: #00ff88;
+  font-size: 7px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  z-index: 10;
+  animation: signalLabel 3s steps(1) infinite;
+}
+@keyframes signalLabel {
+  0%,59%  { content: ''; opacity: 1; color: #00ff88; }
+  60%,79% { opacity: 0.3; color: #ff4400; }
+  80%,100%{ opacity: 1; color: #00ff88; }
+}
+
+/* ── "NO SIGNAL" FLASH ── */
+.no-signal {
+  position: absolute;
+  z-index: 12;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: rgba(255,255,255,0.9);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  opacity: 0;
+  animation: noSig 0.1s steps(1) infinite;
+  white-space: nowrap;
+  pointer-events: none;
+}
+@keyframes noSig {
+  0%,35.9%,38.1%,100% { opacity: 0; }
+  36%,38%              { opacity: 1; }
+  51%,52.4%            { opacity: 0; }
+  51.5%,52%            { opacity: 0.8; }
+  81%,83%              { opacity: 0; }
+  81.5%,82%            { opacity: 1; }
+}
+
+/* ── FULL WHITE FLASH on big glitch ── */
+.flash {
+  position: absolute;
+  inset: 0;
+  background: #fff;
+  z-index: 11;
+  opacity: 0;
+  pointer-events: none;
+  animation: bigFlash 0.1s steps(1) infinite;
+}
+@keyframes bigFlash {
+  0%,80.9%,83.1%,100% { opacity: 0; }
+  81%  { opacity: 0.35; }
+  81.5%{ opacity: 0; }
+  82%  { opacity: 0.5; }
+  82.5%{ opacity: 0; }
+  50%,50.4% { opacity: 0; }
+  50.2%     { opacity: 0.2; }
+}
+
+/* ── DOWNLOAD BTN ── */
+.download-btn {
+  position: absolute;
+  z-index: 10;
+  bottom: 40px;
+  left: 32px;
+  right: 32px;
+  display: block;
+  background: linear-gradient(135deg, #ff7700, #ff4500);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 900;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  padding: 16px 40px;
+  border-radius: 50px;
+  box-shadow: 0 4px 24px rgba(255,100,0,0.6);
+  text-decoration: none;
+  text-align: center;
+  transition: transform 0.15s, box-shadow 0.15s;
+  animation: btnGlow 2s ease-in-out infinite alternate;
+}
+@keyframes btnGlow {
+  from { box-shadow: 0 4px 24px rgba(255,100,0,0.6); }
+  to   { box-shadow: 0 6px 40px rgba(255,100,0,0.9), 0 0 60px rgba(255,80,0,0.4); }
+}
+.download-btn:hover {
+  transform: scale(1.04);
+}
+</style>
+</head>
+<body>
+
+<div class="card">
+  <img class="bg"
+    src="https://d8j0ntlcm91z4.cloudfront.net/user_3FCEN7gS8xe7dbLQccadSITBqxJ/hf_20260625_131337_b799bb95-3e10-464c-9d21-31e63890ae4a.png"
+    alt="Soccer players" crossorigin="anonymous" />
+  <div class="overlay"></div>
+  <div class="vignette"></div>
+  <div class="scanlines"></div>
+  <div class="grain"></div>
+
+  <!-- Glitch bars -->
+  <div class="glitch-bar gb1"></div>
+  <div class="glitch-bar gb2"></div>
+  <div class="glitch-bar gb3"></div>
+
+  <!-- Signal indicator -->
+  <div class="signal">
+    <div class="signal-bar"></div>
+    <div class="signal-bar"></div>
+    <div class="signal-bar"></div>
+    <div class="signal-bar"></div>
+  </div>
+  <div class="signal-label">Signal</div>
+
+  <!-- Logo -->
+  <div class="logo-wrap">
+    <span class="logo-mur">MUR</span>
+    <div class="logo-line"></div>
+    <span class="logo-nutrition">Nutrition</span>
+  </div>
+
+  <!-- No signal flash text -->
+  <div class="no-signal">NO SIGNAL</div>
+
+  <!-- White flash -->
+  <div class="flash"></div>
+
+  <a class="download-btn"
+    href="https://apps.apple.com/us/app/mur-nutrition-app/id6777554513"
+    target="_blank" rel="noopener">DOWNLOAD NOW</a>
+</div>
+
+</body>
+</html>
