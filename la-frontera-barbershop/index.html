@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>La Frontera Barber Shop</title>
+<meta name="description" content="La Frontera Barber Shop — fades, cuts, beard trims and straight-razor shaves at 1206 W Parker Rd, Greenville, SC 29617. Open until 10 PM. Walk-ins welcome. Se habla español.">
+<meta property="og:title" content="La Frontera Barber Shop · Greenville, SC">
+<meta property="og:description" content="Fresh cuts on W Parker Rd. Open until 10 PM. Walk-ins welcome.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BarberShop",
+  "name": "La Frontera Barber Shop",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "1206 W Parker Rd",
+    "addressLocality": "Greenville",
+    "addressRegion": "SC",
+    "postalCode": "29617",
+    "addressCountry": "US"
+  },
+  "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.3", "reviewCount": "18" }
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;700&display=swap">
+<style>
+  :root {
+    --bg: #faf7f2;
+    --surface: #ffffff;
+    --ink: #1b1b1b;
+    --muted: #5e5a55;
+    --line: #e6e0d6;
+    --red: #b3262d;
+    --blue: #1f3a68;
+    --gold: #c9962b;
+    --hero: #141414;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #121212; --surface: #1c1c1c; --ink: #f2eee8; --muted: #a8a29a;
+      --line: #2f2c29; --red: #e0474f; --blue: #7ea2e0; --gold: #e0b04a; --hero: #0a0a0a;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #121212; --surface: #1c1c1c; --ink: #f2eee8; --muted: #a8a29a;
+    --line: #2f2c29; --red: #e0474f; --blue: #7ea2e0; --gold: #e0b04a; --hero: #0a0a0a;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.6 Inter, system-ui, sans-serif; }
+  a { color: inherit; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 16px; }
+
+  /* barber pole stripe */
+  .pole { height: 8px; background: repeating-linear-gradient(-45deg, var(--red) 0 14px, #fff 14px 28px, var(--blue) 28px 42px, #fff 42px 56px); }
+
+  header.nav { position: sticky; top: 0; z-index: 10; background: color-mix(in srgb, var(--bg) 92%, transparent); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+  .nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 60px; gap: 12px; }
+  .brand { font-family: Anton, Impact, sans-serif; font-size: 22px; letter-spacing: .5px; text-decoration: none; text-transform: uppercase; }
+  .brand span { color: var(--red); }
+  .nav-links { display: flex; gap: 20px; align-items: center; }
+  .nav-links a { text-decoration: none; font-weight: 500; color: var(--muted); }
+  .nav-links a:hover { color: var(--ink); }
+  .lang { border: 1px solid var(--line); background: var(--surface); color: var(--ink); border-radius: 999px; padding: 6px 12px; font: 600 13px Inter, sans-serif; cursor: pointer; }
+  @media (max-width: 640px) { .nav-links a { display: none; } }
+
+  .hero { background: var(--hero); color: #f7f3ec; padding: 88px 0 72px; position: relative; overflow: hidden; }
+  .hero::after { content: ""; position: absolute; right: -80px; top: -40px; width: 60px; height: 140%; transform: rotate(18deg);
+    background: repeating-linear-gradient(0deg, #b3262d 0 26px, #f7f3ec 26px 52px, #1f3a68 52px 78px, #f7f3ec 78px 104px); opacity: .9; }
+  @media (max-width: 640px) { .hero::after { display: none; } }
+  .eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; color: #e9d7b0; }
+  .dot { width: 9px; height: 9px; border-radius: 50%; background: #3fbf6f; box-shadow: 0 0 0 4px rgba(63,191,111,.2); }
+  .dot.closed { background: #d9534f; box-shadow: 0 0 0 4px rgba(217,83,79,.2); }
+  h1 { font-family: Anton, Impact, sans-serif; font-weight: 400; font-size: clamp(48px, 9vw, 104px); line-height: .95; margin: 16px 0; text-transform: uppercase; letter-spacing: 1px; }
+  h1 em { font-style: normal; color: var(--gold); }
+  .hero p.lead { font-size: 19px; max-width: 540px; color: #d7d1c7; margin: 0 0 28px; }
+  .rating { display: inline-flex; align-items: center; gap: 8px; margin-bottom: 28px; color: #e9e3d9; font-weight: 500; }
+  .stars { color: var(--gold); letter-spacing: 2px; }
+  .ctas { display: flex; flex-wrap: wrap; gap: 12px; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 22px; border-radius: 10px; font-weight: 700; text-decoration: none; border: 2px solid transparent; }
+  .btn-primary { background: var(--red); color: #fff; }
+  .btn-primary:hover { filter: brightness(1.08); }
+  .btn-ghost { border-color: #f7f3ec55; color: #f7f3ec; }
+  .btn-ghost:hover { border-color: #f7f3ec; }
+
+  section { padding: 72px 0; }
+  h2 { font-family: Anton, Impact, sans-serif; font-weight: 400; font-size: clamp(32px, 5vw, 48px); text-transform: uppercase; margin: 0 0 8px; letter-spacing: .5px; }
+  .sub { color: var(--muted); margin: 0 0 36px; }
+
+  .services { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 22px; }
+  .card .ico { font-size: 28px; }
+  .card h3 { margin: 10px 0 4px; font-size: 18px; }
+  .card p { margin: 0; color: var(--muted); font-size: 15px; }
+  .note { margin-top: 18px; font-size: 14px; color: var(--muted); }
+
+  .why { background: var(--surface); border-block: 1px solid var(--line); }
+  .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 28px; }
+  .why-grid strong { display: block; font-size: 18px; margin-bottom: 4px; }
+  .why-grid span { color: var(--muted); font-size: 15px; }
+  .big { font-family: Anton, Impact, sans-serif; font-size: 44px; color: var(--red); line-height: 1; margin-bottom: 6px; }
+
+  .visit { display: grid; grid-template-columns: 1fr 1.2fr; gap: 24px; align-items: stretch; }
+  @media (max-width: 800px) { .visit { grid-template-columns: 1fr; } }
+  .info dl { margin: 0; }
+  .info dt { font-weight: 700; margin-top: 18px; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); }
+  .info dd { margin: 4px 0 0; font-size: 17px; }
+  .map { border-radius: 14px; overflow: hidden; border: 1px solid var(--line); min-height: 320px; }
+  .map iframe { width: 100%; height: 100%; min-height: 320px; border: 0; display: block; }
+
+  .cta-band { background: var(--red); color: #fff; text-align: center; padding: 56px 0; }
+  .cta-band h2 { color: #fff; }
+  .cta-band p { margin: 0 0 24px; opacity: .92; }
+  .btn-light { background: #fff; color: #b3262d; }
+
+  footer { padding: 32px 0; color: var(--muted); font-size: 14px; }
+  footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
+
+</style>
+</head>
+<body>
+<div class="pole" aria-hidden="true"></div>
+
+<header class="nav">
+  <div class="wrap">
+    <a href="#top" class="brand">La <span>Frontera</span></a>
+    <nav class="nav-links">
+      <a href="#services" data-i18n="nav_services">Services</a>
+      <a href="#visit" data-i18n="nav_visit">Visit</a>
+      <button class="lang" id="langBtn" type="button" aria-label="Cambiar a español">ES</button>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div class="eyebrow"><span class="dot" id="statusDot"></span><span id="statusText">Open · Closes 10 PM</span></div>
+      <h1>La Frontera<br><em>Barber Shop</em></h1>
+      <p class="lead" data-i18n="lead">Clean fades, sharp lineups and classic cuts on West Parker Road. Walk in, sit down, walk out fresh — open late until 10 PM.</p>
+      <div class="rating"><span class="stars" aria-hidden="true">★★★★☆</span> <span><strong>4.3</strong> · <span data-i18n="reviews">18 Google reviews</span></span></div>
+      <div class="ctas">
+        <a class="btn btn-primary" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination=La+Frontera+Barber+Shop,+1206+W+Parker+Rd,+Greenville,+SC+29617" data-i18n="directions">Get directions</a>
+        <a class="btn btn-ghost" href="#services" data-i18n="see_services">See services</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="wrap">
+      <h2 data-i18n="services_title">Services</h2>
+      <p class="sub" data-i18n="services_sub">Everything you need to look your best.</p>
+      <div class="services">
+        <div class="card"><div class="ico">💈</div><h3 data-i18n="s1">Haircut</h3><p data-i18n="s1d">Classic scissor or clipper cut, styled how you like it.</p></div>
+        <div class="card"><div class="ico">✂️</div><h3 data-i18n="s2">Fades &amp; Tapers</h3><p data-i18n="s2d">Skin, low, mid or high — blended clean.</p></div>
+        <div class="card"><div class="ico">🧔</div><h3 data-i18n="s3">Beard Trim &amp; Lineup</h3><p data-i18n="s3d">Shape, edge and line up your beard and hairline.</p></div>
+        <div class="card"><div class="ico">🪒</div><h3 data-i18n="s4">Hot Towel Shave</h3><p data-i18n="s4d">Straight-razor shave finished with a hot towel.</p></div>
+        <div class="card"><div class="ico">👦</div><h3 data-i18n="s5">Kids' Cuts</h3><p data-i18n="s5d">Patient, friendly cuts for the little ones.</p></div>
+        <div class="card"><div class="ico">🎨</div><h3 data-i18n="s6">Designs</h3><p data-i18n="s6d">Custom parts and hair designs to stand out.</p></div>
+      </div>
+      <p class="note" data-i18n="price_note">Ask in the shop for current prices.</p>
+    </div>
+  </section>
+
+  <section class="why">
+    <div class="wrap why-grid">
+      <div><div class="big">4.3★</div><strong data-i18n="w1">Rated by locals</strong><span data-i18n="w1d">18 reviews on Google.</span></div>
+      <div><div class="big">10 PM</div><strong data-i18n="w2">Open late</strong><span data-i18n="w2d">Get a cut after work.</span></div>
+      <div><div class="big">🚶</div><strong data-i18n="w3">Walk-ins welcome</strong><span data-i18n="w3d">No appointment needed.</span></div>
+      <div><div class="big">ES/EN</div><strong data-i18n="w4">Se habla español</strong><span data-i18n="w4d">We speak your language.</span></div>
+    </div>
+  </section>
+
+  <section id="visit">
+    <div class="wrap visit">
+      <div class="info">
+        <h2 data-i18n="visit_title">Visit us</h2>
+        <p class="sub" data-i18n="visit_sub">Floor 1, in the plaza with Restaurante Guatelinda and Los Reyes Supermercado.</p>
+        <dl>
+          <dt data-i18n="addr">Address</dt>
+          <dd>1206 W Parker Rd<br>Greenville, SC 29617</dd>
+          <dt data-i18n="hours">Hours</dt>
+          <dd data-i18n="hours_v">Open today until 10 PM</dd>
+          <dt>Plus Code</dt>
+          <dd>VH96+P9 Greenville, South Carolina</dd>
+        </dl>
+        <p style="margin-top:24px"><a class="btn btn-primary" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination=La+Frontera+Barber+Shop,+1206+W+Parker+Rd,+Greenville,+SC+29617" data-i18n="directions">Get directions</a></p>
+      </div>
+      <div class="map">
+        <iframe title="Map to La Frontera Barber Shop" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps?q=La+Frontera+Barber+Shop,+1206+W+Parker+Rd,+Greenville,+SC+29617&output=embed"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-band">
+    <div class="wrap">
+      <h2 data-i18n="cta_title">Ready for a fresh cut?</h2>
+      <p data-i18n="cta_sub">Stop by today — we're open until 10 PM.</p>
+      <a class="btn btn-light" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination=La+Frontera+Barber+Shop,+1206+W+Parker+Rd,+Greenville,+SC+29617" data-i18n="directions">Get directions</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="yr"></span> La Frontera Barber Shop · 1206 W Parker Rd, Greenville, SC 29617</span>
+    <span data-i18n="footer">Fresh cuts · Cortes frescos</span>
+  </div>
+</footer>
+<div class="pole" aria-hidden="true"></div>
+
+<script>
+  const ES = {
+    nav_services: "Servicios", nav_visit: "Visítanos",
+    lead: "Fades limpios, lineups precisos y cortes clásicos en West Parker Road. Entra, siéntate y sal como nuevo — abierto hasta las 10 PM.",
+    reviews: "18 reseñas en Google", directions: "Cómo llegar", see_services: "Ver servicios",
+    services_title: "Servicios", services_sub: "Todo lo que necesitas para lucir bien.",
+    s1: "Corte de cabello", s1d: "Corte clásico con tijera o máquina, a tu estilo.",
+    s2: "Fades y degradados", s2d: "Skin, bajo, medio o alto — bien difuminado.",
+    s3: "Barba y perfilado", s3d: "Damos forma y perfilamos tu barba y contorno.",
+    s4: "Afeitado con toalla caliente", s4d: "Afeitado con navaja y toalla caliente.",
+    s5: "Cortes para niños", s5d: "Cortes con paciencia para los más pequeños.",
+    s6: "Diseños", s6d: "Rayas y diseños personalizados.",
+    price_note: "Pregunta en la barbería por los precios actuales.",
+    w1: "Recomendados por la comunidad", w1d: "18 reseñas en Google.",
+    w2: "Abierto tarde", w2d: "Córtate el pelo después del trabajo.",
+    w3: "Sin cita", w3d: "No necesitas reservar.",
+    w4: "Se habla español", w4d: "Hablamos tu idioma.",
+    visit_title: "Visítanos", visit_sub: "Primer piso, en la plaza con Restaurante Guatelinda y Los Reyes Supermercado.",
+    addr: "Dirección", hours: "Horario", hours_v: "Abierto hoy hasta las 10 PM",
+    cta_title: "¿Listo para un corte fresco?", cta_sub: "Pasa hoy — abrimos hasta las 10 PM.",
+    footer: "Cortes frescos · Fresh cuts"
+  };
+  const nodes = document.querySelectorAll("[data-i18n]");
+  const EN = {};
+  nodes.forEach(n => { EN[n.dataset.i18n] = n.innerHTML; });
+
+  let lang = "en";
+  try { lang = localStorage.getItem("lf-lang") || (navigator.language.startsWith("es") ? "es" : "en"); } catch (e) {}
+
+  function apply() {
+    const dict = lang === "es" ? ES : EN;
+    nodes.forEach(n => { const v = dict[n.dataset.i18n]; if (v) n.innerHTML = v; });
+    document.documentElement.lang = lang;
+    const btn = document.getElementById("langBtn");
+    btn.textContent = lang === "es" ? "EN" : "ES";
+    btn.setAttribute("aria-label", lang === "es" ? "Switch to English" : "Cambiar a español");
+    updateStatus();
+  }
+  document.getElementById("langBtn").addEventListener("click", () => {
+    lang = lang === "es" ? "en" : "es";
+    try { localStorage.setItem("lf-lang", lang); } catch (e) {}
+    apply();
+  });
+
+  // Only the closing time (10 PM) is known from the listing; show open/closed against that.
+  function updateStatus() {
+    const h = new Date().getHours();
+    const open = h < 22;
+    document.getElementById("statusDot").classList.toggle("closed", !open);
+    document.getElementById("statusText").textContent = open
+      ? (lang === "es" ? "Abierto · Cierra a las 10 PM" : "Open · Closes 10 PM")
+      : (lang === "es" ? "Cerrado ahora · Abre mañana" : "Closed now · Opens tomorrow");
+  }
+
+  document.getElementById("yr").textContent = new Date().getFullYear();
+  apply();
+</script>
+</body>
+</html>
