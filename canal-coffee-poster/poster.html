@@ -1,42 +1,85 @@
 <!doctype html>
 <html><head><meta charset="utf-8"><title>Canal Coffee Poster</title>
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Bebas+Neue&family=Montserrat:wght@500;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Pacifico&family=Dancing+Script:wght@600;700&family=Kaushan+Script&display=swap" rel="stylesheet">
 <style>
-  html,body{margin:0;background:#0b1f3a}
+  :root{--ink:#1b2f55;--gold:#b8862b;--brown:#5a3a22}
+  html,body{margin:0;background:#efe5d0}
   .poster{width:1200px;height:1800px;box-sizing:border-box;position:relative;overflow:hidden;
-    background:radial-gradient(circle at 50% 38%,#1d4b86 0%,#0f2b52 45%,#081a33 100%);
-    color:#fff;font-family:Montserrat,sans-serif;text-align:center;padding:70px 80px}
-  .frame{position:absolute;inset:30px;border:6px solid #e8b931;border-radius:24px;pointer-events:none}
-  .frame::after{content:"";position:absolute;inset:14px;border:2px solid rgba(232,185,49,.5);border-radius:14px}
-  .sigma{font-family:'Great Vibes',cursive;font-size:220px;line-height:1;color:#f4c542;margin-top:30px;
-    text-shadow:0 6px 0 rgba(0,0,0,.35)}
-  .presents{letter-spacing:.5em;font-weight:700;font-size:28px;color:#cfe0ff;margin-top:10px}
-  .cup{margin:40px auto 10px;width:360px;height:360px}
-  .free{font-family:'Bebas Neue',sans-serif;font-size:300px;line-height:.85;color:#f4c542;margin-top:10px;
-    text-shadow:0 8px 0 #7a5a00}
-  .brand{font-family:'Bebas Neue',sans-serif;font-size:150px;line-height:.9;letter-spacing:.04em}
-  .tag{font-size:44px;font-weight:800;margin:40px auto 0;max-width:900px;line-height:1.25}
-  .tag em{color:#f4c542;font-style:normal}
-  .where{display:inline-block;margin-top:55px;background:#f4c542;color:#0b1f3a;border-radius:18px;
-    padding:26px 60px;font-family:'Bebas Neue',sans-serif;font-size:96px;letter-spacing:.04em;line-height:1;
-    box-shadow:0 10px 0 #7a5a00}
-  .where small{display:block;font-family:Montserrat,sans-serif;font-weight:800;font-size:26px;letter-spacing:.35em;margin-bottom:10px}
-  .foot{position:absolute;left:0;right:0;bottom:80px;font-size:28px;font-weight:700;letter-spacing:.3em;color:#cfe0ff}
+    background:#f1e7d2;color:var(--ink);text-align:center;padding:60px 90px}
+  .paper{position:absolute;inset:0;pointer-events:none;mix-blend-mode:multiply;opacity:.55}
+  .border{position:absolute;inset:34px;border:3px solid var(--ink);border-radius:6px;pointer-events:none}
+  .border::after{content:"";position:absolute;inset:10px;border:1px solid var(--ink);opacity:.6}
+  .sigma{font-family:'Great Vibes',cursive;font-size:230px;line-height:1;margin-top:40px;transform:rotate(-3deg)}
+  .presents{font-family:'Dancing Script',cursive;font-weight:600;font-size:52px;margin-top:-10px;color:var(--brown)}
+  .mug{display:block;margin:10px auto 0;width:560px}
+  .free{font-family:'Pacifico',cursive;font-size:190px;line-height:1;color:var(--gold);margin-top:-10px;transform:rotate(-4deg)}
+  .brand{font-family:'Pacifico',cursive;font-size:118px;line-height:1.1;margin-top:-5px}
+  .tag{font-family:'Dancing Script',cursive;font-weight:700;font-size:58px;line-height:1.2;margin:30px auto 0;max-width:900px;color:var(--brown)}
+  .where{font-family:'Kaushan Script',cursive;font-size:104px;line-height:1.1;margin-top:34px}
+  .where span{display:block;font-family:'Dancing Script',cursive;font-weight:600;font-size:52px;color:var(--brown)}
+  .swoosh{display:block;margin:-6px auto 0;width:620px}
+  .huntsman{position:absolute;left:0;right:0;bottom:92px;font-family:'Dancing Script',cursive;font-weight:700;font-size:50px;line-height:1.15}
+  .huntsman small{display:block;font-size:38px;font-weight:600;color:var(--brown)}
 </style></head>
-<body><div class="poster"><div class="frame"></div>
-  <div class="sigma">Sigma Chi</div>
-  <div class="presents">PRESENTS</div>
-  <svg class="cup" viewBox="0 0 200 200" aria-hidden="true">
-    <g fill="none" stroke="#cfe0ff" stroke-width="6" stroke-linecap="round">
-      <path d="M78 22c-10 12 10 20 0 34"/><path d="M100 14c-12 14 12 24 0 42"/><path d="M122 22c-10 12 10 20 0 34"/>
-    </g>
-    <path d="M40 70h120l-14 100a12 12 0 0 1-12 10H66a12 12 0 0 1-12-10z" fill="#fff"/>
-    <rect x="34" y="62" width="132" height="16" rx="8" fill="#f4c542"/>
-    <path d="M160 92h10a20 20 0 0 1 0 40h-14" fill="none" stroke="#fff" stroke-width="10"/>
+<body><div class="poster">
+  <svg class="paper" width="1200" height="1800" aria-hidden="true">
+    <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="3" seed="7"/><feColorMatrix values="0 0 0 0 .45  0 0 0 0 .38  0 0 0 0 .28  0 0 0 .35 0"/></filter>
+    <filter id="blot"><feTurbulence type="fractalNoise" baseFrequency=".004" numOctaves="2" seed="3"/><feColorMatrix values="0 0 0 0 .6  0 0 0 0 .5  0 0 0 0 .35  0 0 0 .25 0"/></filter>
+    <rect width="1200" height="1800" filter="url(#blot)"/><rect width="1200" height="1800" filter="url(#grain)"/>
   </svg>
-  <div class="free">FREE</div>
-  <div class="brand">CANAL COFFEE</div>
-  <div class="tag">Swing by, grab a cup on us &amp; <em>fuel up</em> for the day! ☕</div>
-  <div class="where"><small>FIND US AT THE</small>LIBRARY STEPS</div>
-  <div class="foot">COME THIRSTY · LEAVE CAFFEINATED</div>
+  <div class="border"></div>
+
+  <div class="sigma">Sigma Chi</div>
+  <div class="presents">presents</div>
+
+  <svg class="mug" viewBox="0 0 440 340" aria-hidden="true">
+    <defs>
+      <linearGradient id="body" x1="0" x2="1">
+        <stop offset="0" stop-color="#cfc6b6"/><stop offset=".18" stop-color="#f4f0e8"/><stop offset=".38" stop-color="#ffffff"/>
+        <stop offset=".7" stop-color="#e9e3d7"/><stop offset="1" stop-color="#b7ad9c"/>
+      </linearGradient>
+      <linearGradient id="handle" x1="0" x2="1"><stop offset="0" stop-color="#e8e1d4"/><stop offset=".5" stop-color="#fbf8f2"/><stop offset="1" stop-color="#b9af9e"/></linearGradient>
+      <radialGradient id="coffee" cx=".45" cy=".45" r=".6">
+        <stop offset="0" stop-color="#c9925a"/><stop offset=".45" stop-color="#9a6234"/><stop offset=".8" stop-color="#5a331a"/><stop offset="1" stop-color="#2f1a0d"/>
+      </radialGradient>
+      <radialGradient id="saucer" cx=".5" cy=".4" r=".6"><stop offset="0" stop-color="#fbf8f2"/><stop offset=".7" stop-color="#e6dfd1"/><stop offset="1" stop-color="#b8ae9c"/></radialGradient>
+      <filter id="soft"><feGaussianBlur stdDeviation="8"/></filter>
+      <filter id="steamblur"><feGaussianBlur stdDeviation="3.5"/></filter>
+    </defs>
+    <!-- cast shadow -->
+    <ellipse cx="225" cy="305" rx="190" ry="26" fill="#6b5a40" opacity=".35" filter="url(#soft)"/>
+    <!-- saucer -->
+    <ellipse cx="220" cy="290" rx="190" ry="40" fill="#a89e8b"/>
+    <ellipse cx="220" cy="284" rx="188" ry="38" fill="url(#saucer)"/>
+    <ellipse cx="220" cy="282" rx="120" ry="22" fill="#d9d1c2"/>
+    <!-- mug shadow on saucer -->
+    <ellipse cx="225" cy="282" rx="112" ry="18" fill="#7d6f5a" opacity=".45" filter="url(#soft)"/>
+    <!-- handle -->
+    <path d="M318 120c62-10 84 30 74 70-9 38-46 58-82 62l-2-26c24-4 50-18 56-42 6-26-8-44-44-38z" fill="url(#handle)" stroke="#a69c8a" stroke-width="1.5"/>
+    <!-- body -->
+    <path d="M110 92h220l-10 168c-1 16-14 26-30 26H150c-16 0-29-10-30-26z" fill="url(#body)"/>
+    <path d="M120 260c1 16 14 26 30 26h140c16 0 29-10 30-26" fill="none" stroke="#a69c8a" stroke-width="1.5"/>
+    <!-- highlight -->
+    <path d="M150 112c-6 50-4 110 4 160" stroke="#fff" stroke-width="10" stroke-linecap="round" opacity=".7" filter="url(#steamblur)"/>
+    <!-- rim -->
+    <ellipse cx="220" cy="92" rx="110" ry="24" fill="#f7f3ec" stroke="#b3a996" stroke-width="1.5"/>
+    <ellipse cx="220" cy="94" rx="100" ry="19" fill="url(#coffee)"/>
+    <!-- crema swirl -->
+    <path d="M168 96c14-12 44-14 62-6 16 8 4 18-14 16-18-2-22-10-8-14" fill="none" stroke="#e2b98a" stroke-width="3" opacity=".7" stroke-linecap="round"/>
+    <ellipse cx="220" cy="94" rx="100" ry="19" fill="none" stroke="#3a2212" stroke-width="2" opacity=".6"/>
+    <!-- steam -->
+    <g fill="none" stroke="#fff" stroke-linecap="round" filter="url(#steamblur)" opacity=".85">
+      <path d="M196 70c-18-22 16-34 0-58" stroke-width="9"/>
+      <path d="M232 66c-16-20 18-30 4-56" stroke-width="7" opacity=".7"/>
+      <path d="M262 74c-12-16 12-24 2-42" stroke-width="6" opacity=".55"/>
+    </g>
+  </svg>
+
+  <div class="free">Free</div>
+  <div class="brand">Canal Coffee</div>
+  <div class="tag">Come on out, grab a warm cup on us<br>&amp; start your day the right way</div>
+  <div class="where"><span>find us on the</span>Library Steps</div>
+  <svg class="swoosh" viewBox="0 0 620 40" aria-hidden="true"><path d="M20 26C160 8 380 6 600 20" fill="none" stroke="#b8862b" stroke-width="5" stroke-linecap="round"/></svg>
+
+  <div class="huntsman"><small>proudly supporting</small>Huntsman Cancer Institute</div>
 </div></body></html>
