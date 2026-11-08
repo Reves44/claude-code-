@@ -15,10 +15,15 @@
   .sticker::before{content:"";position:absolute;inset:11px;border:3px dashed rgba(255,255,255,.75);border-radius:50%}
   .sticker b{font-family:'Pacifico',cursive;font-weight:400;font-size:66px;line-height:1}
   .sticker i{font-family:'Dancing Script',cursive;font-style:normal;font-weight:700;font-size:30px}
-  .headline{left:600px;top:320px;width:560px;text-align:center}
-  .headline .brand{font-family:'Pacifico',cursive;font-size:128px;line-height:1.05}
-  .headline .tag{font-family:'Dancing Script',cursive;font-weight:700;font-size:46px;line-height:1.2;color:var(--brown);margin-top:18px}
-  .where{left:0;right:0;top:770px;text-align:center}
+  .headline{left:600px;top:300px;width:560px;text-align:center}
+  .headline .brand{font-family:'Pacifico',cursive;font-size:128px;line-height:1}
+  .headline .tag{font-family:'Dancing Script',cursive;font-weight:700;font-size:46px;line-height:1.2;color:var(--brown);margin-top:10px}
+  .ticket{position:relative;display:inline-block;margin-top:22px;background:var(--gold);color:var(--ink);border-radius:12px;padding:12px 56px 16px;transform:rotate(-3deg);box-shadow:0 6px 12px rgba(40,25,10,.18)}
+  .ticket::before,.ticket::after{content:"";position:absolute;top:50%;width:34px;height:34px;margin-top:-17px;border-radius:50%;background:#f7eee2}
+  .ticket::before{left:-17px}.ticket::after{right:-17px}
+  .ticket span{display:block;border:2px dashed rgba(29,52,97,.45);border-radius:8px;padding:4px 26px 8px;font-family:'Dancing Script',cursive;font-weight:700;font-size:44px;line-height:1.05}
+  .ticket b{font-family:'Pacifico',cursive;font-weight:400;font-size:46px;color:#fff}
+  .where{left:0;right:0;top:855px;text-align:center}
   .where .find{font-family:'Dancing Script',cursive;font-weight:700;font-size:46px;color:var(--brown)}
   .pill{display:inline-flex;align-items:center;gap:24px;background:var(--ink);color:var(--cream);border-radius:999px;
     padding:16px 64px 24px 48px;margin-top:6px;font-family:'Kaushan Script',cursive;font-size:84px;line-height:1}
@@ -27,11 +32,11 @@
   .pol img{display:block}
   .pol p{margin:0;height:70px;line-height:70px;text-align:center;font-family:'Dancing Script',cursive;font-weight:700;font-size:40px;color:var(--ink)}
   .tape{position:absolute;width:150px;height:40px;background:rgba(224,166,58,.6);top:-20px;left:50%;margin-left:-75px}
-  .p1{left:42px;top:1050px;transform:rotate(-7deg)} .p1 img{width:350px;height:280px}
-  .p3{left:806px;top:1060px;transform:rotate(6deg)} .p3 img{width:350px;height:280px}
-  .p2{left:337px;top:990px;transform:rotate(-1.5deg);z-index:2} .p2 img{width:494px;height:357px}
+  .p1{left:42px;top:1125px;transform:rotate(-7deg)} .p1 img{width:350px;height:280px}
+  .p3{left:806px;top:1135px;transform:rotate(6deg)} .p3 img{width:350px;height:280px}
+  .p2{left:337px;top:1065px;transform:rotate(-1.5deg);z-index:2} .p2 img{width:494px;height:357px}
   .p2 .tape{transform:rotate(-3deg);background:rgba(207,220,239,.85)}
-  .band{left:0;right:0;bottom:0;height:290px;background:var(--ink);color:var(--cream);display:flex;align-items:center;justify-content:center;gap:34px}
+  .band{left:0;right:0;bottom:0;height:250px;background:var(--ink);color:var(--cream);display:flex;align-items:center;justify-content:center;gap:34px}
   .band::before{content:"";position:absolute;left:0;right:0;top:0;height:10px;background:var(--gold)}
   .band svg{width:92px;height:142px}
   .band .t{text-align:center}
@@ -54,9 +59,9 @@
     <use href="#bean" transform="translate(1150 560) rotate(-20) scale(.75)"/>
     <use href="#bean" transform="translate(80 880) rotate(50) scale(.7)"/>
     <use href="#spark" fill="#e0a63a" transform="translate(1100 300) scale(.8)"/>
-    <use href="#spark" fill="#1d3461" transform="translate(150 860) scale(.55)"/>
-    <use href="#spark" fill="#e0a63a" transform="translate(1060 860) scale(.6)"/>
-    <use href="#spark" fill="#e0a63a" transform="translate(1140 1470) scale(.6)"/>
+    <use href="#spark" fill="#1d3461" transform="translate(150 930) scale(.55)"/>
+    <use href="#spark" fill="#e0a63a" transform="translate(1080 930) scale(.6)"/>
+    <use href="#spark" fill="#e0a63a" transform="translate(70 1100) scale(.6)"/>
   </svg>
 
   <div class="abs sigma">Sigma Chi</div>
@@ -100,6 +105,7 @@
   <div class="abs headline">
     <div class="brand">Canal<br>Coffee</div>
     <div class="tag">Come on out &amp;<br>grab a warm cup on us!</div>
+    <div class="ticket"><span>+ a <b>raffle</b> for<br>gift cards!</span></div>
   </div>
 
   <div class="abs where">
