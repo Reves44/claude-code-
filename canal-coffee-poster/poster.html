@@ -2,67 +2,67 @@
 <html><head><meta charset="utf-8"><title>Canal Coffee Poster</title>
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Pacifico&family=Dancing+Script:wght@600;700&family=Kaushan+Script&display=swap" rel="stylesheet">
 <style>
-  :root{--ink:#1d3461;--gold:#e0a63a;--brown:#6b4226;--tan:#e8cfae;--cream:#fbf5ec}
+  :root{--ink:#1d3461;--gold:#e0a63a;--brown:#6b4226;--cream:#fbf5ec}
   html,body{margin:0;background:var(--cream)}
-  .poster{width:1200px;height:1800px;position:relative;overflow:hidden;background:#f7eee2;color:var(--ink);text-align:center}
-  .deco{position:absolute;inset:0;pointer-events:none}
-  .content{position:relative;padding-top:70px}
-  .sigma{font-family:'Great Vibes',cursive;font-size:210px;line-height:1}
-  .presents{font-family:'Dancing Script',cursive;font-weight:700;font-size:50px;color:var(--brown);margin-top:-6px}
-  .hero{position:relative;width:1200px;height:560px;margin-top:10px}
-  .hero .mug{position:absolute;left:340px;top:70px;width:520px}
-  .sticker{position:absolute;left:780px;top:40px;width:250px;height:250px;border-radius:50%;background:var(--gold);
-    transform:rotate(12deg);display:flex;flex-direction:column;align-items:center;justify-content:center;
-    box-shadow:0 0 0 10px #f7eee2;color:#fff}
-  .sticker::before{content:"";position:absolute;inset:14px;border:3px dashed rgba(255,255,255,.75);border-radius:50%}
-  .sticker b{font-family:'Pacifico',cursive;font-weight:400;font-size:88px;line-height:1}
-  .sticker i{font-family:'Dancing Script',cursive;font-style:normal;font-weight:700;font-size:38px;margin-top:-4px}
-  .brand{font-family:'Pacifico',cursive;font-size:140px;line-height:1.1;margin-top:-10px}
-  .tag{font-family:'Dancing Script',cursive;font-weight:700;font-size:56px;line-height:1.2;margin-top:18px;color:var(--brown)}
-  .find{font-family:'Dancing Script',cursive;font-weight:700;font-size:50px;color:var(--brown);margin-top:44px}
-  .pill{display:inline-flex;align-items:center;gap:26px;background:var(--ink);color:var(--cream);border-radius:999px;
-    padding:22px 70px 30px 54px;margin-top:10px;font-family:'Kaushan Script',cursive;font-size:96px;line-height:1}
-  .pill svg{width:62px;height:82px;margin-top:10px}
-  .huntsman{position:absolute;left:0;right:0;bottom:140px;display:flex;align-items:center;justify-content:center;gap:22px}
-  .huntsman svg{width:54px;height:84px}
-  .huntsman div{font-family:'Dancing Script',cursive;font-weight:700;font-size:52px;line-height:1.1;text-align:left}
-  .huntsman small{display:block;font-size:36px;color:var(--brown)}
+  .poster{width:1200px;height:1800px;position:relative;overflow:hidden;background:#f7eee2;color:var(--ink)}
+  .abs{position:absolute}
+  .deco{left:0;top:0;pointer-events:none}
+  .sigma{left:0;right:0;top:30px;text-align:center;font-family:'Great Vibes',cursive;font-size:180px;line-height:1}
+  .presents{left:0;right:0;top:215px;text-align:center;font-family:'Dancing Script',cursive;font-weight:700;font-size:46px;color:var(--brown)}
+  .mug{left:40px;top:330px;width:520px}
+  .sticker{left:410px;top:285px;width:190px;height:190px;border-radius:50%;background:var(--gold);transform:rotate(-10deg);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 0 0 9px #f7eee2;color:#fff}
+  .sticker::before{content:"";position:absolute;inset:11px;border:3px dashed rgba(255,255,255,.75);border-radius:50%}
+  .sticker b{font-family:'Pacifico',cursive;font-weight:400;font-size:66px;line-height:1}
+  .sticker i{font-family:'Dancing Script',cursive;font-style:normal;font-weight:700;font-size:30px}
+  .headline{left:600px;top:320px;width:560px;text-align:center}
+  .headline .brand{font-family:'Pacifico',cursive;font-size:128px;line-height:1.05}
+  .headline .tag{font-family:'Dancing Script',cursive;font-weight:700;font-size:46px;line-height:1.2;color:var(--brown);margin-top:18px}
+  .where{left:0;right:0;top:770px;text-align:center}
+  .where .find{font-family:'Dancing Script',cursive;font-weight:700;font-size:46px;color:var(--brown)}
+  .pill{display:inline-flex;align-items:center;gap:24px;background:var(--ink);color:var(--cream);border-radius:999px;
+    padding:16px 64px 24px 48px;margin-top:6px;font-family:'Kaushan Script',cursive;font-size:84px;line-height:1}
+  .pill svg{width:52px;height:70px;margin-top:8px}
+  .pol{background:#fff;padding:16px 16px 0;box-shadow:0 14px 28px rgba(40,25,10,.28),0 2px 4px rgba(40,25,10,.2)}
+  .pol img{display:block}
+  .pol p{margin:0;height:70px;line-height:70px;text-align:center;font-family:'Dancing Script',cursive;font-weight:700;font-size:40px;color:var(--ink)}
+  .tape{position:absolute;width:150px;height:40px;background:rgba(224,166,58,.6);top:-20px;left:50%;margin-left:-75px}
+  .p1{left:42px;top:1050px;transform:rotate(-7deg)} .p1 img{width:350px;height:280px}
+  .p3{left:806px;top:1060px;transform:rotate(6deg)} .p3 img{width:350px;height:280px}
+  .p2{left:337px;top:990px;transform:rotate(-1.5deg);z-index:2} .p2 img{width:494px;height:357px}
+  .p2 .tape{transform:rotate(-3deg);background:rgba(207,220,239,.85)}
+  .band{left:0;right:0;bottom:0;height:290px;background:var(--ink);color:var(--cream);display:flex;align-items:center;justify-content:center;gap:34px}
+  .band::before{content:"";position:absolute;left:0;right:0;top:0;height:10px;background:var(--gold)}
+  .band svg{width:92px;height:142px}
+  .band .t{text-align:center}
+  .band small{display:block;font-family:'Dancing Script',cursive;font-weight:700;font-size:54px;color:var(--gold);line-height:1}
+  .band b{display:block;font-family:'Pacifico',cursive;font-weight:400;font-size:88px;line-height:1.25}
 </style></head>
 <body><div class="poster">
-  <svg class="deco" width="1200" height="1800" aria-hidden="true">
+  <svg class="abs deco" width="1200" height="1800" aria-hidden="true">
     <defs>
       <g id="bean"><ellipse rx="22" ry="32" fill="#6b4226"/><path d="M0-30C-12-10 12 10 0 30" stroke="#f7eee2" stroke-width="4" fill="none" stroke-linecap="round"/></g>
       <path id="spark" d="M0-26C3-6 6-3 26 0 6 3 3 6 0 26-3 6-6 3-26 0-6-3-3-6 0-26z"/>
     </defs>
-    <!-- corner blobs -->
     <path d="M-80 -60C120-80 300 20 260 160 220 300 60 300-40 380-120 440-160 200-80-60z" fill="#e8cfae"/>
-    <path d="M1300 1380C1180 1360 1040 1440 1060 1580 1080 1720 960 1780 1000 1900L1300 1900z" fill="#e8cfae"/>
-    <path d="M1260 120C1150 90 1080 170 1120 250 1160 330 1240 300 1270 360z" fill="#cfdcef"/>
-    <path d="M-60 1500C40 1470 120 1550 90 1640 60 1730-20 1760-60 1820z" fill="#cfdcef"/>
-    <!-- hero blob behind mug -->
-    <path transform="translate(0 -25)" d="M600 480C760 470 900 520 910 640 920 760 860 880 720 900 600 918 560 880 450 890 330 900 270 820 280 700 290 560 450 486 600 480z" fill="#1d3461"/>
-    <!-- dotted arc -->
-    <path d="M250 560C240 430 330 400 360 420" fill="none" stroke="#6b4226" stroke-width="5" stroke-dasharray="2 16" stroke-linecap="round"/>
-    <!-- beans -->
-    <use href="#bean" transform="translate(150 720) rotate(-30)"/>
-    <use href="#bean" transform="translate(210 820) rotate(20) scale(.8)"/>
-    <use href="#bean" transform="translate(1040 820) rotate(40)"/>
-    <use href="#bean" transform="translate(1080 1230) rotate(-15) scale(.75)"/>
-    <use href="#bean" transform="translate(120 1250) rotate(60) scale(.7)"/>
-    <!-- sparkles -->
-    <use href="#spark" fill="#e0a63a" transform="translate(180 470)"/>
-    <use href="#spark" fill="#e0a63a" transform="translate(1060 660) scale(.7)"/>
-    <use href="#spark" fill="#1d3461" transform="translate(110 1020) scale(.55)"/>
-    <use href="#spark" fill="#e0a63a" transform="translate(1100 1060) scale(.5)"/>
-    <use href="#spark" fill="#1d3461" transform="translate(1000 300) scale(.5)"/>
+    <path d="M1260 60C1130 40 1060 150 1110 240 1160 330 1240 300 1270 360z" fill="#cfdcef"/>
+    <path d="M1300 850C1200 840 1150 920 1180 990L1300 1000z" fill="#e8cfae"/>
+    <path d="M-40 880C40 860 80 930 40 980L-40 1000z" fill="#cfdcef"/>
+    <!-- blob behind mug -->
+    <path d="M300 330C440 320 560 370 560 480 560 590 510 680 390 690 290 700 250 670 160 680 70 690 30 610 40 510 50 390 170 336 300 330z" fill="#1d3461"/>
+    <use href="#bean" transform="translate(70 300) rotate(-30) scale(.8)"/>
+    <use href="#bean" transform="translate(1150 560) rotate(-20) scale(.75)"/>
+    <use href="#bean" transform="translate(80 880) rotate(50) scale(.7)"/>
+    <use href="#spark" fill="#e0a63a" transform="translate(1100 300) scale(.8)"/>
+    <use href="#spark" fill="#1d3461" transform="translate(150 860) scale(.55)"/>
+    <use href="#spark" fill="#e0a63a" transform="translate(1060 860) scale(.6)"/>
+    <use href="#spark" fill="#e0a63a" transform="translate(1140 1470) scale(.6)"/>
   </svg>
 
-  <div class="content">
-    <div class="sigma">Sigma Chi</div>
-    <div class="presents">presents</div>
+  <div class="abs sigma">Sigma Chi</div>
+  <div class="abs presents">presents</div>
 
-    <div class="hero">
-      <svg class="mug" viewBox="0 0 440 340" aria-hidden="true">
+  <svg class="abs mug" viewBox="0 0 440 340" aria-hidden="true">
         <defs>
           <linearGradient id="body" x1="0" x2="1">
             <stop offset="0" stop-color="#cfc6b6"/><stop offset=".18" stop-color="#f4f0e8"/><stop offset=".38" stop-color="#ffffff"/>
@@ -95,20 +95,24 @@
           <path d="M262 74c-12-16 12-24 2-42" stroke-width="6" opacity=".55"/>
         </g>
       </svg>
-      <div class="sticker"><b>Free</b><i>for everyone!</i></div>
-    </div>
+  <div class="abs sticker"><b>Free</b><i>for everyone!</i></div>
 
-    <div class="brand">Canal Coffee</div>
-    <div class="tag">Come on out &amp; grab a warm cup on us ~<br>the best way to start your day</div>
-    <div class="find">find us on the</div>
-    <div class="pill">
-      <svg viewBox="0 0 30 40" aria-hidden="true"><path d="M15 1C7 1 1 7 1 15c0 10 14 24 14 24s14-14 14-24C29 7 23 1 15 1z" fill="#e0a63a"/><circle cx="15" cy="15" r="5.5" fill="#1d3461"/></svg>
-      Library Steps
-    </div>
+  <div class="abs headline">
+    <div class="brand">Canal<br>Coffee</div>
+    <div class="tag">Come on out &amp;<br>grab a warm cup on us!</div>
   </div>
 
-  <div class="huntsman">
-    <svg viewBox="0 0 40 62" aria-hidden="true"><path d="M20 30C8 18 10 4 20 4s12 14 0 26L6 58M20 30l14 28" fill="none" stroke="#e0a63a" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    <div><small>proudly supporting</small>Huntsman Cancer Institute</div>
+  <div class="abs where">
+    <div class="find">find us on the</div>
+    <div class="pill"><svg viewBox="0 0 30 40" aria-hidden="true"><path d="M15 1C7 1 1 7 1 15c0 10 14 24 14 24s14-14 14-24C29 7 23 1 15 1z" fill="#e0a63a"/><circle cx="15" cy="15" r="5.5" fill="#1d3461"/></svg>Library Steps</div>
+  </div>
+
+  <div class="abs pol p1"><span class="tape" style="transform:rotate(4deg)"></span><img src="photos/sign-crop.jpg" alt=""><p style="text-align:left;padding-left:14px">Our cause ♡</p></div>
+  <div class="abs pol p3"><span class="tape" style="transform:rotate(-5deg)"></span><img src="photos/award-crop.jpg" alt=""><p>20K Club</p></div>
+  <div class="abs pol p2"><span class="tape"></span><img src="photos/booth-crop.jpg" alt=""><p>Who are you fighting for?</p></div>
+
+  <div class="abs band">
+    <svg viewBox="0 0 40 62" aria-hidden="true"><path d="M20 30C8 18 10 4 20 4s12 14 0 26L6 58M20 30l14 28" fill="none" stroke="#e0a63a" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <div class="t"><small>proudly supporting</small><b>Huntsman Cancer Institute</b></div>
   </div>
 </div></body></html>
