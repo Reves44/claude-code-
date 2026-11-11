@@ -1,34 +1,70 @@
 <!doctype html><html><head><meta charset="utf-8">
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Permanent+Marker&family=Inter:wght@500;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Permanent+Marker&family=Inter:wght@500;800;900&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{width:1080px;height:1350px;background:#0b0b0d;color:#fff;font-family:Inter,Arial,sans-serif;overflow:hidden;position:relative}
-.glow{position:absolute;inset:0;background:radial-gradient(circle at 50% 38%,rgba(255,255,255,.14),transparent 60%)}
-.top{position:absolute;top:60px;width:100%;text-align:center;letter-spacing:14px;font-weight:800;font-size:30px;color:#cfd3da}
-.top .greek{display:block;font-family:Anton,Impact,sans-serif;font-size:84px;letter-spacing:10px;color:#fff;margin-bottom:6px}
-.shirts{position:absolute;top:250px;width:100%;display:flex;justify-content:center;gap:24px}
-.shirt{position:relative;width:300px;height:300px}
-.shirt svg{width:100%;height:100%;filter:drop-shadow(0 12px 24px rgba(0,0,0,.6))}
-.shirt span{position:absolute;top:118px;left:60px;right:60px;text-align:center;font-family:'Permanent Marker',cursive;color:#111;font-size:30px;line-height:1.05}
-.s1{transform:rotate(-8deg) translateY(30px)}.s3{transform:rotate(8deg) translateY(30px)}
-.s1 span{color:#c0142a}.s3 span{color:#0a3d91}
-.title{position:absolute;top:600px;width:100%;text-align:center;font-family:Anton,Impact,sans-serif;font-size:250px;line-height:.9;letter-spacing:4px}
-.title .lies{display:block;font-family:'Permanent Marker',cursive;font-size:190px;color:#fff;transform:rotate(-4deg);margin-top:-10px;text-shadow:0 0 30px rgba(255,255,255,.25)}
-.rule{position:absolute;top:1035px;left:50%;transform:translateX(-50%);font-size:32px;font-weight:500;color:#d7dae0;text-align:center;width:900px}
-.rule b{color:#fff}
-.date{position:absolute;top:1100px;left:70px;right:70px;border:3px solid #fff;padding:22px 0;text-align:center;font-family:Anton,Impact,sans-serif;font-size:54px;letter-spacing:3px;white-space:nowrap}
-.invite{position:absolute;bottom:52px;width:100%;text-align:center;font-weight:800;font-size:28px;letter-spacing:6px;color:#cfd3da}
-.invite em{font-style:normal;color:#fff;border-bottom:3px solid #fff}
+body{width:1080px;height:1350px;background:#070708;color:#fff;font-family:Inter,Arial,sans-serif;overflow:hidden;position:relative}
+.spot{position:absolute;inset:0;background:radial-gradient(ellipse 70% 45% at 50% 34%,rgba(255,255,255,.22),transparent 70%)}
+.grain{position:absolute;inset:0;opacity:.18;mix-blend-mode:overlay}
+.bg-lies{position:absolute;inset:0;font-family:'Permanent Marker',cursive;color:rgba(255,255,255,.07);font-size:44px}
+.bg-lies span{position:absolute;white-space:nowrap}
+.bar{position:absolute;top:0;left:0;right:0;height:78px;background:#fff;color:#000;display:flex;align-items:center;justify-content:space-between;padding:0 44px;font-weight:900;font-size:26px;letter-spacing:6px}
+.bar .gk{font-family:Anton,Impact,sans-serif;font-size:44px;letter-spacing:4px}
+.bar .gk small{font-family:Inter,sans-serif;font-weight:900;font-size:26px;letter-spacing:6px;margin-left:16px;vertical-align:middle}
+.bar .live{display:flex;align-items:center;gap:12px}
+.bar .dot{width:16px;height:16px;border-radius:50%;background:#000}
+.shirts{position:absolute;top:130px;left:0;right:0;height:380px}
+.shirt{position:absolute;width:330px;height:330px}
+.shirt svg{width:100%;height:100%;filter:drop-shadow(0 18px 30px rgba(0,0,0,.8))}
+.shirt span{position:absolute;top:128px;left:72px;right:72px;text-align:center;font-family:'Permanent Marker',cursive;color:#0a0a0a;font-size:31px;line-height:1.05}
+.s1{left:40px;top:50px;transform:rotate(-14deg)}
+.s2{left:375px;top:0;transform:rotate(2deg) scale(1.08)}
+.s3{left:710px;top:50px;transform:rotate(13deg)}
+.title{position:absolute;top:455px;left:0;right:0;text-align:center}
+.white{font-family:Anton,Impact,sans-serif;font-size:250px;line-height:.86;letter-spacing:2px;text-shadow:0 0 60px rgba(255,255,255,.25)}
+.lies{position:relative;display:inline-block;font-family:'Permanent Marker',cursive;font-size:180px;line-height:1;transform:rotate(-5deg);margin-top:-14px}
+.lies svg{position:absolute;left:-50px;top:-10px;width:calc(100% + 100px);height:110%;overflow:visible}
+.tag{position:absolute;top:870px;left:0;right:0;text-align:center;font-weight:800;font-size:30px;letter-spacing:3px;color:#d9d9d9}
+.tag b{color:#fff;font-weight:900}
+.info{position:absolute;top:930px;left:60px;right:60px;display:grid;grid-template-columns:1fr 1fr;border:4px solid #fff}
+.info>div{padding:20px 22px;text-align:center;display:flex;flex-direction:column;justify-content:center}
+.info>div+div{border-left:4px solid #fff}
+.info .k{font-size:20px;font-weight:900;letter-spacing:7px;color:#bdbdbd;margin-bottom:6px}
+.info .v{font-family:Anton,Impact,sans-serif;font-size:56px;line-height:1.05;letter-spacing:2px}
+.info .loc{background:#fff;color:#000}
+.info .loc .k{color:#555}
+.invite{position:absolute;top:1215px;left:0;right:0;text-align:center}
+.invite .t{display:inline-block;background:#fff;color:#000;font-weight:900;font-size:30px;letter-spacing:5px;padding:16px 30px;transform:rotate(-2deg);box-shadow:8px 8px 0 rgba(255,255,255,.25)}
+.invite .s{margin-top:18px;font-size:20px;font-weight:800;letter-spacing:8px;color:#9a9a9a}
+.star{position:absolute;color:#fff;font-size:46px}
 </style></head><body>
-<div class="glow"></div>
-<div class="top"><span class="greek">ΣΧ</span>SIGMA CHI PRESENTS</div>
-<div class="shirts">
- <div class="shirt s1"><svg viewBox="0 0 300 300"><path d="M95 30 L60 40 L5 85 L40 140 L70 120 L70 285 L230 285 L230 120 L260 140 L295 85 L240 40 L205 30 Q150 70 95 30Z" fill="#f4f4f2"/></svg><span>I'm the DD tonight</span></div>
- <div class="shirt s2"><svg viewBox="0 0 300 300"><path d="M95 30 L60 40 L5 85 L40 140 L70 120 L70 285 L230 285 L230 120 L260 140 L295 85 L240 40 L205 30 Q150 70 95 30Z" fill="#f4f4f2"/></svg><span>I've read the syllabus</span></div>
- <div class="shirt s3"><svg viewBox="0 0 300 300"><path d="M95 30 L60 40 L5 85 L40 140 L70 120 L70 285 L230 285 L230 120 L260 140 L295 85 L240 40 L205 30 Q150 70 95 30Z" fill="#f4f4f2"/></svg><span>I'll text you back</span></div>
+<svg class="grain" width="1080" height="1350"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(#n)"/></svg>
+<div class="bg-lies">
+ <span style="top:120px;left:-40px;transform:rotate(-12deg)">I'm 6'2"</span>
+ <span style="top:560px;left:-60px;transform:rotate(-80deg)">I never drink</span>
+ <span style="top:620px;left:880px;transform:rotate(78deg)">I love cardio</span>
+ <span style="top:900px;left:820px;transform:rotate(-10deg)">Single</span>
+ <span style="top:880px;left:30px;transform:rotate(8deg)">Phone died</span>
+ <span style="top:1160px;left:860px;transform:rotate(-6deg)">On my way</span>
+ <span style="top:1180px;left:-10px;transform:rotate(6deg)">Just one more</span>
 </div>
-<div class="title">WHITE<span class="lies">Lies</span></div>
-<div class="rule">Wear a <b>white shirt</b>. Write a <b>lie</b> on it.</div>
-<div class="date">SATURDAY 11/14 · 8:00 – 11:00 PM</div>
-<div class="invite">INVITE ONLY — <em>REACH OUT TO A BROTHER</em></div>
+<div class="spot"></div>
+<div class="bar"><div class="gk">ΣΧ<small>SIGMA CHI</small></div><div class="live"><span class="dot"></span>THIS SATURDAY</div></div>
+<div class="shirts">
+ <div class="shirt s1"><svg viewBox="0 0 300 300"><path d="M95 30 L60 40 L5 85 L40 140 L70 120 L70 285 L230 285 L230 120 L260 140 L295 85 L240 40 L205 30 Q150 70 95 30Z" fill="#f6f6f4"/></svg><span>I'm the DD tonight</span></div>
+ <div class="shirt s3"><svg viewBox="0 0 300 300"><path d="M95 30 L60 40 L5 85 L40 140 L70 120 L70 285 L230 285 L230 120 L260 140 L295 85 L240 40 L205 30 Q150 70 95 30Z" fill="#f6f6f4"/></svg><span>I'll text you back</span></div>
+ <div class="shirt s2"><svg viewBox="0 0 300 300"><path d="M95 30 L60 40 L5 85 L40 140 L70 120 L70 285 L230 285 L230 120 L260 140 L295 85 L240 40 L205 30 Q150 70 95 30Z" fill="#fff"/></svg><span>I've read the syllabus</span></div>
+</div>
+<span class="star" style="top:150px;left:330px">✦</span>
+<span class="star" style="top:470px;left:930px;font-size:34px">✦</span>
+<span class="star" style="top:760px;left:120px;font-size:30px">✦</span>
+<div class="title">
+ <div class="white">WHITE</div>
+ <div class="lies">LIES<svg viewBox="0 0 400 200" preserveAspectRatio="none"><path d="M30 120 C 10 40, 380 10, 385 90 C 390 170, 60 200, 25 110 C 15 70, 120 30, 210 28" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round"/></svg></div>
+</div>
+<div class="tag">THE TRUTH IS <b>OVERRATED.</b> WEAR WHITE. WRITE A LIE.</div>
+<div class="info">
+ <div><div class="k">SAT · NOV 14</div><div class="v">8 – 11 PM</div></div>
+ <div class="loc"><div class="k">LOCATION</div><div class="v">DOWNTOWN<br>FIELDHOUSE</div></div>
+</div>
+<div class="invite"><div class="t">INVITE ONLY — REACH OUT TO A BROTHER</div></div>
 </body></html>
