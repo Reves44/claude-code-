@@ -1,0 +1,780 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Growth Dashboard</title>
+<meta name="description" content="Instagram account stats and Base44 app users in one dashboard, refreshed every hour.">
+<style>
+  :root {
+    color-scheme: light;
+    --bg: #f4f3f0;
+    --surface-1: #fcfcfb;
+    --surface-2: #f0efec;
+    --border: #e2e1dc;
+    --grid: #ebeae6;
+    --text-primary: #0b0b0b;
+    --text-secondary: #52514e;
+    --text-muted: #7a7974;
+    --series-1: #2a78d6;
+    --series-2: #eb6834;
+    --accent: #2a78d6;
+    --good: #0f7b3d;
+    --critical: #c62828;
+    --warn-bg: #fff4d6;
+    --warn-text: #6b4a00;
+    --shadow: 0 1px 2px rgba(0,0,0,.05);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      color-scheme: dark;
+      --bg: #111110;
+      --surface-1: #1a1a19;
+      --surface-2: #232321;
+      --border: #2f2f2c;
+      --grid: #2a2a28;
+      --text-primary: #f0efec;
+      --text-secondary: #c3c2b7;
+      --text-muted: #8f8e86;
+      --series-1: #3987e5;
+      --series-2: #d95926;
+      --accent: #3987e5;
+      --good: #4cc27a;
+      --critical: #ef6b6b;
+      --warn-bg: #3a2f10;
+      --warn-text: #f3d48a;
+      --shadow: none;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --bg: #111110;
+    --surface-1: #1a1a19;
+    --surface-2: #232321;
+    --border: #2f2f2c;
+    --grid: #2a2a28;
+    --text-primary: #f0efec;
+    --text-secondary: #c3c2b7;
+    --text-muted: #8f8e86;
+    --series-1: #3987e5;
+    --series-2: #d95926;
+    --accent: #3987e5;
+    --good: #4cc27a;
+    --critical: #ef6b6b;
+    --warn-bg: #3a2f10;
+    --warn-text: #f3d48a;
+    --shadow: none;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text-primary);
+    font: 14px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 1240px; margin: 0 auto; padding: 20px 16px 48px; }
+
+  header.top {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px;
+    justify-content: space-between; margin-bottom: 16px;
+  }
+  .title h1 { font-size: 22px; margin: 0; letter-spacing: -.01em; }
+  .title p { margin: 2px 0 0; color: var(--text-secondary); font-size: 13px; }
+  .controls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  .status { color: var(--text-secondary); font-size: 12.5px; display: flex; flex-direction: column; align-items: flex-end; margin-right: 4px; }
+  .status b { color: var(--text-primary); font-weight: 600; font-variant-numeric: tabular-nums; }
+  button {
+    font: inherit; font-size: 13px; cursor: pointer;
+    border: 1px solid var(--border); background: var(--surface-1); color: var(--text-primary);
+    padding: 7px 12px; border-radius: 8px;
+  }
+  button:hover { background: var(--surface-2); }
+  button.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+  button.primary:hover { filter: brightness(1.08); }
+  button:disabled { opacity: .6; cursor: progress; }
+
+  .banner {
+    background: var(--warn-bg); color: var(--warn-text); border-radius: 10px;
+    padding: 10px 14px; margin-bottom: 16px; font-size: 13px; display: none;
+  }
+  .banner.show { display: block; }
+  .banner.error { background: color-mix(in srgb, var(--critical) 14%, var(--surface-1)); color: var(--text-primary); }
+  .banner a { color: inherit; font-weight: 600; cursor: pointer; text-decoration: underline; }
+
+  .section-label {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em;
+    color: var(--text-secondary); margin: 24px 0 10px;
+  }
+  .section-label .dot { width: 8px; height: 8px; border-radius: 50%; }
+  .section-label .src { font-weight: 500; text-transform: none; letter-spacing: 0; color: var(--text-muted); }
+
+  .kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; }
+  .kpi {
+    background: var(--surface-1); border: 1px solid var(--border); border-radius: 12px;
+    padding: 14px 16px; box-shadow: var(--shadow); min-width: 0;
+  }
+  .kpi .label { color: var(--text-secondary); font-size: 12.5px; }
+  .kpi .value { font-size: 28px; font-weight: 650; letter-spacing: -.02em; margin-top: 2px; font-variant-numeric: tabular-nums; }
+  .kpi .sub { color: var(--text-muted); font-size: 12px; margin-top: 2px; min-height: 17px; }
+  .kpi .sub .up { color: var(--good); font-weight: 600; }
+  .kpi .sub .down { color: var(--critical); font-weight: 600; }
+
+  .grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 12px; }
+  .card {
+    background: var(--surface-1); border: 1px solid var(--border); border-radius: 12px;
+    padding: 14px 16px 12px; box-shadow: var(--shadow); min-width: 0;
+  }
+  .card h3 { margin: 0; font-size: 14px; font-weight: 600; }
+  .card .hint { color: var(--text-muted); font-size: 12px; margin: 2px 0 8px; }
+  .chart { position: relative; width: 100%; height: 220px; }
+  .chart svg { display: block; width: 100%; height: 100%; overflow: visible; }
+  .chart .empty { position: absolute; inset: 0; display: grid; place-items: center; color: var(--text-muted); font-size: 13px; text-align: center; padding: 0 20px; }
+  .axis text { fill: var(--text-muted); font-size: 11px; font-variant-numeric: tabular-nums; }
+  .gridline { stroke: var(--grid); stroke-width: 1; }
+  .baseline { stroke: var(--border); stroke-width: 1; }
+
+  .tip {
+    position: absolute; pointer-events: none; z-index: 5;
+    background: var(--surface-1); border: 1px solid var(--border); border-radius: 8px;
+    padding: 6px 9px; font-size: 12px; box-shadow: 0 4px 14px rgba(0,0,0,.14);
+    white-space: nowrap; transform: translate(-50%, calc(-100% - 10px)); display: none;
+  }
+  .tip .t-date { color: var(--text-secondary); }
+  .tip .t-val { font-weight: 650; font-variant-numeric: tabular-nums; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th, td { text-align: left; padding: 8px 6px; border-bottom: 1px solid var(--grid); vertical-align: middle; }
+  th { color: var(--text-secondary); font-weight: 600; font-size: 12px; }
+  td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+  .table-scroll { overflow-x: auto; max-height: 380px; overflow-y: auto; }
+  .thumb { width: 40px; height: 40px; border-radius: 6px; object-fit: cover; background: var(--surface-2); display: block; }
+  .cap { max-width: 320px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--text-primary); }
+  .cap a { color: inherit; text-decoration: none; }
+  .cap a:hover { text-decoration: underline; }
+  .muted { color: var(--text-muted); }
+  .pill { display: inline-block; font-size: 11px; padding: 1px 7px; border-radius: 99px; background: var(--surface-2); color: var(--text-secondary); }
+
+  .profile { display: flex; align-items: center; gap: 10px; }
+  .profile img { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; background: var(--surface-2); }
+  .profile .n { font-weight: 600; }
+
+  dialog {
+    border: 1px solid var(--border); border-radius: 14px; padding: 0; width: min(560px, calc(100vw - 32px));
+    background: var(--surface-1); color: var(--text-primary);
+  }
+  dialog::backdrop { background: rgba(0,0,0,.45); }
+  .dlg-body { padding: 18px 20px; max-height: 75vh; overflow-y: auto; }
+  .dlg-body h2 { margin: 0 0 4px; font-size: 18px; }
+  .dlg-body h4 { margin: 18px 0 6px; font-size: 13px; text-transform: uppercase; letter-spacing: .05em; color: var(--text-secondary); }
+  .dlg-body p.help { margin: 4px 0 0; color: var(--text-muted); font-size: 12px; }
+  .dlg-body label { display: block; font-size: 13px; margin-top: 10px; font-weight: 500; }
+  .dlg-body input {
+    width: 100%; margin-top: 4px; font: inherit; font-size: 13px; padding: 8px 10px; border-radius: 8px;
+    border: 1px solid var(--border); background: var(--bg); color: var(--text-primary);
+  }
+  .dlg-foot { display: flex; justify-content: space-between; gap: 8px; padding: 12px 20px; border-top: 1px solid var(--border); flex-wrap: wrap; }
+  .dlg-foot .r { display: flex; gap: 8px; }
+
+  @media (max-width: 560px) {
+    .status { align-items: flex-start; }
+    .kpi .value { font-size: 24px; }
+    .grid2 { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="title">
+      <h1>Growth Dashboard</h1>
+      <p>Instagram + Base44 users · auto-refreshes every hour</p>
+    </div>
+    <div class="controls">
+      <div class="status">
+        <span>Updated <b id="lastUpdated">—</b></span>
+        <span>Next refresh in <b id="countdown">—</b></span>
+      </div>
+      <button id="refreshBtn" class="primary">Refresh now</button>
+      <button id="settingsBtn">Settings</button>
+      <button id="themeBtn" title="Toggle light/dark">Theme</button>
+    </div>
+  </header>
+
+  <div id="demoBanner" class="banner">
+    Showing <b>demo data</b>. <a id="openSettingsLink">Connect Instagram and Base44</a> to see your real numbers.
+  </div>
+  <div id="errorBanner" class="banner error"></div>
+
+  <!-- INSTAGRAM -->
+  <div class="section-label"><span class="dot" style="background:var(--series-2)"></span>Instagram <span class="src" id="igHandle"></span></div>
+  <div class="kpis">
+    <div class="kpi"><div class="label">Followers</div><div class="value" id="k-followers">—</div><div class="sub" id="k-followers-sub"></div></div>
+    <div class="kpi"><div class="label">Following</div><div class="value" id="k-following">—</div><div class="sub"></div></div>
+    <div class="kpi"><div class="label">Posts</div><div class="value" id="k-posts">—</div><div class="sub" id="k-posts-sub"></div></div>
+    <div class="kpi"><div class="label">Avg likes / post</div><div class="value" id="k-avglikes">—</div><div class="sub" id="k-avglikes-sub">last 12 posts</div></div>
+    <div class="kpi"><div class="label">Engagement rate</div><div class="value" id="k-eng">—</div><div class="sub">(likes + comments) ÷ followers</div></div>
+  </div>
+  <div class="grid2" style="margin-top:12px">
+    <div class="card">
+      <h3>Followers over time</h3>
+      <div class="hint" id="followersHint">Recorded each time the dashboard refreshes</div>
+      <div class="chart" id="chartFollowers"></div>
+    </div>
+    <div class="card">
+      <h3>Likes per post</h3>
+      <div class="hint">Most recent posts, oldest → newest</div>
+      <div class="chart" id="chartLikes"></div>
+    </div>
+  </div>
+  <div class="card" style="margin-top:12px">
+    <h3>Recent posts</h3>
+    <div class="hint">Latest 25 from the account</div>
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th></th><th>Caption</th><th>Type</th><th>Posted</th><th class="num">Likes</th><th class="num">Comments</th></tr></thead>
+        <tbody id="postsBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- BASE44 -->
+  <div class="section-label"><span class="dot" style="background:var(--series-1)"></span>Base44 app users <span class="src" id="b44Src"></span></div>
+  <div class="kpis">
+    <div class="kpi"><div class="label">Total users</div><div class="value" id="k-users">—</div><div class="sub" id="k-users-sub"></div></div>
+    <div class="kpi"><div class="label">New today</div><div class="value" id="k-today">—</div><div class="sub" id="k-today-sub"></div></div>
+    <div class="kpi"><div class="label">New last 7 days</div><div class="value" id="k-7d">—</div><div class="sub" id="k-7d-sub"></div></div>
+    <div class="kpi"><div class="label">New last 30 days</div><div class="value" id="k-30d">—</div><div class="sub" id="k-30d-sub"></div></div>
+    <div class="kpi"><div class="label">Admins</div><div class="value" id="k-admins">—</div><div class="sub">users with role “admin”</div></div>
+  </div>
+  <div class="grid2" style="margin-top:12px">
+    <div class="card">
+      <h3>Total users</h3>
+      <div class="hint">Cumulative sign-ups, last 90 days</div>
+      <div class="chart" id="chartUsersTotal"></div>
+    </div>
+    <div class="card">
+      <h3>New sign-ups per day</h3>
+      <div class="hint">Last 30 days</div>
+      <div class="chart" id="chartSignups"></div>
+    </div>
+  </div>
+  <div class="card" style="margin-top:12px">
+    <h3>Newest users</h3>
+    <div class="hint" id="usersHint">Most recent 50 sign-ups</div>
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th>Name</th><th>Email</th><th>Role</th><th>Joined</th></tr></thead>
+        <tbody id="usersBody"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="tip" id="tip"></div>
+
+<dialog id="settings">
+  <form method="dialog" id="settingsForm">
+    <div class="dlg-body">
+      <h2>Connect your accounts</h2>
+      <p class="help">Keys are saved only in this browser (localStorage). They are never written into the page file, so keep this dashboard on a device you trust.</p>
+
+      <h4>Instagram</h4>
+      <label>Access token
+        <input id="s-igToken" type="password" autocomplete="off" placeholder="IGAA… (Instagram API with Instagram Login)">
+      </label>
+      <p class="help">Use a long-lived token for a Business or Creator account from the Meta developer dashboard (Instagram API → “Generate token”). Needs <code>instagram_business_basic</code>; add <code>instagram_business_manage_insights</code> for daily follower history. The dashboard refreshes the token automatically so it doesn't expire.</p>
+
+      <h4>Base44</h4>
+      <label>App ID
+        <input id="s-b44App" autocomplete="off" placeholder="e.g. 68a1b2c3d4e5f6…">
+      </label>
+      <label>API key
+        <input id="s-b44Key" type="password" autocomplete="off" placeholder="Base44 API key">
+      </label>
+      <label>Users entity name
+        <input id="s-b44Entity" autocomplete="off" placeholder="User">
+      </label>
+      <p class="help">In Base44 open your app → Settings / API to copy the App ID and API key. The built-in users entity is called <code>User</code>.</p>
+
+      <h4>Refresh</h4>
+      <label>Refresh interval (minutes)
+        <input id="s-interval" type="number" min="5" step="5" placeholder="60">
+      </label>
+    </div>
+    <div class="dlg-foot">
+      <button type="button" id="clearBtn">Clear keys &amp; history</button>
+      <div class="r">
+        <button type="button" id="cancelBtn">Cancel</button>
+        <button type="submit" class="primary" id="saveBtn">Save &amp; refresh</button>
+      </div>
+    </div>
+  </form>
+</dialog>
+
+<script>
+(() => {
+  'use strict';
+
+  // ---------- storage (safe) ----------
+  const LS = {
+    get(k, d) { try { const v = localStorage.getItem(k); return v == null ? d : JSON.parse(v); } catch { return d; } },
+    set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} },
+    del(k) { try { localStorage.removeItem(k); } catch {} },
+  };
+  const CFG_KEY = 'gd.config', HIST_KEY = 'gd.history', THEME_KEY = 'gd.theme';
+  let cfg = Object.assign({ igToken: '', igTokenRefreshedAt: 0, b44App: '', b44Key: '', b44Entity: 'User', interval: 60 }, LS.get(CFG_KEY, {}));
+  const saveCfg = () => LS.set(CFG_KEY, cfg);
+
+  // ---------- helpers ----------
+  const $ = (id) => document.getElementById(id);
+  const fmt = (n) => n == null || isNaN(n) ? '—' : Number(n).toLocaleString();
+  const compact = (n) => n == null || isNaN(n) ? '—' : Intl.NumberFormat(undefined, { notation: 'compact', maximumFractionDigits: 1 }).format(n);
+  const DAY = 86400000;
+  const startOfDay = (d) => { const x = new Date(d); x.setHours(0,0,0,0); return x; };
+  const dayKey = (d) => { const x = new Date(d); return x.getFullYear() + '-' + String(x.getMonth()+1).padStart(2,'0') + '-' + String(x.getDate()).padStart(2,'0'); };
+  const shortDate = (d) => new Date(d).toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
+  const esc = (s) => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const relTime = (d) => {
+    const s = (Date.now() - new Date(d).getTime()) / 1000;
+    if (s < 60) return 'just now';
+    if (s < 3600) return Math.floor(s/60) + 'm ago';
+    if (s < 86400) return Math.floor(s/3600) + 'h ago';
+    if (s < 86400*30) return Math.floor(s/86400) + 'd ago';
+    return new Date(d).toLocaleDateString();
+  };
+  const delta = (cur, prev, suffix = '') => {
+    if (prev == null || cur == null) return '';
+    const d = cur - prev;
+    if (d === 0) return '<span class="muted">no change</span>' + suffix;
+    return `<span class="${d > 0 ? 'up' : 'down'}">${d > 0 ? '▲' : '▼'} ${fmt(Math.abs(d))}</span>${suffix}`;
+  };
+
+  async function getJSON(url, opts = {}) {
+    const res = await fetch(url, opts);
+    let body = null;
+    try { body = await res.json(); } catch {}
+    if (!res.ok) {
+      const msg = body?.error?.message || body?.message || body?.detail || res.statusText || ('HTTP ' + res.status);
+      throw new Error(msg);
+    }
+    return body;
+  }
+
+  // ---------- Instagram ----------
+  const IG = 'https://graph.instagram.com';
+  const IGV = IG + '/v23.0';
+
+  async function maybeRefreshIgToken() {
+    // Long-lived tokens last 60 days; refresh once a day to keep it alive.
+    if (!cfg.igToken || Date.now() - (cfg.igTokenRefreshedAt || 0) < DAY) return;
+    try {
+      const r = await getJSON(`${IG}/refresh_access_token?grant_type=ig_refresh_token&access_token=${encodeURIComponent(cfg.igToken)}`);
+      if (r?.access_token) { cfg.igToken = r.access_token; }
+      cfg.igTokenRefreshedAt = Date.now(); saveCfg();
+    } catch { /* short-lived tokens can't be refreshed; ignore */ }
+  }
+
+  async function fetchInstagram() {
+    await maybeRefreshIgToken();
+    const t = encodeURIComponent(cfg.igToken);
+    const profile = await getJSON(`${IGV}/me?fields=user_id,username,name,profile_picture_url,followers_count,follows_count,media_count&access_token=${t}`);
+    const media = await getJSON(`${IGV}/me/media?fields=id,caption,media_type,media_url,thumbnail_url,permalink,timestamp,like_count,comments_count&limit=25&access_token=${t}`);
+    // Daily follower gains (needs insights permission, last 30 days). Optional.
+    let followerDaily = null;
+    try {
+      const until = Math.floor(Date.now()/1000), since = until - 29*86400;
+      const ins = await getJSON(`${IGV}/me/insights?metric=follower_count&period=day&since=${since}&until=${until}&access_token=${t}`);
+      const vals = ins?.data?.[0]?.values;
+      if (Array.isArray(vals) && vals.length) followerDaily = vals.map(v => ({ t: new Date(v.end_time).getTime(), v: v.value }));
+    } catch {}
+    return { profile, posts: media?.data || [], followerDaily };
+  }
+
+  // ---------- Base44 ----------
+  async function fetchBase44() {
+    const entity = encodeURIComponent(cfg.b44Entity || 'User');
+    const base = `https://app.base44.com/api/apps/${encodeURIComponent(cfg.b44App)}/entities/${entity}`;
+    const headers = { 'api_key': cfg.b44Key, 'Content-Type': 'application/json' };
+    const PAGE = 500, all = [], seen = new Set();
+    for (let skip = 0; skip < 50000; skip += PAGE) {
+      const page = await getJSON(`${base}?sort=-created_date&limit=${PAGE}&skip=${skip}`, { headers });
+      const rows = Array.isArray(page) ? page : (page?.items || page?.data || []);
+      let added = 0;
+      for (const r of rows) { const id = r.id || r._id || JSON.stringify(r); if (!seen.has(id)) { seen.add(id); all.push(r); added++; } }
+      if (rows.length < PAGE || added === 0) break;
+    }
+    return all.map(u => ({
+      name: u.full_name || u.name || u.display_name || '',
+      email: u.email || '',
+      role: u.role || 'user',
+      created: new Date(u.created_date || u.created_at || u.createdAt || Date.now()).getTime(),
+    })).sort((a, b) => b.created - a.created);
+  }
+
+  // ---------- demo data ----------
+  function rng(seed) { return () => { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; }; }
+  function demoData() {
+    const r = rng(42), now = Date.now();
+    const followers = 12480;
+    const posts = Array.from({ length: 25 }, (_, i) => ({
+      id: 'p' + i, caption: ['New drop this weekend 🔥', 'Behind the scenes', 'Customer spotlight ✨', 'Before & after', 'Tips Tuesday', 'Big announcement coming…', 'Thank you for 12K!'][i % 7],
+      media_type: ['IMAGE', 'CAROUSEL_ALBUM', 'VIDEO'][i % 3], permalink: '#', thumbnail_url: '', media_url: '',
+      timestamp: new Date(now - i * 2.6 * DAY - r() * DAY).toISOString(),
+      like_count: Math.round(280 + r() * 520 + (25 - i) * 9), comments_count: Math.round(8 + r() * 40),
+    }));
+    const users = [];
+    const first = ['Alex','Sam','Jordan','Taylor','Morgan','Riley','Casey','Jamie','Avery','Quinn','Drew','Reese'];
+    const last = ['Lee','Patel','Garcia','Kim','Nguyen','Smith','Brown','Lopez','Khan','Davis'];
+    let total = 0;
+    for (let d = 120; d >= 0; d--) {
+      const n = Math.round(r() * 6 + (120 - d) / 22);
+      for (let k = 0; k < n; k++) {
+        const f = first[Math.floor(r()*first.length)], l = last[Math.floor(r()*last.length)];
+        users.push({ name: `${f} ${l}`, email: `${f}.${l}${total}@example.com`.toLowerCase(), role: total % 97 === 0 ? 'admin' : 'user', created: now - d * DAY - r() * DAY * (d === 0 ? 0.3 : 1) });
+        total++;
+      }
+    }
+    users.sort((a, b) => b.created - a.created);
+    const hist = Array.from({ length: 30 }, (_, i) => ({ t: now - (29 - i) * DAY, v: followers - (29 - i) * 14 - Math.round(r() * 30) }));
+    hist[hist.length - 1].v = followers;
+    return {
+      ig: { profile: { username: 'yourbrand', name: 'Your Brand', followers_count: followers, follows_count: 318, media_count: 412, profile_picture_url: '' }, posts, followerDaily: null, demoHistory: hist },
+      users,
+    };
+  }
+
+  // ---------- charts ----------
+  const tip = $('tip');
+  function showTip(evt, html) {
+    tip.innerHTML = html; tip.style.display = 'block';
+    tip.style.left = evt.pageX + 'px'; tip.style.top = evt.pageY + 'px';
+  }
+  function hideTip() { tip.style.display = 'none'; }
+
+  function niceMax(v) {
+    if (v <= 0) return 1;
+    const p = Math.pow(10, Math.floor(Math.log10(v))), n = v / p;
+    return (n <= 1 ? 1 : n <= 2 ? 2 : n <= 2.5 ? 2.5 : n <= 5 ? 5 : 10) * p;
+  }
+  function yScaleTicks(min, max) {
+    const span = niceMax((max - min) || 1);
+    const step = span / 4;
+    const lo = Math.floor(min / step) * step;
+    const hi = lo + step * Math.ceil((max - lo) / step || 1);
+    const ticks = []; for (let v = lo; v <= hi + 1e-9; v += step) ticks.push(v);
+    return { lo, hi, ticks };
+  }
+
+  function emptyChart(el, msg) { el.innerHTML = `<div class="empty">${esc(msg)}</div>`; }
+
+  // points: [{t, v, label}] ; kind: 'line' | 'bar'
+  function drawChart(el, points, { kind = 'line', color = 'var(--series-1)', zeroBase = false, valueLabel = '', xLabel = (p) => shortDate(p.t) } = {}) {
+    if (!points.length) return emptyChart(el, 'No data yet');
+    if (kind === 'line' && points.length < 2) return emptyChart(el, 'Not enough history yet — this chart fills in as the dashboard refreshes each hour.');
+    const W = el.clientWidth || 400, H = el.clientHeight || 220;
+    const m = { t: 10, r: 8, b: 24, l: 44 };
+    const iw = W - m.l - m.r, ih = H - m.t - m.b;
+    const vals = points.map(p => p.v);
+    let vmin = Math.min(...vals), vmax = Math.max(...vals);
+    if (zeroBase || kind === 'bar') vmin = 0;
+    else { const pad = (vmax - vmin) * 0.1 || Math.max(1, vmax * 0.01); vmin -= pad; vmax += pad; }
+    const { lo, hi, ticks } = yScaleTicks(vmin, vmax);
+    const y = (v) => m.t + ih - ((v - lo) / (hi - lo || 1)) * ih;
+    const n = points.length;
+    const band = iw / n;
+    const x = kind === 'bar' ? (i) => m.l + band * i + band / 2 : (i) => m.l + (n === 1 ? iw / 2 : (i / (n - 1)) * iw);
+
+    let s = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(valueLabel)} chart">`;
+    s += '<g class="axis">';
+    for (const tv of ticks) {
+      const yy = y(tv);
+      s += `<line class="${tv === lo ? 'baseline' : 'gridline'}" x1="${m.l}" x2="${W - m.r}" y1="${yy}" y2="${yy}"/>`;
+      s += `<text x="${m.l - 6}" y="${yy + 3.5}" text-anchor="end">${compact(tv)}</text>`;
+    }
+    const labelEvery = Math.max(1, Math.ceil(n / Math.max(2, Math.floor(iw / 70))));
+    points.forEach((p, i) => {
+      if (i % labelEvery === 0 || i === n - 1 && (n - 1) % labelEvery > labelEvery / 2) {
+        s += `<text x="${x(i)}" y="${H - 6}" text-anchor="middle">${esc(xLabel(p))}</text>`;
+      }
+    });
+    s += '</g>';
+
+    if (kind === 'bar') {
+      const bw = Math.max(2, Math.min(28, band - 2));
+      const r = Math.min(4, bw / 2);
+      points.forEach((p, i) => {
+        const x0 = x(i) - bw / 2, y0 = y(p.v), hgt = y(lo) - y0;
+        if (hgt > 0) {
+          const rr = Math.min(r, hgt);
+          s += `<path fill="${color}" d="M${x0},${y(lo)} V${y0 + rr} Q${x0},${y0} ${x0 + rr},${y0} H${x0 + bw - rr} Q${x0 + bw},${y0} ${x0 + bw},${y0 + rr} V${y(lo)} Z"/>`;
+        }
+        s += `<rect class="hit" data-i="${i}" x="${m.l + band * i}" y="${m.t}" width="${band}" height="${ih}" fill="transparent"/>`;
+      });
+    } else {
+      const d = points.map((p, i) => `${i ? 'L' : 'M'}${x(i).toFixed(1)},${y(p.v).toFixed(1)}`).join(' ');
+      const area = `${d} L${x(n - 1).toFixed(1)},${y(lo)} L${x(0).toFixed(1)},${y(lo)} Z`;
+      s += `<path d="${area}" fill="${color}" opacity=".10"/>`;
+      s += `<path d="${d}" fill="none" stroke="${color}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>`;
+      const lp = points[n - 1];
+      s += `<circle cx="${x(n - 1)}" cy="${y(lp.v)}" r="4" fill="${color}" stroke="var(--surface-1)" stroke-width="2"/>`;
+      s += `<line class="xh" x1="0" x2="0" y1="${m.t}" y2="${m.t + ih}" stroke="var(--text-muted)" stroke-dasharray="3 3" style="display:none"/>`;
+      s += `<circle class="xhd" r="4.5" fill="${color}" stroke="var(--surface-1)" stroke-width="2" style="display:none"/>`;
+      s += `<rect class="overlay" x="${m.l}" y="${m.t}" width="${iw}" height="${ih}" fill="transparent"/>`;
+    }
+    s += '</svg>';
+    el.innerHTML = s;
+
+    const svg = el.querySelector('svg');
+    const tipHtml = (p) => `<div class="t-date">${esc(p.label || new Date(p.t).toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric' }))}</div><div class="t-val">${fmt(p.v)} ${esc(valueLabel)}</div>`;
+    if (kind === 'bar') {
+      svg.querySelectorAll('.hit').forEach(h => {
+        h.addEventListener('mousemove', (e) => showTip(e, tipHtml(points[+h.dataset.i])));
+        h.addEventListener('mouseleave', hideTip);
+      });
+    } else {
+      const ov = svg.querySelector('.overlay'), xh = svg.querySelector('.xh'), dot = svg.querySelector('.xhd');
+      ov.addEventListener('mousemove', (e) => {
+        const rect = svg.getBoundingClientRect();
+        const px = (e.clientX - rect.left) * (W / rect.width);
+        const i = Math.max(0, Math.min(n - 1, Math.round(((px - m.l) / iw) * (n - 1))));
+        const p = points[i];
+        xh.setAttribute('x1', x(i)); xh.setAttribute('x2', x(i)); xh.style.display = '';
+        dot.setAttribute('cx', x(i)); dot.setAttribute('cy', y(p.v)); dot.style.display = '';
+        showTip(e, tipHtml(p));
+      });
+      ov.addEventListener('mouseleave', () => { xh.style.display = 'none'; dot.style.display = 'none'; hideTip(); });
+    }
+  }
+
+  // ---------- render ----------
+  let lastData = null;
+
+  function renderInstagram(ig, history) {
+    if (!ig) {
+      ['k-followers','k-following','k-posts','k-avglikes','k-eng'].forEach(id => $(id).textContent = '—');
+      $('igHandle').textContent = 'not connected';
+      emptyChart($('chartFollowers'), 'Add an Instagram token in Settings');
+      emptyChart($('chartLikes'), 'Add an Instagram token in Settings');
+      $('postsBody').innerHTML = `<tr><td colspan="6" class="muted">Not connected</td></tr>`;
+      return;
+    }
+    const p = ig.profile;
+    $('igHandle').innerHTML = `@${esc(p.username)}`;
+    $('k-followers').textContent = fmt(p.followers_count);
+    $('k-following').textContent = fmt(p.follows_count);
+    $('k-posts').textContent = fmt(p.media_count);
+
+    // follower trend: snapshots, or demo history
+    const series = ig.demoHistory || history.filter(h => h.followers != null).map(h => ({ t: h.t, v: h.followers }));
+    const dayAgo = [...series].reverse().find(h => h.t <= Date.now() - DAY + 5 * 60000);
+    $('k-followers-sub').innerHTML = dayAgo ? delta(p.followers_count, dayAgo.v, ' vs 24h ago') : 'tracking since first refresh';
+    const prevPosts = history.length > 1 ? history[history.length - 2].posts : null;
+    $('k-posts-sub').innerHTML = prevPosts != null && prevPosts !== p.media_count ? delta(p.media_count, prevPosts, ' since last refresh') : '';
+
+    // Downsample snapshots to one point per hour/day so the chart stays readable
+    const byBucket = new Map();
+    const spanMs = series.length ? series[series.length - 1].t - series[0].t : 0;
+    const bucketMs = spanMs > 3 * DAY ? DAY : 3600000;
+    for (const pt of series) byBucket.set(Math.floor(pt.t / bucketMs), pt);
+    const trend = [...byBucket.values()].slice(-90);
+    $('followersHint').textContent = ig.demoHistory ? 'Daily follower count (demo)' : 'Recorded each time the dashboard refreshes';
+    drawChart($('chartFollowers'), trend, { kind: 'line', color: 'var(--series-2)', valueLabel: 'followers',
+      xLabel: (pt) => bucketMs === DAY ? shortDate(pt.t) : new Date(pt.t).toLocaleTimeString(undefined, { hour: 'numeric' }) });
+
+    const recent = ig.posts.slice(0, 12);
+    const avgLikes = recent.length ? recent.reduce((a, x) => a + (x.like_count || 0), 0) / recent.length : null;
+    const avgComments = recent.length ? recent.reduce((a, x) => a + (x.comments_count || 0), 0) / recent.length : 0;
+    $('k-avglikes').textContent = avgLikes == null ? '—' : fmt(Math.round(avgLikes));
+    $('k-avglikes-sub').textContent = recent.length ? `${fmt(Math.round(avgComments))} comments avg · last ${recent.length} posts` : 'no posts';
+    $('k-eng').textContent = avgLikes != null && p.followers_count ? ((avgLikes + avgComments) / p.followers_count * 100).toFixed(2) + '%' : '—';
+
+    const likesPts = [...ig.posts].reverse().map(x => ({ t: new Date(x.timestamp).getTime(), v: x.like_count || 0, label: (x.caption || x.media_type || '').slice(0, 40) + ' · ' + shortDate(x.timestamp) }));
+    drawChart($('chartLikes'), likesPts, { kind: 'bar', color: 'var(--series-2)', valueLabel: 'likes' });
+
+    $('postsBody').innerHTML = ig.posts.length ? ig.posts.map(x => {
+      const img = x.thumbnail_url || (x.media_type !== 'VIDEO' ? x.media_url : '');
+      return `<tr>
+        <td>${img ? `<img class="thumb" loading="lazy" src="${esc(img)}" alt="">` : '<div class="thumb"></div>'}</td>
+        <td><div class="cap"><a href="${esc(x.permalink || '#')}" target="_blank" rel="noopener">${esc(x.caption || '(no caption)')}</a></div></td>
+        <td><span class="pill">${esc((x.media_type || '').replace('_ALBUM', '').toLowerCase())}</span></td>
+        <td class="muted">${esc(relTime(x.timestamp))}</td>
+        <td class="num">${fmt(x.like_count)}</td>
+        <td class="num">${fmt(x.comments_count)}</td></tr>`;
+    }).join('') : `<tr><td colspan="6" class="muted">No posts found</td></tr>`;
+  }
+
+  function renderBase44(users, isDemo) {
+    if (!users) {
+      ['k-users','k-today','k-7d','k-30d','k-admins'].forEach(id => $(id).textContent = '—');
+      $('b44Src').textContent = 'not connected';
+      emptyChart($('chartUsersTotal'), 'Add your Base44 App ID and API key in Settings');
+      emptyChart($('chartSignups'), 'Add your Base44 App ID and API key in Settings');
+      $('usersBody').innerHTML = `<tr><td colspan="4" class="muted">Not connected</td></tr>`;
+      return;
+    }
+    $('b44Src').textContent = isDemo ? 'demo app' : `${cfg.b44Entity || 'User'} entity`;
+    const now = Date.now(), today0 = startOfDay(now).getTime();
+    const count = (from, to = Infinity) => users.filter(u => u.created >= from && u.created < to).length;
+    const total = users.length;
+    const nToday = count(today0), nYest = count(today0 - DAY, today0);
+    const n7 = count(now - 7 * DAY), nPrev7 = count(now - 14 * DAY, now - 7 * DAY);
+    const n30 = count(now - 30 * DAY), nPrev30 = count(now - 60 * DAY, now - 30 * DAY);
+    $('k-users').textContent = fmt(total);
+    $('k-users-sub').innerHTML = n30 && total - n30 > 0 ? `<span class="up">+${(n30 / (total - n30) * 100).toFixed(1)}%</span> in 30 days` : '';
+    $('k-today').textContent = fmt(nToday);
+    $('k-today-sub').innerHTML = `${fmt(nYest)} yesterday`;
+    $('k-7d').textContent = fmt(n7);
+    $('k-7d-sub').innerHTML = delta(n7, nPrev7, ' vs prior 7 days');
+    $('k-30d').textContent = fmt(n30);
+    $('k-30d-sub').innerHTML = delta(n30, nPrev30, ' vs prior 30 days');
+    $('k-admins').textContent = fmt(users.filter(u => String(u.role).toLowerCase() === 'admin').length);
+
+    // per-day counts
+    const perDay = new Map();
+    for (const u of users) { const k = dayKey(u.created); perDay.set(k, (perDay.get(k) || 0) + 1); }
+    const days = (nDays) => Array.from({ length: nDays }, (_, i) => today0 - (nDays - 1 - i) * DAY);
+
+    const d90 = days(90);
+    let running = count(-Infinity, d90[0]);
+    const cum = d90.map(t => { running += perDay.get(dayKey(t)) || 0; return { t, v: running }; });
+    drawChart($('chartUsersTotal'), cum, { kind: 'line', color: 'var(--series-1)', valueLabel: 'users' });
+
+    const daily = days(30).map(t => ({ t, v: perDay.get(dayKey(t)) || 0 }));
+    drawChart($('chartSignups'), daily, { kind: 'bar', color: 'var(--series-1)', valueLabel: 'new users' });
+
+    $('usersHint').textContent = `Most recent ${Math.min(50, total)} of ${fmt(total)} sign-ups`;
+    $('usersBody').innerHTML = total ? users.slice(0, 50).map(u => `<tr>
+      <td>${esc(u.name || '—')}</td><td class="muted">${esc(u.email)}</td>
+      <td><span class="pill">${esc(u.role)}</span></td>
+      <td class="muted" title="${esc(new Date(u.created).toLocaleString())}">${esc(relTime(u.created))}</td></tr>`).join('')
+      : `<tr><td colspan="4" class="muted">No users yet</td></tr>`;
+  }
+
+  function render() {
+    if (!lastData) return;
+    const history = LS.get(HIST_KEY, []);
+    renderInstagram(lastData.ig, history);
+    renderBase44(lastData.users, lastData.demo);
+  }
+
+  // ---------- refresh loop ----------
+  let nextAt = 0, timer = null, busy = false;
+  const intervalMs = () => Math.max(5, Number(cfg.interval) || 60) * 60000;
+
+  async function refresh() {
+    if (busy) return;
+    busy = true; $('refreshBtn').disabled = true; $('refreshBtn').textContent = 'Refreshing…';
+    const errors = [];
+    const hasIg = !!cfg.igToken, hasB44 = !!(cfg.b44App && cfg.b44Key);
+    const demo = !hasIg && !hasB44;
+    let ig = null, users = null;
+
+    if (demo) {
+      const d = demoData(); ig = d.ig; users = d.users;
+    } else {
+      const [igRes, b44Res] = await Promise.allSettled([
+        hasIg ? fetchInstagram() : Promise.resolve(null),
+        hasB44 ? fetchBase44() : Promise.resolve(null),
+      ]);
+      if (igRes.status === 'fulfilled') ig = igRes.value; else errors.push('Instagram: ' + igRes.reason.message);
+      if (b44Res.status === 'fulfilled') users = b44Res.value; else errors.push('Base44: ' + b44Res.reason.message);
+
+      // keep previous values if a source failed this round
+      if (!ig && hasIg && lastData?.ig && !lastData.demo) ig = lastData.ig;
+      if (!users && hasB44 && lastData?.users && !lastData.demo) users = lastData.users;
+
+      // record snapshot for history charts
+      if (igRes.status === 'fulfilled' || b44Res.status === 'fulfilled') {
+        const hist = LS.get(HIST_KEY, []);
+        hist.push({ t: Date.now(), followers: igRes.status === 'fulfilled' && ig ? ig.profile.followers_count : null,
+          posts: igRes.status === 'fulfilled' && ig ? ig.profile.media_count : null,
+          users: b44Res.status === 'fulfilled' && users ? users.length : null });
+        // Seed history with Instagram's daily follower gains on first run
+        if (hist.length === 1 && ig?.followerDaily?.length) {
+          let v = ig.profile.followers_count; const seeded = [];
+          for (let i = ig.followerDaily.length - 1; i >= 0; i--) { seeded.unshift({ t: ig.followerDaily[i].t, followers: v, posts: null, users: null }); v -= ig.followerDaily[i].v || 0; }
+          hist.unshift(...seeded.slice(0, -1));
+        }
+        LS.set(HIST_KEY, hist.slice(-24 * 120)); // ~120 days of hourly points
+      }
+    }
+
+    lastData = { ig, users, demo };
+    $('demoBanner').classList.toggle('show', demo);
+    const eb = $('errorBanner');
+    if (errors.length) {
+      eb.innerHTML = errors.map(esc).join('<br>') +
+        (errors.some(e => /Failed to fetch|NetworkError|Load failed/i.test(e)) ? '<br><span class="muted">A network/CORS block usually means the key is wrong or the API doesn\'t allow browser requests from this address — try opening the dashboard from a local web server or a hosted URL.</span>' : '');
+      eb.classList.add('show');
+    } else eb.classList.remove('show');
+
+    render();
+    LS.set('gd.lastUpdated', Date.now());
+    $('lastUpdated').textContent = new Date().toLocaleTimeString(undefined, { hour: 'numeric', minute: '2-digit' });
+    schedule();
+    busy = false; $('refreshBtn').disabled = false; $('refreshBtn').textContent = 'Refresh now';
+  }
+
+  function schedule() {
+    clearTimeout(timer);
+    nextAt = Date.now() + intervalMs();
+    timer = setTimeout(refresh, intervalMs());
+  }
+
+  setInterval(() => {
+    const ms = Math.max(0, nextAt - Date.now());
+    const m = Math.floor(ms / 60000), s = Math.floor((ms % 60000) / 1000);
+    $('countdown').textContent = nextAt ? `${m}:${String(s).padStart(2, '0')}` : '—';
+    // Laptops that slept past the refresh time catch up immediately
+    if (nextAt && Date.now() > nextAt + 5000 && !busy) refresh();
+  }, 1000);
+  document.addEventListener('visibilitychange', () => { if (!document.hidden && nextAt && Date.now() >= nextAt) refresh(); });
+
+  // ---------- settings ----------
+  const dlg = $('settings');
+  function openSettings() {
+    $('s-igToken').value = cfg.igToken; $('s-b44App').value = cfg.b44App; $('s-b44Key').value = cfg.b44Key;
+    $('s-b44Entity').value = cfg.b44Entity || 'User'; $('s-interval').value = cfg.interval || 60;
+    dlg.showModal();
+  }
+  $('settingsBtn').onclick = openSettings;
+  $('openSettingsLink').onclick = openSettings;
+  $('cancelBtn').onclick = () => dlg.close();
+  $('settingsForm').addEventListener('submit', () => {
+    const newToken = $('s-igToken').value.trim();
+    if (newToken !== cfg.igToken) cfg.igTokenRefreshedAt = Date.now();
+    cfg.igToken = newToken;
+    cfg.b44App = $('s-b44App').value.trim();
+    cfg.b44Key = $('s-b44Key').value.trim();
+    cfg.b44Entity = $('s-b44Entity').value.trim() || 'User';
+    cfg.interval = Math.max(5, Number($('s-interval').value) || 60);
+    saveCfg();
+    setTimeout(refresh, 0);
+  });
+  $('clearBtn').onclick = () => {
+    if (!confirm('Remove saved keys and follower history from this browser?')) return;
+    LS.del(CFG_KEY); LS.del(HIST_KEY);
+    cfg = { igToken: '', igTokenRefreshedAt: 0, b44App: '', b44Key: '', b44Entity: 'User', interval: 60 };
+    dlg.close(); refresh();
+  };
+
+  // ---------- theme ----------
+  const applyTheme = (t) => { if (t) document.documentElement.setAttribute('data-theme', t); else document.documentElement.removeAttribute('data-theme'); };
+  applyTheme(LS.get(THEME_KEY, null));
+  $('themeBtn').onclick = () => {
+    const cur = document.documentElement.getAttribute('data-theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    const next = cur === 'dark' ? 'light' : 'dark';
+    applyTheme(next); LS.set(THEME_KEY, next); render();
+  };
+
+  let rT; window.addEventListener('resize', () => { clearTimeout(rT); rT = setTimeout(render, 150); });
+  $('refreshBtn').onclick = refresh;
+
+  refresh();
+})();
+</script>
+</body>
+</html>
