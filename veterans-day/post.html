@@ -1,93 +1,65 @@
 <!doctype html>
 <html><head><meta charset="utf-8">
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800;900&family=Oswald:wght@400;600;700&family=Inter:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Libre+Caslon+Display&family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--navy:#0b1630;--deep:#050b1a;--gold:#d4a73a;--gold2:#f3d27a;--blue:#1f4fa3;--red:#b3202a;}
+:root{--paper:#ece4d2;--ink:#1c2a4a;--red:#a8312b;--gold:#b8892f;--soft:#5a5f6e}
 *{margin:0;padding:0;box-sizing:border-box}
-body{width:1080px;height:1350px;background:var(--deep);overflow:hidden;font-family:Inter,sans-serif;color:#fff}
-.post{position:relative;width:1080px;height:1350px;
- background:
-  radial-gradient(ellipse 900px 600px at 50% 32%, rgba(31,79,163,.55), transparent 70%),
-  radial-gradient(ellipse 700px 500px at 50% 110%, rgba(179,32,42,.35), transparent 70%),
-  linear-gradient(180deg,#0b1630 0%,#050b1a 100%);}
-.stars{position:absolute;inset:0;opacity:.55}
-.stripes{position:absolute;left:0;right:0;bottom:0;height:300px;opacity:.10;
- background:repeating-linear-gradient(180deg,#fff 0 22px,transparent 22px 44px);
- -webkit-mask-image:linear-gradient(0deg,#000,transparent);mask-image:linear-gradient(0deg,#000,transparent)}
-.frame{position:absolute;inset:28px;border:2px solid rgba(212,167,58,.55);}
-.frame:after{content:"";position:absolute;inset:8px;border:1px solid rgba(212,167,58,.25)}
-.top{position:absolute;top:62px;left:0;right:0;text-align:center}
-.greek{font-family:Cinzel,serif;font-weight:900;font-size:112px;line-height:1;letter-spacing:10px;
- background:linear-gradient(180deg,var(--gold2),var(--gold) 55%,#9a7420);-webkit-background-clip:text;color:transparent;
- filter:drop-shadow(0 6px 18px rgba(212,167,58,.35))}
-.name{margin-top:10px;font-family:Cinzel,serif;font-weight:800;font-size:40px;letter-spacing:22px;padding-left:22px;color:#fff}
-.rule{display:flex;align-items:center;justify-content:center;gap:18px;margin-top:22px;color:var(--gold);font-family:Oswald;font-size:20px;letter-spacing:6px}
-.rule i{display:block;width:150px;height:2px;background:linear-gradient(90deg,transparent,var(--gold))}
-.rule i:last-child{transform:scaleX(-1)}
-.hero{position:absolute;top:340px;left:0;right:0;text-align:center}
-.hero h1{font-family:Oswald;font-weight:700;font-size:168px;line-height:.9;letter-spacing:4px;text-transform:uppercase;
- text-shadow:0 8px 40px rgba(0,0,0,.6)}
-.hero h1 span{display:block;font-size:118px;letter-spacing:38px;padding-left:38px;color:var(--gold2)}
-.hero p{margin-top:20px;font-family:Oswald;font-size:30px;letter-spacing:8px;text-transform:uppercase;color:#cfd8ee}
-.grid{position:absolute;top:740px;left:72px;right:72px;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.card{position:relative;background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.02));
- border:1px solid rgba(212,167,58,.35);border-radius:6px;padding:20px 14px 18px;text-align:center;overflow:hidden}
-.card:before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:var(--c)}
-.card svg{width:44px;height:44px;margin-bottom:8px}
-.card h3{font-family:Oswald;font-weight:600;font-size:28px;letter-spacing:3px;text-transform:uppercase}
-.card .m{font-family:Cinzel,serif;font-weight:600;font-size:16px;color:var(--gold2);margin-top:6px;letter-spacing:1px}
-.card .y{font-family:Oswald;font-size:14px;letter-spacing:4px;color:#8f9bbb;margin-top:6px}
-.foot{position:absolute;bottom:78px;left:0;right:0;text-align:center}
-.foot .t{font-family:Cinzel,serif;font-weight:800;font-size:44px;letter-spacing:4px}
-.foot .s{margin-top:10px;font-family:Oswald;font-size:20px;letter-spacing:7px;color:var(--gold);text-transform:uppercase}
+body{width:1080px;height:1350px;background:var(--paper);overflow:hidden}
+.post{position:relative;width:1080px;height:1350px;background:var(--paper);color:var(--ink);font-family:"Libre Caslon Text",serif}
+.grain{position:absolute;inset:0;pointer-events:none;mix-blend-mode:multiply;opacity:.35}
+/* flag stripes down the right edge */
+.flag{position:absolute;top:0;right:0;width:96px;height:100%;
+ background:repeating-linear-gradient(180deg,var(--red) 0 52px,var(--paper) 52px 104px)}
+.canton{position:absolute;top:0;left:0;width:96px;height:312px;background:var(--ink)}
+.content{position:absolute;left:84px;right:180px;top:80px;bottom:80px}
+.mast{display:flex;align-items:center;gap:20px;padding-bottom:22px;border-bottom:3px solid var(--ink)}
+.letters{background:var(--ink);color:var(--paper);font-family:"Libre Caslon Display",serif;font-size:58px;line-height:1;padding:12px 18px 8px}
+.mast .n{font-family:"Barlow Condensed";font-weight:700;font-size:40px;letter-spacing:3px;text-transform:uppercase;line-height:1}
+.mast .sub{font-family:"Libre Caslon Text";font-style:italic;font-size:21px;color:var(--soft);margin-top:4px}
+.mast .date{margin-left:auto;text-align:right;font-family:"Barlow Condensed";font-weight:600;font-size:22px;letter-spacing:2px;text-transform:uppercase;line-height:1.25}
+h1{font-family:"Libre Caslon Display",serif;font-weight:400;font-size:222px;line-height:.84;letter-spacing:-6px;margin-top:64px;margin-left:-6px}
+h1 em{display:block;font-family:"Libre Caslon Text";font-style:italic;color:var(--red);font-size:190px;letter-spacing:-4px;margin-left:150px}
+.lede{font-size:28px;line-height:1.45;margin-top:40px;max-width:640px}
+.roll{margin-top:52px;border-top:1px solid var(--ink)}
+.roll h2{font-family:"Barlow Condensed";font-weight:600;font-size:19px;letter-spacing:4px;text-transform:uppercase;color:var(--red);margin:16px 0 4px}
+.rows{display:grid;grid-template-columns:1fr 1fr;column-gap:44px}
+.row{display:flex;align-items:baseline;gap:10px;padding:16px 0;border-bottom:1px solid rgba(28,42,74,.25)}
+.row b{font-family:"Barlow Condensed";font-weight:700;font-size:30px;text-transform:uppercase;letter-spacing:1px}
+.row i{font-size:18px;color:var(--soft);flex:1}
+.row span{font-family:"Barlow Condensed";font-weight:500;font-size:20px;color:var(--soft)}
+.sign{position:absolute;bottom:0;left:0;right:0;display:flex;justify-content:space-between;align-items:flex-end}
+.sign p{font-style:italic;font-size:30px}
+.sign small{font-family:"Barlow Condensed";font-weight:600;font-size:18px;letter-spacing:3px;text-transform:uppercase;color:var(--soft)}
 </style></head>
 <body><div class="post">
-<svg class="stars" viewBox="0 0 1080 1350" id="stars"></svg>
-<div class="stripes"></div>
-<div class="frame"></div>
+<div class="flag"><div class="canton"><svg viewBox="0 0 96 300" width="96" height="300"><text x="24" y="40" font-size="26" fill="#ece4d2" text-anchor="middle">★</text><text x="72" y="84" font-size="26" fill="#ece4d2" text-anchor="middle">★</text><text x="24" y="128" font-size="26" fill="#ece4d2" text-anchor="middle">★</text><text x="72" y="172" font-size="26" fill="#ece4d2" text-anchor="middle">★</text><text x="24" y="216" font-size="26" fill="#ece4d2" text-anchor="middle">★</text><text x="72" y="260" font-size="26" fill="#ece4d2" text-anchor="middle">★</text></svg></div></div>
+<div class="content">
+  <div class="mast">
+    <div class="letters">ΣΧ</div>
+    <div><div class="n">Sigma Chi</div><div class="sub">In hoc signo vinces</div></div>
+    <div class="date">Nov. 11<br>2026</div>
+  </div>
 
-<div class="top">
-  <div class="greek">ΣΧ</div>
-  <div class="name">SIGMA CHI</div>
-  <div class="rule"><i></i>★ HONORS ★<i></i></div>
-</div>
+  <h1>Veterans<em>Day</em></h1>
 
-<div class="hero">
-  <h1>Veterans<span>Day</span></h1>
-  <p>November 11 &nbsp;·&nbsp; 2026</p>
-</div>
+  <p class="lede">Today we stop to thank the men and women who raised their right hand and served, including the brothers who wore the uniform.</p>
 
-<div class="grid" id="grid"></div>
+  <div class="roll">
+    <h2>With gratitude to every branch</h2>
+    <div class="rows">
+      <div class="row"><b>Army</b><i>This We'll Defend</i><span>1775</span></div>
+      <div class="row"><b>Air Force</b><i>Aim High</i><span>1947</span></div>
+      <div class="row"><b>Navy</b><i>Non Sibi Sed Patriae</i><span>1775</span></div>
+      <div class="row"><b>Space Force</b><i>Semper Supra</i><span>2019</span></div>
+      <div class="row"><b>Marines</b><i>Semper Fidelis</i><span>1775</span></div>
+      <div class="row"><b>Coast Guard</b><i>Semper Paratus</i><span>1790</span></div>
+    </div>
+  </div>
 
-<div class="foot">
-  <div class="t">Thank You For Your Service</div>
-  <div class="s">To every brother &amp; every hero who served</div>
+  <div class="sign">
+    <p>Thank you for your service.</p>
+    <small>— The Brothers of Sigma Chi</small>
+  </div>
 </div>
-</div>
-<script>
-// starfield
-const s=document.getElementById('stars');let seed=7;const r=()=>(seed=(seed*16807)%2147483647)/2147483647;
-for(let i=0;i<140;i++){const c=document.createElementNS('http://www.w3.org/2000/svg','circle');
- c.setAttribute('cx',r()*1080);c.setAttribute('cy',r()*780);c.setAttribute('r',r()*1.6+.3);
- c.setAttribute('fill','#fff');c.setAttribute('opacity',r()*.8+.2);s.appendChild(c);}
-const star='<path d="M24 3l6.2 13.6 14.8 1.6-11 10 3.1 14.6L24 35.4 10.9 42.8 14 28.2 3 18.2l14.8-1.6z" fill="currentColor"/>';
-const icons={
- star:star,
- anchor:'<g fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"><circle cx="24" cy="9" r="4.5"/><path d="M24 13.5V44M14 22h20M7 30c2 8 9 14 17 14s15-6 17-14"/><path d="M4 33l3-4 4 3M44 33l-3-4-4 3"/></g>',
- globe:'<g fill="none" stroke="currentColor" stroke-width="3.2"><circle cx="24" cy="24" r="19"/><ellipse cx="24" cy="24" rx="8" ry="19"/><path d="M5 24h38M8 14h32M8 34h32"/></g>',
- wings:'<g fill="currentColor"><path d="M24 6l6 18-6 6-6-6z"/><path d="M19 18L0 12l5 7-3 1 7 4-2 2 9 1 4-3zM29 18l19-6-5 7 3 1-7 4 2 2-9 1-4-3z"/><path d="M24 32l3 10h-6z"/></g>',
- delta:'<g fill="currentColor"><path d="M24 2l12 40-12-8-12 8z"/></g><circle cx="24" cy="26" r="17" fill="none" stroke="currentColor" stroke-width="2.5" opacity=".6"/>',
- life:'<g fill="none" stroke="currentColor" stroke-width="3.5"><circle cx="24" cy="24" r="17"/><circle cx="24" cy="24" r="8"/></g><g stroke="currentColor" stroke-width="6"><path d="M24 7v9M24 32v9M7 24h9M32 24h9"/></g>'
-};
-const B=[
- ['Army','This We\'ll Defend','Est. 1775','#4b5320','star'],
- ['Navy','Non Sibi Sed Patriae','Est. 1775','#1b3d8f','anchor'],
- ['Marine Corps','Semper Fidelis','Est. 1775','#a6192e','globe'],
- ['Air Force','Aim High','Est. 1947','#5b8fd6','wings'],
- ['Space Force','Semper Supra','Est. 2019','#9aa3b5','delta'],
- ['Coast Guard','Semper Paratus','Est. 1790','#e8692c','life'],
-];
-document.getElementById('grid').innerHTML=B.map(([n,m,y,c,i])=>`<div class="card" style="--c:${c}">
- <svg viewBox="0 0 48 48" style="color:#f3d27a">${icons[i]}</svg><h3>${n}</h3><div class="m">${m}</div><div class="y">${y}</div></div>`).join('');
-</script>
-</body></html>
+<svg class="grain" width="1080" height="1350"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="3" stitchTiles="stitch"/><feColorMatrix values="0 0 0 0 .45  0 0 0 0 .4  0 0 0 0 .32  0 0 0 .55 0"/></filter><rect width="100%" height="100%" filter="url(#n)"/></svg>
+</div></body></html>
