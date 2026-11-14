@@ -1,0 +1,167 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Permanent+Marker&family=Inter:wght@500;800;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1080px;height:1350px;background:#070708;color:#fff;font-family:Inter,Arial,sans-serif;overflow:hidden;position:relative}
+.spot{position:absolute;inset:0;background:radial-gradient(ellipse 70% 45% at 50% 34%,rgba(255,255,255,.22),transparent 70%)}
+.grain{position:absolute;inset:0;opacity:.18;mix-blend-mode:overlay}
+.bg-lies{position:absolute;inset:0;font-family:'Permanent Marker',cursive;color:#bdbdbd;opacity:.12;font-size:44px}
+.bg-lies span{position:absolute;white-space:nowrap}
+.bar{position:absolute;top:0;left:0;right:0;height:118px;background:#fff;color:#000;display:flex;align-items:center;justify-content:space-between;padding:0 44px;font-weight:900;font-size:26px;letter-spacing:6px}
+.bar .gk{font-family:Anton,Impact,sans-serif;font-size:80px;letter-spacing:4px;display:flex;align-items:center}
+.bar .gk small{font-family:Inter,sans-serif;font-weight:900;font-size:44px;letter-spacing:7px;margin-left:22px}
+.bar .live{display:flex;align-items:center;gap:12px}
+.bar .dot{width:16px;height:16px;border-radius:50%;background:#000}
+.shirts{position:absolute;top:90px;left:0;right:0;height:440px}
+.shirt{position:absolute;width:250px;height:317px;transform-origin:50% 8%}
+.shirt svg{width:100%;height:100%;overflow:visible;filter:drop-shadow(0 10px 18px rgba(0,0,0,.6))}
+.shirt span{position:absolute;top:149px;left:48px;right:48px;text-align:center;font-family:'Permanent Marker',cursive;color:#0a0a0a;font-size:25px;line-height:1.05;transform:rotate(-3deg)}
+.s1{left:105px;top:38px;transform:rotate(-9deg)}
+.s2{left:415px;top:0;transform:scale(1.08)}
+.s3{left:725px;top:38px;transform:rotate(9deg)}
+.title{position:absolute;top:492px;left:0;right:0;text-align:center}
+.white{font-family:Anton,Impact,sans-serif;font-size:250px;line-height:.86;letter-spacing:2px;text-shadow:0 0 60px rgba(255,255,255,.25)}
+.lies{position:relative;display:inline-block;font-family:'Permanent Marker',cursive;font-size:180px;line-height:1;transform:rotate(-5deg);margin-top:-14px}
+.lies svg{position:absolute;left:-50px;top:-10px;width:calc(100% + 100px);height:110%;overflow:visible}
+.tag{position:absolute;top:905px;left:0;right:0;text-align:center;font-weight:800;font-size:30px;letter-spacing:3px;color:#d9d9d9}
+.tag b{color:#fff;font-weight:900}
+.info{position:absolute;top:962px;left:60px;right:60px;display:grid;grid-template-columns:1fr 1fr;border:4px solid #fff;background:#070708}
+.info>div{padding:20px 22px;text-align:center;display:flex;flex-direction:column;justify-content:center}
+.info>div+div{border-left:4px solid #fff}
+.info .k{font-size:20px;font-weight:900;letter-spacing:7px;color:#bdbdbd;margin-bottom:6px}
+.info .v{font-family:Anton,Impact,sans-serif;font-size:56px;line-height:1.05;letter-spacing:2px}
+.info .loc{background:#fff;color:#000}
+.info .loc .k{color:#555}
+.invite{position:absolute;top:1215px;left:0;right:0;text-align:center}
+.invite .t{display:inline-block;background:#fff;color:#000;font-weight:900;font-size:30px;letter-spacing:5px;padding:16px 30px;transform:rotate(-2deg);box-shadow:8px 8px 0 rgba(255,255,255,.25)}
+.invite .s{margin-top:18px;font-size:20px;font-weight:800;letter-spacing:8px;color:#9a9a9a}
+.star{position:absolute;color:#fff;font-size:46px}
+
+.shirts{top:68px!important}
+.shirt{width:222px!important;height:281px!important}
+.shirt span{top:132px!important;left:42px!important;right:42px!important;font-size:23px!important}
+.s1{left:150px!important}.s2{left:429px!important}.s3{left:708px!important}
+.title{top:418px!important}
+.white{font-size:150px!important}
+.lies{font-size:104px!important;margin-top:-6px!important}
+.door{position:absolute;top:650px;left:0;right:0;text-align:center}
+.door .q{font-weight:900;font-size:30px;letter-spacing:5px;color:#d0d0d0}
+.door .big{font-family:Anton,Impact,sans-serif;font-size:138px;line-height:1;letter-spacing:2px;margin-top:6px;text-shadow:0 0 40px rgba(255,255,255,.2)}
+.door .atdoor{display:inline-block;margin-top:14px;background:#fff;color:#000;font-family:Anton,Impact,sans-serif;font-size:66px;letter-spacing:3px;padding:6px 30px;transform:rotate(-2deg);box-shadow:8px 8px 0 rgba(255,255,255,.25)}
+.door .sub{margin-top:22px;font-family:'Permanent Marker',cursive;font-size:36px;color:#fff;transform:rotate(-1deg)}
+.info{top:985px!important}
+.info .v{font-size:48px!important}
+.info>div{padding:16px 20px!important}
+.invite{top:1228px!important}
+</style></head><body>
+<svg class="grain" width="1080" height="1350"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(#n)"/></svg>
+<div class="bg-lies">
+ <span style="top:103px;left:-79px;font-size:34px;transform:rotate(-2deg)">I'm 6'2"</span>
+ <span style="top:100px;left:132px;font-size:30px;transform:rotate(12deg)">I never drink</span>
+ <span style="top:84px;left:419px;font-size:38px;transform:rotate(4deg)">I love cardio</span>
+ <span style="top:85px;left:797px;font-size:34px;transform:rotate(-13deg)">Single</span>
+ <span style="top:90px;left:990px;font-size:42px;transform:rotate(-12deg)">Phone died</span>
+ <span style="top:179px;left:-50px;font-size:42px;transform:rotate(-13deg)">On my way</span>
+ <span style="top:181px;left:231px;font-size:34px;transform:rotate(6deg)">Just one more</span>
+ <span style="top:179px;left:582px;font-size:30px;transform:rotate(4deg)">I'm fine</span>
+ <span style="top:162px;left:795px;font-size:30px;transform:rotate(-7deg)">Sober</span>
+ <span style="top:174px;left:963px;font-size:34px;transform:rotate(-5deg)">I read the terms</span>
+ <span style="top:248px;left:-51px;font-size:30px;transform:rotate(4deg)">5 min away</span>
+ <span style="top:257px;left:210px;font-size:34px;transform:rotate(-11deg)">I'm not mad</span>
+ <span style="top:242px;left:517px;font-size:34px;transform:rotate(-3deg)">Last one</span>
+ <span style="top:240px;left:760px;font-size:30px;transform:rotate(4deg)">I don't gamble</span>
+ <span style="top:334px;left:-94px;font-size:42px;transform:rotate(7deg)">My ex who?</span>
+ <span style="top:335px;left:233px;font-size:38px;transform:rotate(0deg)">I studied</span>
+ <span style="top:324px;left:514px;font-size:38px;transform:rotate(-5deg)">No cap</span>
+ <span style="top:341px;left:745px;font-size:34px;transform:rotate(8deg)">I'm a great dancer</span>
+ <span style="top:410px;left:-110px;font-size:38px;transform:rotate(2deg)">Totally fine</span>
+ <span style="top:414px;left:233px;font-size:42px;transform:rotate(-5deg)">I go to class</span>
+ <span style="top:408px;left:615px;font-size:30px;transform:rotate(2deg)">I'm sooo busy</span>
+ <span style="top:410px;left:906px;font-size:38px;transform:rotate(-10deg)">I'll Venmo you</span>
+ <span style="top:490px;left:-115px;font-size:30px;transform:rotate(10deg)">Never been better</span>
+ <span style="top:495px;left:277px;font-size:38px;transform:rotate(-4deg)">I don't snore</span>
+ <span style="top:487px;left:645px;font-size:42px;transform:rotate(4deg)">Already left</span>
+ <span style="top:488px;left:1001px;font-size:30px;transform:rotate(-6deg)">I'm the DD</span>
+ <span style="top:574px;left:-35px;font-size:30px;transform:rotate(-13deg)">Love that for you</span>
+ <span style="top:569px;left:365px;font-size:38px;transform:rotate(6deg)">It's not a phase</span>
+ <span style="top:573px;left:824px;font-size:42px;transform:rotate(-5deg)">I'm a morning person</span>
+ <span style="top:643px;left:-35px;font-size:38px;transform:rotate(-14deg)">I paid rent</span>
+ <span style="top:632px;left:286px;font-size:34px;transform:rotate(5deg)">Super humble</span>
+ <span style="top:653px;left:609px;font-size:30px;transform:rotate(-8deg)">Let's grab lunch</span>
+ <span style="top:636px;left:964px;font-size:34px;transform:rotate(9deg)">I'm early</span>
+ <span style="top:712px;left:-70px;font-size:42px;transform:rotate(-12deg)">Great question</span>
+ <span style="top:715px;left:362px;font-size:42px;transform:rotate(3deg)">Not tired</span>
+ <span style="top:724px;left:644px;font-size:42px;transform:rotate(13deg)">Gym rat</span>
+ <span style="top:728px;left:883px;font-size:42px;transform:rotate(-3deg)">Allergic to drama</span>
+ <span style="top:790px;left:-91px;font-size:34px;transform:rotate(-12deg)">I never lie</span>
+ <span style="top:792px;left:189px;font-size:34px;transform:rotate(7deg)">I'm 6'2"</span>
+ <span style="top:803px;left:397px;font-size:42px;transform:rotate(12deg)">I never drink</span>
+ <span style="top:785px;left:786px;font-size:38px;transform:rotate(-5deg)">I love cardio</span>
+ <span style="top:881px;left:-67px;font-size:38px;transform:rotate(5deg)">Single</span>
+ <span style="top:879px;left:134px;font-size:34px;transform:rotate(8deg)">Phone died</span>
+ <span style="top:887px;left:423px;font-size:30px;transform:rotate(0deg)">On my way</span>
+ <span style="top:875px;left:673px;font-size:42px;transform:rotate(-2deg)">Just one more</span>
+ <span style="top:883px;left:1076px;font-size:30px;transform:rotate(1deg)">I'm fine</span>
+ <span style="top:947px;left:-113px;font-size:34px;transform:rotate(-12deg)">Sober</span>
+ <span style="top:951px;left:60px;font-size:34px;transform:rotate(-11deg)">I read the terms</span>
+ <span style="top:941px;left:475px;font-size:30px;transform:rotate(-11deg)">5 min away</span>
+ <span style="top:944px;left:737px;font-size:34px;transform:rotate(3deg)">I'm not mad</span>
+ <span style="top:947px;left:1031px;font-size:30px;transform:rotate(-12deg)">Last one</span>
+ <span style="top:1027px;left:-72px;font-size:34px;transform:rotate(6deg)">I don't gamble</span>
+ <span style="top:1022px;left:285px;font-size:38px;transform:rotate(1deg)">My ex who?</span>
+ <span style="top:1034px;left:567px;font-size:42px;transform:rotate(0deg)">I studied</span>
+ <span style="top:1023px;left:871px;font-size:38px;transform:rotate(-12deg)">No cap</span>
+ <span style="top:1027px;left:1058px;font-size:38px;transform:rotate(9deg)">I'm a great dancer</span>
+ <span style="top:1097px;left:-32px;font-size:34px;transform:rotate(2deg)">Totally fine</span>
+ <span style="top:1119px;left:273px;font-size:38px;transform:rotate(-10deg)">I go to class</span>
+ <span style="top:1113px;left:653px;font-size:30px;transform:rotate(10deg)">I'm sooo busy</span>
+ <span style="top:1105px;left:953px;font-size:30px;transform:rotate(8deg)">I'll Venmo you</span>
+ <span style="top:1199px;left:-74px;font-size:34px;transform:rotate(-3deg)">Never been better</span>
+ <span style="top:1182px;left:338px;font-size:38px;transform:rotate(6deg)">I don't snore</span>
+ <span style="top:1182px;left:723px;font-size:34px;transform:rotate(11deg)">Already left</span>
+ <span style="top:1191px;left:1040px;font-size:34px;transform:rotate(-8deg)">I'm the DD</span>
+ <span style="top:1261px;left:-75px;font-size:30px;transform:rotate(-14deg)">Love that for you</span>
+ <span style="top:1275px;left:311px;font-size:38px;transform:rotate(-8deg)">It's not a phase</span>
+ <span style="top:1276px;left:765px;font-size:38px;transform:rotate(0deg)">I'm a morning person</span>
+ <span style="top:1334px;left:-74px;font-size:30px;transform:rotate(-7deg)">I paid rent</span>
+ <span style="top:1341px;left:184px;font-size:42px;transform:rotate(-8deg)">Super humble</span>
+ <span style="top:1350px;left:549px;font-size:42px;transform:rotate(5deg)">Let's grab lunch</span>
+ <span style="top:1342px;left:1005px;font-size:42px;transform:rotate(6deg)">I'm early</span>
+</div>
+<div class="spot"></div>
+<div class="bar"><div class="gk">ΣΧ<small>SIGMA CHI</small></div><div class="live"><span class="dot"></span>TONIGHT</div></div>
+<svg width="0" height="0" style="position:absolute"><defs>
+<linearGradient id="body" x1="0" x2="1"><stop offset="0" stop-color="#d9d9d9"/><stop offset=".22" stop-color="#f7f7f7"/><stop offset=".5" stop-color="#ffffff"/><stop offset=".8" stop-color="#f1f1f1"/><stop offset="1" stop-color="#cfcfcf"/></linearGradient>
+<linearGradient id="vshade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#000" stop-opacity="0"/><stop offset=".75" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".12"/></linearGradient>
+<linearGradient id="hang" x1="0" x2="1"><stop offset="0" stop-color="#8a8a8a"/><stop offset=".5" stop-color="#e6e6e6"/><stop offset="1" stop-color="#8a8a8a"/></linearGradient>
+<symbol id="tee" viewBox="0 -60 300 380">
+ <path d="M100 30 C120 18,180 18,200 30 C185 48,115 48,100 30Z" fill="#cfcfcf"/>
+ <path d="M100 30 C118 50,182 50,200 30 L252 46 C268 52,282 70,296 98 L256 138 L234 122 L234 298 Q150 308 66 298 L66 122 L44 138 L4 98 C18 70,32 52,48 46 Z" fill="#f5f5f3"/>
+ <path d="M98 30 C118 56,182 56,202 30" fill="none" stroke="#e6e6e4" stroke-width="7" stroke-linecap="round"/>
+ <path d="M98 30 C118 56,182 56,202 30" fill="none" stroke="#bdbdbd" stroke-width="1.2" stroke-dasharray="3 3" transform="translate(0,5)"/>
+ <path d="M12 106 L50 128 M288 106 L250 128" stroke="#000" stroke-opacity=".25" stroke-width="1.3" stroke-dasharray="4 3"/>
+ <path d="M70 290 Q150 299 230 290" fill="none" stroke="#000" stroke-opacity=".25" stroke-width="1.3" stroke-dasharray="4 3"/>
+</symbol></defs></svg>
+<div class="shirts">
+ <div class="shirt s1"><svg viewBox="0 -60 300 380"><use href="#tee"/></svg><span>I'm on the list</span></div>
+ <div class="shirt s3"><svg viewBox="0 -60 300 380"><use href="#tee"/></svg><span>I read the caption</span></div>
+ <div class="shirt s2"><svg viewBox="0 -60 300 380"><use href="#tee"/></svg><span>I brought my own shirt</span></div>
+</div>
+<span class="star" style="top:150px;left:330px">✦</span>
+<span class="star" style="top:470px;left:930px;font-size:34px">✦</span>
+<span class="star" style="top:760px;left:120px;font-size:30px">✦</span>
+<div class="title">
+ <div class="white">WHITE</div>
+ <div class="lies">LIES<svg viewBox="0 0 400 200" preserveAspectRatio="none"><path d="M30 120 C 10 40, 380 10, 385 90 C 390 170, 60 200, 25 110 C 15 70, 120 30, 210 28" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round"/></svg></div>
+</div>
+<div class="door">
+ <div class="q">NO WHITE SHIRT? NO PROBLEM.</div>
+ <div class="big">WHITE SHIRTS</div>
+ <div class="atdoor">WILL BE AT THE DOOR</div>
+</div>
+<div class="info">
+ <div><div class="k">SAT · NOV 14</div><div class="v">8 – 11 PM</div></div>
+ <div class="loc"><div class="k">LOCATION</div><div class="v">DOWNTOWN<br>FIELDHOUSE</div></div>
+</div>
+<div class="invite"><div class="t">INVITE ONLY — REACH OUT TO A BROTHER</div></div>
+</body></html>
