@@ -27,15 +27,19 @@ body{width:1080px;height:1920px;overflow:hidden;background:#111}
 
 /* ---------- 2 editorial (food scanner) ---------- */
 .s2{background:#efe6d6}
-.s2 .photo{position:absolute;left:0;right:0;top:0;height:1130px;background:url(assets/k_phonebowl.jpg) center 30%/cover}
+.s2 .photo{position:absolute;left:0;right:0;top:0;height:1030px;background:url(assets/k_phonebowl.jpg) center 30%/cover}
 .s2 .photo:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.45),rgba(0,0,0,0) 30%)}
-.s2 .edge{position:absolute;left:0;right:0;top:1090px;height:80px;background:#efe6d6;clip-path:polygon(0 45%,6% 38%,13% 52%,22% 40%,31% 50%,40% 36%,52% 49%,61% 39%,70% 52%,81% 41%,90% 50%,100% 38%,100% 100%,0 100%)}
-.s2 .kicker{left:72px;top:1180px;font-family:'Space Mono';font-weight:700;font-size:24px;letter-spacing:.18em;color:#e2561d;text-transform:uppercase}
-.s2 .h{left:66px;top:1222px;width:620px;font-family:Anton;font-size:150px;line-height:.9;color:#151515;text-transform:uppercase}
+.s2 .edge{position:absolute;left:0;right:0;top:990px;height:80px;background:#efe6d6;clip-path:polygon(0 45%,6% 38%,13% 52%,22% 40%,31% 50%,40% 36%,52% 49%,61% 39%,70% 52%,81% 41%,90% 50%,100% 38%,100% 100%,0 100%)}
+.s2 .kicker{left:72px;top:1076px;font-family:'Space Mono';font-weight:700;font-size:24px;letter-spacing:.18em;color:#e2561d;text-transform:uppercase}
+.s2 .h{left:66px;top:1116px;width:620px;font-family:Anton;font-size:132px;line-height:.9;color:#151515;text-transform:uppercase}
 .s2 .serif{left:72px;top:1500px;width:560px;font-family:'Instrument Serif';font-style:italic;font-size:62px;line-height:1.02;color:#151515}
-.s2 .cta{left:72px;top:1636px;background:#151515;color:#efe6d6;font-family:Inter;font-weight:700;font-size:30px;padding:20px 34px;border-radius:999px}
+.s2 .cta{left:72px;top:1640px;background:#151515;color:#efe6d6;font-family:Inter;font-weight:700;font-size:30px;padding:20px 34px;border-radius:999px}
 .s2 .cta i{font-style:normal;color:#ff7a2a}
-.s2 .sub{left:76px;top:1730px;font-family:Inter;font-size:22px;color:#5a5048}
+.s2 .sub{left:76px;top:1734px;font-family:Inter;font-size:22px;color:#5a5048}
+
+.s2 .steps{left:72px;top:1380px;width:600px;list-style:none;display:flex;flex-direction:column;gap:14px;font-family:Inter;color:#151515}
+.s2 .steps li{display:flex;gap:16px;align-items:flex-start;font-size:27px;line-height:1.3;font-weight:500}
+.s2 .steps b{flex:none;width:40px;height:40px;border-radius:50%;background:#e2561d;color:#fff;font-weight:800;font-size:22px;display:grid;place-items:center;margin-top:-3px}
 
 /* ---------- 3 brutalist (workouts) ---------- */
 .s3{background:#0d0d0d}
@@ -129,10 +133,14 @@ S[2]=`<div class="st s2"><div class="photo"></div>${L(0,0,56,'#fff','#fff',72,25
  <div class="edge"></div>
  <div class="abs kicker">Food Scanner</div>
  <div class="abs h">Snap it.<br>Scan it.</div>
- <div class="abs serif">Your macros, done before your fork is.</div>
+ <ol class="abs steps">
+  <li><b>1</b><span>Take a photo of your meal or scan the barcode.</span></li>
+  <li><b>2</b><span>Calories, protein, carbs and fats are logged for you, plus fiber, sugar and iron.</span></li>
+  <li><b>3</b><span>See what's left of your daily calorie and protein goals.</span></li>
+ </ol>
  <div class="abs cta">Download MUR Nutrition <i>→</i></div>
  <div class="abs sub">Search “MUR Nutrition” on the App Store</div>
- <img class="ph" src="assets/phonecutB1.png" style="left:690px;top:860px;height:780px;transform:rotate(5deg)">${grain}</div>`;
+ <img class="ph" src="assets/phonecutB1.png" style="left:690px;top:770px;height:760px;transform:rotate(5deg)">${grain}</div>`;
 S[3]=`<div class="st s3"><div class="cover"></div><div class="tint"></div><div class="dark"></div>
  ${L(0,0,56,'#fff2e6','#fff2e6',60,250)}
  <div class="abs big"><span class="out">Log</span><span class="out">every</span><span class="fill">set.</span></div>
