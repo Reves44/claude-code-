@@ -1,0 +1,187 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Permanent+Marker&family=Archivo+Narrow:wght@500;600;700&family=Archivo:wght@500;700;800;900&family=Instrument+Serif:ital@0;1&family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700;800&family=Libre+Franklin:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{width:1080px;height:1920px;overflow:hidden;background:#111}
+.st{position:relative;width:1080px;height:1920px;overflow:hidden}
+.abs{position:absolute}
+.cover{position:absolute;inset:0;background-size:cover;background-position:center}
+.ph{position:absolute;filter:drop-shadow(0 30px 30px rgba(0,0,0,.5)) drop-shadow(0 4px 6px rgba(0,0,0,.45))}
+.grain{position:absolute;inset:0;pointer-events:none;mix-blend-mode:overlay;opacity:.35}
+.mur b{display:block;font-family:Anton;line-height:.9;letter-spacing:1px}
+.mur span{display:block;font-family:Archivo;font-weight:800;letter-spacing:.5em;margin-top:6px}
+
+/* ---------- 1 launch (screen print sunset) ---------- */
+.s1 .sky{position:absolute;inset:0;background:linear-gradient(180deg,#24103d 0 10%,#3a1452 10% 19%,#6b1b66 19% 28%,#b02a6f 28% 36%,#e8466f 36% 43%,#f47a4f 43% 50%,#f9a948 50% 55%,#f6c76a 55% 58%,#1d0c31 58%)}
+.s1 .sun{position:absolute;left:300px;top:640px;width:560px;height:560px;border-radius:50%;background:radial-gradient(circle,#ffd86b 38%,transparent 41%) 0 0/18px 18px;-webkit-mask:linear-gradient(180deg,#000 0 77%,transparent 77%)}
+.s1 .sea{position:absolute;left:0;right:0;top:1114px;bottom:0;background:#1d0c31}
+.s1 .sea:before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(180deg,#2c6f78 0 3px,transparent 3px 22px);opacity:.35}
+.s1 .head{left:66px;right:40px;top:390px;transform:rotate(-2.5deg);font-family:Anton;text-transform:uppercase;line-height:.92;filter:url(#rough)}
+.ln{position:relative;display:block}.ln .o{position:absolute;left:6px;top:6px}.ln .i{position:relative}
+.s1 .a{font-size:112px;color:#f4ead8}.s1 .a .o{color:#4fd1c5}
+.s1 .b{font-size:128px;color:#ff4d7e}.s1 .b .o{color:#1b0b2e}
+.s1 .tag{right:70px;top:266px;transform:rotate(6deg);border:4px solid #4fd1c5;color:#4fd1c5;font-family:Archivo;font-weight:900;font-size:24px;letter-spacing:4px;padding:8px 14px 6px;filter:url(#stamp)}
+.s1 .cta{left:66px;top:1470px;transform:rotate(-1.5deg);background:#ff4d7e;color:#1b0b2e;font-family:Anton;font-size:58px;padding:14px 34px 12px;box-shadow:8px 8px 0 #f47a2a;filter:url(#rough)}
+.s1 .store{left:70px;top:1592px;color:#f4ead8;font-family:Archivo;font-weight:800;font-size:28px}
+.s1 .store span{display:block;font-family:'Archivo Narrow';font-weight:600;font-size:24px;color:#c9b6e4;margin-top:4px}
+
+/* ---------- 2 editorial (food scanner) ---------- */
+.s2{background:#efe6d6}
+.s2 .photo{position:absolute;left:0;right:0;top:0;height:1130px;background:url(assets/k_phonebowl.jpg) center 30%/cover}
+.s2 .photo:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.45),rgba(0,0,0,0) 30%)}
+.s2 .edge{position:absolute;left:0;right:0;top:1090px;height:80px;background:#efe6d6;clip-path:polygon(0 45%,6% 38%,13% 52%,22% 40%,31% 50%,40% 36%,52% 49%,61% 39%,70% 52%,81% 41%,90% 50%,100% 38%,100% 100%,0 100%)}
+.s2 .kicker{left:72px;top:1180px;font-family:'Space Mono';font-weight:700;font-size:24px;letter-spacing:.18em;color:#e2561d;text-transform:uppercase}
+.s2 .h{left:66px;top:1222px;width:620px;font-family:Anton;font-size:150px;line-height:.9;color:#151515;text-transform:uppercase}
+.s2 .serif{left:72px;top:1500px;width:560px;font-family:'Instrument Serif';font-style:italic;font-size:62px;line-height:1.02;color:#151515}
+.s2 .cta{left:72px;top:1636px;background:#151515;color:#efe6d6;font-family:Inter;font-weight:700;font-size:30px;padding:20px 34px;border-radius:999px}
+.s2 .cta i{font-style:normal;color:#ff7a2a}
+.s2 .sub{left:76px;top:1730px;font-family:Inter;font-size:22px;color:#5a5048}
+
+/* ---------- 3 brutalist (workouts) ---------- */
+.s3{background:#0d0d0d}
+.s3 .cover{background-image:url(assets/bg_pullup.jpg);filter:grayscale(1) contrast(1.35) brightness(1.6)}
+.s3 .tint{position:absolute;inset:0;background:#ff5a1f;mix-blend-mode:multiply;opacity:.55}
+.s3 .dark{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.55),rgba(0,0,0,.05) 35%,rgba(0,0,0,.2) 60%,rgba(0,0,0,.9))}
+.s3 .big{left:52px;top:380px;font-family:Anton;font-size:300px;line-height:.86;text-transform:uppercase}
+.s3 .big span{display:block}
+.s3 .out{color:transparent;-webkit-text-stroke:4px #fff2e6}
+.s3 .fill{color:#fff2e6}
+.s3 .meta{left:60px;top:1290px;font-family:'Space Mono';font-size:26px;line-height:1.7;color:#fff2e6}
+.s3 .meta b{color:#ffb38a}
+.s3 .bar{left:0;right:0;top:1500px;height:150px;background:#ff5a1f}
+.s3 .barT{left:60px;top:1527px;font-family:Anton;font-size:76px;color:#0d0d0d;letter-spacing:1px}
+.s3 .barS{left:62px;top:1665px;font-family:'Space Mono';font-size:23px;color:#fff2e6}
+
+/* ---------- 4 nutrition label (meal prep) ---------- */
+.s4 .cover{background-image:url(assets/k_mealprep.jpg)}
+.s4 .veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.35),rgba(0,0,0,.15) 40%,rgba(0,0,0,.55))}
+.s4 .label{left:150px;top:330px;width:780px;background:#fff;color:#111;border:4px solid #111;padding:22px 30px 26px;font-family:'Libre Franklin';box-shadow:0 30px 60px rgba(0,0,0,.45);transform:rotate(-1.2deg)}
+.s4 .lt{font-weight:900;font-size:92px;line-height:.95;letter-spacing:-1px}
+.s4 .serv{font-size:28px;border-bottom:16px solid #111;padding:6px 0 10px}
+.s4 .row{display:flex;justify-content:space-between;font-size:32px;padding:10px 0;border-bottom:2px solid #111}
+.s4 .row b{font-weight:900}
+.s4 .row.big{font-size:48px;font-weight:900;border-bottom:8px solid #111}
+.s4 .row.thick{border-bottom:10px solid #111}
+.s4 .foot{font-size:22px;line-height:1.35;padding-top:12px}
+.s4 .cta{left:150px;top:1470px;background:#ff5a1f;color:#fff;font-family:'Libre Franklin';font-weight:900;font-size:44px;padding:22px 40px;letter-spacing:.5px;transform:rotate(-1.2deg)}
+.s4 .sub{left:154px;top:1590px;color:#fff;font-family:'Libre Franklin';font-weight:700;font-size:26px;text-shadow:0 2px 10px rgba(0,0,0,.6)}
+
+/* ---------- 5 data night (progress) ---------- */
+.s5{background:#06131a}
+.s5 .cover{background-image:url(assets/bg_sprint.jpg);filter:grayscale(1) brightness(.7) contrast(1.2)}
+.s5 .tint{position:absolute;inset:0;background:linear-gradient(180deg,#06131a 0%,rgba(8,40,52,.55) 40%,#06131a 92%);}
+.s5 .k{left:70px;top:300px;font-family:'Space Mono';font-size:24px;letter-spacing:.2em;color:#4fe0cf}
+.s5 .h{left:66px;top:345px;font-family:Inter;font-weight:800;font-size:112px;line-height:.98;color:#fff;letter-spacing:-3px}
+.s5 .h em{font-style:normal;color:#ff8a3d}
+.s5 .ring{left:190px;top:700px;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(79,224,207,.35),rgba(79,224,207,0) 65%)}
+.s5 .days{left:70px;right:70px;top:1500px;display:flex;justify-content:space-between}
+.s5 .days div{font-family:'Space Mono';font-size:22px;color:#9bb7bf;text-align:center}
+.s5 .days div i{display:block;width:46px;height:46px;margin:0 auto 8px;border-radius:50%;border:3px solid #4fe0cf;background:rgba(79,224,207,.2)}
+.s5 .cta{left:70px;top:1620px;font-family:Inter;font-weight:800;font-size:34px;color:#06131a;background:#4fe0cf;padding:20px 34px;border-radius:14px}
+.s5 .sub{left:72px;top:1712px;font-family:Inter;font-size:22px;color:#9bb7bf}
+
+/* ---------- 6 bright kitchen (notifications) ---------- */
+.s6 .cover{background-image:url(assets/k_kitchenwoman.jpg);background-position:center 30%}
+.s6 .fade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,0) 50%,rgba(250,246,240,.92) 74%,#faf6f0 84%)}
+.s6 .n{left:70px;width:680px;background:rgba(255,255,255,.86);backdrop-filter:blur(18px);border-radius:34px;padding:22px 26px;display:flex;gap:20px;align-items:center;box-shadow:0 18px 40px rgba(40,30,20,.18);font-family:Inter}
+.s6 .n .ic{width:76px;height:76px;border-radius:18px;background:#ff5a1f;color:#fff;font-family:Anton;font-size:30px;display:grid;place-items:center;flex:none;line-height:1}
+.s6 .n .t{font-size:22px;color:#6b6259;font-weight:600}
+.s6 .n .m{font-size:29px;color:#1d1a17;font-weight:700;margin-top:3px;line-height:1.2}
+.s6 .h{left:70px;top:1360px;width:940px;font-family:Inter;font-weight:800;font-size:96px;line-height:.98;letter-spacing:-3px;color:#1d1a17}
+.s6 .h em{font-family:'Instrument Serif';font-style:italic;font-weight:400;letter-spacing:-1px;color:#e2561d}
+.s6 .cta{left:70px;top:1600px;background:#1d1a17;color:#fff;font-family:Inter;font-weight:700;font-size:32px;padding:22px 38px;border-radius:999px}
+.s6 .sub{left:74px;top:1700px;font-family:Inter;font-size:22px;color:#6b6259}
+
+/* ---------- 7 collage (coach) ---------- */
+.s7{background:#ece3d2}
+.s7 .paper{position:absolute;inset:0;background:radial-gradient(ellipse at 30% 20%,rgba(255,255,255,.6),rgba(255,255,255,0) 60%),repeating-linear-gradient(0deg,rgba(0,0,0,.025) 0 2px,transparent 2px 5px)}
+.s7 .pol{position:absolute;background:#fff;padding:16px 16px 60px;box-shadow:0 14px 26px rgba(0,0,0,.25)}
+.s7 .pol div{width:100%;height:100%;background-size:cover;background-position:center}
+.s7 .pol small{position:absolute;left:20px;bottom:12px;font-family:'Permanent Marker';font-size:30px;color:#222}
+.s7 .tape{position:absolute;width:130px;height:40px;background:rgba(244,228,170,.8);box-shadow:0 1px 2px rgba(0,0,0,.15)}
+.s7 .h{left:62px;top:300px;font-family:Anton;font-size:140px;line-height:.9;color:#1a1a1a;text-transform:uppercase;transform:rotate(-2deg)}
+.s7 .h span{background:#ff5a1f;color:#fff;padding:0 14px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.s7 .mk{font-family:'Permanent Marker';font-size:44px;color:#1a1a1a;position:absolute}
+.s7 .cta{left:62px;top:1580px;background:#1a1a1a;color:#fff;font-family:Anton;font-size:56px;padding:14px 34px 12px;transform:rotate(-2deg);box-shadow:8px 8px 0 #ff5a1f}
+.s7 .sub{left:66px;top:1700px;font-family:Archivo;font-weight:700;font-size:26px;color:#3a332a}
+</style></head><body>
+<svg width="0" height="0" style="position:absolute"><defs>
+<filter id="rough"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="4"/><feDisplacementMap in="SourceGraphic" scale="3"/></filter>
+<filter id="stamp"><feTurbulence type="fractalNoise" baseFrequency=".75" numOctaves="3" seed="2" result="n"/><feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -2.2 1.5" result="m"/><feComposite in="SourceGraphic" in2="m" operator="in"/></filter>
+<filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="1.1" numOctaves="3" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter>
+</defs></svg>
+<div id="root"></div>
+<script>
+const n=+new URLSearchParams(location.search).get('n');
+const grain=`<svg class="grain" width="1080" height="1920"><rect width="100%" height="100%" filter="url(#noise)"/></svg>`;
+const arrow=(x,y,r,c)=>`<svg class="abs" style="left:${x}px;top:${y}px;transform:rotate(${r}deg)" width="130" height="130" viewBox="0 0 90 90"><path d="M78 14 C48 10 22 28 18 66 M6 52 L18 70 L32 54" fill="none" stroke="${c||'#1a1a1a'}" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" filter="url(#rough)"/></svg>`;
+const L=(b,sp,size,col,col2,x,y)=>`<div class="abs mur" style="left:${x}px;top:${y}px"><b style="font-size:${size}px;color:${col}">MUR</b><span style="font-size:${Math.round(size*.24)}px;color:${col2}">NUTRITION</span></div>`;
+const S=[];
+S[1]=`<div class="st s1"><div class="sky"></div><div class="sun"></div><div class="sea"></div>
+ ${L(0,0,64,'#f47a2a','#f4ead8',70,250)}<div class="abs tag">NEW APP</div>
+ <div class="abs head"><span class="ln a"><span class="o">The new</span><span class="i">The new</span></span><span class="ln b"><span class="o">MUR app is here.</span><span class="i">MUR app is here.</span></span></div>
+ <img class="ph" src="assets/phonecutB0.png" style="left:40px;top:830px;height:520px;transform:rotate(-8deg)">
+ <img class="ph" src="assets/phonecutB3.png" style="left:780px;top:830px;height:520px;transform:rotate(8deg)">
+ <img class="ph" src="assets/phonecutB2.png" style="left:560px;top:780px;height:580px;transform:rotate(4deg)">
+ <img class="ph" src="assets/phonecutB1.png" style="left:260px;top:740px;height:640px;transform:rotate(-2deg)">
+ <div class="abs cta">DOWNLOAD TODAY</div><div class="abs store">Available on the App Store<span>Search “MUR Nutrition” on iPhone</span></div>${grain}</div>`;
+S[2]=`<div class="st s2"><div class="photo"></div>${L(0,0,56,'#fff','#fff',72,250)}
+ <div class="edge"></div>
+ <div class="abs kicker">Food Scanner</div>
+ <div class="abs h">Snap it.<br>Scan it.</div>
+ <div class="abs serif">Your macros, done before your fork is.</div>
+ <div class="abs cta">Download MUR Nutrition <i>→</i></div>
+ <div class="abs sub">Search “MUR Nutrition” on the App Store</div>
+ <img class="ph" src="assets/phonecutB1.png" style="left:690px;top:860px;height:780px;transform:rotate(5deg)">${grain}</div>`;
+S[3]=`<div class="st s3"><div class="cover"></div><div class="tint"></div><div class="dark"></div>
+ ${L(0,0,56,'#fff2e6','#fff2e6',60,250)}
+ <div class="abs big"><span class="out">Log</span><span class="out">every</span><span class="fill">set.</span></div>
+ <img class="ph" src="assets/phonecutB0.png" style="left:650px;top:780px;height:680px;transform:rotate(-5deg)">
+ <div class="abs meta">[01] <b>WEIGHTS</b><br>[02] <b>RUNS</b><br>[03] <b>WALKS</b></div>
+ <div class="abs bar"></div><div class="abs barT">DOWNLOAD TODAY</div>
+ <div class="abs barS">Search “MUR Nutrition” on the App Store</div>${grain}</div>`;
+S[4]=`<div class="st s4"><div class="cover"></div><div class="veil"></div>
+ <div class="abs label">
+  <div class="lt">Tracking Facts</div>
+  <div class="serv">Serving size: every meal you eat</div>
+  <div class="row big"><span>Calories</span><span>Tracked</span></div>
+  <div class="row"><span><b>Protein</b></span><span><b>Tracked</b></span></div>
+  <div class="row"><span><b>Carbs</b></span><span><b>Tracked</b></span></div>
+  <div class="row"><span><b>Fats</b></span><span><b>Tracked</b></span></div>
+  <div class="row"><span>Fiber, sugars, iron</span><span>Tracked</span></div>
+  <div class="row thick"><span><b>Guesswork</b></span><span><b>0%</b></span></div>
+  <div class="foot">Snap a photo or scan a barcode for instant nutrition. Ingredients: one app, the MUR Nutrition app.</div>
+ </div>
+ ${L(0,0,52,'#fff','#fff',154,1300)}
+ <div class="abs cta">DOWNLOAD TODAY</div>
+ <div class="abs sub">Search “MUR Nutrition” on the App Store</div>${grain}</div>`;
+S[5]=`<div class="st s5"><div class="cover"></div><div class="tint"></div>
+ ${L(0,0,48,'#ff8a3d','#9bb7bf',870,240)}
+ <div class="abs k">WEEKLY PROGRESS</div>
+ <div class="abs h">Your whole week.<br><em>One chart.</em></div>
+ <div class="abs ring"></div>
+ <img class="ph" src="assets/phonecutB2.png" style="left:330px;top:640px;height:800px">
+ <div class="abs days"><div><i></i>MON</div><div><i></i>TUE</div><div><i></i>WED</div><div><i></i>THU</div><div><i></i>FRI</div><div><i></i>SAT</div><div><i></i>SUN</div></div>
+ <div class="abs cta">Download today</div><div class="abs sub">Search “MUR Nutrition” on the App Store</div>${grain}</div>`;
+S[6]=`<div class="st s6"><div class="cover"></div><div class="fade"></div>
+ <div class="abs n" style="top:300px"><div class="ic">MUR</div><div><div class="t">MUR NUTRITION · now</div><div class="m">Meal scanned. Protein, carbs and fats logged.</div></div></div>
+ <div class="abs n" style="top:470px;left:200px;width:640px"><div class="ic">MUR</div><div><div class="t">MUR NUTRITION · now</div><div class="m">Snap a photo or scan a barcode. That's it.</div></div></div>
+ <div class="abs h">Track it right from <em>your kitchen.</em></div>
+ <div class="abs cta">Download MUR Nutrition</div>
+ <div class="abs sub">Search “MUR Nutrition” on the App Store</div></div>`;
+S[7]=`<div class="st s7"><div class="paper"></div>
+ ${L(0,0,52,'#ff5a1f','#1a1a1a',810,250)}
+ <div class="abs h"><span>Train with</span><br><span>your coach.</span></div>
+ <div class="pol" style="left:40px;top:690px;width:420px;height:520px;transform:rotate(-7deg)"><div style="background-image:url(assets/k_photofood.jpg)"></div><small>meals ✓</small></div>
+ <div class="pol" style="left:600px;top:1050px;width:420px;height:500px;transform:rotate(6deg)"><div style="background-image:url(assets/bg_dumbbell.jpg);background-position:center 40%"></div><small>sessions ✓</small></div>
+ <div class="tape" style="left:170px;top:668px;transform:rotate(-12deg)"></div>
+ <div class="tape" style="left:740px;top:1030px;transform:rotate(9deg)"></div>
+ <img class="ph" src="assets/phonecutB3.png" style="left:370px;top:720px;height:760px;transform:rotate(2deg)">
+ <div class="mk" style="left:58px;top:1255px;transform:rotate(-5deg);font-size:40px;line-height:1.1">your crew &amp;<br>your progress.</div>
+ <div class="abs cta">DOWNLOAD TODAY</div><div class="abs sub">Search “MUR Nutrition” on the App Store</div>${grain}</div>`;
+document.getElementById('root').innerHTML=S[n];
+// Optional swaps so a repeated design gets fresh media: ?bg=<image path>&pos=<css background-position>
+const q=new URLSearchParams(location.search), sw=q.get('bg');
+if(sw){const el=document.querySelector('.s2 .photo, .s3 .cover, .s4 .cover, .s5 .cover, .s6 .cover, .s7 .pol div');
+ if(el){el.style.backgroundImage='url('+sw+')'; if(q.get('pos')) el.style.backgroundPosition=q.get('pos');}}
+</script></body></html>
