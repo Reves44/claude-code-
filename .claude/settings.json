@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__Windsor_ai_for_Social_Media__execute_action",
+      "mcp__Windsor_ai_for_Social_Media__list_actions",
+      "mcp__Windsor_ai_for_Social_Media__get_data",
+      "mcp__Windsor_ai_for_Social_Media__get_fields",
+      "ArtifactData",
+      "Artifact"
+    ]
+  }
+}
