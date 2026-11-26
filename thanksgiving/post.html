@@ -1,0 +1,42 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Great+Vibes&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--blue:#0B2A66;--blue2:#123C8C;--gold:#C9A646;--gold2:#E6C877}
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1080px;height:1080px;background:radial-gradient(circle at 50% 42%,var(--blue2),var(--blue) 70%);font-family:Lato,sans-serif;color:var(--gold);overflow:hidden;position:relative}
+.frame{position:absolute;inset:36px;border:6px solid var(--gold);}
+.frame2{position:absolute;inset:52px;border:2px solid var(--gold);opacity:.7}
+.c{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.greek{font-family:Cinzel,serif;font-weight:800;font-size:150px;letter-spacing:20px;color:var(--gold);line-height:1;text-shadow:0 4px 0 rgba(0,0,0,.25)}
+.rule{display:flex;align-items:center;gap:18px;margin:26px 0 34px}
+.rule span{width:170px;height:3px;background:var(--gold)}
+.rule i{width:16px;height:16px;background:var(--gold);transform:rotate(45deg)}
+.happy{font-family:'Great Vibes',cursive;font-size:150px;color:var(--gold2);line-height:1.05;margin-top:4px}
+.tg{font-family:Cinzel,serif;font-weight:800;font-size:84px;letter-spacing:8px;color:#fff;margin-top:-6px}
+.from{font-family:Cinzel,serif;font-weight:600;font-size:34px;letter-spacing:6px;color:var(--gold);margin-top:34px}
+.msg{font-size:26px;letter-spacing:2px;color:#dfe6f5;margin-top:14px}
+svg.leaf{position:absolute}
+</style></head><body>
+<div class="frame"></div><div class="frame2"></div>
+<svg class="leaf" style="left:70px;top:70px" width="230" height="230" viewBox="0 0 230 230" id="L"></svg>
+<svg class="leaf" style="right:70px;top:70px;transform:scaleX(-1)" width="230" height="230" viewBox="0 0 230 230"></svg>
+<svg class="leaf" style="left:70px;bottom:70px;transform:scaleY(-1)" width="230" height="230" viewBox="0 0 230 230"></svg>
+<svg class="leaf" style="right:70px;bottom:70px;transform:scale(-1,-1)" width="230" height="230" viewBox="0 0 230 230"></svg>
+<div class="c">
+  <div class="greek">ΣΧ</div>
+  <div class="rule"><span></span><i></i><span></span></div>
+  <div class="happy">Happy</div>
+  <div class="tg">THANKSGIVING</div>
+  <div class="from">FROM THE BROTHERS OF SIGMA CHI</div>
+  <div class="msg">Grateful for brotherhood, family &amp; friends</div>
+</div>
+<script>
+const maple='<path d="M0,-60 L10,-30 L30,-42 L24,-14 L50,-18 L34,4 L46,14 L12,14 L16,40 L0,26 L-16,40 L-12,14 L-46,14 L-34,4 L-50,-18 L-24,-14 L-30,-42 L-10,-30 Z"/><path d="M0,26 L0,62" stroke-width="4" fill="none"/>';
+const oak='<path d="M0,-55 C14,-50 6,-36 18,-32 C30,-28 26,-14 14,-10 C28,-4 26,10 12,12 C22,22 14,34 0,40 C-14,34 -22,22 -12,12 C-26,10 -28,-4 -14,-10 C-26,-14 -30,-28 -18,-32 C-6,-36 -14,-50 0,-55Z"/><path d="M0,40 L0,62" stroke-width="4" fill="none"/>';
+const inner=`<g fill="#C9A646" stroke="#C9A646">
+<g transform="translate(70,70) rotate(-35) scale(1.05)">${maple}</g>
+<g transform="translate(150,58) rotate(25) scale(.7)" fill="#E6C877" stroke="#E6C877">${oak}</g>
+<g transform="translate(60,152) rotate(-70) scale(.65)" fill="#E6C877" stroke="#E6C877">${oak}</g>
+<circle cx="128" cy="118" r="9"/><circle cx="142" cy="128" r="7"/><circle cx="120" cy="134" r="6"/></g>`;
+document.querySelectorAll('svg.leaf').forEach(s=>s.innerHTML=inner);
+</script></body></html>
