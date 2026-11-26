@@ -6,7 +6,7 @@
 body{width:1080px;height:1080px;background:radial-gradient(circle at 50% 42%,var(--blue2),var(--blue) 70%);font-family:Lato,sans-serif;color:var(--gold);overflow:hidden;position:relative}
 .frame{position:absolute;inset:36px;border:6px solid var(--gold);}
 .frame2{position:absolute;inset:52px;border:2px solid var(--gold);opacity:.7}
-.c{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.c{position:absolute;inset:0 0 120px 0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
 .greek{font-family:Cinzel,serif;font-weight:800;font-size:150px;letter-spacing:20px;color:var(--gold);line-height:1;text-shadow:0 4px 0 rgba(0,0,0,.25)}
 .rule{display:flex;align-items:center;gap:18px;margin:26px 0 34px}
 .rule span{width:170px;height:3px;background:var(--gold)}
@@ -17,7 +17,25 @@ body{width:1080px;height:1080px;background:radial-gradient(circle at 50% 42%,var
 .msg{font-size:26px;letter-spacing:2px;color:#dfe6f5;margin-top:14px}
 svg.leaf{position:absolute}
 </style></head><body>
-<div class="frame"></div><div class="frame2"></div>
+<div class="frame"></div>
+<svg style="position:absolute;left:50%;top:818px;transform:translateX(-50%)" width="245" height="194" viewBox="-95 -80 190 150">
+ <g id="fan"></g>
+ <ellipse cx="0" cy="22" rx="34" ry="38" fill="#8A6A22"/>
+ <ellipse cx="0" cy="28" rx="22" ry="26" fill="#A88332"/>
+ <circle cx="0" cy="-22" r="17" fill="#8A6A22"/>
+ <circle cx="-6" cy="-26" r="3.2" fill="#fff"/><circle cx="6" cy="-26" r="3.2" fill="#fff"/>
+ <circle cx="-6" cy="-26" r="1.6" fill="#0B2A66"/><circle cx="6" cy="-26" r="1.6" fill="#0B2A66"/>
+ <path d="M-6,-19 L6,-19 L0,-9 Z" fill="#E6C877"/>
+ <path d="M3,-13 C10,-8 9,2 4,4 C1,0 2,-6 3,-13Z" fill="#fff"/>
+ <path d="M-12,58 L-12,68 M-12,68 l-7,4 M-12,68 l0,6 M-12,68 l7,4 M12,58 L12,68 M12,68 l-7,4 M12,68 l0,6 M12,68 l7,4" stroke="#E6C877" stroke-width="4" stroke-linecap="round" fill="none"/>
+</svg>
+<script>
+(()=>{const f=document.getElementById('fan');let h='';const n=9;
+for(let i=0;i<n;i++){const a=-80+i*160/(n-1);const c=i%2?'#E6C877':'#C9A646';
+h+=`<g transform="translate(0,18) rotate(${a})"><ellipse cx="0" cy="-52" rx="15" ry="42" fill="${c}"/><ellipse cx="0" cy="-74" rx="8" ry="14" fill="#fff" opacity=".9"/></g>`;}
+f.innerHTML=h;})();
+</script>
+<div class="frame2"></div>
 <svg class="leaf" style="left:70px;top:70px" width="230" height="230" viewBox="0 0 230 230" id="L"></svg>
 <svg class="leaf" style="right:70px;top:70px;transform:scaleX(-1)" width="230" height="230" viewBox="0 0 230 230"></svg>
 <svg class="leaf" style="left:70px;bottom:70px;transform:scaleY(-1)" width="230" height="230" viewBox="0 0 230 230"></svg>
