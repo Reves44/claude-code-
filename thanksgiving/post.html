@@ -19,6 +19,19 @@ body{width:1080px;height:1080px;background:radial-gradient(circle at 50% 42%,var
 svg.leaf{position:absolute}
 </style></head><body>
 <div class="frame"></div>
+<svg class="pk" style="position:absolute;left:262px;top:872px" width="170" height="130" viewBox="0 0 170 130"></svg>
+<svg class="pk" style="position:absolute;right:262px;top:872px;transform:scaleX(-1)" width="170" height="130" viewBox="0 0 170 130"></svg>
+<script>
+(()=>{const P=(x,y,k)=>`<g transform="translate(${x},${y}) scale(${k})">
+<path d="M-2,-34 C-4,-46 4,-52 10,-50 L8,-44 C4,-44 3,-40 4,-34Z" fill="#6B4F17"/>
+<path d="M4,-44 C16,-56 30,-48 26,-40 C20,-46 12,-44 4,-44Z" fill="#E6C877"/>
+<ellipse cx="-26" cy="0" rx="24" ry="34" fill="#B8913A"/><ellipse cx="26" cy="0" rx="24" ry="34" fill="#B8913A"/>
+<ellipse cx="-12" cy="0" rx="22" ry="36" fill="#C9A646"/><ellipse cx="12" cy="0" rx="22" ry="36" fill="#C9A646"/>
+<ellipse cx="0" cy="0" rx="17" ry="37" fill="#E6C877"/>
+</g>`;
+document.querySelectorAll('svg.pk').forEach(s=>s.innerHTML=P(62,74,1.15)+P(122,96,.62));})();
+</script>
+
 <svg style="position:absolute;left:50%;top:818px;transform:translateX(-50%)" width="245" height="194" viewBox="-95 -80 190 150">
  <g id="fan"></g>
  <ellipse cx="0" cy="22" rx="34" ry="38" fill="#8A6A22"/>
